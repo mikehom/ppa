@@ -886,7 +886,7 @@
    "projections": {
     "cs_theory": "Analysis results are characterised as least (sometimes greatest) fixed points.",
     "swe_architecture": "A candidate solution can be validated by one application of f: it is a fixed point, or at least reductive.",
-    "practical_debugging": "If f(l) ⋢ l for a reported result l, l is not reductive (l ∉ Red(f)) and is unsound for a least-fixed-point specification.",
+    "practical_debugging": "If f(l) ⋢ l for a reported result l, l is not reductive (l ∉ Red(f)), so Tarski's lfp(f) ⊑ l guarantee does not certify it (l may be unsound for a least-fixed-point specification).",
     "cyber": "Least fixed points model least privilege [external]; greatest fixed points give optimistic (coinductive) acceptance."
    },
    "related_edges": [
@@ -3463,16 +3463,6 @@
     {
      "target_id": "ppa.tes.side-effect-analysis",
      "relation": "refined_by"
-    },
-    {
-     "target_id": "ppa.cyber.region-escape-lifetime-firewall",
-     "relation": "refined_by",
-     "citations": []
-    },
-    {
-     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
-     "relation": "refined_by",
-     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4847,9 +4837,9 @@
      "table_or_fig": null
     }
    ],
-   "formal_summary": "Defines syntactic path sets path∘(ℓ) / path•(ℓ) and join over all paths MOP(ℓ). Lemma 2.31 proves CP MOP undecidable via MPCP; Lemma 2.32 establishes MFP ⊒ MOP always and MFP = MOP iff both the framework is distributive and ∀ℓ : path∘(ℓ) ≠ ∅.",
+   "formal_summary": "Defines syntactic path sets path∘(ℓ) / path•(ℓ) and join over all paths MOP(ℓ). Lemma 2.31 proves CP MOP undecidable via MPCP; Lemma 2.32 establishes MFP ⊒ MOP always and, if the framework is distributive and path∘(ℓ) ≠ ∅ for all ℓ in E and F, then MFP = MOP (a sufficient condition, not a biconditional).",
    "conditions": [
-    "BOTH distributivity AND path∘(ℓ) ≠ ∅ (Exercise 2.13) are required for Lemma 2.32 equality (Lemma A.9 needs non-empty joins).",
+    "Lemma 2.32's equality guarantee assumes BOTH distributivity AND path∘(ℓ) ≠ ∅ for all ℓ in E and F (Exercise 2.13; Lemma A.9 needs non-empty joins); the hypotheses are sufficient, not necessary.",
     "Lemma 2.32 statement prints B for E; Lemma 2.31 proof misprints v_{i_n} and relies on sufficient integer arithmetic.",
     "MOP reduces to MFP over enriched powerset lattice 𝒫(L) (p. 82)."
    ],
@@ -4894,7 +4884,8 @@
    "issue_refs": [
     "BKL-022",
     "BKL-040",
-    "BKL-050"
+    "BKL-050",
+    "BKL-093"
    ]
   },
   {
@@ -5993,6 +5984,10 @@
     {
      "target_id": "ppa.cfa.cartesian-product-algorithm",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -6318,7 +6313,7 @@
    "conditions": [
     "R requires no coinduction because captured closure environments were constructed strictly earlier.",
     "Val_hat = P(Exp) breaks Fact 3.11 and Theorem 3.10 under [bind_2]/[if_2]/[if_3] relabelling (Exercise 3.6, BKL-052).",
-    "Fact 3.11 (erased in OCR on p. 160) suffices for [bind_2], [if_2], and [if_3] without any congruence proof gap because Tables 3.2-3.3 preserve outermost labels (p. 157); Exercise 3.7 covers remaining cases and alpha-renaming / static-scoping 0-CFA, and Exercise 3.8 shows Table 3.1 stays sound under CBN SOS (BKL-052, BKL-062)."
+    "The printed proof of Theorem 3.10 treats five cases, [var] (p. 160) and [fn], [app_1], [app_fn], [bind_2] (p. 161), and ends 'This completes the proof.'; that Fact 3.11 (erased in OCR on p. 160) also discharges the unprinted [if_2]/[if_3] cases because Tables 3.2-3.3 preserve outermost labels (p. 157) is [derived]. Exercise 3.7 (p. 207) asks only about alpha-renaming sensitivity and a static-scoping-faithful 0-CFA, and Exercise 3.8 shows Table 3.1 stays sound under CBN SOS (BKL-052, BKL-062)."
    ],
    "projections": {
     "cs_theory": "Adapts operational subject reduction from type systems to coinductive flow relations.",
@@ -6807,7 +6802,7 @@
      "table_or_fig": null
     }
    ],
-   "formal_summary": "Propagates D[q] over Nodes = C(Lab_*) union r(Var_*) via worklist W and subscriber lists E[q] (Table 3.7, Figures 3.4-3.5), registering {t} <= p => p_1 <= p_2 in both E[p_1] and E[p] to compute the least solution of C_*[[e_*]] in O(n^3) edge traversals (Proposition 3.24), sound for |= e_* (Corollary 3.25).",
+   "formal_summary": "Propagates D[q] over Nodes = C(Lab_*) union r(Var_*) via worklist W and subscriber lists E[q] (Table 3.7, Figures 3.4-3.5), registering {t} <= p => p_1 <= p_2 in both E[p_1] and E[p] to compute the least solution of C_*[[e_*]] (Proposition 3.24) in O(n^3) time (complexity paragraph, p. 181), sound for |= e_* (Corollary 3.25).",
    "conditions": [
     "Dual registration in E[p_1] and E[p] is mandatory so flows fire regardless of whether D[p_1] or t in D[p] arrives first.",
     "Book O(n^3) bound counts edge-traversal steps; true O(n^3) elementary time requires differential (q, t) pairs and O(1) bitset membership rather than O(n) whole-set unions (BKL-055).",
@@ -6878,6 +6873,10 @@
        "Table 3.7 uses a segregated flow-variable worklist W subseteq Node propagating single terms with E[p]/D[p] arrays, whereas Table 6.1 uses an integrated constraint worklist over arbitrary monotone RHS terms."
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -6957,6 +6956,10 @@
     {
      "target_id": "ppa.cfa.syntax-directed-0cfa",
      "relation": "refines"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -7151,6 +7154,10 @@
     {
      "target_id": "ppa.cfa.algebraic-data-and-imperative-stores",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -7231,7 +7238,7 @@
    ],
    "formal_summary": "Eliminates monovariant call-site smearing (Example 3.32) by indexing Cache_hat = (Lab x Delta) -> Val_hat, Env_hat = (Var x Delta) -> Val_hat, and Val_hat = P(Term x CEnv) over k-bounded call strings Delta = Lab^{<=k} and lexical context environments ce in CEnv = Var -> Delta (Table 3.10 |=_delta^{ce}, Example 3.34), pushing outer label l via delta_0 = [delta, l]_k at [app] and looking up lexical birth contour ce(x) at [var].",
    "conditions": [
-    "Both standard 1-CFA (Cache_hat = (Lab x CEnv) -> Val_hat, [156, 157, 158] [external: Shivers]) and Uniform 1-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retain Val_hat = P(Term x CEnv) with |Val_hat| height O(n * n^p), causing exponential worst-case complexity ([external: DEXPTIME], BKL-007); replacing CEnv with single contour Delta in Val_hat = P(Term x Delta) yields O(n^6) polynomial k-CFA (p. 195).",
+    "Both standard 1-CFA (Cache_hat = (Lab x CEnv) -> Val_hat, Shivers [156, 157, 158], p. 198) and Uniform 1-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retain Val_hat = P(Term x CEnv) with |Val_hat| height O(n * n^p), causing exponential worst-case complexity ([external: DEXPTIME], BKL-007); replacing CEnv with single contour Delta in Val_hat = P(Term x Delta) gives polynomial lattice height and is closely related to polynomial k-CFA (constant context environments), which is O(n^6) for k = 1 (p. 195).",
     "[var] looks up rho_hat(x, ce(x)) and [let] leaves delta unchanged; p. 191 defines total CEnv = Var -> Delta whereas Table 3.10 / Example 3.34 use finite restrictions ce | FV(...) and ce_0 = [], and Example 3.34 mis-cites Example 3.33 (BKL-057).",
     "Direct self-recursion flushes outer callers from [delta, l]_k unless stuttering compression is used (Exercise 3.15)."
    ],
@@ -7286,6 +7293,10 @@
     {
      "target_id": "ppa.cfa.cartesian-product-algorithm",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "generalizes"
     }
    ],
    "artifact_refs": [
@@ -7396,6 +7407,10 @@
        "Section 2.5.5 tabulates relational (input, output) state pairs over static procedures (avoiding large P(D) non-monotonicity, BKL-003), whereas CPA instantiates memoised higher-order function templates per m-tuple in C_hat(l_1, delta) x ... x C_hat(l_m, delta)"
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "generalizes"
     }
    ],
    "artifact_refs": [
@@ -7452,7 +7467,7 @@
    ],
    "formal_summary": "Situates CFA within Set-Constraint Based Analysis (S_1 <= S_2 with constructors C(...) and projections C^{-i}(S)), [9]'s ([external: Aiken et al.]) two-step lazy conditional-constraint expansion, Jagannathan-Wright [80] empirical 1-CFA vs 0-CFA trade-offs, and OO, concurrent ([external: Concurrent ML, pi-calculus]), and logic ([external: Prolog]) paradigm adaptations.",
    "conditions": [
-    "S_1 intersect S_2 preserves monotonicity on (P(U), <=); adding complement ~S or variable-LHS guards (S_1 <= S_2) => S_3 destroys monotonicity so Tarski's Theorem fails and Banach's Contraction Theorem is needed (p. 201, BKL-059).",
+    "S_1 intersect S_2 preserves monotonicity on (P(U), <=); adding complement ~S destroys monotonicity so Tarski's Theorem no longer applies and sometimes a version of Banach's Theorem may be used (p. 201, BKL-059); that guards (S_1 <= S_2) => S_3 whose S_1 contains variables are antitone in S_1 is [derived], not stated in the book.",
     "Lazy [9] expansion instantiates conditional rules only for reachable closures t in D[p], omitting dead lambda bodies."
    ],
    "projections": {
@@ -7515,7 +7530,7 @@
    ],
    "formal_summary": "Extends FUN CFA to algebraic constructors C(e_1, ..., e_n) / case e_0 of C(x_1, ..., x_n) => e_1 or x => e_2 via flat finite Val_hat = P(Term union {C(l_1, ..., l_n)}) (Mini Project 3.2) and to ML mutable references new_pi x := e_1 in e_2, !x, x := e_0, e_1 ; e_2 with me : Var -> Pnt and flow-sensitive stores S_circ, S_bullet : Lab -> (Pnt -> Val_hat) ((C_hat, rho_hat, S_circ, S_bullet) |=_{me} e, Mini Project 3.4).",
    "conditions": [
-    "Embedding expression labels l_i inside flat C(l_1, ..., l_n) breaks Fact 3.11 and Theorem 3.10 once SOS rewrites outer labels (Mini Project 3.2, p. 203, BKL-060).",
+    "Mini Project 3.2 (p. 203) prescribes the flat finite domain Val_hat = P(Term union {C(l_1, ..., l_n) | C in Constr, l_i in Lab}) for the syntax-directed (Table 3.5) and constraint (Tables 3.6/3.7) analyses; whether the abstract specification can keep Fact 3.11 / Theorem 3.10 with such labels is the book's 'more ambitious' open question (BKL-060).",
     "Mini Project 3.4 (pp. 204-205) leaves exact [assign] clauses unprinted as a design exercise; abstract allocation sites pi in Pnt force weak updates [external] by default, whereas sound strong updates (\"kill\") require per-program-point local stores plus abstract reference counts (p. 200 [133], BKL-061)."
    ],
    "projections": {
@@ -7701,6 +7716,10 @@
     {
      "target_id": "ppa.ai.galois-connection",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "generalizes"
     }
    ],
    "artifact_refs": [
@@ -7896,6 +7915,10 @@
     {
      "target_id": "ppa.ai.concrete-relational-and-word-domains",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -7989,6 +8012,10 @@
     {
      "target_id": "ppa.ai.gamma-induced-widening",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -8467,6 +8494,10 @@
     {
      "target_id": "ppa.ai.concrete-relational-and-word-domains",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -9885,6 +9916,10 @@
     {
      "target_id": "ppa.interproc.flow-insensitive-iav",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -10029,6 +10064,10 @@
     {
      "target_id": "ppa.tes.exception-analysis",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -10126,6 +10165,10 @@
     {
      "target_id": "ppa.tes.generalisation",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -10205,6 +10248,10 @@
     {
      "target_id": "ppa.tes.effect-design-axes-and-two-stage",
      "relation": "part_of"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -10291,6 +10338,10 @@
     {
      "target_id": "ppa.shape.pointer-sos",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.region-escape-lifetime-firewall",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -10361,7 +10412,7 @@
    ],
    "projections": {
     "cs_theory": "Lexical effect masking (Observe) encapsulates local state analogously to rank-2 state threads [external: Launchbury-Peyton Jones runST] while trading flow-sensitive destructive updates for modular higher-order summaries.",
-    "swe_architecture": "Allows unrestricted aliasing inside each region with bulk [external: LIFO] free, contrasting with [external: affine alias-XOR-mutability (Rust lifetimes/borrowck)].",
+    "swe_architecture": "Allows unrestricted aliasing inside each region with bulk LIFO free, contrasting with [external: affine alias-XOR-mutability (Rust lifetimes/borrowck)].",
     "practical_debugging": "Unbounded region growth in tail-recursive accumulators traces to input/output region unification preventing inner letregion placement.",
     "cyber": "Observe enforces a static non-escape firewall blocking [external: CWE-416 arena use-after-free] while flagging [external: CWE-400] retention hazards."
    },
@@ -10377,6 +10428,10 @@
     {
      "target_id": "ppa.transform.constant-folding",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.region-escape-lifetime-firewall",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -10451,6 +10506,10 @@
     },
     {
      "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
      "relation": "prerequisite_of"
     }
    ],
@@ -10545,6 +10604,10 @@
     {
      "target_id": "ppa.proof.coinduction",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -10719,6 +10782,14 @@
     },
     {
      "target_id": "ppa.tes.effect-design-axes-and-two-stage",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
      "relation": "related_to"
     }
    ],
@@ -10966,6 +11037,10 @@
     {
      "target_id": "ppa.solvers.local-and-elimination-solvers",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -11281,7 +11356,7 @@
    ],
    "formal_summary": "Table 6.4 eliminates W.p and infl by sweeping pre-sorted constraints 1..N in reverse postorder while boolean change remains true, computing mu_S (Lemma 6.11, Figure 6.4: 2 while-sweeps = 12 eval checks). For Bit Vector Frameworks (L = P(D), t_i = (x_{j_i} cap Y_i^1) cup Y_i^2), Lemma 6.12 proves Table 6.4 halts in at most d(G_S, T) + 3 iterations (1 init + <= d + 1 propagation sweeps + 1 quiescence sweep) and O((d(G_S, T) + 1) * N) assignments; on WHILE programs d equals loop nesting depth (d <= 3 Folk Theorem).",
    "conditions": [
-    "Lemma 6.12 holds strictly for Bit Vector (or fast distributive) frameworks, never unconditionally for general ACC lattices like Constant Propagation or 0-CFA.",
+    "Lemma 6.12 holds only for instances of a Bit Vector Framework (L = P(D), every t_i of the form (x_{j_i} ∩ Y_i^1) ∪ Y_i^2, p. 380); it is never quoted for general ACC lattices like Constant Propagation or 0-CFA, and any extension to [external: Kam–Ullman rapid frameworks] is outside the book.",
     "Constraints 1..N must be ordered in reverse postorder of DFSF T over G_S; on irreducible graphs d(G_S, T) depends on T.",
     "Iteration count n includes Step 1 initialisation as iteration 1 plus n - 1 Step 2 while-sweeps (d + 3 total, not d + 2).",
     "Book p. 380 mis-cites Example 2.8 instead of Example 2.30 for the O(b^2) Reaching Definitions comparison."
@@ -11333,6 +11408,10 @@
        "Appendix C defines d(G, T) purely graph-theoretically, whereas Lemma 6.12 binds d(G_S, T) to Bit Vector Round Robin iteration counts (d(G_S, T) + 3)."
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -11346,7 +11425,8 @@
     "BKL-010",
     "BKL-012",
     "BKL-018",
-    "BKL-088"
+    "BKL-088",
+    "BKL-093"
    ],
    "altitude": "L1"
   },
@@ -11466,6 +11546,10 @@
        "Appendix C defines strong components and reduced DAGs structurally, whereas §6.3 layers local RPO (srPostorder) and 3-queue (W.c, W.pc, W.pf) barrier scheduling on top."
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -11608,6 +11692,10 @@
        "ACC guarantees exact convergence to mu_S = lfp(F_S) via joins, whereas pointwise widening terminates at a sound reductive upper bound mu_S <= Analysis."
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -11679,7 +11767,8 @@
    ],
    "issue_refs": [
     "BKL-022",
-    "BKL-090"
+    "BKL-090",
+    "BKL-093"
    ],
    "altitude": "L1"
   },
@@ -11748,6 +11837,10 @@
     },
     {
      "target_id": "ppa.bib.bibliography-concordance",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
      "relation": "related_to"
     }
    ],
@@ -11981,7 +12074,7 @@
     "Unconditional join ⊔ ι^ℓ_E (§2.3, p. 66) is required whenever entry or exit blocks sit inside loops.",
     "Non-extremal nodes in must-analyses (⊇) must initialise to universal carrier ⊥_L = U rather than ∅.",
     "gen_AE([x := a]^ℓ) excludes expressions with x ∈ FV(a') because x mutates after RHS evaluation.",
-    "MFP = MOP requires both distributivity and ∀ℓ : path∘(ℓ) ≠ ∅ (Lemma 2.32, p. 80)."
+    "MFP = MOP is guaranteed when the framework is distributive and path∘(ℓ) ≠ ∅ for all ℓ in E and F (Lemma 2.32, p. 80); observing MFP = MOP does not prove distributivity."
    ],
    "projections": {
     "cs_theory": "Dual powerset lattices (𝒫(D), ⊆) and (𝒫(D), ⊇) unify may-defect reachability and must-validation under least fixed points in information order.",
@@ -12117,6 +12210,14 @@
     {
      "target_id": "ppa.interproc.assumption-sets",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.cfa.uniform-k-cfa",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.cfa.cartesian-product-algorithm",
+     "relation": "specializes"
     }
    ],
    "artifact_refs": [
@@ -12199,6 +12300,22 @@
     {
      "target_id": "ppa.cyber.taint-sanitizer-polarity",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.side-effect-analysis",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.generalisation",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.monotone-and-unit-types",
+     "relation": "specializes"
     }
    ],
    "artifact_refs": [
@@ -12331,11 +12448,18 @@
      "book_page": 338,
      "pdf_page": 355,
      "table_or_fig": "Table 5.13"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 339,
+     "pdf_page": 356,
+     "table_or_fig": null
     }
    ],
    "formal_summary": "Region Inference translates FUN into stack-allocated lexical regions (Figure 5.1, Table 5.11 ς₂ \\\\ rn⃗) using [region] side condition φ' = Observe(Γ̂, τ̂, r)(φ) so deallocated region variables ϱ⃗ do not escape in observable Γ̂, τ̂, or r, while compound schemes (∀β⃗, [ϱ⃗].τ̂)@r enable per-call region placement in recursive functions.",
    "conditions": [
-    "Deallocating rn⃗ in [region] requires ϱ⃗ to occur in φ and not in Observe(Γ̂, τ̂, r)(φ) (Table 5.13, p. 338).",
+    "Deallocating rn⃗ in [region] requires ϱ⃗ to occur in φ and not in φ' = Observe(Γ̂, τ̂, r)(φ) (Table 5.13, p. 338); the ∪, ∅ and β clauses of Observe, which retain any β ∈ φ occurring in Γ̂, τ̂ or r, are on p. 339.",
     "Polymorphic recursion in [fun] excludes type variables α⃗ for decidability (§5.4.3, p. 336).",
     "Fresh runtime regions satisfy {rn⃗} ∩ dom(ς₁) = ∅ (Table 5.11, p. 334)."
    ],
@@ -12347,12 +12471,16 @@
    },
    "related_edges": [
     {
-     "target_id": "ppa.tes.call-tracking-effects",
+     "target_id": "ppa.cyber.heap-strong-update-and-uaf-safety",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.region-inference-translation",
      "relation": "refines"
     },
     {
-     "target_id": "ppa.cyber.heap-strong-update-and-uaf-safety",
-     "relation": "contrasts_with"
+     "target_id": "ppa.tes.region-memory-semantics",
+     "relation": "depends_on"
     }
    ],
    "artifact_refs": [
@@ -12438,6 +12566,26 @@
     {
      "target_id": "ppa.fixpoint.fixed-points",
      "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.ai.interval-lattice",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.ai.widening",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.ai.narrowing-and-truncators",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.ai.reduced-and-tensor-products-ab",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.monotone-and-unit-types",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -12525,6 +12673,22 @@
     {
      "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cfa.open-systems",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.cfa.abstract-0cfa",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cfa.cubic-worklist-solver",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cfa.cfa-with-lattice-dfa",
+     "relation": "depends_on"
     }
    ],
    "artifact_refs": [
@@ -12596,11 +12760,19 @@
    },
    "related_edges": [
     {
-     "target_id": "ppa.tes.call-tracking-effects",
+     "target_id": "ppa.proof.coinduction",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.exception-analysis",
      "relation": "refines"
     },
     {
-     "target_id": "ppa.proof.coinduction",
+     "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.cml-concurrent-semantics",
      "relation": "depends_on"
     }
    ],
@@ -12675,14 +12847,14 @@
      "table_or_fig": null
     }
    ],
-   "formal_summary": "Abstract Worklist (Table 6.1, Lemma 6.4) maintains Analysis_i[x] ⊑ μ_𝒮(x) at every step and reaches Red(F_𝒮) only when W = empty in O(h · M² · N) time (lowered to O(h · M · N) by Exercise 6.5 splitting, scheduled via RPO/SCC Tables 6.3-6.6 or local solvers on p. 385, and bounded under non-ACC by Exercise 6.13 widening).",
+   "formal_summary": "Abstract Worklist (Table 6.1, Lemma 6.4) maintains Analysis_i[x] ⊑ μ_𝒮(x) at every step (Lemma 6.4(i)) and is certified reductive (Analysis ∈ Red(F_𝒮), hence = μ_𝒮) only when W = empty, although an intermediate state may already equal μ_𝒮 (Figure 6.1 row 10), in O(h · M² · N) time (lowered to O(h · M · N) by Exercise 6.5 splitting, scheduled via RPO/SCC Tables 6.3-6.6 or local solvers on p. 385, and bounded under non-ACC by Exercise 6.13 widening).",
    "conditions": [
-    "Intermediate states Analysis_i satisfy F_𝒮(Analysis_i) ⊑ Analysis_i only upon W = empty (Lemma 6.4, p. 371).",
+    "Intermediate states Analysis_i are certified reductive (F_𝒮(Analysis_i) ⊑ Analysis_i) only upon W = empty, although an intermediate state may already equal μ_𝒮 (Lemma 6.4, p. 371; Figure 6.1 row 10).",
     "Round Robin bound d(G_𝒮, T) + 3 requires a Bit Vector Framework iterated in DFSF reverse postorder (Lemma 6.12, p. 380).",
     "Worklist widening requires guarding Analysis[x] := Analysis[x] ∇_L new with Analysis[x] ⋣ new (Exercise 6.13, p. 391)."
    ],
    "projections": {
-    "cs_theory": "Ascending worklist iterates approach lfp(F_𝒮) from below and cross into reductive upper bounds Red(F_𝒮) strictly at worklist exhaustion.",
+    "cs_theory": "Ascending worklist iterates approach lfp(F_𝒮) from below; membership in Red(F_𝒮) is certified only at worklist exhaustion, although an intermediate iterate may already equal lfp(F_𝒮).",
     "swe_architecture": "Split M-ary joins, schedule SCCs in topological RPO, support demand-driven backward sink cones, and widen dirty cones on step-budget exhaustion [external].",
     "practical_debugging": "Scanner timeouts on flattened dispatchers trace to O(h · M² · N) fan-in or high d(G_𝒮, T); missing alerts on large functions trace to returning partial Analysis_i at timeout [external].",
     "cyber": "Defends SAST/taint engines against CWE-400/CWE-407 algorithmic complexity DoS and closes the CWE-693 timeout-evasion false-negative primitive [external]."
@@ -12720,6 +12892,26 @@
      "target_id": "ppa.cyber.fn-fp-triage-and-oracles",
      "relation": "prerequisite_of",
      "citations": []
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.solvers.round-robin-loop-bound",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.scc-worklist",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.worklist-widening",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [

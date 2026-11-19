@@ -62,7 +62,7 @@ and [interprocedural-and-correctness.md](../../ppa-dataflow-and-slicing/referenc
 - **Uniform `k`-CFA vs standard & polynomial `k`-CFA (`§3.6.1`, `Table 3.10`, `G-U3b-11..16`, `G-U3b-29`, `BKL-007`, `BKL-057`)**:
   With `Δ = Lab^{≤k}` (sequences of `≤ k` call-site labels; `k = 0 ⇒ Δ = {Λ}` recovers `0-CFA`) and
   `ce ∈ CEnv = Var → Δ` (`ce | FV(...)` at definitions; see `BKL-057` on total `Var → Δ` vs `ce₀ = []`):
-  - **Standard `k`-CFA (`[156, 157, 158]`, `[external: Shivers]`, `pp. 191, 193`)**:
+  - **Standard `k`-CFA (Shivers `[156, 157, 158]` [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216), `pp. 191, 193`)**:
     `Val̂ = 𝒫(Term × CEnv)`, `Env̂ = (Var × Δ) → Val̂`, **`Cachê = (Lab × CEnv) → Val̂`**.
   - **Uniform `k`-CFA (`Table 3.10`, `pp. 191–192`)**: retains **`Val̂ = 𝒫(Term × CEnv)`** and
     `Env̂ = (Var × Δ) → Val̂`, simplifying caches to **`Cachê = (Lab × Δ) → Val̂`** (`G-U3b-11`)
@@ -81,9 +81,10 @@ and [interprocedural-and-correctness.md](../../ppa-dataflow-and-slicing/referenc
     yielding exact **`Ĉ'_id(8, Λ) = Ĉ'_id(9, Λ) = {(fn y => y^6, ce₀)}`** (`ce₀ = []`)
     [PPA Example 3.34, p. 194] (book p. 194; PDF p. 212).
     However, for `k ≥ 1`, **`|Val̂|`** lattice height `O(n · n^p)` (`p = O(n)` variables) makes **both** `1-CFA` and
-    uniform `1-CFA` **exponential worst-case (`[external: DEXPTIME]`)** (`G-U3b-15`, `BKL-007`), whereas **Polynomial
-    `k`-CFA** (`Val̂ = 𝒫(Term × Δ)`, replacing `CEnv` with single contour `Δ`; distinct from flat `Val̂ = 𝒫(Term)`
-    `[external: m-CFA]`) runs in **`O(n⁶)`** at `k = 1` (at the cost of losing per-variable lexical separation on
+    uniform `1-CFA` **exponential worst-case (`[external: DEXPTIME]`)** (`G-U3b-15`, `BKL-007`), whereas replacing `CEnv`
+    by contexts (`Val̂ = 𝒫(Term × Δ)`; distinct from flat `Val̂ = 𝒫(Term)` `[external: m-CFA]`) gives polynomial
+    lattice height and is "closely related to" **polynomial `k`-CFA** (context environments forced constant),
+    which runs in **`O(n⁶)`** at `k = 1` (at the cost of losing per-variable lexical separation on
     curried closures) [PPA §3.6.1, p. 195] (book p. 195; PDF p. 213). Empirically (`[80]`), `1-CFA` can run
     *faster* than `0-CFA` when precision prunes spurious call graphs (`G-U3b-16`)
     [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219). Under self-recursion, `⌈δ, ℓ⌉_k` flushes

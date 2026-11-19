@@ -624,24 +624,29 @@ that replacing `gfp(𝒬)` with `lfp(𝒬)` destroys the Moore-family property (
 - Citation: [PPA Fact 3.11, p. 160] (book p. 160; PDF p. 178)
 
 ### [U3a:3.2.2-b] Proof of Theorem 3.10 (structural induction on `ρ ⊢ ie → ie'`)
-- Statement: By induction on the derivation tree of `ρ ⊢ ie → ie'`, illustrating four representative cases
-  `[fn]`, `[app₁]`, `[app_fn]`, and `[bind₂]` (and leaving remaining rules, including `[if₂]`/`[if₃]` using
-  `Fact 3.11` and static-scoping / α-renaming invariance, to Exercise 3.7
-  [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)):
-  1. `[fn]`: `ρ ⊢ (fn x => e₀)^ℓ → (close (fn x => e₀) in ρ₀)^ℓ` with `ρ₀ = ρ | FV(fn x => e₀)`. From
+- Statement: Assuming `ρ ℛ ρ̂` and `(Ĉ, ρ̂) ⊨ ie`, prove `(Ĉ, ρ̂) ⊨ ie'` by induction on the structure of the
+  inference tree for `ρ ⊢ ie → ie'`. Most cases simply amount to inspecting the defining clause for
+  `(Ĉ, ρ̂) ⊨ ie` (this method applies to all fixed points of a recursive definition, in particular the greatest
+  fixed point); the book gives "the proofs for some of the more interesting cases", namely five: `[var]`
+  (p. 160) and `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]` (p. 161), and ends "This completes the proof." (no
+  case is deferred to any exercise):
+  1. `[var]`: `ρ ⊢ x^ℓ → v^ℓ` because `x ∈ dom(ρ)` and `v = ρ(x)`. If `v = c` there is nothing to prove; else
+     `v = close t₀ in ρ₀`. From `ρ ℛ ρ̂` we get `v 𝒱 (ρ̂, ρ̂(x))`, hence `t₀ ∈ ρ̂(x)` and `ρ₀ ℛ ρ̂`. From
+     `(Ĉ, ρ̂) ⊨ ie` we get `ρ̂(x) ⊆ Ĉ(ℓ)`, hence `t₀ ∈ Ĉ(ℓ)`; with `ρ₀ ℛ ρ̂`, `[close]` gives `(Ĉ, ρ̂) ⊨ ie'`.
+  2. `[fn]`: `ρ ⊢ (fn x => e₀)^ℓ → (close (fn x => e₀) in ρ₀)^ℓ` with `ρ₀ = ρ | FV(fn x => e₀)`. From
      `(Ĉ, ρ̂) ⊨ ie` we have `fn x => e₀ ∈ Ĉ(ℓ)`; from `ρ ℛ ρ̂` restriction preserves `ρ₀ ℛ ρ̂`; hence `[close]`
      gives `(Ĉ, ρ̂) ⊨ ie'`.
-  2. `[app₁]`: `ρ ⊢ (ie₁ ie₂)^ℓ → (ie'₁ ie₂)^ℓ` from `ρ ⊢ ie₁ → ie'₁`. Since every SOS step preserves the
+  3. `[app₁]`: `ρ ⊢ (ie₁ ie₂)^ℓ → (ie'₁ ie₂)^ℓ` from `ρ ⊢ ie₁ → ie'₁`. Since every SOS step preserves the
      outermost label (`p. 157`), `ie₁` and `ie'₁` share the exact same outer label `ℓ₁`; by induction
      hypothesis `(Ĉ, ρ̂) ⊨ ie'₁`, and the remaining defining clauses of `(Ĉ, ρ̂) ⊨ (ie'₁ ie₂)^ℓ` are unchanged.
-  3. `[app_fn]`: `ρ ⊢ ((close (fn x => t₀^{ℓ₀}) in ρ₁)^{ℓ₁} v₂^{ℓ₂})^ℓ → (bind ρ₁[x ↦ v₂] in t₀^{ℓ₀})^ℓ`.
+  4. `[app_fn]`: `ρ ⊢ ((close (fn x => t₀^{ℓ₀}) in ρ₁)^{ℓ₁} v₂^{ℓ₂})^ℓ → (bind ρ₁[x ↦ v₂] in t₀^{ℓ₀})^ℓ`.
      From `[close]` on the operator: `(fn x => t₀^{ℓ₀}) ∈ Ĉ(ℓ₁)` and `ρ₁ ℛ ρ̂`. From `(Ĉ, ρ̂) ⊨ v₂^{ℓ₂}`:
      either `v₂ = c` (so `v₂ 𝒱 (ρ̂, Ĉ(ℓ₂))` trivially) or `v₂ = close t₂ in ρ₂` (so `[close]` gives
      `t₂ ∈ Ĉ(ℓ₂)` and `ρ₂ ℛ ρ̂`, hence `v₂ 𝒱 (ρ̂, Ĉ(ℓ₂))`). Instantiating `[app]` at `(fn x => t₀^{ℓ₀}) ∈ Ĉ(ℓ₁)`
      gives `(Ĉ, ρ̂) ⊨ t₀^{ℓ₀}`, `Ĉ(ℓ₂) ⊆ ρ̂(x)`, and `Ĉ(ℓ₀) ⊆ Ĉ(ℓ)`. Monotonicity of `𝒱` in its second
      component yields `v₂ 𝒱 (ρ̂, ρ̂(x))`, so `ρ₁[x ↦ v₂] ℛ ρ̂`, and `[bind]` gives `(Ĉ, ρ̂) ⊨ ie'`.
-  4. `[bind₂]`: `ρ ⊢ (bind ρ₁ in v₁^{ℓ₁})^ℓ → v₁^ℓ`. `[bind]` gives `(Ĉ, ρ̂) ⊨ v₁^{ℓ₁}` and `Ĉ(ℓ₁) ⊆ Ĉ(ℓ)`,
-     so `Fact 3.11` gives `(Ĉ, ρ̂) ⊨ v₁^ℓ`. `■`
+  5. `[bind₂]`: `ρ ⊢ (bind ρ₁ in v₁^{ℓ₁})^ℓ → v₁^ℓ`. `[bind]` gives `(Ĉ, ρ̂) ⊨ v₁^{ℓ₁}` and `Ĉ(ℓ₁) ⊆ Ĉ(ℓ)`,
+     so `Fact 3.11` gives `(Ĉ, ρ̂) ⊨ v₁^ℓ`. This completes the proof. `■`
 - Citation: [PPA §3.2.2, p. 160] (book p. 160; PDF p. 178); [PPA §3.2.2, p. 161] (book p. 161; PDF p. 179)
 
 ### 3.2.3 Existence of Solutions
@@ -1329,8 +1334,9 @@ concludes with end-to-end soundness `Corollary 3.25` and open-system substitutab
   `[derived]` [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196).
 - practical_debugging: The single highest-frequency bug in hand-rolled points-to / 0-CFA solvers is
   registering `{t} ⊆ p ⇒ p₁ ⊆ p₂` in `E[p₁]` *only* (or `E[p]` *only*): any test where argument `p₁` is
-  populated before callee `p` resolves (such as Example 3.23's LIFO order `W = [C(4), C(2)]` if `C(2)` were
-  populated after `C(4)`!) silently drops the call's argument/return flow without crashing `[derived]`
+  popped before callee `t` reaches `D[p]` in Step 3 silently drops the call's argument/return flow without
+  crashing. Example 3.23 cannot expose it (Step 2 already seeds `id_x ∈ D[C(2)]`); an indirect operator such
+  as `(let f = (fn x => x^1)^2 in (f^3 (fn y => y^4)^5)^6)^7` (`C(2) ⊆ r(f) ⊆ C(3)`) does `[derived]`
   [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196).
 - cyber: Two operational security consequences emerge directly from §3.4.2:
   1. **Scanner DoS (`O(n³)` cubic blowup, `[external: CWE-400]`)**: obfuscated or bundler-generated code with

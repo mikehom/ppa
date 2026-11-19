@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # @governing: REQ-TECH-PPA-006 @parent: REQ-PRD-PPA-006
 # @decision DEC-PPA-009: Deterministic evaluators for CONFORMANCE_SPEC.md gates
-#   C5 (hygiene & build determinism), C1 (concept, citation & inventory parity),
-#   and C2 (zero always-on prompt tax & DEV-STUB validation).
-"""Gate evaluators C5, C1, and C2 for scripts/verify_port_conformance.py."""
+#   C5 (hygiene & build determinism) and C1 (concept, citation & inventory
+#   parity), scoped to the files the port manifest owns.
+"""Gate evaluators C5 and C1 for scripts/verify_port_conformance.py."""
 from __future__ import annotations
 
 import collections
 import hashlib
+import inspect
 import json
 import re
 import shutil
 import tempfile
-from dataclasses import dataclass, field
 from pathlib import Path
 
 from adapters import (
@@ -25,7 +25,16 @@ from adapters import (
 )
 import check_portability_hygiene as hygiene
 import ppa_artifact_rules as rules
+import ppa_conformance_parity as parity
 import validate_ppa_knowledge as vpk
+from ppa_conformance_scope import (  # noqa: F401  (re-exported for the other gate modules)
+    CheckOutcome,
+    ConformanceContext,
+    make_check,
+    merged_paths,
+    not_applicable,
+    resolve_owned_files,
+)
 
 ADAPTER_MODULES = {
     "claude-code": claude_code_adapter,
@@ -55,82 +64,29 @@ SINGULAR_BOOK_PAREN_RE = re.compile(
 )
 
 
-@dataclass
-class CheckOutcome:
-    """Single CONFORMANCE_SPEC check result."""
-
-    id: str
-    status: str
-    examined: int
-    failure_code: str | None = None
-    locations: list[str] = field(default_factory=list)
-
-    def to_dict(self) -> dict[str, object]:
-        return {
-            "examined": self.examined,
-            "failure_code": self.failure_code,
-            "id": self.id,
-            "locations": self.locations[:20],
-            "status": self.status,
-        }
+def list_port_files(ctx: ConformanceContext) -> list[Path]:
+    """Sorted regular files the port manifest owns (foreign files are never read)."""
+    return list(ctx.port_files)
 
 
-@dataclass
-class ConformanceContext:
-    """Loaded canonical core, port root, manifest, page map, and Deviations."""
-
-    core_root: Path
-    port_root: Path
-    manifest: dict[str, object]
-    canonical_only: bool
-    user_home: Path
-    denylist_path: Path | None
-    port_second: Path | None
-    external_export: Path | None
-    scratch_base: Path
-    page_map: vpk.PageMap | None
-    page_map_doc: dict | None
-    core_graph: dict | None
-    port_graph: dict | None
-    deviation_ids: set[str]
-    dev_stub: dict[str, str] | None
-
-
-def make_check(
-    check_id: str,
-    examined: int,
-    errors: list[str],
-    failure_code: str,
-    exempt_vacuous: bool = False,
-) -> CheckOutcome:
-    """Build CheckOutcome applying CONFORMANCE_SPEC §5.4 <gate>_VACUOUS rule."""
-    gate = check_id.split(".", 1)[0]
-    if errors:
-        return CheckOutcome(check_id, "FAIL", examined, failure_code, errors[:20])
-    if examined == 0 and not exempt_vacuous:
-        return CheckOutcome(check_id, "FAIL", 0, f"{gate}_VACUOUS", [f"{check_id}:0"])
-    return CheckOutcome(check_id, "PASS", examined, None, [])
-
-
-def list_port_files(port_root: Path) -> list[Path]:
-    """Return sorted regular files in port_root excluding conformance_report.json."""
-    out: list[Path] = []
-    for p in common.sorted_files_under(port_root):
-        if p.relative_to(port_root).as_posix() == "conformance_report.json":
-            continue
-        out.append(p)
-    return out
-
-
-def _scan_port_hygiene_filtered(port_root: Path, op_rules: list) -> tuple[list[str], int]:
+def _scan_port_hygiene_filtered(ctx: ConformanceContext, op_rules: list) -> tuple[list[str], int]:
     errs: list[str] = []
     scanned = 0
-    for p in list_port_files(port_root):
-        rel = p.relative_to(port_root).as_posix()
-        found, did_scan = hygiene.scan_file(port_root, rel, op_rules)
+    for p in list_port_files(ctx):
+        rel = p.relative_to(ctx.port_root).as_posix()
+        found, did_scan = hygiene.scan_file(ctx.port_root, rel, op_rules)
         scanned += int(did_scan)
         errs.extend(f"port/{f.path}:{f.line}" for f in found)
     return errs, scanned
+
+
+def _c5_1_outcome(ctx: ConformanceContext, examined: int, errs: list[str]) -> CheckOutcome:
+    """C5.1 with structured findings for symlinks or unsafe paths among owned port files."""
+    if ctx.symlink_errors:
+        return CheckOutcome("C5.1", "FAIL", examined, "C5_SYMLINK_FORBIDDEN", ctx.symlink_errors[:20])
+    if ctx.path_errors:
+        return CheckOutcome("C5.1", "FAIL", examined, "C5_OWNED_PATH_INVALID", ctx.path_errors[:20])
+    return make_check("C5.1", examined, errs, "C5_HYGIENE_GATE")
 
 
 def _eval_c5_1_to_c5_6(ctx: ConformanceContext) -> list[CheckOutcome]:
@@ -144,7 +100,7 @@ def _eval_c5_1_to_c5_6(ctx: ConformanceContext) -> list[CheckOutcome]:
     c51_errs = [f"core/{f.path}:{f.line}" for f in core_findings]
     port_scanned = 0
     if not ctx.canonical_only:
-        p_errs, port_scanned = _scan_port_hygiene_filtered(ctx.port_root, op_rules)
+        p_errs, port_scanned = _scan_port_hygiene_filtered(ctx, op_rules)
         c51_errs.extend(p_errs)
 
     c52_errs: list[str] = []
@@ -164,7 +120,7 @@ def _eval_c5_1_to_c5_6(ctx: ConformanceContext) -> list[CheckOutcome]:
     c54_errs, c55_errs, c54_n = _check_c5_host_and_private(ctx, op_rules)
     c56_errs, c56_n = _check_c5_model_conditionals(ctx)
     return [
-        make_check("C5.1", core_scanned + port_scanned, c51_errs, "C5_HYGIENE_GATE"),
+        _c5_1_outcome(ctx, core_scanned + port_scanned, c51_errs),
         make_check("C5.2", c52_n, c52_errs, "C5_HARNESS_TERM_IN_CORE"),
         make_check("C5.3", c53_n, c53_errs, "C5_ABSOLUTE_PATH"),
         make_check("C5.4", c54_n, c54_errs, "C5_HOST_OR_CONTACT"),
@@ -178,7 +134,7 @@ def _check_c5_abs_paths(ctx: ConformanceContext) -> tuple[list[str], int]:
         common.sorted_files_under(ctx.core_root / "knowledge")
         + common.sorted_files_under(ctx.core_root / "ontology")
         if ctx.canonical_only
-        else list_port_files(ctx.port_root)
+        else list_port_files(ctx)
     )
     base = ctx.core_root if ctx.canonical_only else ctx.port_root
     abs_rules = [r for r in hygiene.STRUCTURAL if r[0] == "absolute_path"] + [
@@ -211,7 +167,7 @@ def _check_c5_host_and_private(
     roots = [(ctx.core_root, common.sorted_files_under(ctx.core_root / d))
              for d in ("knowledge", "ontology", "corpus", "issues")]
     if not ctx.canonical_only:
-        roots.append((ctx.port_root, list_port_files(ctx.port_root)))
+        roots.append((ctx.port_root, list_port_files(ctx)))
     for base, files in roots:
         for p in files:
             if p.suffix.lower() in hygiene.BINARY_SUFFIXES:
@@ -232,7 +188,7 @@ def _check_c5_model_conditionals(ctx: ConformanceContext) -> tuple[list[str], in
         if p.name in {"SKILL.md", "cases.yaml"}:
             candidates.append((ctx.core_root, p))
     if not ctx.canonical_only:
-        for p in list_port_files(ctx.port_root):
+        for p in list_port_files(ctx):
             if p.name in {"SKILL.md", "cases.yaml"} or p.suffix == ".mdc":
                 candidates.append((ctx.port_root, p))
     errs: list[str] = []
@@ -252,30 +208,33 @@ def _check_c5_model_conditionals(ctx: ConformanceContext) -> tuple[list[str], in
     return errs, len(candidates)
 
 
-def _tree_digests(root: Path) -> dict[str, str]:
-    return {
-        p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in list_port_files(root)
+def _tree_digests(root: Path, with_merged: bool = False) -> tuple[dict[str, str], set[str]]:
+    """Digests of the files a port root's own manifest owns, plus its merged-file set."""
+    doc, err = vpk.load_json(root / "port_manifest.json")
+    manifest = doc if (not err and isinstance(doc, dict)) else {}
+    files, _, _ = resolve_owned_files(root, manifest)
+    merged = set(merged_paths(manifest))
+    if with_merged:
+        files = files + [root / rel for rel in sorted(merged) if (root / rel).is_file()]
+    digests = {
+        p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files
     }
+    return digests, merged
 
 
-def _check_c5_7_determinism(ctx: ConformanceContext) -> CheckOutcome:
-    if ctx.canonical_only:
-        k_files, o_files, c_files = common.collect_canonical_package(ctx.core_root)
-        d1 = {p.relative_to(ctx.core_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in k_files + o_files + c_files}
-        d2 = {p.relative_to(ctx.core_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in k_files + o_files + c_files}
-        errs = [k for k in sorted(set(d1) | set(d2)) if d1.get(k) != d2.get(k)]
-        return make_check("C5.7", len(d1), errs, "C5_NONDETERMINISTIC_BUILD")
-    if ctx.port_second is not None:
-        d1, d2 = _tree_digests(ctx.port_root), _tree_digests(ctx.port_second)
-        errs = [f"{k}:0" for k in sorted(set(d1) | set(d2)) if d1.get(k) != d2.get(k)]
-        return make_check("C5.7", max(len(d1), len(d2)), errs, "C5_NONDETERMINISTIC_BUILD")
-    target = str(ctx.manifest.get("target", ""))
-    mod = ADAPTER_MODULES.get(target)
-    if mod is None:
-        return make_check("C5.7", 1, [f"port_manifest.json:0 unknown target {target!r}"],
+def _digest_diff(d1: dict[str, str], d2: dict[str, str], skip: set[str], label: str) -> list[str]:
+    keys = (set(d1) | set(d2)) - skip
+    return [f"{k}:0 ({label})" for k in sorted(keys) if d1.get(k) != d2.get(k)]
+
+
+def _rebuild_and_compare(ctx: ConformanceContext, mod) -> CheckOutcome:
+    """Compile the reference adapter twice; compare the builds with each other and the port."""
+    opts = ctx.manifest.get("adapter_options")
+    kwargs = dict(opts) if isinstance(opts, dict) else {}
+    accepted = set(inspect.signature(mod.compile_port).parameters)
+    unknown = sorted(set(kwargs) - accepted)
+    if unknown:
+        return make_check("C5.7", len(ctx.port_files), [f"port_manifest.json:0 unknown adapter_options {unknown}"],
                           "C5_NONDETERMINISTIC_BUILD")
     ctx.scratch_base.mkdir(parents=True, exist_ok=True)
     tmp_dir = Path(tempfile.mkdtemp(dir=ctx.scratch_base, prefix="c57_"))
@@ -283,15 +242,47 @@ def _check_c5_7_determinism(ctx: ConformanceContext) -> CheckOutcome:
         r_a, r_b, u_h = tmp_dir / "a", tmp_dir / "b", tmp_dir / "uhome"
         u_h.mkdir(parents=True, exist_ok=True)
         rev = str(ctx.manifest.get("canonical_revision", "rev"))
-        opts = ctx.manifest.get("adapter_options")
-        kwargs = dict(opts) if isinstance(opts, dict) else {}
-        mod.compile_port(ctx.core_root, r_a, canonical_revision=rev, user_home=str(u_h), **kwargs)
-        mod.compile_port(ctx.core_root, r_b, canonical_revision=rev, user_home=str(u_h), **kwargs)
-        d1, d2 = _tree_digests(r_a), _tree_digests(r_b)
-        errs = [f"{k}:0" for k in sorted(set(d1) | set(d2)) if d1.get(k) != d2.get(k)]
-        return make_check("C5.7", max(len(d1), len(d2)), errs, "C5_NONDETERMINISTIC_BUILD")
+        try:
+            mod.compile_port(ctx.core_root, r_a, canonical_revision=rev, user_home=str(u_h), **kwargs)
+            mod.compile_port(ctx.core_root, r_b, canonical_revision=rev, user_home=str(u_h), **kwargs)
+        except common.AdapterError as exc:
+            return make_check("C5.7", len(ctx.port_files), [f"port_manifest.json:0 reference rebuild failed: {exc}"],
+                              "C5_NONDETERMINISTIC_BUILD")
+        d_a, merged_a = _tree_digests(r_a, with_merged=True)
+        d_b, _ = _tree_digests(r_b, with_merged=True)
+        errs = _digest_diff(d_a, d_b, set(), "two reference builds differ")
+        d_a_owned, _ = _tree_digests(r_a)
+        d_port = {
+            p.relative_to(ctx.port_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in list_port_files(ctx)
+        }
+        skip = {"port_manifest.json"} | merged_a | set(ctx.merged_files)
+        errs += _digest_diff(d_a_owned, d_port, skip, "port differs from a fresh reference build")
+        return make_check("C5.7", max(len(d_a), len(d_port)), errs, "C5_NONDETERMINISTIC_BUILD")
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
+
+
+def _check_c5_7_determinism(ctx: ConformanceContext) -> CheckOutcome:
+    if ctx.canonical_only:
+        return not_applicable("C5.7")
+    if ctx.port_second is not None:
+        d1 = {
+            p.relative_to(ctx.port_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in list_port_files(ctx)
+        }
+        d2, merged2 = _tree_digests(ctx.port_second)
+        errs = _digest_diff(d1, d2, set(ctx.merged_files) | merged2, "the two builds differ")
+        return make_check("C5.7", max(len(d1), len(d2)), errs, "C5_NONDETERMINISTIC_BUILD")
+    target = str(ctx.manifest.get("target", ""))
+    mod = ADAPTER_MODULES.get(target)
+    if mod is None:
+        return make_check(
+            "C5.7", len(ctx.port_files),
+            [f"port_manifest.json:0 target {target!r} has no reference adapter: compile the port "
+             "a second time into another root and pass --port-second <dir>"],
+            "C5_NONDETERMINISTIC_BUILD")
+    return _rebuild_and_compare(ctx, mod)
 
 
 def evaluate_gate_c5(ctx: ConformanceContext) -> list[CheckOutcome]:
@@ -300,6 +291,8 @@ def evaluate_gate_c5(ctx: ConformanceContext) -> list[CheckOutcome]:
 
 
 def _check_c1_graph_nodes(ctx: ConformanceContext) -> tuple[CheckOutcome, CheckOutcome]:
+    if ctx.canonical_only:
+        return not_applicable("C1.1"), not_applicable("C1.2")
     c_nodes = (ctx.core_graph or {}).get("concepts", [])
     p_nodes = (ctx.port_graph or {}).get("concepts", [])
     c_map = {str(n.get("id")): n for n in c_nodes if isinstance(n, dict) and n.get("id")}
@@ -418,73 +411,140 @@ def _load_served_units(ctx: ConformanceContext) -> dict[str, str]:
     return out
 
 
-def _check_c1_mappings_and_ledgers(ctx: ConformanceContext) -> list[CheckOutcome]:
-    mappings = [m for m in ctx.manifest.get("mappings", []) if isinstance(m, dict)]
+def _read_port_units(
+    ctx: ConformanceContext, p_rels: list[str], served: dict[str, str], errs: list[str]
+) -> list[str]:
+    """Texts of the port units of one mapping; unreadable or missing units are findings."""
+    texts: list[str] = []
+    for pr in p_rels:
+        if pr in served:
+            texts.append(served[pr])
+            continue
+        pp = ctx.port_root / pr
+        ptxt, pe = rules.read_text_strict(pp) if pp.is_file() else (None, "missing")
+        if pe or ptxt is None:
+            errs.append(f"{pr}:0")
+        else:
+            texts.append(ptxt)
+    return texts
+
+
+def _check_c1_8_transforming(
+    ctx: ConformanceContext, mappings: list[dict], served: dict[str, str]
+) -> tuple[list[str], list[str], int]:
+    """C1.8 on transforming mappings: (multiset findings, lost-line findings, mappings examined)."""
     known_ids = {
         str(n.get("id")) for n in (ctx.core_graph or {}).get("concepts", [])
         if isinstance(n, dict) and n.get("id")
     }
-    served_units = _load_served_units(ctx)
-    c17_errs: list[str] = []
-    c17_n = 0
-    c18_errs: list[str] = []
+    multiset_errs: list[str] = []
+    loss_errs: list[str] = []
+    examined = 0
     for m in mappings:
+        kind = str(m.get("kind", ""))
+        c_rel = str(m.get("canonical", ""))
+        if kind == "lossless":
+            continue
+        if kind != "transforming":
+            multiset_errs.append(f"{c_rel}:0 unknown mapping kind {kind!r}")
+            continue
+        examined += 1
+        p_rels = [str(x) for x in m.get("port", [])] if isinstance(m.get("port"), list) else []
+        c_path = ctx.core_root / c_rel
+        c_txt, e1 = rules.read_text_strict(c_path) if c_path.is_file() else (None, "missing")
+        if e1 or c_txt is None or not p_rels:
+            multiset_errs.append(f"{c_rel}:0")
+            continue
+        texts = _read_port_units(ctx, p_rels, served, multiset_errs)
+        c_n8, c_id = _extract_n8_and_concepts(c_txt, known_ids)
+        p_n8: collections.Counter = collections.Counter()
+        p_id: collections.Counter = collections.Counter()
+        for ptxt in texts:
+            un8, uid = _extract_n8_and_concepts(ptxt, known_ids)
+            p_n8.update(un8)
+            p_id.update(uid)
+        if c_n8 != p_n8 or c_id != p_id:
+            multiset_errs.append(f"{c_rel}:1")
+        loss_errs.extend(parity.containment_errors(c_rel, c_txt, texts))
+    return multiset_errs, loss_errs, examined
+
+
+def _check_c1_8_cards(ctx: ConformanceContext, served: dict[str, str]) -> tuple[list[str], int]:
+    """ARCHITECTURE 7.1 parity of every compiled concept card the manifest declares."""
+    declared = ctx.manifest.get("concept_cards")
+    cards = {str(k): str(v) for k, v in declared.items()} if isinstance(declared, dict) else {}
+    nodes = {
+        str(n.get("id")): n for n in (ctx.core_graph or {}).get("concepts", [])
+        if isinstance(n, dict) and n.get("id")
+    }
+    errs: list[str] = []
+    card_units = set(cards.values())
+    owned = [p.relative_to(ctx.port_root).as_posix() for p in ctx.port_files] + sorted(served)
+    for unit in owned:
+        if unit.rsplit("/", 1)[-1].startswith("ppa-node-") and unit not in card_units:
+            errs.append(f"{unit}:0 (concept card not declared in concept_cards)")
+    if cards and set(cards) != set(nodes):
+        errs.append(f"port_manifest.json:0 concept_cards covers {len(cards)} of {len(nodes)} concepts")
+    for cid, unit in sorted(cards.items()):
+        if cid not in nodes:
+            continue
+        texts = _read_port_units(ctx, [unit], served, errs)
+        if texts:
+            errs.extend(parity.card_parity_errors(nodes[cid], texts[0], unit))
+    return errs, len(cards)
+
+
+def _check_c1_8(ctx: ConformanceContext, mappings: list[dict]) -> CheckOutcome:
+    """C1.8: citation multisets, body-line containment, and discrete-conditions parity."""
+    graph_nodes = (ctx.port_graph or {}).get("concepts", [])
+    graph_errs, n_graph = parity.graph_conditions_errors(graph_nodes if isinstance(graph_nodes, list) else [])
+    if ctx.canonical_only:
+        return make_check("C1.8", n_graph, graph_errs, "C1_CONDITIONS_PARITY")
+    served = _load_served_units(ctx)
+    multiset_errs, loss_errs, n_trans = _check_c1_8_transforming(ctx, mappings, served)
+    card_errs, n_cards = _check_c1_8_cards(ctx, served)
+    examined = n_trans + n_cards + n_graph
+    if multiset_errs:
+        return make_check("C1.8", examined, multiset_errs + loss_errs + card_errs, "C1_CITATION_MULTISET")
+    if loss_errs:
+        return make_check("C1.8", examined, loss_errs + card_errs, "C1_TRANSFORM_CONTENT_LOSS")
+    return make_check("C1.8", examined, card_errs + graph_errs, "C1_CONDITIONS_PARITY")
+
+
+def _check_c1_7_lossless(ctx: ConformanceContext, mappings: list[dict]) -> CheckOutcome:
+    if ctx.canonical_only:
+        return not_applicable("C1.7")
+    errs: list[str] = []
+    examined = 0
+    for m in mappings:
+        if str(m.get("kind", "")) != "lossless":
+            continue
+        examined += 1
         c_rel = str(m.get("canonical", ""))
         p_rels = [str(x) for x in m.get("port", [])] if isinstance(m.get("port"), list) else []
-        kind = str(m.get("kind", ""))
         c_path = ctx.core_root / c_rel
-        if kind == "lossless":
-            c17_n += 1
-            if len(p_rels) != 1 or not c_path.is_file() or not (ctx.port_root / p_rels[0]).is_file():
-                c17_errs.append(f"{c_rel}:0")
-                continue
-            c_txt, e1 = rules.read_text_strict(c_path)
-            p_txt, e2 = rules.read_text_strict(ctx.port_root / p_rels[0])
-            if e1 or e2 or c_txt is None or p_txt is None:
-                c17_errs.append(f"{c_rel}:0")
-            elif common.body_digest_n6(c_txt) != common.body_digest_n6(p_txt):
-                c17_errs.append(f"{p_rels[0]}:1")
-        elif kind == "transforming":
-            if not c_path.is_file() or not p_rels:
-                c18_errs.append(f"{c_rel}:0")
-                continue
-            c_txt, e1 = rules.read_text_strict(c_path)
-            if e1 or c_txt is None:
-                c18_errs.append(f"{c_rel}:0")
-                continue
-            c_n8, c_id = _extract_n8_and_concepts(c_txt, known_ids)
-            p_n8: collections.Counter = collections.Counter()
-            p_id: collections.Counter = collections.Counter()
-            for pr in p_rels:
-                if pr in served_units:
-                    ptxt = served_units[pr]
-                else:
-                    pp = ctx.port_root / pr
-                    if not pp.is_file():
-                        c18_errs.append(f"{pr}:0")
-                        continue
-                    ptxt, pe = rules.read_text_strict(pp)
-                    if pe or ptxt is None:
-                        c18_errs.append(f"{pr}:0")
-                        continue
-                un8, uid = _extract_n8_and_concepts(ptxt, known_ids)
-                p_n8.update(un8)
-                p_id.update(uid)
-            if c_n8 != p_n8 or c_id != p_id:
-                c18_errs.append(f"{c_rel}:1")
-        else:
-            c18_errs.append(f"{c_rel}:0 unknown mapping kind {kind!r}")
+        if len(p_rels) != 1 or not c_path.is_file() or not (ctx.port_root / p_rels[0]).is_file():
+            errs.append(f"{c_rel}:0")
+            continue
+        c_txt, e1 = rules.read_text_strict(c_path)
+        p_txt, e2 = rules.read_text_strict(ctx.port_root / p_rels[0])
+        if e1 or e2 or c_txt is None or p_txt is None:
+            errs.append(f"{c_rel}:0")
+        elif common.body_digest_n6(c_txt) != common.body_digest_n6(p_txt):
+            errs.append(f"{p_rels[0]}:1")
+    return make_check("C1.7", examined, errs, "C1_BODY_DIGEST")
 
-    c19_out = _check_c1_9_gotchas(ctx)
+
+def _check_c1_mappings_and_ledgers(ctx: ConformanceContext) -> list[CheckOutcome]:
+    mappings = [m for m in ctx.manifest.get("mappings", []) if isinstance(m, dict)]
     c110_out, c111_out = _check_c1_10_11_inline(ctx)
-    c112_out = _check_c1_12_package(ctx, mappings)
     return [
-        make_check("C1.7", c17_n, c17_errs, "C1_BODY_DIGEST"),
-        make_check("C1.8", len(mappings), c18_errs, "C1_CITATION_MULTISET"),
-        c19_out,
+        _check_c1_7_lossless(ctx, mappings),
+        _check_c1_8(ctx, mappings),
+        _check_c1_9_gotchas(ctx),
         c110_out,
         c111_out,
-        c112_out,
+        _check_c1_12_package(ctx, mappings),
     ]
 
 
@@ -495,7 +555,7 @@ def _check_c1_9_gotchas(ctx: ConformanceContext) -> CheckOutcome:
         common.sorted_files_under(ctx.core_root / "knowledge")
         + common.sorted_files_under(ctx.core_root / "ontology")
         if ctx.canonical_only
-        else list_port_files(ctx.port_root)
+        else list_port_files(ctx)
     )
     for extra_sub in ("issues/backlog", "issues/refactors"):
         scan_files.extend(common.sorted_files_under(ctx.core_root / extra_sub))
@@ -539,7 +599,7 @@ def _check_c1_10_11_inline(ctx: ConformanceContext) -> tuple[CheckOutcome, Check
         for p in vpk.walk(ctx.core_root, "*.md")
     ]
     if not ctx.canonical_only:
-        for p in list_port_files(ctx.port_root):
+        for p in list_port_files(ctx):
             if p.suffix in {".md", ".mdc"}:
                 md_files.append((f"port/{p.relative_to(ctx.port_root).as_posix()}", p))
     c110_errs: list[str] = []
@@ -581,6 +641,8 @@ def _check_c1_10_11_inline(ctx: ConformanceContext) -> tuple[CheckOutcome, Check
 
 
 def _check_c1_12_package(ctx: ConformanceContext, mappings: list[dict]) -> CheckOutcome:
+    if ctx.canonical_only:
+        return not_applicable("C1.12")
     k_files, o_files, _ = common.collect_canonical_package(ctx.core_root)
     expected = [p.relative_to(ctx.core_root).as_posix() for p in k_files + o_files]
     counts = collections.Counter(str(m.get("canonical", "")) for m in mappings)
@@ -598,3 +660,8 @@ def evaluate_gate_c1(ctx: ConformanceContext) -> list[CheckOutcome]:
     c11, c12 = _check_c1_graph_nodes(ctx)
     return [c11, c12] + _check_c1_citations_and_coverage(ctx) + _check_c1_mappings_and_ledgers(ctx)
 
+
+
+def evaluate_check_c1_8(ctx: ConformanceContext) -> CheckOutcome:
+    """Evaluate C1.8 alone (transforming conservation and discrete-conditions parity)."""
+    return _check_c1_8(ctx, [m for m in ctx.manifest.get("mappings", []) if isinstance(m, dict)])

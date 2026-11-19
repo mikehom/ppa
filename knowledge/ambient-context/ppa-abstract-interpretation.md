@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-001: Standalone L0 ambient context for Chapter 4 Abstract Interpretation, Widening/Narrowing, Galois Connections, Domain Combinators, and Induced Operations. -->
+<!-- @description: Orientation for abstract interpretation as systematic approximation: correctness relations, representation functions, Galois connections and insertions linking concrete and abstract domains, induced best transformers, widening to force convergence on infinite-height domains such as intervals, narrowing to recover precision, and combinators like reduced, tensor and independent attribute products. Use when designing a new abstract domain, proving an approximation sound, or deciding where to extrapolate. -->
 
 # Abstract Interpretation: Galois Connections, Widening, and Domain Design
 

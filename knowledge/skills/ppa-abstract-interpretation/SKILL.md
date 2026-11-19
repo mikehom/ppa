@@ -85,8 +85,8 @@ states/traces `L = (𝒫(V), ⊆)` [PPA §4.1.1, p. 214] (book p. 214; PDF p. 23
    - If ghost elements exist (e.g. `(0, odd)` in `Example 4.28` or multiple empty intervals violating `Example 4.10`'s
      single-`⊥` exclusion `[∞, ∞]` / `[-∞, -∞]`, `G-U4a-08`), quotient `M` by `ς(m) = α(γ(m))` (`Proposition 4.29`,
      `Facts 4.30–4.31`, `ς_η(D') = D' ∩ η[V]` in `Example 4.32`; note `BKL-024` `ς` store `§2.5 p. 86` vs reduction
-     operator `§4.3.2 p. 244`), remembering that `⨆_{ς[M]} = ⨆_M` whereas meets must re-reduce via
-     `⨅_{ς[M]} M' = ς(⨅_M M')` [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263).
+     operator `§4.3.2 p. 244`), remembering that `⨆_{ς[M]} = ⨆_M` (`Fact 4.30` proof) whereas meets must re-reduce via
+     `⨅_{ς[M]} M' = ς(⨅_M M')` `[derived]` [PPA Fact 4.30, p. 245] (book p. 245; PDF p. 262).
 
 ## 3. Procedure 2: Engineer Widening and Narrowing Convergence Over Infinite Lattices
 
@@ -101,8 +101,8 @@ Follow this two-phase protocol whenever `L` lacks `ACC` (`U7`, `G-U4a-09`, `BKL-
 2. **Enforce the five widening invariants (`WIDENING_CUTSET_AND_GUARD_GATE`, `G-U4a-10`–`G-U4a-13`, `BKL-002`)**:
    - **Cutset placement**: Place `∇` strictly at a feedback-vertex loop cutset (e.g. `[external: Bourdoncle WTO]` heads,
      `Chapter 6 Exercise 6.13`), keeping exact `⊔` at acyclic diamond merges.
-   - **Strict `old ∇ new` operand order**: Compute `f_∇^{n-1} ∇ f(f_∇^{n-1})`, never `new ∇ old` (`Example 4.12`
-     asymmetry causes `new ∇ old` to diverge, `G-U4a-11`).
+   - **Strict `old ∇ new` operand order**: Compute `f_∇^{n-1} ∇ f(f_∇^{n-1})` (the `f_∇` definition), never `new ∇ old`
+     (`∇` is non-symmetric, cf. `Example 4.12`'s `⊔̆`; divergence witness `[0, n] ∇_K [0, n-1]`, `G-U4a-11`).
    - **Explicit reductive guard**: Test **`if f(f_∇^{n-1}) ⊑ f_∇^{n-1}`** before calling `∇` so non-absorptive `∇`
      cannot overshoot `Red(f)` (`Fact 4.14`, `G-U4a-11`, `G-U4a-12`).
    - **Step-1 `⊥` protection & fixed finite `K`**: Explicitly short-circuit **`⊥ ∇_K x = x`** (fixing `Example 4.15`'s
@@ -115,10 +115,10 @@ Follow this two-phase protocol whenever `L` lacks `ACC` (`U7`, `G-U4a-09`, `BKL-
      **`l_0 ∈ Ext(f)`** (`l_0 ⊑ f(l_0)`, `Exercise 4.8`, `G-U4b-24`) so `Proposition 4.13` termination holds!
 3. **Run narrowing strictly inside `Red(f)` (`NARROWING_REDUCTIVE_ENTRY_GATE`, `G-U4a-14`–`G-U4a-16`, `G-U4b-24`)**:
    - Start `[f]_Δ^0 = f_∇^m` **only after** `f(f_∇^m) ⊑ f_∇^m` holds (`Lemma 4.16` `(4.7)`, `Proposition 4.17`);
-     starting outside `Red(f)` violates descending chain hypotheses and is unsound!
+     starting outside `Red(f)` voids the `Lemma 4.16` / `Proposition 4.17` soundness guarantee (result may be unsound)!
    - Remember every narrowing operator satisfies `l Δ l = l` (`G-U4a-14`), is **not** dual to widening (`G-U4a-15`), and
      threshold `Δ_N` (`Example 4.18`, `G-U4a-16`) can still take many finite steps on finite shifts — cap refinement
-     with a `k`-step descending chain truncator `ϒ` (`k ∈ {1, 2, 3}`, `Exercise 4.11`) when strict budgets apply
+     with a prefix-determined descending chain truncator `ϒ` (`Exercise 4.11`) when strict budgets apply
      [PPA Lemma 4.16, p. 230] (book p. 230; PDF p. 247) [PPA Exercise 4.11, p. 278] (book p. 278; PDF p. 295).
 
 ## 4. Procedure 3: Compose Multi-Attribute and Relational Abstract Domains

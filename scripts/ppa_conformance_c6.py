@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # @governing: REQ-TECH-PPA-006 @parent: REQ-PRD-PPA-006
-# @decision DEC-PPA-009: Deterministic evaluator for CONFORMANCE_SPEC.md gate
-#   C6 (lossless issue, refactor, backlog, and export manifest provenance).
-"""Gate evaluator C6 for scripts/verify_port_conformance.py."""
+# @decision DEC-PPA-009: Deterministic evaluators for CONFORMANCE_SPEC.md gates
+#   C6 (lossless issue, refactor, backlog, and export manifest provenance) and
+#   C2 (zero always-on prompt tax, DEV-STUB validation, undeclared-stub detection).
+"""Gate evaluators C6 and C2 for scripts/verify_port_conformance.py."""
 from __future__ import annotations
 
 import hashlib
@@ -13,6 +14,7 @@ from pathlib import Path
 from adapters import common
 import issue_ctl
 from ppa_conformance_c125 import CheckOutcome, ConformanceContext, _load_served_units, make_check
+from ppa_conformance_scope import not_applicable
 import ppa_artifact_rules as rules
 import validate_ppa_knowledge as vpk
 
@@ -122,11 +124,11 @@ def _check_c6_manifest_and_export(
     mpath = ctx.core_root / "issues" / "export_manifest.json"
     if not mpath.is_file():
         err = ["issues/export_manifest.json:0 missing"]
-        return err, err, err, 1
+        return err, err, err, 0
     doc, jerr = vpk.load_json(mpath)
     if jerr or not isinstance(doc, dict) or not isinstance(doc.get("issues"), list):
         err = [f"issues/export_manifest.json:1 ({jerr or 'invalid'})"]
-        return err, err, err, 1
+        return err, err, err, 0
     entries = [e for e in doc["issues"] if isinstance(e, dict)]
     ids_in_order = [str(e.get("id", "")) for e in entries]
     pos_of = {iid: idx for idx, iid in enumerate(ids_in_order)}
@@ -159,7 +161,7 @@ def _check_c6_manifest_and_export(
             c65_e.append(f"issues/export_manifest.json:1 ({iid} body digest)")
 
     c610_e = _check_c6_10_external(ctx, entries, issues_map)
-    return c64_e, c65_e, c610_e, max(len(entries), 1)
+    return c64_e, c65_e, c610_e, len(entries)
 
 
 def _check_c6_10_external(
@@ -268,11 +270,11 @@ def _check_c6_9_refactor_trace(core_root: Path) -> tuple[list[str], int]:
         return ["ontology/altitude_alignment_log.md:0 missing"], len(file_ids)
     txt, uerr = rules.read_text_strict(log_path)
     if uerr or txt is None:
-        return ["ontology/altitude_alignment_log.md:1"], 1
+        return ["ontology/altitude_alignment_log.md:1"], 0
     log_ids = set(REF_ID_RE.findall(txt))
     diff = sorted(log_ids ^ file_ids)
     errs = [f"ontology/altitude_alignment_log.md:1 ({rid})" for rid in diff]
-    return errs, max(len(log_ids | file_ids), 1)
+    return errs, len(log_ids | file_ids)
 
 
 def _validate_dev_stub(ctx: ConformanceContext) -> tuple[bool, list[str]]:
@@ -296,27 +298,57 @@ def _validate_dev_stub(ctx: ConformanceContext) -> tuple[bool, list[str]]:
     return len(errs) == 0, errs
 
 
+def _canonical_c2(ctx: ConformanceContext) -> list[CheckOutcome]:
+    """Canonical-only C2: only C2.5 reads canonical data; surface checks need a port."""
+    descs: list[str] = []
+    c25_errs: list[str] = []
+    for d in rules.skill_dirs(ctx.core_root):
+        fm = rules.parse_frontmatter(rules.read_lines(d / "SKILL.md")) or {}
+        desc = fm.get("description", "")
+        descs.append(desc)
+        if not 0 < len(desc) <= 1024 or rules.RAW_PPA_RE.search(desc) or re.search(r"(?:^|\s)\d+\.\s+\S", desc):
+            c25_errs.append(f"{d.name}/SKILL.md:1")
+    return [
+        not_applicable("C2.1"),
+        not_applicable("C2.2"),
+        not_applicable("C2.3"),
+        not_applicable("C2.4"),
+        make_check("C2.5", len(descs), c25_errs, "C2_DESCRIPTION_BLOAT"),
+        not_applicable("C2.6"),
+    ]
+
+
+def _stub_accounts_for_change(ctx: ConformanceContext, path_spec: str, sha_before: object) -> bool:
+    """True when removing the declared stub text (present exactly once) restores the baseline."""
+    stub = ctx.dev_stub
+    if not stub or path_spec != stub.get("surface") or path_spec.startswith("~/"):
+        return False
+    surf_file = ctx.port_root / path_spec
+    stub_bytes = stub["text"].encode("utf-8")
+    raw_after = surf_file.read_bytes() if surf_file.is_file() else b""
+    if not stub_bytes or raw_after.count(stub_bytes) != 1:
+        return False
+    remainder = raw_after.replace(stub_bytes, b"", 1)
+    if sha_before is None:
+        return remainder == b""
+    return hashlib.sha256(remainder).hexdigest() == sha_before
+
+
+def _undeclared_stub_errors(ctx: ConformanceContext, declared: list[str]) -> list[str]:
+    """Surfaces that carry a pointer-stub marker with no DEV-STUB deviation naming them."""
+    stub_surface = ctx.dev_stub.get("surface") if ctx.dev_stub else None
+    errs: list[str] = []
+    for path_spec in declared:
+        hits = common.surface_stub_markers(ctx.port_root, path_spec, ctx.user_home)
+        if hits and not ("DEV-STUB" in ctx.deviation_ids and path_spec == stub_surface):
+            errs.append(f"{path_spec}:1 (pointer stub present without a DEV-STUB deviation)")
+    return errs
+
+
 def evaluate_gate_c2(ctx: ConformanceContext) -> list[CheckOutcome]:
     """Evaluate C2.1 through C2.6."""
     if ctx.canonical_only:
-        k_skills = rules.skill_dirs(ctx.core_root)
-        descs: list[str] = []
-        c25_errs: list[str] = []
-        for d in k_skills:
-            fm = rules.parse_frontmatter(rules.read_lines(d / "SKILL.md")) or {}
-            desc = fm.get("description", "")
-            descs.append(desc)
-            if not 0 < len(desc) <= 1024 or rules.RAW_PPA_RE.search(desc) or re.search(r"(?:^|\s)\d+\.\s+\S", desc):
-                c25_errs.append(f"{d.name}/SKILL.md:1")
-        return [
-            make_check("C2.1", len(common.MINIMUM_ALWAYS_ON_SURFACES), [], "C2_SURFACE_UNDECLARED"),
-            make_check("C2.2", len(common.MINIMUM_ALWAYS_ON_SURFACES), [], "C2_SURFACE_MODIFIED"),
-            make_check("C2.3", len(k_skills), [], "C2_INSTALLED_ALWAYS_ON"),
-            make_check("C2.4", len(k_skills), [], "C2_DISCOVERY_SET"),
-            make_check("C2.5", len(descs), c25_errs, "C2_DESCRIPTION_BLOAT"),
-            make_check("C2.6", len(common.MINIMUM_ALWAYS_ON_SURFACES), [], "C2_NONZERO_TAX"),
-        ]
-
+        return _canonical_c2(ctx)
     target = str(ctx.manifest.get("target", ""))
     req_min = set(common.MINIMUM_ALWAYS_ON_SURFACES.get(target, ()))
     declared_list = [s for s in ctx.manifest.get("always_on_surfaces", []) if isinstance(s, dict)]
@@ -326,31 +358,30 @@ def evaluate_gate_c2(ctx: ConformanceContext) -> list[CheckOutcome]:
         c21_errs.append(f"port_manifest.json:0 unknown target {target!r}")
 
     stub_valid, stub_errs = _validate_dev_stub(ctx)
+    undeclared = _undeclared_stub_errors(ctx, sorted(declared_map))
     c22_errs: list[str] = list(stub_errs)
-    added_bytes = 0
+    modified = 0
     for path_spec, sha_before in sorted(declared_map.items()):
         sha_after = common.compute_surface_sha256(ctx.port_root, path_spec, ctx.user_home)
         if sha_after == sha_before:
             continue
-        if (stub_valid and ctx.dev_stub and path_spec == ctx.dev_stub.get("surface")
-                and not path_spec.startswith("~/")):
-            surf_file = ctx.port_root / path_spec
-            stub_bytes = ctx.dev_stub["text"].encode("utf-8")
-            raw_after = surf_file.read_bytes() if surf_file.is_file() else b""
-            if raw_after.endswith(stub_bytes):
-                prefix = raw_after[: len(raw_after) - len(stub_bytes)]
-                exp_before = hashlib.sha256(prefix).hexdigest() if prefix else None
-                if exp_before == sha_before or (sha_before is not None and hashlib.sha256(prefix).hexdigest() == sha_before):
-                    continue
+        if stub_valid and _stub_accounts_for_change(ctx, path_spec, sha_before):
+            continue
         c22_errs.append(f"{path_spec}:1")
-        added_bytes += 1
+        modified += 1
 
     c23_errs, c23_n = _check_c2_3_installed(ctx, set(declared_map))
     c24_errs, c25_errs, c24_n = _check_c2_4_5_discovery(ctx)
-    c26_errs = [f"always_on_surfaces:1 (+{added_bytes} modified)"] if (added_bytes > 0 or stub_errs) else []
+    taxed = modified > 0 or bool(stub_errs) or bool(undeclared)
+    c26_errs = [f"always_on_surfaces:1 (+{modified} modified, {len(undeclared)} undeclared stub)"] if taxed else []
+    if undeclared:
+        c22_out = CheckOutcome("C2.2", "FAIL", len(declared_map), "C2_UNDECLARED_DEVIATION",
+                               (undeclared + c22_errs)[:20])
+    else:
+        c22_out = make_check("C2.2", len(declared_map), c22_errs, "C2_SURFACE_MODIFIED")
     return [
-        make_check("C2.1", max(len(declared_map), len(req_min)), c21_errs, "C2_SURFACE_UNDECLARED"),
-        make_check("C2.2", len(declared_map), c22_errs, "C2_SURFACE_MODIFIED"),
+        make_check("C2.1", len(req_min | set(declared_map)), c21_errs, "C2_SURFACE_UNDECLARED"),
+        c22_out,
         make_check("C2.3", c23_n, c23_errs, "C2_INSTALLED_ALWAYS_ON"),
         make_check("C2.4", c24_n, c24_errs, "C2_DISCOVERY_SET"),
         make_check("C2.5", c24_n, c25_errs, "C2_DESCRIPTION_BLOAT"),

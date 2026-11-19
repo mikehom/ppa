@@ -53,17 +53,22 @@ Normative architectural rules live in [architecture/ARCHITECTURE.md](architectur
 
 All compilers use only the Python 3 standard library, preserve LF normalisation, create zero symlinks, leave always-on instruction surfaces untouched, and write `<port_root>/port_manifest.json`.
 
+**Write protection.** Every compiler plans all of its outputs first and aborts before writing a single byte when an output path already exists and is not listed as an output of the previous `port_manifest.json` in that port root. Recompiling the same target into the same root therefore needs no option, while a file the operator created is never overwritten. Pass `--force` to overwrite such files deliberately; a discovery name overwritten this way stays recorded in `pre_existing_discovery` and fails `C4.8`.
+
 ### 4.1 Pre-Port Canonical Validation
 
 ```bash
 python3 -B scripts/check_portability_hygiene.py .
-python3 -B scripts/validate_ppa_knowledge.py --root .
+python3 -B scripts/validate_ppa_knowledge.py --root . --strict-gotchas
 python3 -B scripts/issue_ctl.py --root . validate
+python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .
 ```
+
+The canonical-only run evaluates the 44 checks that need no port and reports the other 11 as `N/A` (`44/44 evaluated checks PASS, 11 port-only N/A`); the validator lists every Tier A rule it does not perform as `NOT_IMPLEMENTED`, with or without `--certify`.
 
 ### 4.2 Target 1 — Claude Code (`.claude/`)
 
-Installs lossless skills into `<port_root>/.claude/skills/ppa-*/`, ambient guides into `<port_root>/.claude/ppa-ambient/`, and `L3` ontology/corpus closure into `<port_root>/.claude/core/` (`0` bytes added to `CLAUDE.md`):
+Installs lossless skills into `<port_root>/.claude/skills/ppa-*/`, ambient guides as router-linked references `<port_root>/.claude/skills/ppa-program-analysis/references/ambient-<slug>.md` (the compiled router `SKILL.md` gains one link per guide and stays under 100 lines), and `L3` ontology/corpus closure into `<port_root>/.claude/core/` (`0` bytes added to `CLAUDE.md`):
 
 ```bash
 python3 -B adapters/claude_code_adapter.py --repo-root . --port-root <port_root>
@@ -71,7 +76,7 @@ python3 -B adapters/claude_code_adapter.py --repo-root . --port-root <port_root>
 
 ### 4.3 Target 2 — Gemini CLI (`skills-local/` + `memory/topics/`)
 
-Installs regular files under `<port_root>/skills-local/ppa-*/` (validating `{name, description}` `SKILL.md` frontmatter) and `<port_root>/memory/topics/ppa-*.md` (with `description:` L0 frontmatter parity; `0` bytes added to `GEMINI.md` or `~/.gemini/GEMINI.md`; custom subdirectories supported via `--skills-dir` and `--memory-dir`):
+Installs regular files under `<port_root>/skills-local/ppa-*/` (validating `{name, description}` `SKILL.md` frontmatter) and `<port_root>/memory/topics/ppa-*.md` (each with a `description:` frontmatter line lifted verbatim from the canonical `@description` directive; `0` bytes added to `GEMINI.md` or `~/.gemini/GEMINI.md`; `--skills-dir` and `--memory-dir` select other subdirectories, which must lie inside `<port_root>`):
 
 ```bash
 python3 -B adapters/gemini_harness_adapter.py --repo-root . --port-root <port_root>
@@ -79,7 +84,7 @@ python3 -B adapters/gemini_harness_adapter.py --repo-root . --port-root <port_ro
 
 ### 4.4 Target 3 — Codex / `AGENTS.md` Harnesses (`.agents/`)
 
-Installs `<port_root>/.agents/skills/ppa-*/` and `<port_root>/.agents/ppa-ambient/ppa-*.md` with zero modifications to `AGENTS.md` by default (pass `--emit-dev-stub` only when an operator explicitly authorizes a `<= 12`-line, `<= 800`-byte `DEV-STUB` pointer block):
+Installs `<port_root>/.agents/skills/ppa-*/` with the ambient guides as router-linked references `<port_root>/.agents/skills/ppa-program-analysis/references/ambient-<slug>.md`, and zero modifications to `AGENTS.md` by default (pass `--emit-dev-stub` only when an operator explicitly authorizes a `<= 12`-line, `<= 800`-byte `DEV-STUB` pointer block; while that block is in `AGENTS.md`, every later run declares `DEV-STUB` whether or not the flag is passed):
 
 ```bash
 python3 -B adapters/agents_md_adapter.py --repo-root . --port-root <port_root>
@@ -95,17 +100,20 @@ python3 -B adapters/cursor_mdc_adapter.py --repo-root . --port-root <port_root>
 
 ### 4.6 Target 5 — Knowledge Wiki + NotebookLM Sync (`pages/`)
 
-Compiles transforming concept/skill pages (`pages/concepts/`), chunked `<= 450`-line reference and shard sources (`pages/sources/`), hierarchical navigation/ingest logs (`pages/index.md` + `pages/concepts/ppa-index-*.md` + `pages/sources/ppa-index-sources.md` + `pages/log.md`), `wiki_config.json` (preserving pre-existing non-PPA entries), and `notebooklm_sources_bundle/` (`CONFORMANT` exit `0` by default; pass `--dev-nofiles` only when registering fileless remote/API endpoints under `DEV-NOFILES`):
+Compiles transforming concept/skill pages and one concept card per graph node (`pages/concepts/`), chunked `<= 450`-line reference and shard sources (`pages/sources/`), PPA-namespaced navigation (`pages/ppa_index.md` + `pages/ppa_log.md` + `pages/concepts/ppa-index-*.md` + `pages/sources/ppa-index-refs.md` + `pages/sources/ppa-index-shards.md`), `wiki_config.json` (preserving pre-existing non-PPA entries), and the NotebookLM bundle (`notebooklm_sources_bundle/` by default; `--bundle-dir <relative path>` places it elsewhere inside `<port_root>`, and `wiki_config.json` records the same paths). An existing `pages/index.md` or `pages/log.md` is never replaced: the adapter maintains one block between `<!-- PPA_KNOWLEDGE_START -->` and `<!-- PPA_KNOWLEDGE_END -->` and leaves every other line untouched; in an empty wiki root it creates both files. `CONFORMANT` exit `0` by default; pass `--dev-nofiles` only when registering fileless remote/API endpoints under `DEV-NOFILES`:
 
 ```bash
 python3 -B adapters/wiki_sync_adapter.py --repo-root . --port-root <port_root>
+python3 -B adapters/wiki_sync_adapter.py --repo-root . --port-root <wiki_root> --bundle-dir raw/ppa_notebooklm_bundle
 ```
+
+A sixth target class, served ports (`mcp-graph-rag`: MCP, Graph-RAG, or Vector-RAG servers), has a blueprint in [PORTING_GUIDE.md](architecture/PORTING_GUIDE.md) §3.6 and no reference compiler; it is certified from its own manifest, a `served_units.json` evidence file, and a second build passed with `--port-second`.
 
 ---
 
 ## 5. Certifying Conformance (`C1`–`C6`)
 
-Run [scripts/verify_port_conformance.py](scripts/verify_port_conformance.py) to evaluate all 55 checks across `C5 -> C1 -> C3 -> C2 -> C4 -> C6` and write `<port_root>/conformance_report.json`:
+Run [scripts/verify_port_conformance.py](scripts/verify_port_conformance.py) to evaluate all 55 checks across `C5 -> C1 -> C3 -> C2 -> C4 -> C6` and write `<port_root>/conformance_report.json`. Only the files the manifest owns are read, so a port installed in a project root that holds unrelated files certifies on its own content:
 
 ```bash
 python3 -B scripts/verify_port_conformance.py \
@@ -114,11 +122,13 @@ python3 -B scripts/verify_port_conformance.py \
   --manifest <port_root>/port_manifest.json
 ```
 
+Optional inputs: `--user-home <dir>` (scope for `~/` surfaces; also `PPA_USER_HOME` or `<port_root>/.user_home`, and the same scope must be given to the compiler), `--port-second <dir>` (a second build for `C5.7`; required when the target has no reference compiler), `--denylist <file>` (`C5.5`). The summary line prints exact counts, for example `55/55 evaluated checks PASS` or `53/55 evaluated checks PASS; 2 failed: ...`; every manifest key and verifier input is specified in [CONFORMANCE_SPEC.md](architecture/CONFORMANCE_SPEC.md) §2.
+
 | Exit Code | Verdict | Meaning |
 | :--- | :--- | :--- |
 | `0` | `CONFORMANT` | All 6 gates (`C5`, `C1`, `C3`, `C2`, `C4`, `C6`) pass with `deviations: []` |
 | `2` | `CONFORMANT_WITH_DEVIATIONS` | All 6 gates pass using only declared `DEV-STUB` or `DEV-NOFILES` deviations (`CONFORMANCE_SPEC.md` §6) |
-| `1` | `NON_CONFORMANT` | Any check fails, examines zero items without a permitted deviation (`<gate>_VACUOUS`), or omits `port_manifest.json` |
+| `1` | `NON_CONFORMANT` | Any check fails, examines zero items without a permitted deviation (`<gate>_VACUOUS`), or the manifest is missing (`MANIFEST_MISSING`), has another `spec_version` (`MANIFEST_SPEC_VERSION`), or declares an illegal deviation (`MANIFEST_DEVIATION_ILLEGAL`) |
 
 ---
 

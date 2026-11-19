@@ -16,34 +16,22 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE.parent) not in sys.path:
     sys.path.insert(0, str(_HERE.parent))
 
-from adapters import common  # noqa: E402
+from adapters import common, port_plan  # noqa: E402
 
 TARGET = "cursor-ide"
 LINK_RE = re.compile(r"(?<!!)\[([^\]]*)\]\(([^)\s]+)\)")
 
 
-def _format_mdc_frontmatter(description: str, target_fm_lines: int) -> str:
+def _format_mdc_frontmatter(description: str) -> str:
+    """Emit the natural folded-scalar header; the budget check decides, nothing is padded."""
     wrapped = textwrap.wrap(description, width=88, break_long_words=False, break_on_hyphens=False)
     if not wrapped:
         wrapped = [description]
-    base_lines = ["---", "description: >-"] + [f"  {w}" for w in wrapped] + [
+    return "\n".join(["---", "description: >-"] + [f"  {w}" for w in wrapped] + [
         "globs:",
         "alwaysApply: false",
         "---",
-    ]
-    while len(base_lines) < target_fm_lines and len(wrapped) > 1:
-        longest = max(range(len(wrapped)), key=lambda idx: len(wrapped[idx]))
-        words = wrapped[longest].split(" ")
-        if len(words) < 2:
-            break
-        mid = len(words) // 2
-        wrapped = wrapped[:longest] + [" ".join(words[:mid]), " ".join(words[mid:])] + wrapped[longest + 1:]
-        base_lines = ["---", "description: >-"] + [f"  {w}" for w in wrapped] + [
-            "globs:",
-            "alwaysApply: false",
-            "---",
-        ]
-    return "\n".join(base_lines)
+    ])
 
 
 def _rewrite_skill_links(body: str, skill_name: str) -> str:
@@ -79,7 +67,7 @@ def _rewrite_skill_links(body: str, skill_name: str) -> str:
 
 def _compile_skill_mdc(skill_md: Path) -> tuple[str, str]:
     raw = common.read_utf8_strict(skill_md)
-    meta, fm_lines, body = common.split_frontmatter(raw)
+    meta, _, body = common.split_frontmatter(raw)
     if not meta or "name" not in meta or "description" not in meta:
         raise common.AdapterError(f"{skill_md}: invalid SKILL.md frontmatter")
     name = meta["name"]
@@ -89,12 +77,11 @@ def _compile_skill_mdc(skill_md: Path) -> tuple[str, str]:
         if name == common.ROUTER_SKILL
         else f".cursor/rules/ppa-skill-{name.removeprefix('ppa-')}.mdc"
     )
-    fm_block = _format_mdc_frontmatter(desc, max(len(fm_lines), 6))
+    fm_block = _format_mdc_frontmatter(desc)
     rewritten_body = _rewrite_skill_links(body, name)
     compiled = fm_block + "\n" + rewritten_body
-    n_lines = len(common.split_lines_n2(compiled))
     lo, hi = (50, 100) if name == common.ROUTER_SKILL else (250, 500)
-    if not lo <= n_lines < hi:
+    if not lo <= len(common.split_lines_n2(compiled)) < hi:
         single_fm = "\n".join([
             "---",
             f"description: {json.dumps(desc, ensure_ascii=False)}" if ":" in desc else f"description: {desc}",
@@ -103,6 +90,9 @@ def _compile_skill_mdc(skill_md: Path) -> tuple[str, str]:
             "---",
         ])
         compiled = single_fm + "\n" + rewritten_body
+    n_lines = len(common.split_lines_n2(compiled))
+    if not lo <= n_lines < hi:
+        raise common.AdapterError(f"{mdc_rel}: {n_lines} lines outside the {lo}-{hi - 1} budget")
     return mdc_rel, compiled
 
 
@@ -130,7 +120,11 @@ def _compile_ambient_mdc(amb_path: Path) -> tuple[str, str]:
             prev_blank = blank
         compiled = "\n".join(compact) + "\n"
     slug = amb_path.stem.removeprefix("ppa-")
-    return f".cursor/rules/ppa-ambient-{slug}.mdc", compiled
+    mdc_rel = f".cursor/rules/ppa-ambient-{slug}.mdc"
+    n_lines = len(common.split_lines_n2(compiled))
+    if not 80 <= n_lines <= 250:
+        raise common.AdapterError(f"{mdc_rel}: {n_lines} lines outside the 80-250 budget")
+    return mdc_rel, compiled
 
 
 def compile_port(
@@ -139,16 +133,17 @@ def compile_port(
     canonical_revision: str | None = None,
     extra_surfaces: list[str] | None = None,
     user_home: str | None = None,
+    force: bool = False,
 ) -> dict[str, object]:
     """Compile canonical core into Cursor .cursor/rules/*.mdc and .cursor/ppa/."""
     repo_root = repo_root.resolve()
     port_root = port_root.resolve()
+    plan = port_plan.PortPlan(port_root, TARGET, force=force)
     uhome = common.resolve_user_home(port_root, user_home)
     surfaces = common.snapshot_always_on_surfaces(port_root, TARGET, extra_surfaces, uhome)
-    pre_existing = common.scan_preexisting_discovery(port_root, TARGET)
+    pre_existing = common.scan_preexisting_discovery(port_root, TARGET, prior=plan.prior)
     k_files, o_files, c_files = common.collect_canonical_package(repo_root)
     rev = common.resolve_canonical_revision(repo_root, canonical_revision)
-    port_root.mkdir(parents=True, exist_ok=True)
 
     mappings: list[dict[str, object]] = []
     for kpath in k_files:
@@ -156,7 +151,7 @@ def compile_port(
         parts = kpath.relative_to(repo_root / "knowledge").parts
         if parts[0] == "skills" and parts[-1] == "SKILL.md":
             rel_dst_str, mdc_text = _compile_skill_mdc(kpath)
-            common.write_utf8_lf(port_root / rel_dst_str, mdc_text)
+            plan.add(rel_dst_str, mdc_text)
             mappings.append({
                 "canonical": rel_src.as_posix(),
                 "kind": "transforming",
@@ -164,7 +159,7 @@ def compile_port(
             })
         elif parts[0] == "ambient-context":
             rel_dst_str, mdc_text = _compile_ambient_mdc(kpath)
-            common.write_utf8_lf(port_root / rel_dst_str, mdc_text)
+            plan.add(rel_dst_str, mdc_text)
             mappings.append({
                 "canonical": rel_src.as_posix(),
                 "kind": "transforming",
@@ -172,24 +167,14 @@ def compile_port(
             })
         else:
             rel_dst = Path(".cursor") / "ppa" / Path(*parts)
-            common.copy_lossless(kpath, port_root / rel_dst)
+            plan.add_copy(kpath, rel_dst.as_posix())
             mappings.append({
                 "canonical": rel_src.as_posix(),
                 "kind": "lossless",
                 "port": [rel_dst.as_posix()],
             })
 
-    for opath in o_files:
-        rel_src = opath.relative_to(repo_root)
-        rel_dst = Path(".cursor") / "ppa" / "ontology" / opath.relative_to(repo_root / "ontology")
-        common.copy_lossless(opath, port_root / rel_dst)
-        mappings.append({
-            "canonical": rel_src.as_posix(),
-            "kind": "lossless",
-            "port": [rel_dst.as_posix()],
-        })
-
-    common.copy_corpus_closure(repo_root, c_files, port_root / ".cursor" / "ppa" / "corpus")
+    mappings += port_plan.plan_ontology_and_corpus(plan, repo_root, o_files, c_files, ".cursor/ppa")
     manifest: dict[str, object] = {
         "always_on_surfaces": surfaces,
         "canonical_revision": rev,
@@ -201,7 +186,7 @@ def compile_port(
         "spec_version": "1",
         "target": TARGET,
     }
-    common.write_port_manifest(port_root, manifest)
+    plan.commit(manifest)
     return manifest
 
 
@@ -214,6 +199,7 @@ def _cli(argv: list[str]) -> int:
         canonical_revision=args.canonical_revision,
         extra_surfaces=args.always_on_surfaces,
         user_home=args.user_home,
+        force=args.force,
     )
     return 0
 

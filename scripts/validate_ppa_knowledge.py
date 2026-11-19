@@ -2,8 +2,9 @@
 # @governing: REQ-TECH-PPA-001, REQ-TECH-PPA-006 @parent: REQ-PRD-PPA-001, REQ-PRD-PPA-006
 # @decision DEC-PPA-005: Tier-A deterministic knowledge validator implementing
 #   core-applicable checks of architecture/CONFORMANCE_SPEC.md (N1-N3, N8, C1.3,
-#   C1.4, C1.9-C1.11, C3.1-C3.12, C4.1-C4.2, C6.1-C6.3, C6.8) with explicit
-#   NOT_IMPLEMENTED reporting for port-level and conditions-parity checks.
+#   C1.4, C1.9-C1.11, C3.1-C3.12, C4.1-C4.2, C6.1-C6.3, C6.8) and the discrete
+#   conditions structure of ARCHITECTURE 7.1; Tier A rules it does not perform
+#   are printed as NOT_IMPLEMENTED in every mode, never as PASS.
 """Tier-A validator for the PPA semantic knowledge canonical core.
 
 Usage:
@@ -22,6 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import issue_ctl  # noqa: E402  pylint: disable=wrong-import-position
 import ppa_artifact_rules as rules  # noqa: E402  pylint: disable=wrong-import-position
+import ppa_conformance_parity as parity  # noqa: E402  pylint: disable=wrong-import-position
 
 LOG = logging.getLogger("validate_ppa_knowledge")
 
@@ -53,11 +55,20 @@ CHAPTER_REGION = {
 }
 TABLE_COUNTS = {"1": 6, "2": 10, "3": 10, "5": 18, "6": 6, "C": 1}
 FIGURE_COUNTS = {"1": 3, "2": 23, "3": 6, "4": 10, "5": 2, "6": 6, "A": 3, "C": 3}
-DEFERRED_CHECKS = [
-    "C1.1-C1.2,C1.7-C1.8,C1.12,C2.1-C2.6,C4.8,C5.7 (port manifest verifier: W8-1)",
-    "C1.5-C1.6,C4.3-C4.7,C6.4-C6.7,C6.9-C6.10 (whole-book & multi-skill gates: W7-1/W8-1)",
-    "ARCH-7.1,ARCH-7.2 (discrete conditions/signature parity: pending full graph)",
-]
+NOT_IMPLEMENTED_TIER_A = {
+    "arch_7_1_l1_anchor_parity": [
+        "ARCH-7.1 Tier A, anchor clause: every artifact section links to the node's L1 anchor and "
+        "that anchor carries a conditions list with as many entries. L1 anchors carry no "
+        "machine-delimited conditions list, so this clause stays Tier B (reviewer) until one exists.",
+    ],
+    "arch_7_2_signature_parity": [
+        "ARCH-7.2 Tier A: automated signature, quantifier, and numeric-bound parity against "
+        "ontology/notation_index.md and the cited L3 anchors (tracked in BKL-093).",
+    ],
+}
+CONFORMANCE_GATES_HINT = (
+    "full C1-C6 gates are evaluated by --certify or scripts/verify_port_conformance.py"
+)
 
 
 class Report:
@@ -78,8 +89,12 @@ class Report:
             self.results.append((name, "FAIL" if strict else "WARN", warnings[:20]))
 
     def add_not_implemented(self, name: str, items: list[str]) -> None:
-        status = "FAIL" if self.certify else "NOT_IMPLEMENTED"
-        self.results.append((name, status, items))
+        """Record a Tier A rule this validator does not perform (never PASS, in any mode)."""
+        self.results.append((name, "NOT_IMPLEMENTED", items))
+
+    @property
+    def not_implemented(self) -> list[str]:
+        return [name for name, status, _ in self.results if status == "NOT_IMPLEMENTED"]
 
     @property
     def failed(self) -> bool:
@@ -564,6 +579,7 @@ def run_graph_checks(root: Path, report: Report, pm: PageMap | None) -> None:
         report.add("schema", schema_errs)
         report.add("graph", [], skipped="ontology/concept_graph.json not yet created")
         report.add("artifact_refs", [], skipped="no concept graph")
+        report.add("arch_7_1_conditions_parity", [], skipped="no concept graph")
         report.add("concept_citations", [], skipped="no concept graph")
         return
     graph, err = load_json(graph_path)
@@ -575,6 +591,8 @@ def run_graph_checks(root: Path, report: Report, pm: PageMap | None) -> None:
     concepts = [c for c in concepts if isinstance(c, dict)]
     report.add("graph", check_graph(concepts, schema.get("x-relation-inverses", {})))
     report.add("artifact_refs", check_artifact_refs(root, concepts))
+    parity_errs, _ = parity.graph_conditions_errors(concepts)
+    report.add("arch_7_1_conditions_parity", parity_errs + parity.conditions_home_errors(concepts))
     if pm is None:
         report.add("concept_citations", [], skipped="no page map")
         return
@@ -626,17 +644,14 @@ def validate(root: Path, strict_gotchas: bool = False, certify: bool = False) ->
     if certify:
         import verify_port_conformance as vpc  # noqa: PLC0415
         vpc_rep, vpc_code = vpc.certify(core_root=root, canonical_only=True)
-        bad_chks = [
-            f"{g}:{c['id']}:{c['failure_code']} {c.get('locations', [])[:2]}"
-            for g in vpc.GATE_ORDER
-            for c in vpc_rep["gates"][g]["checks"]  # type: ignore[index]
-            if c.get("status") != "PASS"
-        ]
+        bad_chks = vpc.failed_check_codes(vpc_rep)
         if vpc_code != 0 and not bad_chks:
             bad_chks = [f"verdict={vpc_rep.get('verdict')}"]
         report.add("conformance_gates_canonical", bad_chks)
     else:
-        report.add_not_implemented("deferred_conformance_gates", DEFERRED_CHECKS)
+        report.add("conformance_gates_canonical", [], skipped=CONFORMANCE_GATES_HINT)
+    for name, items in NOT_IMPLEMENTED_TIER_A.items():
+        report.add_not_implemented(name, items)
     return report
 
 
@@ -656,7 +671,9 @@ def main(argv: list[str]) -> int:
         LOG.error("validator crashed on malformed input: %s", exc)
         return 1
     print(report.render())
-    print(f"validate_ppa_knowledge {'FAIL' if report.failed else 'PASS'}")
+    pending = report.not_implemented
+    suffix = f" ({len(pending)} NOT_IMPLEMENTED: {', '.join(pending)})" if pending else ""
+    print(f"validate_ppa_knowledge {'FAIL' if report.failed else 'PASS'}{suffix}")
     return 1 if report.failed else 0
 
 

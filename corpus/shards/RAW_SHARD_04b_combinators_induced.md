@@ -792,10 +792,10 @@ proves exact iterate/fixed-point correspondence (`Lemma 4.45`) [PPA §4.5.3, pp.
     Evaluating `(4.14)` at `n = max(n_f, n_g)` yields `lfp_{∇_L}(f) = γ(lfp_{∇_M}(α ∘ f ∘ γ))`. `■`
 - Side conditions: **[U4b:4.5.3-b] Finite-height `∇_M = ⊔_M` corollary (`p. 270`)**: When `M` has finite height (so
   `∇_M = ⊔_M` is a widening operator by `Exercise 4.7`), `(L, α, γ, M)` is a Galois insertion, and `γ(⊥_M) = ⊥_L`,
-  `Lemma 4.45` yields `lfp_{∇_L}(f) = γ(lfp(α ∘ f ∘ γ))` in the *exact same number of iterations* (`F-U4b-06`);
-  however, when `f` represents a whole CFG equation system, applying `∇_L` **selectively at loop cut-points** while
-  keeping exact `L`-transfers/joins elsewhere retains strictly greater precision than `§4.5.1`'s global `α ∘ f ∘ γ`
-  coarsening `[derived]`.
+  `Lemma 4.45` yields `lfp_{∇_L}(f) = γ(lfp(α ∘ f ∘ γ))` in the *exact same number of iterations* (`F-U4b-06`), i.e.
+  **equality** for the global `f`; the book adds only that since "the greater precision of `L` over `M` is available
+  for all other operations", widening is "often preferable" to `§4.5.1`'s approach (`p. 270`). Any precision gain from
+  selective `∇_L` at loop cut-points is `⊑`, not guaranteed strict `⊏` `[derived]`.
 - Citation: [PPA Lemma 4.45, pp. 269–270] (book p. 269; PDF p. 286) (book p. 270; PDF p. 287); [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)
 
 ### Findings (4.5)
@@ -823,9 +823,11 @@ proves exact iterate/fixed-point correspondence (`Lemma 4.45`) [PPA §4.5.3, pp.
   `§4.5.2` generalises Chapter 2 `§2.3` Monotone Frameworks (`U6`) to arbitrary complete lattices without `ACC`.
 - debugging: Before deploying `l_1 ∇_L l_2 = γ(α(l_1) ∇_M α(l_2))` (`Proposition 4.44`, `Lemma 4.45`), check three
   failure modes: `(1)` if `M` lacks `ACC` and `(L, α, γ, M)` is *not* a Galois insertion (e.g. an unreduced direct
-  product `Exercise 4.19`), `(4.13)` breaks and `∇_L` may fail to stabilise; `(2)` if `γ(⊥_M) ⊐ ⊥_L`, step `0` already
-  inflates `f_{∇_L}^1` above `γ(g_{∇_M}^1)`; and `(3)` **never** copy the formula to narrowing
-  `l_1 Δ_L l_2 = γ(α(l_1) Δ_M α(l_2))` (`Exercise 4.24`), which violates `(l_1 Δ_L l_2) ⊑ l_1` whenever `l_1 ∉ γ[M]`!
+  product `Exercise 4.19`), `(4.13)` breaks and `∇_L` may fail to stabilise; `(2)` if `γ(⊥_M) ≠ ⊥_L`, the base case
+  of `(4.14)` fails (the `L`-side starts lower, `⊥_L ⊏ γ(⊥_M)`; `∇_M` is non-monotone, so no general `n = 1`
+  ordering follows `[derived]`) and `Lemma 4.45`'s equality is no longer guaranteed; and `(3)` **never** copy the
+  formula to narrowing `l_1 Δ_L l_2 = γ(α(l_1) Δ_M α(l_2))` (`Exercise 4.24`), which violates `(l_1 Δ_L l_2) ⊑ l_1`
+  whenever `l_1 ∉ γ[M]`!
 
 ## Concluding Remarks
 
@@ -1396,7 +1398,7 @@ Context: Book p. 276 (`PDF p. 293`) opens with `Figure 4.10` (`(Sign', ⊑)`) fo
 
 ## Gotcha Ledger
 
-- G-U4b-01: Book p. 246 (`PDF p. 263`) carries the closing §4.3.2 results (`Fact 4.31` `ς(m) = α(γ(m))` and `α[L] = ς[M]`, `Proposition 4.29` proof where `⨆_{ς[M]} = ⨆_M` while `⨅_{ς[M]} = ς ∘ ⨅_M`, `ς_η(D') = D' ∩ η[V]`, GC isomorphism `(θ_L, θ_M)`, and `Example 4.32`) above the §4.4 heading [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263); [PPA §4.4, p. 246] (book p. 246; PDF p. 263).
+- G-U4b-01: Book p. 246 (`PDF p. 263`) carries the closing §4.3.2 results (`Fact 4.31` `ς(m) = α(γ(m))` and `α[L] = ς[M]`, `Proposition 4.29` proof where `⨆_{ς[M]} = ⨆_M` while `⨅_{ς[M]} = ς ∘ ⨅_M` `[derived]`, `ς_η(D') = D' ∩ η[V]`, GC isomorphism `(θ_L, θ_M)`, and `Example 4.32`) above the §4.4 heading [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263); [PPA §4.4, p. 246] (book p. 246; PDF p. 263).
 - G-U4b-02: Sequential composition of `(L_0, α_1, γ_1, L_1)` and `(L_1, α_2, γ_2, L_2)` reverses composition order between `α` and `γ` — `(L_0, α_2 ∘ α_1, γ_1 ∘ γ_2, L_2)` — while preserving Galois insertions (`γ_{η_2 ∘ η_1} = γ_{η_1} ∘ γ_{η_2}`, `Exercise 4.15`) [PPA §4.4, p. 247] (book p. 247; PDF p. 264); [PPA Exercise 4.15, p. 279] (book p. 279; PDF p. 296).
 - G-U4b-03: `Example 4.33` defines `diff(z_1, z_2) = |z_1| - |z_2|` on *absolute magnitudes* (`diff(5, -7) = -2`), whereas `Mini Project 4.1` feeds signed length difference `length(x) - length(y)` into the same `Range = {<-1, -1, 0, +1, >+1}` set [PPA Example 4.33, p. 247] (book p. 247; PDF p. 264); [PPA Mini Project 4.1, p. 274] (book p. 274; PDF p. 291).
 - G-U4b-04: `𝒫(V_1) × 𝒫(V_2)` is not a powerset and cannot be given directly by an extraction function without disjoint-union tagging `({1} × V_1) ∪ ({2} × V_2)` (`Example 4.34`); omitting disjointness of either `V_1, V_2` or `D_1, D_2` breaks the `Exercise 4.16` isomorphism [PPA Example 4.34, p. 250] (book p. 250; PDF p. 267); [PPA Exercise 4.16, p. 279] (book p. 279; PDF p. 296).

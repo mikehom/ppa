@@ -15,7 +15,7 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE.parent) not in sys.path:
     sys.path.insert(0, str(_HERE.parent))
 
-from adapters import common  # noqa: E402
+from adapters import common, port_plan  # noqa: E402
 
 TARGET = "gemini-cli"
 AMBIENT_SKILL_LINK_RE = re.compile(
@@ -59,6 +59,7 @@ def compile_port(
     user_home: str | None = None,
     skills_dir: str = "skills-local",
     memory_dir: str = "memory/topics",
+    force: bool = False,
 ) -> dict[str, object]:
     """Compile canonical core into Gemini CLI skills-local/ and memory/topics/."""
     repo_root = repo_root.resolve()
@@ -68,12 +69,13 @@ def compile_port(
     rel_skills = skills_abs.relative_to(port_root)
     rel_memory = memory_abs.relative_to(port_root)
 
+    plan = port_plan.PortPlan(port_root, TARGET, force=force)
     uhome = common.resolve_user_home(port_root, user_home)
     surfaces = common.snapshot_always_on_surfaces(port_root, TARGET, extra_surfaces, uhome)
-    pre_existing = common.scan_preexisting_discovery(port_root, TARGET, custom_skills_dir=skills_abs)
+    pre_existing = common.scan_preexisting_discovery(
+        port_root, TARGET, custom_skills_dir=skills_abs, prior=plan.prior)
     k_files, o_files, c_files = common.collect_canonical_package(repo_root)
     rev = common.resolve_canonical_revision(repo_root, canonical_revision)
-    port_root.mkdir(parents=True, exist_ok=True)
 
     mappings: list[dict[str, object]] = []
     for kpath in k_files:
@@ -83,12 +85,12 @@ def compile_port(
             if parts[-1] == "SKILL.md":
                 _validate_skill_md(kpath, parts[1])
             rel_dst = rel_skills / Path(*parts[1:])
-            common.copy_lossless(kpath, port_root / rel_dst)
+            plan.add_copy(kpath, rel_dst.as_posix())
             kind = "lossless"
         elif parts[0] == "ambient-context":
             rel_dst = rel_memory / Path(*parts[1:])
             content, kind = _compile_memory_topic(kpath, skills_abs, memory_abs)
-            common.write_utf8_lf(port_root / rel_dst, content)
+            plan.add(rel_dst.as_posix(), content)
         else:
             raise common.AdapterError(f"unexpected knowledge path: {rel_src.as_posix()}")
         mappings.append({
@@ -97,17 +99,7 @@ def compile_port(
             "port": [rel_dst.as_posix()],
         })
 
-    for opath in o_files:
-        rel_src = opath.relative_to(repo_root)
-        rel_dst = Path("core") / "ontology" / opath.relative_to(repo_root / "ontology")
-        common.copy_lossless(opath, port_root / rel_dst)
-        mappings.append({
-            "canonical": rel_src.as_posix(),
-            "kind": "lossless",
-            "port": [rel_dst.as_posix()],
-        })
-
-    common.copy_corpus_closure(repo_root, c_files, port_root / "core" / "corpus")
+    mappings += port_plan.plan_ontology_and_corpus(plan, repo_root, o_files, c_files, "core")
     manifest: dict[str, object] = {
         "adapter_options": {
             "memory_dir": rel_memory.as_posix(),
@@ -123,7 +115,7 @@ def compile_port(
         "spec_version": "1",
         "target": TARGET,
     }
-    common.write_port_manifest(port_root, manifest)
+    plan.commit(manifest)
     return manifest
 
 
@@ -142,6 +134,7 @@ def _cli(argv: list[str]) -> int:
         user_home=args.user_home,
         skills_dir=args.skills_dir,
         memory_dir=args.memory_dir,
+        force=args.force,
     )
     return 0
 

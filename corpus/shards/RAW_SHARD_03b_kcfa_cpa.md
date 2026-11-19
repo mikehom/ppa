@@ -466,7 +466,7 @@ Context: call-string contexts `Δ = Lab^{≤k}`, lexical context environments `c
     (mirroring concrete closures `close t in ρ` of §3.2.1), so `[var]` looks up `ρ̂(x, ce(x))` — simulating
     per-closure local environments inside a single global `ρ̂`.
   - *Contrast with standard `k`-CFA* (p. 193): uniform `k`-CFA uses `Cachê = (Lab × Δ) → Val̂`, whereas
-    [156, 157, 158]`s (`[external: Shivers]`) standard `k`-CFA uses `Cachê = (Lab × CEnv) → Val̂`.
+    Shivers' `[156, 157, 158]` (`p. 198`) standard `k`-CFA uses `Cachê = (Lab × CEnv) → Val̂`.
 - Citation: [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 
 ### Table 3.10 — Uniform `k`-CFA analysis
@@ -707,7 +707,7 @@ speedups, and lazy conditional-constraint solving
 
 ### [U3b:CR-a] Functional Control Flow Analysis, contours, open systems, and SOS rationale
 - Statement:
-  - *Origins & complexity*: `k`-CFA originates with `[156, 157, 158]` (`[external: Shivers]`), with `0-CFA`-like precursors
+  - *Origins & complexity*: `k`-CFA originates with Shivers `[156, 157, 158]` [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216), with `0-CFA`-like precursors
     `[163, 136, 57, 56]` and Sestoft's *Closure Analysis* `[152]`. Jagannathan & Weeks `[79]` clarified
     `k`-CFA and polynomial `k`-CFA, established **exponential complexity of `k`-CFA for `k > 0`**, and linked
     Heintze's *Set Based Analysis* `[70]` to `0-CFA`. Nielson & Nielson `[122]` introduced *uniform `k`-CFA*
@@ -1084,7 +1084,7 @@ schemes, and open/recursive `CPA` [PPA Exercise 3.1, p. 205] (book p. 205; PDF p
 - G-U3b-08: Testing branch reachability via `ι_true ⊑ D̂(ℓ₀)` and `ι_false ⊑ D̂(ℓ₀)` in `Table 3.9` `[if]` is sound on a general lattice `L` only when `true ∈ γ(d̂) ⇒ ι_true ⊑ d̂` (and likewise for `false`), and `else` must never be pruned before fixed-point convergence `[derived]`. [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)
 - G-U3b-09: Staged acceptability `⊨'_D` (`p. 189`, unconditional `[if]`) restores `(Ĉ, D̂, ρ̂, δ̂) ⊨'_D e ⇒ (Ĉ, ρ̂) ⊨ e` and lets least `(Ĉ, ρ̂)` be solved completely *before* least `(D̂, δ̂)` to obtain the exact combined least solution of `⊨'_D`, at the cost of dead-branch pollution (`{0, +}` vs `{0}` in `Example 3.31`). [PPA §3.5.2, p. 189] (book p. 189; PDF p. 207); [PPA Example 3.31, p. 189] (book p. 189; PDF p. 207)
 - G-U3b-10: Monovariant `0-CFA` on polymorphic identity `(f f)(fn y => y)` (`Example 3.32`) not only smears `Ĉ_id(9) = {fn x => x^1, fn y => y^6}`, but also leaks `fn y => y^6` into operator cache `Ĉ_id(5)`, triggering a phantom self-call `ρ̂_id(y) = {fn y => y^6}` `[derived]`; syntactic let-cloning (`Example 3.33`) avoids this only by duplicating code. [PPA Example 3.32, p. 190] (book p. 190; PDF p. 208); [PPA Example 3.33, p. 190] (book p. 190; PDF p. 208); [PPA Example 3.33, p. 191] (book p. 191; PDF p. 209)
-- G-U3b-11: Do not confuse **uniform `k`-CFA** (`Cachê = (Lab × Δ) → Val̂`, `Δ = Lab^{≤k}`) with **standard `k`-CFA** (`[156, 157, 158]`, `[external: Shivers]`, `Cachê = (Lab × CEnv) → Val̂`); both embed per-variable lexical context environments `CEnv = Var → Δ` inside `Val̂ = 𝒫(Term × CEnv)`. [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
+- G-U3b-11: Do not confuse **uniform `k`-CFA** (`Cachê = (Lab × Δ) → Val̂`, `Δ = Lab^{≤k}`) with **standard `k`-CFA** (Shivers `[156, 157, 158]`, `Cachê = (Lab × CEnv) → Val̂`); both embed per-variable lexical context environments `CEnv = Var → Δ` inside `Val̂ = 𝒫(Term × CEnv)`. [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-12: In `Table 3.10` (`§3.6.1`), `[var]` looks up `ρ̂(x, ce(x))` using the **lexical birth contour `ce(x)`**, *never* `ρ̂(x, δ)` with the current call context `δ` (which would implement dynamic scoping), and `[fn]`/`[fun]` must restrict `ce₀ = ce | FV(...)` to avoid exponential state splitting over dead outer variables `[derived]`. [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-13: In `Table 3.10`, `[app]` pushes the **application's outer label `ℓ`** (`δ₀ = ⌈δ, ℓ⌉_k`) and extends the **closure's `ce₀`** (`ce'_0 = ce₀[x ↦ δ₀]`), whereas `[let]` **leaves `δ` unchanged** (`ce' = ce[x ↦ δ]`); desugaring `let x = e₁ in e₂` to `((fn x => e₂) e₁)^ℓ` therefore loses one level of call-string precision for `k ≥ 1` `[derived]`. [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-14: `Example 3.34` (`p. 194`) mis-cites `"Example 3.33"` while displaying and analysing `Example 3.32`'s unexpanded program (and prints `"only records"`), and §3.6.1 (`p. 194`) explicitly omits soundness proofs and solver algorithms for `Table 3.10`. [PPA §3.6.1, p. 194] (book p. 194; PDF p. 212); [PPA Example 3.34, p. 194] (book p. 194; PDF p. 212)

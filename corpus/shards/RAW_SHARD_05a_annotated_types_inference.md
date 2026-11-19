@@ -821,8 +821,8 @@ substitution `θ_A` (§5.3.4, Lemma 5.22, Corollary 5.23, concluding at the top 
 - cs_theory: `UCAI` is the `[external: ACUI (Associative-Commutative-Idempotent with Unit); Baader–Snyder 2001]`
   equational theory, whose general unification problem is NP-complete and non-unitary; restricting `SType`
   arrows to `AVar`s factors inference into **unitary first-order syntactic unification** (`𝒰_CFA`, `Fact 5.17`)
-  plus **monotone join-semilattice constraints** (`Lemma 5.22`), achieving near-linear `O(n α(n))` complexity
-  on monomorphic `FUN` vs `O(n³)` for untyped Chapter 3 `0-CFA` (`U8` comparison).
+  plus **monotone join-semilattice constraints** (`Lemma 5.22`), achieving `[external: union-find unification]` near-linear `O(n α(n))`
+  complexity on monomorphic `FUN` (no Ch 5 complexity claim) vs `O(n³)` for untyped Chapter 3 `0-CFA` (`U8` comparison).
 - swe_architecture: Rather than threading explicit immutable substitution maps `θ₄(θ₃(θ₂(θ₁ C₀)))` (which
   costs `O(n²)` rewrites and invites dropped-`θ_i` bugs like Table 5.5's `if` bug), production compilers
   (`[external: rustc, GHC, OCaml]`) represent `TVar` and `AVar` as `[external: Tarjan Union-Find]` nodes where

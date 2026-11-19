@@ -567,7 +567,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
         for check_name in ("schema", "artifact_refs", "links", "issues", "inline_citations"):
             self.assertIn(f"[PASS] {check_name}", proc.stdout)
-        self.assertIn("[NOT_IMPLEMENTED] deferred_conformance_gates", proc.stdout)
+        self.assertIn("[NOT_IMPLEMENTED] arch_7_2_signature_parity", proc.stdout)
 
     def test_schema_inverses_and_corresponds_to_basis(self):
         schema = json.loads((ROOT / "ontology/concept_graph.schema.json").read_text())

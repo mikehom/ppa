@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-001: Standalone L0 ambient context for Chapter 2 Data Flow Analysis, Interprocedural Context, and Shape Analysis. -->
+<!-- @description: Orientation for data flow over first-order WHILE programs: reaching definitions, live variables, available and very busy expressions, gen/kill bit vectors, monotone and distributive frameworks, MFP versus MOP, interprocedural call strings and assumption sets over valid paths, and shape graphs with abstract locations, summary nodes and sharing for heap pointers. Use when reasoning about forward/backward direction, may/must merging, kill sets, slicing, or pointer aliasing in imperative statements. -->
 
 # Data Flow Analysis, Interprocedural Context, and Shape Analysis
 

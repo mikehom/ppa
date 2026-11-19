@@ -88,6 +88,8 @@ Coordinates of the rows: [PPA §1.3.1, p. 6] (book p. 6; PDF p. 26), [PPA §1.3.
 [PPA Table 1.2, p. 19] (book p. 19; PDF p. 39), [PPA Table 1.3, p. 21] (book p. 21; PDF p. 41),
 [PPA Table 1.4, p. 24] (book p. 24; PDF p. 44).
 
+Whole-book follow-on: the ten-axis paradigm matrix, cross-chapter syntheses `X1`–`X5`, and the paradigm selection protocol for Chapters 1–6 are in `ontology/cross_paradigm_matrix.md` (L3 file shipped beside the skills).
+
 ## 3. Data Flow Analysis, Equational Approach (§1.3.1)
 
 Block equations for the factorial program [PPA §1.3.1, p. 6] (book p. 6; PDF p. 26):

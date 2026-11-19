@@ -1,6 +1,6 @@
 ---
 name: ppa-dataflow-and-slicing
-description: Design, verify, and debug intraprocedural and interprocedural data flow analyses, def-use slicing, monotone frameworks, and heap shape analyses. Use when building reaching definitions, available expressions, very busy expressions, live or faint variables, ud/du chains, SSA lowering, constant propagation, call-string or assumption-set context sensitivity, flow-insensitive IAV call graphs, or compatible shape graphs with strong updates and materialisation. Do not use for Ch 1 approach comparison or App A-C foundations (ppa-program-analysis), higher-order closures (ppa-control-flow-and-constraints), Galois widenings (ppa-abstract-interpretation), annotated type systems (ppa-types-effects-and-regions), worklist or RPO solver scheduling (ppa-fixedpoint-solvers), or taint threat modelling (ppa-cyber-vulnerability-analysis).
+description: Design, verify, and debug intraprocedural and interprocedural data flow analyses, def-use slicing, monotone frameworks, and heap shape analyses. Use when building reaching definitions, available expressions, very busy expressions, live or faint variables, ud/du chains, constant propagation, call-string or assumption-set context sensitivity, flow-insensitive IAV call graphs, or compatible shape graphs with strong updates and materialisation. Do not use for Ch 1 approach comparison or App A-C foundations (ppa-program-analysis), higher-order closures (ppa-control-flow-and-constraints), Galois widenings (ppa-abstract-interpretation), annotated type systems (ppa-types-effects-and-regions), worklist or RPO solver scheduling (ppa-fixedpoint-solvers), or taint threat modelling (ppa-cyber-vulnerability-analysis).
 ---
 
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
@@ -95,11 +95,12 @@ Execute this workflow for program slicing, def-use transformations, and dead-cod
      `DU(x, ℓ) = {ℓ' | ℓ ∈ UD(x, ℓ')}`.
    - Always include `?` in signature types (`Var⋆ × Lab⋆^? ↔ 𝒫(Lab⋆^?)`, fixing `F-U2a-05`, `G-U2a-14`),
      and allow terminal self-redefinitions (`[x := x+1]^{ℓ_n}`, `G-U2a-13`).
-2. **Audit uninitialised reads and trace slices (`UD`/`DU` & `SSA`)**:
+2. **Audit uninitialised reads and trace slices (`UD`/`DU`)**:
    - Flag any `(x, ℓ')` with **`? ∈ UD(x, ℓ')`** as a possible read-before-write defect (`Example 2.12`).
    - Walk `UD` edges backward for data slicing; note implicit conditional branches (`if [b]^ℓ`) are absent
-     from pure `UD`/`DU` unless control dependence is added `[external]`. Lower to SSA (`x := ϕ(...)`,
-     `[U2b:CR-d]`) when downstream passes require explicit single-def chains.
+     from pure `UD`/`DU` unless control dependence is added `[external]`. SSA form (explicit single-def chains)
+     is only a Concluding Remarks pointer (`[U2b:CR-d]`), not a book procedure
+     [PPA Chapter 2 Concluding Remarks, p. 130] (book p. 130; PDF p. 149).
 3. **Gate chain-based Constant Folding (`Mini Project 2.1`, `Figure 2.23`, `G-U2b-29`)**:
    - Follow `du(x, ℓ)` from constant assignment `[x := n]^ℓ` to candidate use `ℓ'`.
    - Before rewriting `x ↦ n` at `ℓ'`, inspect `ud(x, ℓ')`: fold **iff** `? ∉ ud(x, ℓ')` AND *every*
@@ -122,7 +123,7 @@ Apply this procedure when analysing `P⋆ = begin D⋆ S⋆ end` across calls `[
 2. **Build `flow⋆` and explicit 4-tuple `inter-flow⋆` (`G-U2b-01`, `G-U2b-03`)**:
    - Emit `(ℓ_c; ℓ_n)` and `(ℓ_x; ℓ_r)` in `flow⋆` AND matched 4-tuples `(ℓ_c, ℓ_n, ℓ_x, ℓ_r)` in `IF`.
    - Never propagate through `(ℓ_c; ℓ_n)` and `(ℓ_x; ℓ_r)` as plain `goto`s without `IF` (`§2.5.2`): `n` call
-     sites yield `n²` invalid cross-over pairs (`G-U2b-01`).
+     sites yield `n²` call/return pairings, of which `n(n−1)` (`i ≠ j`) are invalid cross-overs (`G-U2b-01`).
    - For backward interprocedural passes (`G-U2b-03`), orient `flow⋆^R` via `(ℓ_n; ℓ_c)`, `(ℓ_r; ℓ_x)` and
      reverse 4-tuples to `(ℓ_r, ℓ_x, ℓ_n, ℓ_c)` (`[derived]`).
 3. **Select context domain `Δ` using precision, monotonicity, and recursion rules**:

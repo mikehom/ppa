@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-001: Standalone cross-book L0 ambient orientation projecting Chapters 1-6 and Appendices A-C onto static vulnerability analysis and soundness auditing. -->
+<!-- @description: Orientation that maps program analysis results onto vulnerability hunting: taint sources and sanitisers as may or must properties, false negatives versus false positives in scanner triage, heap lifetime errors and aliasing, integer overflow bounds, indirect call targets for control flow integrity, arena escape, exception and deadlock protocols, and scanner denial of service. Use when auditing security tooling soundness or translating a weakness class into an analysis specification. -->
 
 # Program Analysis for Vulnerability Modeling, Sanitizer Soundness, and SAST Triage
 
@@ -42,7 +43,7 @@ scanner traces to a violated mathematical precondition of one of the book's four
 4. **Relational & Modular Arithmetic Fidelity**: Proving `0 ≤ idx < len` (`[external: CWE-787]`) requires
    relational products (`⊗` / reduced `ς[M₁ × M₂]`, [PPA §4.4.2, p. 256] (book p. 256; PDF p. 273)) plus
    modular overflow guards (`[external: CWE-190 / CWE-195]`), never Independent Attribute `Z`-intervals alone.
-5. **No Silent Timeout Under-Approximation**: Any worklist cutoff with `W ≠ empty` returns `Analysis_i ⊑ μ_𝒮`
+5. **No Silent Timeout Under-Approximation**: Any worklist cutoff with `W ≠ empty` returns `Analysis_i ⊑ μ_𝒮`, not certified reductive,
    [PPA §6.1.1, p. 371] (book p. 371; PDF p. 387); unresolved cones must be widened (`Exercise 6.13`,
    [PPA Exercise 6.13, p. 391] (book p. 391; PDF p. 407)) or conservatively tainted to `⊤_L` `[external]`.
 

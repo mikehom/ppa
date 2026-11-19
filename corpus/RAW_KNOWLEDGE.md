@@ -11,10 +11,10 @@ Canonical single-file L3 ground truth deterministically merged in shard order (U
 | 02 | `corpus/shards/RAW_SHARD_01_intro.md` | `1314L` |
 | 03 | `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md` | `1845L` |
 | 04 | `corpus/shards/RAW_SHARD_02b_interproc_shape.md` | `1486L` |
-| 05 | `corpus/shards/RAW_SHARD_03a_0cfa.md` | `1372L` |
+| 05 | `corpus/shards/RAW_SHARD_03a_0cfa.md` | `1378L` |
 | 06 | `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md` | `1106L` |
 | 07 | `corpus/shards/RAW_SHARD_04a_galois_widening.md` | `972L` |
-| 08 | `corpus/shards/RAW_SHARD_04b_combinators_induced.md` | `1422L` |
+| 08 | `corpus/shards/RAW_SHARD_04b_combinators_induced.md` | `1424L` |
 | 09 | `corpus/shards/RAW_SHARD_05a_annotated_types_inference.md` | `868L` |
 | 10 | `corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md` | `1668L` |
 | 11 | `corpus/shards/RAW_SHARD_06_algorithms_bib.md` | `586L` |
@@ -6315,24 +6315,29 @@ that replacing `gfp(𝒬)` with `lfp(𝒬)` destroys the Moore-family property (
 - Citation: [PPA Fact 3.11, p. 160] (book p. 160; PDF p. 178)
 
 ### [U3a:3.2.2-b] Proof of Theorem 3.10 (structural induction on `ρ ⊢ ie → ie'`)
-- Statement: By induction on the derivation tree of `ρ ⊢ ie → ie'`, illustrating four representative cases
-  `[fn]`, `[app₁]`, `[app_fn]`, and `[bind₂]` (and leaving remaining rules, including `[if₂]`/`[if₃]` using
-  `Fact 3.11` and static-scoping / α-renaming invariance, to Exercise 3.7
-  [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)):
-  1. `[fn]`: `ρ ⊢ (fn x => e₀)^ℓ → (close (fn x => e₀) in ρ₀)^ℓ` with `ρ₀ = ρ | FV(fn x => e₀)`. From
+- Statement: Assuming `ρ ℛ ρ̂` and `(Ĉ, ρ̂) ⊨ ie`, prove `(Ĉ, ρ̂) ⊨ ie'` by induction on the structure of the
+  inference tree for `ρ ⊢ ie → ie'`. Most cases simply amount to inspecting the defining clause for
+  `(Ĉ, ρ̂) ⊨ ie` (this method applies to all fixed points of a recursive definition, in particular the greatest
+  fixed point); the book gives "the proofs for some of the more interesting cases", namely five: `[var]`
+  (p. 160) and `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]` (p. 161), and ends "This completes the proof." (no
+  case is deferred to any exercise):
+  1. `[var]`: `ρ ⊢ x^ℓ → v^ℓ` because `x ∈ dom(ρ)` and `v = ρ(x)`. If `v = c` there is nothing to prove; else
+     `v = close t₀ in ρ₀`. From `ρ ℛ ρ̂` we get `v 𝒱 (ρ̂, ρ̂(x))`, hence `t₀ ∈ ρ̂(x)` and `ρ₀ ℛ ρ̂`. From
+     `(Ĉ, ρ̂) ⊨ ie` we get `ρ̂(x) ⊆ Ĉ(ℓ)`, hence `t₀ ∈ Ĉ(ℓ)`; with `ρ₀ ℛ ρ̂`, `[close]` gives `(Ĉ, ρ̂) ⊨ ie'`.
+  2. `[fn]`: `ρ ⊢ (fn x => e₀)^ℓ → (close (fn x => e₀) in ρ₀)^ℓ` with `ρ₀ = ρ | FV(fn x => e₀)`. From
      `(Ĉ, ρ̂) ⊨ ie` we have `fn x => e₀ ∈ Ĉ(ℓ)`; from `ρ ℛ ρ̂` restriction preserves `ρ₀ ℛ ρ̂`; hence `[close]`
      gives `(Ĉ, ρ̂) ⊨ ie'`.
-  2. `[app₁]`: `ρ ⊢ (ie₁ ie₂)^ℓ → (ie'₁ ie₂)^ℓ` from `ρ ⊢ ie₁ → ie'₁`. Since every SOS step preserves the
+  3. `[app₁]`: `ρ ⊢ (ie₁ ie₂)^ℓ → (ie'₁ ie₂)^ℓ` from `ρ ⊢ ie₁ → ie'₁`. Since every SOS step preserves the
      outermost label (`p. 157`), `ie₁` and `ie'₁` share the exact same outer label `ℓ₁`; by induction
      hypothesis `(Ĉ, ρ̂) ⊨ ie'₁`, and the remaining defining clauses of `(Ĉ, ρ̂) ⊨ (ie'₁ ie₂)^ℓ` are unchanged.
-  3. `[app_fn]`: `ρ ⊢ ((close (fn x => t₀^{ℓ₀}) in ρ₁)^{ℓ₁} v₂^{ℓ₂})^ℓ → (bind ρ₁[x ↦ v₂] in t₀^{ℓ₀})^ℓ`.
+  4. `[app_fn]`: `ρ ⊢ ((close (fn x => t₀^{ℓ₀}) in ρ₁)^{ℓ₁} v₂^{ℓ₂})^ℓ → (bind ρ₁[x ↦ v₂] in t₀^{ℓ₀})^ℓ`.
      From `[close]` on the operator: `(fn x => t₀^{ℓ₀}) ∈ Ĉ(ℓ₁)` and `ρ₁ ℛ ρ̂`. From `(Ĉ, ρ̂) ⊨ v₂^{ℓ₂}`:
      either `v₂ = c` (so `v₂ 𝒱 (ρ̂, Ĉ(ℓ₂))` trivially) or `v₂ = close t₂ in ρ₂` (so `[close]` gives
      `t₂ ∈ Ĉ(ℓ₂)` and `ρ₂ ℛ ρ̂`, hence `v₂ 𝒱 (ρ̂, Ĉ(ℓ₂))`). Instantiating `[app]` at `(fn x => t₀^{ℓ₀}) ∈ Ĉ(ℓ₁)`
      gives `(Ĉ, ρ̂) ⊨ t₀^{ℓ₀}`, `Ĉ(ℓ₂) ⊆ ρ̂(x)`, and `Ĉ(ℓ₀) ⊆ Ĉ(ℓ)`. Monotonicity of `𝒱` in its second
      component yields `v₂ 𝒱 (ρ̂, ρ̂(x))`, so `ρ₁[x ↦ v₂] ℛ ρ̂`, and `[bind]` gives `(Ĉ, ρ̂) ⊨ ie'`.
-  4. `[bind₂]`: `ρ ⊢ (bind ρ₁ in v₁^{ℓ₁})^ℓ → v₁^ℓ`. `[bind]` gives `(Ĉ, ρ̂) ⊨ v₁^{ℓ₁}` and `Ĉ(ℓ₁) ⊆ Ĉ(ℓ)`,
-     so `Fact 3.11` gives `(Ĉ, ρ̂) ⊨ v₁^ℓ`. `■`
+  5. `[bind₂]`: `ρ ⊢ (bind ρ₁ in v₁^{ℓ₁})^ℓ → v₁^ℓ`. `[bind]` gives `(Ĉ, ρ̂) ⊨ v₁^{ℓ₁}` and `Ĉ(ℓ₁) ⊆ Ĉ(ℓ)`,
+     so `Fact 3.11` gives `(Ĉ, ρ̂) ⊨ v₁^ℓ`. This completes the proof. `■`
 - Citation: [PPA §3.2.2, p. 160] (book p. 160; PDF p. 178); [PPA §3.2.2, p. 161] (book p. 161; PDF p. 179)
 
 ### 3.2.3 Existence of Solutions
@@ -7020,8 +7025,9 @@ concludes with end-to-end soundness `Corollary 3.25` and open-system substitutab
   `[derived]` [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196).
 - practical_debugging: The single highest-frequency bug in hand-rolled points-to / 0-CFA solvers is
   registering `{t} ⊆ p ⇒ p₁ ⊆ p₂` in `E[p₁]` *only* (or `E[p]` *only*): any test where argument `p₁` is
-  populated before callee `p` resolves (such as Example 3.23's LIFO order `W = [C(4), C(2)]` if `C(2)` were
-  populated after `C(4)`!) silently drops the call's argument/return flow without crashing `[derived]`
+  popped before callee `t` reaches `D[p]` in Step 3 silently drops the call's argument/return flow without
+  crashing. Example 3.23 cannot expose it (Step 2 already seeds `id_x ∈ D[C(2)]`); an indirect operator such
+  as `(let f = (fn x => x^1)^2 in (f^3 (fn y => y^4)^5)^6)^7` (`C(2) ⊆ r(f) ⊆ C(3)`) does `[derived]`
   [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196).
 - cyber: Two operational security consequences emerge directly from §3.4.2:
   1. **Scanner DoS (`O(n³)` cubic blowup, `[external: CWE-400]`)**: obfuscated or bundler-generated code with
@@ -7529,7 +7535,7 @@ Context: call-string contexts `Δ = Lab^{≤k}`, lexical context environments `c
     (mirroring concrete closures `close t in ρ` of §3.2.1), so `[var]` looks up `ρ̂(x, ce(x))` — simulating
     per-closure local environments inside a single global `ρ̂`.
   - *Contrast with standard `k`-CFA* (p. 193): uniform `k`-CFA uses `Cachê = (Lab × Δ) → Val̂`, whereas
-    [156, 157, 158]`s (`[external: Shivers]`) standard `k`-CFA uses `Cachê = (Lab × CEnv) → Val̂`.
+    Shivers' `[156, 157, 158]` (`p. 198`) standard `k`-CFA uses `Cachê = (Lab × CEnv) → Val̂`.
 - Citation: [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 
 ### Table 3.10 — Uniform `k`-CFA analysis
@@ -7770,7 +7776,7 @@ speedups, and lazy conditional-constraint solving
 
 ### [U3b:CR-a] Functional Control Flow Analysis, contours, open systems, and SOS rationale
 - Statement:
-  - *Origins & complexity*: `k`-CFA originates with `[156, 157, 158]` (`[external: Shivers]`), with `0-CFA`-like precursors
+  - *Origins & complexity*: `k`-CFA originates with Shivers `[156, 157, 158]` [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216), with `0-CFA`-like precursors
     `[163, 136, 57, 56]` and Sestoft's *Closure Analysis* `[152]`. Jagannathan & Weeks `[79]` clarified
     `k`-CFA and polynomial `k`-CFA, established **exponential complexity of `k`-CFA for `k > 0`**, and linked
     Heintze's *Set Based Analysis* `[70]` to `0-CFA`. Nielson & Nielson `[122]` introduced *uniform `k`-CFA*
@@ -8147,7 +8153,7 @@ schemes, and open/recursive `CPA` [PPA Exercise 3.1, p. 205] (book p. 205; PDF p
 - G-U3b-08: Testing branch reachability via `ι_true ⊑ D̂(ℓ₀)` and `ι_false ⊑ D̂(ℓ₀)` in `Table 3.9` `[if]` is sound on a general lattice `L` only when `true ∈ γ(d̂) ⇒ ι_true ⊑ d̂` (and likewise for `false`), and `else` must never be pruned before fixed-point convergence `[derived]`. [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)
 - G-U3b-09: Staged acceptability `⊨'_D` (`p. 189`, unconditional `[if]`) restores `(Ĉ, D̂, ρ̂, δ̂) ⊨'_D e ⇒ (Ĉ, ρ̂) ⊨ e` and lets least `(Ĉ, ρ̂)` be solved completely *before* least `(D̂, δ̂)` to obtain the exact combined least solution of `⊨'_D`, at the cost of dead-branch pollution (`{0, +}` vs `{0}` in `Example 3.31`). [PPA §3.5.2, p. 189] (book p. 189; PDF p. 207); [PPA Example 3.31, p. 189] (book p. 189; PDF p. 207)
 - G-U3b-10: Monovariant `0-CFA` on polymorphic identity `(f f)(fn y => y)` (`Example 3.32`) not only smears `Ĉ_id(9) = {fn x => x^1, fn y => y^6}`, but also leaks `fn y => y^6` into operator cache `Ĉ_id(5)`, triggering a phantom self-call `ρ̂_id(y) = {fn y => y^6}` `[derived]`; syntactic let-cloning (`Example 3.33`) avoids this only by duplicating code. [PPA Example 3.32, p. 190] (book p. 190; PDF p. 208); [PPA Example 3.33, p. 190] (book p. 190; PDF p. 208); [PPA Example 3.33, p. 191] (book p. 191; PDF p. 209)
-- G-U3b-11: Do not confuse **uniform `k`-CFA** (`Cachê = (Lab × Δ) → Val̂`, `Δ = Lab^{≤k}`) with **standard `k`-CFA** (`[156, 157, 158]`, `[external: Shivers]`, `Cachê = (Lab × CEnv) → Val̂`); both embed per-variable lexical context environments `CEnv = Var → Δ` inside `Val̂ = 𝒫(Term × CEnv)`. [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
+- G-U3b-11: Do not confuse **uniform `k`-CFA** (`Cachê = (Lab × Δ) → Val̂`, `Δ = Lab^{≤k}`) with **standard `k`-CFA** (Shivers `[156, 157, 158]`, `Cachê = (Lab × CEnv) → Val̂`); both embed per-variable lexical context environments `CEnv = Var → Δ` inside `Val̂ = 𝒫(Term × CEnv)`. [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-12: In `Table 3.10` (`§3.6.1`), `[var]` looks up `ρ̂(x, ce(x))` using the **lexical birth contour `ce(x)`**, *never* `ρ̂(x, δ)` with the current call context `δ` (which would implement dynamic scoping), and `[fn]`/`[fun]` must restrict `ce₀ = ce | FV(...)` to avoid exponential state splitting over dead outer variables `[derived]`. [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-13: In `Table 3.10`, `[app]` pushes the **application's outer label `ℓ`** (`δ₀ = ⌈δ, ℓ⌉_k`) and extends the **closure's `ce₀`** (`ce'_0 = ce₀[x ↦ δ₀]`), whereas `[let]` **leaves `δ` unchanged** (`ce' = ce[x ↦ δ]`); desugaring `let x = e₁ in e₂` to `((fn x => e₂) e₁)^ℓ` therefore loses one level of call-string precision for `k ≥ 1` `[derived]`. [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210); [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211)
 - G-U3b-14: `Example 3.34` (`p. 194`) mis-cites `"Example 3.33"` while displaying and analysing `Example 3.32`'s unexpanded program (and prints `"only records"`), and §3.6.1 (`p. 194`) explicitly omits soundness proofs and solver algorithms for `Table 3.10`. [PPA §3.6.1, p. 194] (book p. 194; PDF p. 212); [PPA Example 3.34, p. 194] (book p. 194; PDF p. 212)
@@ -8732,8 +8738,8 @@ Source: [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249), [PPA §4.2.2, 
   monotonicity of `f` (left implicit in text, `F-U4a-06`), with `l_n^Δ = [f]_Δ^n` by induction. ■
 - **`[U4a:4.2.2-b]` Non-duality (`p. 232`)**: narrowing is **not** the lattice-theoretic dual of widening —
   `(f_∇^n)_n` may leave `Ext(f)` in order to enter `Red(f)`, whereas `([f]_Δ^n)_n` starts inside `Red(f)` and
-  remains inside `Red(f)` at every step (the true dual of widening approximates `gfp(f)` from above in
-  `Exercise 4.9` `[derived]`).
+  remains inside `Red(f)` at every step (dualising `Fact 4.14(iv)` `lfp_∇(f) ⊒ lfp(f)`, a true dual widening
+  yields an **under**-approximation `⊑ gfp(f)`, approaching `gfp(f)` from below `[derived]`).
 
 #### Example 4.18 (Threshold Narrowing Operator `Δ_N` on `Interval`)
 
@@ -8753,7 +8759,7 @@ int₁ Δ_N int₂ = ⊥          if int₁ = ⊥  ∨  int₂ = ⊥
   many sub-intervals `[derived]`), and (w.l.o.g. assuming `sup = ∞` and `inf ∈ Z` via chain monotonicity,
   left implicit `F-U4a-06`) force `inf(int_{n₂}^Δ) > N`, freezing `int_n^Δ = int_{n₂}^Δ` for all `n ≥ n₂`,
   contradiction. *(Notice whenever both bounds of `int₂` are finite, `Δ_N` adopts `[inf(int₂), sup(int₂)]`
-  regardless of `N`, taking up to `O(M)` steps on shrinking finite bounds `[derived]`.)* ■
+  regardless of `N`, so shrinking finite bounds may take many finite steps; the book states no bound `[derived]`.)* ■
 
 ---
 
@@ -9131,7 +9137,7 @@ all four displays of `Example 4.1`, both displays of `⊑_CFA`/`(4.6)`, the `6`-
 - G-U4a-13: In `Example 4.15` (`∇_K`), `int₁ = ⊥, int₂ = [z₃, z₄]` falls into `otherwise` (`inf(⊥) = ∞ > z₃`), blowing up `⊥ ∇_∅ [0, 0] = [-∞, ∞]` on iteration 1 unless `⊥ ∇_K x = x` is enforced; termination requires `K ⊆ Z` to be finite and fixed. [PPA Example 4.15, pp. 228–229] (book p. 228; PDF p. 245) (book p. 229; PDF p. 246)
 - G-U4a-14: Although `§4.2.2` says narrowing `Δ` need not be absorptive, `l₂ ⊑ l₁ ⇒ l₂ ⊑ (l₁ Δ l₂) ⊑ l₁` at `l₁ = l₂ = l` forces `l Δ l = l` (`[derived]`). [PPA §4.2.2, p. 230] (book p. 230; PDF p. 247)
 - G-U4a-15: Narrowing is **not** the lattice dual of widening: `(f_∇^n)_n` may leave `Ext(f)` to enter `Red(f)`, whereas `([f]_Δ^n)_n` requires `f(f_∇^m) ⊑ f_∇^m` (`n = 0`) and remains inside `Red(f)` above `lfp(f)` throughout (`Lemma 4.16`, `(4.7)`); `Lemma 4.16` basis prints uninstantiated `n` on `p. 231`, and `Proposition 4.17` leaves monotonicity of `f` tacit on `p. 232`. [PPA Lemma 4.16, pp. 230–231] (book p. 230; PDF p. 247) (book p. 231; PDF p. 248); [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249)
-- G-U4a-16: Threshold narrowing `Δ_N` (`Example 4.18`) checks `±N` only when an endpoint is `±∞`, adopting `int₂`'s finite endpoints unconditionally (requiring up to `O(M)` steps on large finite ranges `[derived]`), and its proof assumes chain monotonicity implicitly on `p. 233`. [PPA Example 4.18, pp. 232–233] (book p. 232; PDF p. 249) (book p. 233; PDF p. 250)
+- G-U4a-16: Threshold narrowing `Δ_N` (`Example 4.18`) checks `±N` only when an endpoint is `±∞`, adopting `int₂`'s finite endpoints unconditionally (possibly many finite steps on large finite ranges, no bound stated in the book `[derived]`), and its proof assumes chain monotonicity implicitly on `p. 233`. [PPA Example 4.18, pp. 232–233] (book p. 232; PDF p. 249) (book p. 233; PDF p. 250)
 - G-U4a-17: In `(L, α, γ, M)`, `(4.8)`–`(4.9)` require monotonicity of both `α` and `γ`, whereas the adjunction law `(4.10)` (`α(l) ⊑ m ⇔ l ⊑ γ(m)`) implies monotonicity automatically (`Proposition 4.20`); in `Example 4.19`, `α_ZI(∅) = ⊥` cannot be subsumed into `[inf'(∅), sup'(∅)]`. [PPA Example 4.19, p. 235] (book p. 235; PDF p. 252); [PPA Proposition 4.20, p. 236] (book p. 236; PDF p. 253)
 - G-U4a-18: Any `β : V → L` induces `(𝒫(V), α, γ, L)` (`α(V') = ⨆ β[V']`), and any extraction `η : V → D` induces `(𝒫(V), α_η, γ_η, 𝒫(D))` (`Example 4.21`); this is a Galois insertion **iff `η` is surjective** (`p. 244`). [PPA §4.3, pp. 237–238] (book p. 237; PDF p. 254) (book p. 238; PDF p. 255); [PPA Lemma 4.27, p. 244] (book p. 244; PDF p. 261)
 - G-U4a-19: `α` (left/lower adjoint) uniquely determines `γ` and preserves all joins `⨆` (`α(⊥) = ⊥`, not `⊓` or `⊤` in general), while `γ` (right/upper adjoint) uniquely determines `α` and preserves all meets `⨅` (`γ(⊤) = ⊤`, not `⊔` or `⊥` in general) (`Lemmas 4.22–4.23`); `Fact 4.24` gives `α ∘ γ ∘ α = α` and `γ ∘ α ∘ γ = γ`. [PPA Lemma 4.22, p. 239] (book p. 239; PDF p. 256); [PPA Lemma 4.23, pp. 239–240] (book p. 239; PDF p. 256) (book p. 240; PDF p. 257); [PPA Fact 4.24, p. 240] (book p. 240; PDF p. 257)
@@ -9934,10 +9940,10 @@ proves exact iterate/fixed-point correspondence (`Lemma 4.45`) [PPA §4.5.3, pp.
     Evaluating `(4.14)` at `n = max(n_f, n_g)` yields `lfp_{∇_L}(f) = γ(lfp_{∇_M}(α ∘ f ∘ γ))`. `■`
 - Side conditions: **[U4b:4.5.3-b] Finite-height `∇_M = ⊔_M` corollary (`p. 270`)**: When `M` has finite height (so
   `∇_M = ⊔_M` is a widening operator by `Exercise 4.7`), `(L, α, γ, M)` is a Galois insertion, and `γ(⊥_M) = ⊥_L`,
-  `Lemma 4.45` yields `lfp_{∇_L}(f) = γ(lfp(α ∘ f ∘ γ))` in the *exact same number of iterations* (`F-U4b-06`);
-  however, when `f` represents a whole CFG equation system, applying `∇_L` **selectively at loop cut-points** while
-  keeping exact `L`-transfers/joins elsewhere retains strictly greater precision than `§4.5.1`'s global `α ∘ f ∘ γ`
-  coarsening `[derived]`.
+  `Lemma 4.45` yields `lfp_{∇_L}(f) = γ(lfp(α ∘ f ∘ γ))` in the *exact same number of iterations* (`F-U4b-06`), i.e.
+  **equality** for the global `f`; the book adds only that since "the greater precision of `L` over `M` is available
+  for all other operations", widening is "often preferable" to `§4.5.1`'s approach (`p. 270`). Any precision gain from
+  selective `∇_L` at loop cut-points is `⊑`, not guaranteed strict `⊏` `[derived]`.
 - Citation: [PPA Lemma 4.45, pp. 269–270] (book p. 269; PDF p. 286) (book p. 270; PDF p. 287); [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)
 
 ### Findings (4.5)
@@ -9965,9 +9971,11 @@ proves exact iterate/fixed-point correspondence (`Lemma 4.45`) [PPA §4.5.3, pp.
   `§4.5.2` generalises Chapter 2 `§2.3` Monotone Frameworks (`U6`) to arbitrary complete lattices without `ACC`.
 - debugging: Before deploying `l_1 ∇_L l_2 = γ(α(l_1) ∇_M α(l_2))` (`Proposition 4.44`, `Lemma 4.45`), check three
   failure modes: `(1)` if `M` lacks `ACC` and `(L, α, γ, M)` is *not* a Galois insertion (e.g. an unreduced direct
-  product `Exercise 4.19`), `(4.13)` breaks and `∇_L` may fail to stabilise; `(2)` if `γ(⊥_M) ⊐ ⊥_L`, step `0` already
-  inflates `f_{∇_L}^1` above `γ(g_{∇_M}^1)`; and `(3)` **never** copy the formula to narrowing
-  `l_1 Δ_L l_2 = γ(α(l_1) Δ_M α(l_2))` (`Exercise 4.24`), which violates `(l_1 Δ_L l_2) ⊑ l_1` whenever `l_1 ∉ γ[M]`!
+  product `Exercise 4.19`), `(4.13)` breaks and `∇_L` may fail to stabilise; `(2)` if `γ(⊥_M) ≠ ⊥_L`, the base case
+  of `(4.14)` fails (the `L`-side starts lower, `⊥_L ⊏ γ(⊥_M)`; `∇_M` is non-monotone, so no general `n = 1`
+  ordering follows `[derived]`) and `Lemma 4.45`'s equality is no longer guaranteed; and `(3)` **never** copy the
+  formula to narrowing `l_1 Δ_L l_2 = γ(α(l_1) Δ_M α(l_2))` (`Exercise 4.24`), which violates `(l_1 Δ_L l_2) ⊑ l_1`
+  whenever `l_1 ∉ γ[M]`!
 
 ## Concluding Remarks
 
@@ -10538,7 +10546,7 @@ Context: Book p. 276 (`PDF p. 293`) opens with `Figure 4.10` (`(Sign', ⊑)`) fo
 
 ## Gotcha Ledger
 
-- G-U4b-01: Book p. 246 (`PDF p. 263`) carries the closing §4.3.2 results (`Fact 4.31` `ς(m) = α(γ(m))` and `α[L] = ς[M]`, `Proposition 4.29` proof where `⨆_{ς[M]} = ⨆_M` while `⨅_{ς[M]} = ς ∘ ⨅_M`, `ς_η(D') = D' ∩ η[V]`, GC isomorphism `(θ_L, θ_M)`, and `Example 4.32`) above the §4.4 heading [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263); [PPA §4.4, p. 246] (book p. 246; PDF p. 263).
+- G-U4b-01: Book p. 246 (`PDF p. 263`) carries the closing §4.3.2 results (`Fact 4.31` `ς(m) = α(γ(m))` and `α[L] = ς[M]`, `Proposition 4.29` proof where `⨆_{ς[M]} = ⨆_M` while `⨅_{ς[M]} = ς ∘ ⨅_M` `[derived]`, `ς_η(D') = D' ∩ η[V]`, GC isomorphism `(θ_L, θ_M)`, and `Example 4.32`) above the §4.4 heading [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263); [PPA §4.4, p. 246] (book p. 246; PDF p. 263).
 - G-U4b-02: Sequential composition of `(L_0, α_1, γ_1, L_1)` and `(L_1, α_2, γ_2, L_2)` reverses composition order between `α` and `γ` — `(L_0, α_2 ∘ α_1, γ_1 ∘ γ_2, L_2)` — while preserving Galois insertions (`γ_{η_2 ∘ η_1} = γ_{η_1} ∘ γ_{η_2}`, `Exercise 4.15`) [PPA §4.4, p. 247] (book p. 247; PDF p. 264); [PPA Exercise 4.15, p. 279] (book p. 279; PDF p. 296).
 - G-U4b-03: `Example 4.33` defines `diff(z_1, z_2) = |z_1| - |z_2|` on *absolute magnitudes* (`diff(5, -7) = -2`), whereas `Mini Project 4.1` feeds signed length difference `length(x) - length(y)` into the same `Range = {<-1, -1, 0, +1, >+1}` set [PPA Example 4.33, p. 247] (book p. 247; PDF p. 264); [PPA Mini Project 4.1, p. 274] (book p. 274; PDF p. 291).
 - G-U4b-04: `𝒫(V_1) × 𝒫(V_2)` is not a powerset and cannot be given directly by an extraction function without disjoint-union tagging `({1} × V_1) ∪ ({2} × V_2)` (`Example 4.34`); omitting disjointness of either `V_1, V_2` or `D_1, D_2` breaks the `Exercise 4.16` isomorphism [PPA Example 4.34, p. 250] (book p. 250; PDF p. 267); [PPA Exercise 4.16, p. 279] (book p. 279; PDF p. 296).
@@ -11385,8 +11393,8 @@ substitution `θ_A` (§5.3.4, Lemma 5.22, Corollary 5.23, concluding at the top 
 - cs_theory: `UCAI` is the `[external: ACUI (Associative-Commutative-Idempotent with Unit); Baader–Snyder 2001]`
   equational theory, whose general unification problem is NP-complete and non-unitary; restricting `SType`
   arrows to `AVar`s factors inference into **unitary first-order syntactic unification** (`𝒰_CFA`, `Fact 5.17`)
-  plus **monotone join-semilattice constraints** (`Lemma 5.22`), achieving near-linear `O(n α(n))` complexity
-  on monomorphic `FUN` vs `O(n³)` for untyped Chapter 3 `0-CFA` (`U8` comparison).
+  plus **monotone join-semilattice constraints** (`Lemma 5.22`), achieving `[external: union-find unification]` near-linear `O(n α(n))`
+  complexity on monomorphic `FUN` (no Ch 5 complexity claim) vs `O(n³)` for untyped Chapter 3 `0-CFA` (`U8` comparison).
 - swe_architecture: Rather than threading explicit immutable substitution maps `θ₄(θ₃(θ₂(θ₁ C₀)))` (which
   costs `O(n²)` rewrites and invites dropped-`θ_i` bugs like Table 5.5's `if` bug), production compilers
   (`[external: rustc, GHC, OCaml]`) represent `TVar` and `AVar` as `[external: Tarjan Union-Find]` nodes where
@@ -12559,8 +12567,8 @@ ordering (`;`, `+`, `rec β.φ`, `spawn φ`, `r!τ̂`, `r?τ̂`) for a Concurren
 - F-U5b-09 (`[Unrestricted Polarity of Bound β in rec β.φ]`): Mutual recursion between `Type_CA` (`p. 343`) and
   `Ann_CA` (`p. 344`) syntactically allows bound `β` inside `τ̂` in contravariant `r?τ̂` (e.g.
   `r?(τ̂₁ →^β τ̂₂)`) or invariant `τ̂ chan r` (`Table 5.18`, `p. 348`), making `φ ↦ ψ[β ↦ φ]` non-monotone wrt
-  `⊑`; well-founded fixed-point semantics requires `rec β.ψ` to bind `β` strictly positively (outside
-  contravariant/invariant type positions) `[derived]`. [PPA §5.5.1, p. 343] (book p. 343; PDF p. 360);
+  `⊑`; `Table 5.18` states no polarity condition, and restricting `rec β.ψ` to bind `β` strictly positively
+  (outside contravariant/invariant type positions) is a `[derived]` design choice, not a book rule. [PPA §5.5.1, p. 343] (book p. 343; PDF p. 360);
   [PPA §5.5.1, p. 344] (book p. 344; PDF p. 361); [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)
 - F-U5b-10 (`[Section 5.5.1 Editorial Typos]`): p. 345 prints `"these types schemes"` and `"by the axiom and
   rules"`; p. 348 below Table 5.18 prints `"'a subset of' of r'"` (doubled `"of"`), `"behaviours in more
@@ -13090,7 +13098,7 @@ CBN adaptation, proof normalisation, `AV(φ₂) = ∅` handler pruning, and sche
 - G-U5b-16: Both conjuncts in `Table 5.13` `[region]` (`φ' = Observe(Γ̂, τ̂, r)(φ)` **and** `ϱ⃗ occurs in φ but not in φ'`) are required: `Observe` (`pp. 338–339`) filters only atoms present in `φ`, so omitting "`ϱ⃗` occurs in `φ`" would let `x : int @ ϱ₁ & ∅` (`φ = φ' = ∅`) wrap `letregion ϱ₁ in x` around an escaping region `[derived]`. [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355); [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356)
 - G-U5b-17: Section 5.4.3 invokes `τ̂ ≤ τ̂'` in `Table 5.13` `[sub]` (`p. 338`) without stating the arrow rule on `Type_RI` (where `r₁, r₂` in `(τ̂₁ @ r₁) →^{β.φ} (τ̂₂ @ r₂)` must stay invariant `r₁ = r'₁, r₂ = r'₂`), writes `σ̂` for `σ̂ @ r` in `Table 5.12` `[var]` (`p. 337`), and prints `dom(ς)` for `dom(ς₁)` in `Table 5.11` `[region]` (`p. 334`). [PPA Table 5.11, p. 334] (book p. 334; PDF p. 351); [PPA Table 5.12, p. 337] (book p. 337; PDF p. 354); [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355)
 - G-U5b-18: Section 5.5.1 replaces big-step semantics with small-step capture-free evaluation-context SOS (`Tables 5.14–5.15`), enforces **synchronous rendezvous** between distinct processes `p₁ ≠ p₂` in `[comm]`, and deliberately omits `Observe`-style masking so all concurrent communications remain globally visible (`p. 349`). [PPA Table 5.14, p. 341] (book p. 341; PDF p. 358); [PPA Table 5.15, p. 343] (book p. 343; PDF p. 360); [PPA §5.5.1, p. 349] (book p. 349; PDF p. 366)
-- G-U5b-19: In `Table 5.18` (`p. 348`, 22 rules/axioms), send `r!τ̂` is **covariant** in `τ̂` (`τ̂₁ ≤ τ̂₂`), receive `r?τ̂` is **contravariant** in `τ̂` (`τ̂₂ ≤ τ̂₁`), `τ̂ chan r` is **invariant** in `τ̂`, and `rec β.φ` requires positive `β` occurrences (outside contravariant `r?τ̂` / invariant `chan`) for monotone fixed points `[derived]`. [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)
+- G-U5b-19: In `Table 5.18` (`p. 348`, 22 rules/axioms), send `r!τ̂` is **covariant** in `τ̂` (`τ̂₁ ≤ τ̂₂`), receive `r?τ̂` is **contravariant** in `τ̂` (`τ̂₂ ≤ τ̂₁`), `τ̂ chan r` is **invariant** in `τ̂`, and `Table 5.18` places **no** polarity condition on `rec β.φ` (both unfolding axioms are unconditional); requiring positive `β` occurrences (outside contravariant `r?τ̂` / invariant `chan`) for monotone fixed points is a `[derived]` restriction outside `Table 5.18`. [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)
 - G-U5b-20: Behaviour sequencing `;` in `Table 5.18` (`p. 348`) is associative with identity `Λ`, non-commutative, non-idempotent, and distributes over `+` **only from the right** (`(φ₁ + φ₂); φ₃ ≡ (φ₁; φ₃) + (φ₂; φ₃)`); left-distributivity `φ₁; (φ₂ + φ₃)` is omitted to preserve `[external: branching-time deadlock]` distinctions `[derived]`. [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)
 - G-U5b-21: `Examples 5.35` (`p. 345`) and `5.37` (`p. 349`) print bare `C` instead of singleton `{C}` in `'a chan C` and `C!'a` (violating `r ::= {π} | ϱ | r₁ ∪ r₂ | ∅` on `p. 344` and `Table 5.17` `[chan]`), and `Example 5.35` (`p. 345`) has an unmatched `(` in `pipe`'s type scheme. [PPA §5.5.1, p. 344] (book p. 344; PDF p. 361); [PPA Example 5.35, p. 345] (book p. 345; PDF p. 362); [PPA Example 5.37, p. 349] (book p. 349; PDF p. 366)
 - G-U5b-22: `Concluding Remarks` (`p. 350` line 15) mis-cites `"Section 5.1"` instead of `"Section 5.4"` for shape-conformant subtyping; adding contravariant arrow subtyping (`Exercise 5.9`) + `(5.2)` (`Exercise* 5.4`) equates Chapter 5 CFA with Chapter 3 `0-CFA` on typed programs (`U8`). [PPA §5.4.1, p. 324] (book p. 324; PDF p. 341); [PPA Chapter 5 Concluding Remarks, p. 350] (book p. 350; PDF p. 367); [PPA Exercise 5.4, p. 359] (book p. 359; PDF p. 376)
@@ -13456,7 +13464,7 @@ On `Example 6.1` ordered `x₁, ···, x₆` (`*` marks `change := false` at th
 **[PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396)**
 > Under the assumptions stated above, the algorithm of Table 6.4 halts after at most `d(G_𝒮, T) + 3` iterations. It therefore performs at most `O((d(G_𝒮, T) + 1) · N)` assignments. ■
 >
-> *Proof (`p. 380`)*: Along any cycle-free path containing `d ≤ d(G_𝒮, T)` back edges, RPO-increasing segments propagate a datum forward in a single `for`-sweep up to the source of the next back edge, so `d + 1` `while`-sweeps propagate all information across all `d` back edges (`[derived]` relying on Bit-Vector idempotence/distributivity so cyclic paths collapse to cycle-free paths; formalised via fastness closure in `Exercise 6.14`), `+ 1` final `while`-sweep observes `change = false`, `+ 1` for Step 1 `=` `d + 3 ≤ d(G_𝒮, T) + 3` iterations, each performing `≤ N` evaluations/assignments. ■
+> *Proof (`p. 380`)*: Along any cycle-free path containing `d ≤ d(G_𝒮, T)` back edges, RPO-increasing segments propagate a datum forward in a single `for`-sweep up to the source of the next back edge, so `d + 1` `while`-sweeps propagate all information across all `d` back edges (`[derived]` reading relying on the Bit Vector form `(x_{j_i} ∩ Y_i^1) ∪ Y_i^2` so cyclic paths collapse to cycle-free paths), `+ 1` final `while`-sweep observes `change = false`, `+ 1` for Step 1 `=` `d + 3 ≤ d(G_𝒮, T) + 3` iterations, each performing `≤ N` evaluations/assignments. ■
 
 - **`WHILE` corollary and Fortran Folk Theorem (`pp. 380–381`)**: For `WHILE` flow graphs, `d(G_𝒮, T)` is independent of DFSF `T` and equals the maximal `while`-loop nesting depth `d`, giving **`O((d + 1) · b)`** vs `O(b²)` (`Example 2.30` — mis-cited as `"Example 2.8"` on `p. 380`; see `F-U6-06`). The empirical Fortran study (`[98]`) found `d ≤ 3` almost everywhere, yielding the *Folk Theorem* that Round Robin runs in linear time in practice.
 
@@ -13626,7 +13634,7 @@ All `185` numbered entries verified on `PDF pp. 452–465` (`[130]` on `p. 448` 
 
 - **`cs_theory`**:
   - **Order-Independence of `μ_𝒮 = lfp(F_𝒮)` vs Scheduling Cost**: `Lemma 6.4` proves that *every* fair extraction schedule (`LIFO`, `FIFO`, `RPO`, `SCC`) converges to the identical `μ_𝒮 = lfp(F_𝒮)` via `Analysis ∈ Red(F_𝒮)` (`F_𝒮(Analysis) ⊑ Analysis`) at `W = empty`, provided `(L, ⊑)` satisfies ACC and every `⟦t⟧` is monotone (`p. 367`). When `L` lacks ACC, `Exercise 6.13` (`U7`) lifts widening `∇` pointwise to finite `X → L` to terminate at a reductive upper bound (`[external: post-fixed-point]`).
-  - **Scope Boundary of `Lemma 6.12` (`d(G_𝒮, T) + 3`) and Fastness Closure `f̄` (`Exercise 6.14`)**: `Lemma 6.12` holds strictly for *Bit Vector Frameworks* (and more generally *fast distributive* frameworks where `f ∘ f ⊑ f ⊔ id` so `(f ⊔ id)² = f ⊔ id` collapses arbitrary cycles to cycle-free paths in 1 pass, `Exercise 6.14`), *not* for non-fast lattices (`Constant Propagation`, `0-CFA`, intervals) where cycles ascend up to lattice height `h`.
+  - **Scope Boundary of `Lemma 6.12` (`d(G_𝒮, T) + 3`) and Fastness Closure `f̄` (`Exercise 6.14`)**: `Lemma 6.12` is stated only for *Bit Vector Frameworks* (`L = 𝒫(D)`, every RHS `(x_{j_i} ∩ Y_i^1) ∪ Y_i^2`, `p. 380`), *not* for non-Bit-Vector lattices (`Constant Propagation`, `0-CFA`, intervals) where cycles ascend up to lattice height `h`. `Exercise 6.14` defines fast functions and `f̄` but states no Round Robin bound; carrying a similar bound over to fast distributive (`f ∘ f ⊑ f ⊔ id`) frameworks is `[external: Kam–Ullman rapid frameworks]` `[derived]`.
   - **Inequation Splitting & `[external: semi-naive]` Differencing**: Splitting `M`-ary joins (`Exercise 6.5`: `O(h · M² · N) → O(h · M · N)`) and differential worklists (`[52, 53]`) correspond to `[external: semi-naive Datalog evaluation]` and `[external: Paige–Koenig finite differencing]`.
 - **`swe_architecture`**:
   - **Template Method + Queue Strategy (`Tables 6.1–6.6`) `[external]`**: `Table 6.1` isolates invariant `eval`/`⊔`/`infl` propagation from the pluggable queue strategy (`Table 6.2` LIFO, `Table 6.3` `(W.c, W.p)` RPO, `Table 6.6` / `Exercise 6.12` 3-queue `(W.c, W.pc, W.pf)` SCC).
@@ -13636,7 +13644,7 @@ All `185` numbered entries verified on `PDF pp. 452–465` (`[130]` on `p. 448` 
   - **Silent Under-Approximation (`Analysis[x] ⋣ ⟦t⟧(Analysis)` after `W = empty`) `[derived]`**: Check `(1)` `Table 6.5` `scc` variable-shadowing bug (`F-U6-08`); `(2)` conditional terms `if c ⊑ x₂ then x₁` missing either guard `x₂` or payload `x₁` from `FV(t)` / `infl` (`Example 6.2`, `Mini Project 6.2`); `(3)` source-only RHS variables missing from `X = LHS(𝒮)` (`F-U6-01`); `(4)` must-analyses (`Dom(n)` `Exercise 6.4`, `AE` `Exercise 6.8`) initialised to `∅` (`⊤`) instead of `⊥_L = U` with `⊔_L = ∩`.
   - **Thrashing, Non-Termination, or Over-Widening `[derived]`**: Check `(1)` forward RPO used on backward DFA (turning DAG edges into back edges so `d(G_𝒮, T) = Θ(b)`); `(2)` un-split `M`-way switch/merge joins (`M²` blowup, `Exercise 6.5`); `(3)` omitting `if Analysis[x] ⋣ new` before `Analysis[x] ∇ new` (diverges since `a ∇ b` need not equal `a` when `b ⊑ a`), or widening split acyclic inequations individually (`[0,0] ∇ [1,1] = [0,∞]`, `Exercise 6.13`); `(4)` dynamic guard activation (`Mini Project 6.2`) invalidating static `srPostorder`.
 - **`cyber`**:
-  - **Early-Cutoff Vulnerability Evasion Trap (`W ≠ empty` Under-Approximation) `[derived]` `[external]`**: By `Lemma 6.4` Part (i), every pre-termination state satisfies `Analysis_i[x] ⊑ μ_𝒮(x)` and fails reductiveness (`Analysis_i ∉ Red(F_𝒮)`). Aborting `Table 6.1` at a naive step cap (`steps > MAX_STEPS`) and returning `Analysis_i` **silently under-approximates** may-taint, alias sets, and indirect call graphs — letting an adversary pad loop/call complexity ahead of a sink to starve the worklist and evade detection with zero error! Sound timeouts MUST either widen dirty variables (`Exercise 6.13`) until `W = empty` or top (`⊤_L`) the forward cone reachable from `W` in `G_𝒮` and emit a degraded-precision alert.
+  - **Early-Cutoff Vulnerability Evasion Trap (`W ≠ empty` Under-Approximation) `[derived]` `[external]`**: `Lemma 6.4` Part (i) proves only `Analysis_i[x] ⊑ μ_𝒮(x)` for pre-termination states; an intermediate state can already equal `μ_𝒮` while `W ≠ empty` (`Figure 6.1` row 10, `Figure 6.3` rows 7–12), but it is not *certified* reductive until `W = empty`. Aborting `Table 6.1` at a naive step cap (`steps > MAX_STEPS`) and returning `Analysis_i` therefore *may* **silently under-approximate** may-taint, alias sets, and indirect call graphs — letting an adversary pad loop/call complexity ahead of a sink to starve the worklist and evade detection with zero error! Sound timeouts MUST either widen dirty variables (`Exercise 6.13`) until `W = empty` or top (`⊤_L`) the forward cone reachable from `W` in `G_𝒮` and emit a degraded-precision alert.
   - **Algorithmic Complexity DoS (`[external: CWE-400]` / `[external: CWE-407]`) & Sink-Driven Local Triage `[external]`**: Control-flow-flattened / VM-obfuscated binaries create irreducible high-`d(G_𝒮, T)` single-SCC graphs (`d = Θ(|V|)`) that defeat the Fortran Folk Theorem `d ≤ 3` assumption (`[98]`) and drive un-split solvers to `O(h · M² · N)`. Mitigate via `Exercise 6.5` unary splitting, deduplicated 3-queue SCC / `[external: Bourdoncle WTO]` scheduling, and demand-driven local solvers (`[29, 51–54]`) that slice backward solely from the queried security sink `x_sink`.
 
 ---
@@ -13666,13 +13674,13 @@ All `185` numbered entries verified on `PDF pp. 452–465` (`[130]` on `p. 448` 
 - G-U6-04: Standing assumption `FV(t_i) ⊆ X = {x_i | 1 ≤ i ≤ N}` (`p. 367`) requires every RHS flow variable to appear on at least one LHS because `Table 6.1` Step 1 (`p. 369`) initialises `Analysis[x]` and `infl[x]` only inside `for all x ⊒ t in 𝒮` (`F-U6-01`) [PPA §6.1, p. 367] (book p. 367; PDF p. 383), [PPA Table 6.1, p. 369] (book p. 369; PDF p. 385).
 - G-U6-05: Encoding Chapter 3 conditional constraints `{t} ⊆ p₂ ⇒ p₁ ⊆ p` as RHS terms `p ⊇ if {t} ⊆ p₂ then p₁` (`Example 6.2`, `Mini Project 6.2`) relies on an implicit `else ⊥` (`∅`) branch (`F-U6-02`) and requires `FV(if c ⊑ t₁ then t₂) = FV(t₁) ∪ FV(t₂)` so `infl` registers **both** guard and payload variables [PPA Example 6.2, p. 367] (book p. 367; PDF p. 383), [PPA Example 6.6, p. 373] (book p. 373; PDF p. 389), [PPA Mini Project 6.2, p. 388] (book p. 388; PDF p. 404).
 - G-U6-06: Termination and least-solution correctness of `Table 6.1` (`Lemma 6.4`) hold for **every** fair worklist schedule (`LIFO`, `FIFO`, `RPO`, `SCC`), *provided* `(L, ⊑)` satisfies **ACC** and every `⟦t⟧` is **monotone**; infinite-height lattices without ACC require widening (`Exercise 6.13`) [PPA §6.1, p. 367] (book p. 367; PDF p. 383), [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386), [PPA Exercise 6.13, p. 391] (book p. 391; PDF p. 407).
-- G-U6-07: Because `Table 6.1` approaches `μ_𝒮` strictly from below (`Analysis_i[x] ⊑ μ_𝒮(x)`, `Lemma 6.4` Part (i)) and achieves `Analysis ∈ Red(F_𝒮)` (`F_𝒮(Analysis) ⊑ Analysis`) **only** when `W = empty` (Part (ii)), aborting iteration early on `[external: timeout]` (`W ≠ empty`) returns an unsound under-approximation (silent `[external: false negatives]` in security/CFA scanners) unless remaining dirty cones are widened or topped `[derived]` [PPA Table 6.1, p. 369] (book p. 369; PDF p. 385), [PPA §6.1.1, p. 371] (book p. 371; PDF p. 387).
+- G-U6-07: `Table 6.1` stays below `μ_𝒮` (`Analysis_i[x] ⊑ μ_𝒮(x)`, `Lemma 6.4` Part (i)) and is *certified* reductive (`Analysis ∈ Red(F_𝒮)`, `F_𝒮(Analysis) ⊑ Analysis`) only at `W = empty` (Part (ii)); intermediate states may already equal `μ_𝒮` with `W ≠ empty` (`Figure 6.1` row 10, `Figure 6.3` rows 7–12), so aborting early on `[external: timeout]` (`W ≠ empty`) *may* return an under-approximation (silent `[external: false negatives]` in security/CFA scanners) unless remaining dirty cones are widened or topped `[derived]` [PPA Table 6.1, p. 369] (book p. 369; PDF p. 385), [PPA §6.1.1, p. 371] (book p. 371; PDF p. 387).
 - G-U6-08: `Table 6.1`'s `O(h · M² · N)` bound (`p. 372`) assumes `O(1)` lattice join/comparison and `O(1)`/`O(M)`-amortised `insert`/`extract` (`F-U6-03`); non-bitset set unions over `O(n)` universes add an `O(n)` factor, and `2-3` tree priority queues (`O(log₂ N)`, `p. 377`) add a `log N` factor when `M = 1` `[derived]` [PPA §6.1.1, p. 372] (book p. 372; PDF p. 388), [PPA §6.2, p. 377] (book p. 377; PDF p. 393).
 - G-U6-09: Naive LIFO (`Table 6.2`) skips membership deduplication on `insert`, pushing duplicate constraints onto `W` (`14` Step 2 pops in `Figure 6.1` vs `20` reversed in `Exercise 6.1` and `8` deduplicated / `9` table rows incl. init in `Exercise 6.3`, `11` in RPO `Figure 6.3` vs `8` deduplicated in `Exercise 6.6`, `12` inner checks across `2` sweeps in Round Robin `Figure 6.4`, and `10` in SCC `Figure 6.6` vs `8` deduplicated in `Exercise 6.11`) [PPA Figure 6.1, p. 374] (book p. 374; PDF p. 390), [PPA Figure 6.3, p. 377] (book p. 377; PDF p. 393), [PPA Figure 6.4, p. 379] (book p. 379; PDF p. 395), [PPA Figure 6.6, p. 384] (book p. 384; PDF p. 400).
 - G-U6-10: Backward Data Flow Analyses and `0-CFA` constraint graphs `G_𝒮` (`Example 6.2`) generally lack a single root node; computing `rPostorder` via `Table C.1` requires a **minimal handle `H_𝒮`** (`{x₂, x₄}` in `Example 6.2`, `p. 375`), which always exists though need not be unique [PPA §6.2, p. 375] (book p. 375; PDF p. 391).
 - G-U6-11: `Table 6.3` implements RPO iteration via **two** collections `(W.c, W.p)` (draining current pass `W.c` before sorting `W.p`, or routing forward edges `rPostorder[x'] > rPostorder[x]` to `W.c` and back/self edges `≤` to `W.p` in `Exercise 6.7`), preventing an early self-loop with small `rPostorder` from starving downstream nodes in a single min-heap `[derived]` [PPA Table 6.3, p. 376] (book p. 376; PDF p. 392), [PPA Exercise 6.7, p. 390] (book p. 390; PDF p. 406).
 - G-U6-12: Representing `W.p` as a length-`N` bit vector scanned `1..N` on refill (`pp. 377–378`) costs `O(N)` per refill even when `1` bit is set (`Θ(h · N²)` across `Θ(h · N)` sparse passes unless backed by a `[external: sparse set]`, `F-U6-04`), and `Figure 6.3` row 6 (`p. 377`) displays the refilled `W.c` one step earlier than `Table 6.3` executes (`F-U6-05`) [PPA Table 6.3, p. 376] (book p. 376; PDF p. 392), [PPA §6.2, p. 377] (book p. 377; PDF p. 393).
-- G-U6-13: `Lemma 6.12`'s `d(G_𝒮, T) + 3` Round-Robin iteration bound (`O((d + 1) · N)` assignments) holds **strictly for Bit Vector Frameworks** (and *fast distributive* frameworks where `f ∘ f ⊑ f ⊔ id`, `Exercise 6.14`), **never** unconditionally for general ACC Monotone Frameworks (`Constant Propagation`, `0-CFA`, intervals) where cycles can ascend up to height `h` [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396), [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407).
+- G-U6-13: `Lemma 6.12`'s `d(G_𝒮, T) + 3` Round-Robin iteration bound (`O((d + 1) · N)` assignments) holds **only for Bit Vector Frameworks** (`L = 𝒫(D)`, single-variable RHS `(x_{j_i} ∩ Y_i^1) ∪ Y_i^2`), **never** for general ACC Monotone Frameworks (`Constant Propagation`, `0-CFA`, intervals) where cycles can ascend up to height `h` [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396); any fast distributive (`f ∘ f ⊑ f ⊔ id`) extension is `[external: Kam–Ullman rapid frameworks]` `[derived]`.
 - G-U6-14: In `Lemma 6.12` and `Example 6.13` (`pp. 380–381`), Chapter 6 counts Step 1 initialisation as `1` iteration plus `n - 1` `while`-sweeps (`d + 3` = `1` init + `≤ d + 1` propagation sweeps + `1` quiescence sweep; `3` iterations = `2` sweeps in `Figure 6.4`), and `p. 380` mis-cites `Example 2.8` instead of `Example 2.30` for the `O(b²)` RD bound (`F-U6-06`) [PPA Figure 6.4, p. 379] (book p. 379; PDF p. 395), [PPA §6.2.1, p. 380] (book p. 380; PDF p. 396).
 - G-U6-15: On general (irreducible) constraint graphs `G_𝒮`, loop connectedness `d(G_𝒮, T)` depends on DFSF `T` (and can reach `Θ(|V|)` on `[external: obfuscated/flattened]` CFGs), whereas on `WHILE` flow graphs `d(G_𝒮, T)` is independent of `T` and equals maximal `while`-nesting depth `d` (`d ≤ 3` Fortran Folk Theorem `[98]`) [PPA §6.2.1, p. 380] (book p. 380; PDF p. 396), [PPA §6.2.1, p. 381] (book p. 381; PDF p. 397).
 - G-U6-16: `Table 6.5` (`p. 382`) contains a **variable-shadowing / type-clash bug** (`F-U6-08`) reusing `scc` as both the integer rank (`scc := 1; ... scc := scc + 1;`) and the `for each scc` component node-set; implementations must separate `scc_id : int` from `comp : Set` [PPA Table 6.5, p. 382] (book p. 382; PDF p. 398).

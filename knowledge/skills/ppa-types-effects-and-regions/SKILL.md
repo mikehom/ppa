@@ -49,11 +49,11 @@ Select the minimum mechanism tier needed for precision (`[PPA Chapter 5 Concludi
 
 | Design Axis | Precision Gain | Solver Cost & Decidability Impact |
 | :--- | :--- | :--- |
-| **1. Subeffecting only (`§5.1`, `Table 5.2`)** | Mandatory for `Fact 5.6(ii)` conservative extension; suffers monomorphic argument smearing (`Example 5.5`) | Near-linear Robinson unification `𝒰_CFA` + `O(\|C\|)` bucket `θ_A` (zero fixed-point iteration) |
-| **2. Shape-conformant subtyping `≤` (`§5.4.1`)** | Eliminates caller-to-argument smearing (`Example 5.27`), matching `0-CFA` (`U8`); breaks unconstrained Moore families (`Exercise 5.9`) | Two-stage `[external: HM]` + `O(n³)` directed `[external: Horn]` set-inclusion closure; requires `ref_ϖ`/`chan` payload invariance |
+| **1. Subeffecting only (`§5.1`, `Table 5.2`)** | Mandatory for `Fact 5.6(ii)` conservative extension; suffers monomorphic argument smearing (`Example 5.5`) | Robinson unification `𝒰_CFA` (`[external]` near-linear only with union-find/DAG sharing; printed substitution composition is worst-case exponential) + `O(\|C\|)` bucket `θ_A` `[derived]` (zero fixed-point iteration) |
+| **2. Shape-conformant subtyping `≤` (`§5.4.1`)** | Eliminates caller-to-argument smearing (`Example 5.27`), matching `0-CFA` (`U8`); breaks unconstrained Moore families (`Exercise 5.9`) | Two-stage `[external: HM]` + directed `[external: Horn]` set-inclusion closure (`[external]` `O(n³)` bound; no Ch 5 complexity claim); requires `ref_ϖ`/`chan` payload invariance |
 | **3. `let`-polymorphism `∀ζ⃗. τ̂` (`§5.4.2`)** | Isolates higher-order combinator call sites (`Example 5.30` `map`/`apply`) without monomorphic merging | Two-stage when effects are *restricted* (no types in `φ`); coupled `[gen]` downwards closure when `φ` embeds types (`§5.5`) |
 | **4. Effect/region polymorphic recursion `∀β⃗,[ϱ⃗]` (`§5.4.3`)** | Separates per-invocation recursive allocations (`letregion` inside loops) | Decidable **only** by excluding `α⃗` in `[fun]`; `Algorithm R` is syntactically sound, **not** complete (`p. 352`) |
-| **5. Causal behaviours `φ₁; φ₂`, `rec β.φ` (`§5.5`)** | Preserves temporal send/receive/spawn order and synchronous `[external: deadlocks]` (`Table 5.18`) | Requires positive `β` polarity, coinductive `[external: (φ₁, φ₂) pair memoisation]`, and right-only `;` over `+` distributivity |
+| **5. Causal behaviours `φ₁; φ₂`, `rec β.φ` (`§5.5`)** | Preserves temporal send/receive/spawn order and synchronous `[external: deadlocks]` (`Table 5.18`) | `Table 5.18` puts no polarity condition on `rec β.φ` (positivity is a `[derived]` design choice), coinductive `[external: (φ₁, φ₂) pair memoisation]`, and right-only `;` over `+` distributivity |
 
 ### Variance Polarity Audit Matrix (`Section 5.2.3`, `Section 5.4.1`, `Table 5.18`)
 
@@ -69,7 +69,7 @@ Verify every type/effect constructor's slot variance before writing unification 
 | Mutable cell `ref_ϖ τ̂ ≤ ref_{ϖ'} τ̂'` | **Invariant** (`τ̂ ≤ τ̂' ∧ τ̂' ≤ τ̂`) | Covariant (`ϖ ⊆ ϖ'`) | *(n/a)* | Write-side alias corruption (`!x` cov + `x:=e` contrav) |
 | CML channel `τ̂ chan r ≤ τ̂' chan r'` | **Invariant** (`τ̂ ≤ τ̂' ∧ τ̂' ≤ τ̂`) | Covariant (`r ⊆ r'`) | *(n/a)* | Cross-process `[external: CWE-843]` payload mismatch |
 | CML output `r₁!τ̂₁ ⊑ r₂!τ̂₂` vs input `r₁?τ̂₁ ⊑ r₂?τ̂₂` | `!`: **Covariant** (`τ̂₁ ≤ τ̂₂`); `?`: **Contravariant** (`τ̂₂ ≤ τ̂₁`) | Covariant (`r₁ ⊆ r₂`) | *(n/a)* | Dual producer/consumer safety (`[external: Session Types]`) |
-| Recursive behaviour `rec β.φ` (`Table 5.18`) | `β` **strictly positive** only | Covariant (`φ₁ ⊑ φ₂`) | *(n/a)* | Negative `β` inside `r?τ̂`/`chan` breaks monotonicity (`F-U5b-09`) |
+| Recursive behaviour `rec β.φ` (`Table 5.18`) | No polarity condition in `Table 5.18` (unfolding axioms both ways) | Covariant (`φ₁ ⊑ φ₂`) | *(n/a)* | Restricting to positive `β` is `[derived]` (`F-U5b-09`), not a book rule |
 
 ### Two-Stage vs Coupled Solver Architecture Checklist (`pp. 351-352`)
 
@@ -198,7 +198,7 @@ Apply this checklist when building stateful, exception-aware, or polymorphic eff
    - Use small-step contextual SOS (`Tables 5.14–5.15`, `p₁ ≠ p₂` synchronous `[comm]`), **omit `Observe` masking**
      so all channel actions stay globally visible (`G-U5b-18`), and brace singleton regions `{C}` (`G-U5b-21`).
    - Enforce `Table 5.18` variance & algebra (`G-U5b-19`, `G-U5b-20`): invariant `τ̂ chan r`, covariant `r!τ̂`,
-     contravariant `r?τ̂`, **positive-only `β` in `rec β.φ`** (checked with coinductive `[external: pair memoisation]`), and
+     contravariant `r?τ̂`, `rec β.φ` unfolding with no `Table 5.18` polarity condition (positive-only `β` is `[derived]`; checked with coinductive `[external: pair memoisation]`), and
      **right-only distributivity** `(φ₁ + φ₂); φ₃ ≡ (φ₁; φ₃) + (φ₂; φ₃)` — **never** rewrite `φ₁; (φ₂ + φ₃)` to
      `(φ₁; φ₂) + (φ₁; φ₃)` or `[external: branching-time CWE-833 deadlocks]` disappear!
 
@@ -293,7 +293,7 @@ Behaviour Table 5.18: (φ₁ + φ₂); φ₃ ≡ (φ₁; φ₃) + (φ₂; φ₃)
   `BKL-077` (turnstile subscripts, `Table 5.8` `τ₁`, `Example 5.19` `[β' ↦ β]`, self-bindings), `BKL-078` (`§5.4.1` `ξ ∈ Loc`,
   unbraced `ϖ`, `p. 323` slip with `BKL-026`/`BKL-031`), `BKL-079` (`β \ {s} = β` with `BKL-009`, `AV(φ₂) = ∅`, `Exercise 5.15` `σ̂ ≤ σ̂'`),
   `BKL-080` (`Table 5.11` `dom(ς₁)`, `Table 5.12` `σ̂ @ r`, `Type_RI` invariance, `Observe` + `ϱ⃗ ∈ φ`), `BKL-081` (unbraced `{C}`,
-  positive `rec β.φ`, right-only `;`), and `BKL-082` (`p. 350` `§5.1` mis-citation, `+` guard, OCR drops with `BKL-011`, `BKL-030`).
+  `[derived]` positive `rec β.φ`, right-only `;`), and `BKL-082` (`p. 350` `§5.1` mis-citation, `+` guard, OCR drops with `BKL-011`, `BKL-030`).
 
 ## 9. Complete Chapter 5 Tables and Figures Lookup Index
 

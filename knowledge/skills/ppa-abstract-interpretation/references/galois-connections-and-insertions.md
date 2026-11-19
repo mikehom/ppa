@@ -117,7 +117,7 @@ In `(L, α, γ, M)`, `α` is the **lower (or left) adjoint** and `γ` is the **u
   `(L, α, γ, M)`, define the **reduction operator** `ς : M → M` (`Figure 4.9`; overloaded with `§2.5 p. 86` store
   `ς` — see `BKL-024`, alongside `ϕ` `p. 225` and `Δ` `p. 230`) by
   [PPA Proposition 4.29, p. 244] (book p. 244; PDF p. 261); [PPA Figure 4.9, p. 245] (book p. 245; PDF p. 262);
-  [PPA Fact 4.30, p. 245] (book p. 245; PDF p. 262); [PPA Fact 4.31, p. 246] (book p. 246; PDF p. 263):
+  [PPA Fact 4.30, p. 245] (book p. 245; PDF p. 262); [PPA Fact 4.31, p. 245] (book p. 245; PDF p. 262):
   ```text
   ς(m) = ⨅{ m' ∈ M | γ(m) = γ(m') } = α(γ(m))        with        ς[M] = α[L].
   ```

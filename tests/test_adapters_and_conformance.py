@@ -304,7 +304,9 @@ def _build_complete_core(core: Path) -> None:
     shutil.copyfile(SUITE_ROOT / "README.md", core / "README.md")
     for sfile in ("check_portability_hygiene.py", "issue_ctl.py", "validate_ppa_knowledge.py", "ppa_artifact_rules.py"):
         shutil.copyfile(BASE_SCRIPTS / sfile, core / "scripts" / sfile)
-    for w7_sfile in ("verify_port_conformance.py", "ppa_conformance_c125.py", "ppa_conformance_c34.py", "ppa_conformance_c6.py"):
+    for w7_sfile in ("verify_port_conformance.py", "ppa_conformance_c125.py", "ppa_conformance_c34.py",
+                     "ppa_conformance_c6.py", "ppa_conformance_c4.py", "ppa_conformance_scope.py",
+                     "ppa_conformance_parity.py"):
         shutil.copyfile(STAGED_SCRIPTS / w7_sfile, core / "scripts" / w7_sfile)
     for afile in ADAPTERS_DIR.glob("*.py"):
         shutil.copyfile(afile, core / "adapters" / afile.name)
@@ -496,7 +498,7 @@ class AdaptersAndConformanceTests(unittest.TestCase):
         p_c5 = self.box / "mut_c5"
         self._run_adapter("claude_code_adapter.py", p_c5)
         leaked_path = "/" + "Users/alice/private_checkout/file.md"
-        ref5 = p_c5 / ".claude/ppa-ambient/ppa-foundations.md"
+        ref5 = p_c5 / ".claude/skills/ppa-program-analysis/references/ambient-foundations.md"
         ref5.write_text(ref5.read_text(encoding="utf-8") + f"\nLeak {leaked_path}\n", encoding="utf-8")
         code, rep = self._run_verifier(p_c5)
         self.assertEqual(code, 1)

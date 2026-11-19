@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 # @governing: REQ-TECH-PPA-006 @parent: REQ-PRD-PPA-006
-# @decision DEC-PPA-009: Deterministic evaluators for CONFORMANCE_SPEC.md gates
-#   C3 (progressive disclosure, frontmatter & budgets) and C4 (sibling trigger
-#   disambiguation & eval boundaries).
-"""Gate evaluators C3 and C4 for scripts/verify_port_conformance.py."""
+# @decision DEC-PPA-009: Deterministic evaluator for CONFORMANCE_SPEC.md gate
+#   C3 (progressive disclosure, frontmatter, budgets, links, and reachability),
+#   reading only manifest-owned port files and the bounded block of merged pages.
+"""Gate evaluator C3 for scripts/verify_port_conformance.py."""
 from __future__ import annotations
 
 import collections
-import itertools
 import re
 from pathlib import Path
 
 from adapters import common
 from ppa_conformance_c125 import CheckOutcome, ConformanceContext, _load_served_units, list_port_files, make_check
+from ppa_conformance_scope import bounded_block_text
 import ppa_artifact_rules as rules
 import validate_ppa_knowledge as vpk
 
-TOKEN4_RE = re.compile(r"[a-z0-9]{4,}")
+ROOT_WIKI_PAGES = ("pages/index.md", "pages/log.md", "pages/ppa_index.md", "pages/ppa_log.md")
+SERVED_INDEX_URIS = {"ppa:index.md", "ppa:log.md", "ppa:ppa_index.md", "ppa:ppa_log.md"}
 
 
 def _mapped_port_paths(ctx: ConformanceContext, pred) -> list[tuple[str, Path]]:
@@ -69,7 +70,10 @@ def _check_c3_budgets_and_frontmatter(ctx: ConformanceContext) -> list[CheckOutc
             c34_e.append(f"{amb.relative_to(ctx.core_root).as_posix()}:1 ({len(alines)}L)")
 
     c36_e.extend(rules.check_forbidden_frontmatter(ctx.core_root))
-    n_nofm += max(len(list((ctx.core_root / "ontology").glob("*.md"))), 1)
+    n_nofm += n_ref + sum(
+        1 for pattern in ("corpus/**/*.md", "ontology/*.md")
+        for cand in ctx.core_root.glob(pattern) if cand.is_file()
+    )
 
     if not ctx.canonical_only:
         _check_c3_port_units(ctx, c31_e, c32_e, c33_e, c34_e, c35_e, c36_e)
@@ -85,10 +89,9 @@ def _check_c3_budgets_and_frontmatter(ctx: ConformanceContext) -> list[CheckOutc
 
 
 def _check_dev_nofiles_units(ctx: ConformanceContext, errs: dict[str, list[str]]) -> None:
-    has_disk = (ctx.port_root / "pages").is_dir() or any(
-        not p.relative_to(ctx.port_root).as_posix().startswith("core/")
-        and (p.name == "SKILL.md" or p.suffix == ".mdc")
-        for p in list_port_files(ctx.port_root)
+    has_disk = any(
+        rel.startswith("pages/") or (not rel.startswith("core/") and rel.endswith(("/SKILL.md", ".mdc")))
+        for rel in (p.relative_to(ctx.port_root).as_posix() for p in list_port_files(ctx))
     )
     if has_disk:
         errs["C3.1"].append("port_manifest.json:0 (DEV-NOFILES invalid with on-disk pages/ or skill Markdown files)")
@@ -102,7 +105,7 @@ def _check_dev_nofiles_units(ctx: ConformanceContext, errs: dict[str, list[str]]
         elif uri.startswith("ppa:concepts/ppa-ambient-"):
             if not rules.AMBIENT_MIN <= n <= rules.AMBIENT_MAX:
                 errs["C3.4"].append(f"{uri}:1 ({n}L)")
-        elif "ppa-index-" in uri or uri in {"ppa:index.md", "ppa:log.md"}:
+        elif "ppa-index-" in uri or uri in SERVED_INDEX_URIS:
             if n > rules.AMBIENT_MAX:
                 errs["C3.4"].append(f"{uri}:1 ({n}L)")
         elif uri.startswith("ppa:concepts/ppa-node-") or uri.startswith("ppa:sources/"):
@@ -144,9 +147,9 @@ def _check_c3_port_units(
             fm, err = rules.parse_frontmatter_strict(rules.read_lines(pp))
             if err or fm is None or set(fm) != {"name", "description"} or fm.get("name") != pp.parent.name:
                 c35_e.append(f"port/{pr}:1")
-    for p in list_port_files(ctx.port_root):
+    for p in list_port_files(ctx):
         rel = p.relative_to(ctx.port_root).as_posix()
-        if rel == "pages/index.md" or p.name.startswith("ppa-index-"):
+        if rel in ROOT_WIKI_PAGES or p.name.startswith("ppa-index-"):
             if len(rules.read_lines(p)) > rules.AMBIENT_MAX:
                 c34_e.append(f"port/{rel}:1 ({len(rules.read_lines(p))}L)")
         elif (rel.startswith("pages/sources/") or rel.startswith("pages/concepts/ppa-node-")) and p.suffix == ".md":
@@ -164,7 +167,9 @@ def _scan_links_in_tree(
     ref_paths: set[Path],
     ref_owner_by_path: dict[Path, str],
     enforce_kroot: Path | None,
+    block_only: set[Path] | None = None,
 ) -> tuple[list[str], list[str], dict[Path, set[Path]], int]:
+    """Scan relative links; files in block_only contribute their bounded PPA block only."""
     broken: list[str] = []
     direction: list[str] = []
     outbound: dict[Path, set[Path]] = {}
@@ -177,6 +182,8 @@ def _scan_links_in_tree(
             broken.append(f"{src.relative_to(base_root).as_posix()}:1")
             continue
         src_res = src.resolve()
+        if block_only and src_res in block_only:
+            txt = bounded_block_text(txt)
         where = src.relative_to(base_root).as_posix()
         src_skill = skill_entry_by_path.get(src_res) or ref_owner_by_path.get(src_res)
         for lineno, line in rules.strip_fences_and_frontmatter(txt):
@@ -208,7 +215,7 @@ def _scan_links_in_tree(
                     direction.append(f"{where}:{lineno}")
                 elif src_skill and dst_skill_entry and dst_skill_entry != src_skill:
                     direction.append(f"{where}:{lineno}")
-    return broken, direction, outbound, max(examined, len(files))
+    return broken, direction, outbound, examined
 
 
 def _check_c3_links_and_reachability(ctx: ConformanceContext) -> list[CheckOutcome]:
@@ -244,24 +251,50 @@ def _check_c3_links_and_reachability(ctx: ConformanceContext) -> list[CheckOutco
 
 
 def _check_wiki_pages_reach(
-    port_root: Path, pages_dir: Path, outbound: dict[Path, set[Path]], reach_errs: list[str]
+    ctx: ConformanceContext, owned_pages: list[Path], outbound: dict[Path, set[Path]], reach_errs: list[str]
 ) -> None:
-    index_md = (pages_dir / "index.md").resolve()
+    """Every owned wiki page is reachable from pages/index.md (its PPA block when merged)."""
+    index_md = (ctx.port_root / "pages" / "index.md").resolve()
     if not index_md.is_file():
         reach_errs.append("pages/index.md:0 (missing root wiki index)")
         return
-    pages_res = pages_dir.resolve()
     seen: set[Path] = {index_md}
     queue = collections.deque([index_md])
     while queue:
         cur = queue.popleft()
         for dst in outbound.get(cur, set()):
-            if dst not in seen and (pages_res in dst.parents or dst == pages_res):
+            if dst not in seen:
                 seen.add(dst)
                 queue.append(dst)
-    for wp in common.sorted_files_under(pages_dir, {".md"}):
-        if wp.resolve() not in seen:
-            reach_errs.append(f"{wp.relative_to(port_root).as_posix()}:1 (unreachable from pages/index.md)")
+    for wp in owned_pages:
+        if wp not in seen:
+            reach_errs.append(f"{wp.relative_to(ctx.port_root.resolve()).as_posix()}:1 (unreachable from pages/index.md)")
+
+
+def _ambient_is_indexed(ctx: ConformanceContext) -> bool:
+    """True when the manifest indexes ambient files as discovery entries (an R1 channel exists)."""
+    names = {str(e.get("name", "")) for e in ctx.manifest.get("discovery_entries", []) if isinstance(e, dict)}
+    amb_dir = ctx.core_root / "knowledge" / "ambient-context"
+    ambient = list(amb_dir.glob("ppa-*.md")) if amb_dir.is_dir() else []
+    return any(a.name in names or a.stem in names for a in ambient)
+
+
+def _check_ambient_inbound(
+    ctx: ConformanceContext, outbound: dict[Path, set[Path]], reach_errs: list[str]
+) -> None:
+    """Without an indexed ambient channel, every ambient unit needs an inbound link (C3.9)."""
+    if _ambient_is_indexed(ctx):
+        return
+    served = _load_served_units(ctx)
+    for pr, pp in _mapped_port_paths(ctx, lambda c: c.startswith("knowledge/ambient-context/")):
+        if pr.startswith("ppa:"):
+            name = pr.rsplit("/", 1)[-1]
+            if not any(f"{name})" in txt for uri, txt in served.items() if uri != pr):
+                reach_errs.append(f"{pr}:1 (ambient unit has no inbound link and is not indexed)")
+            continue
+        dest = pp.resolve()
+        if not any(dest in targets for src, targets in outbound.items() if src != dest):
+            reach_errs.append(f"{pr}:1 (ambient file has no inbound link and is not indexed)")
 
 
 def _check_port_links_and_reach(ctx: ConformanceContext) -> tuple[list[str], list[str], list[str], int]:
@@ -282,17 +315,25 @@ def _check_port_links_and_reach(ctx: ConformanceContext) -> tuple[list[str], lis
                     p_skill_entries[pp] = c_rel.parent.name
                 elif len(c_rel.parts) == 5 and c_rel.parts[3] == "references":
                     p_ref_owners[pp] = c_rel.parts[2]
-    pages_dir = ctx.port_root / "pages"
-    if pages_dir.is_dir():
-        for wp in common.sorted_files_under(pages_dir, {".md"}):
-            wp_res = wp.resolve()
-            if wp_res not in p_files:
-                p_files.append(wp_res)
-            if "sources" in wp.relative_to(pages_dir).parts:
-                p_ref_owners.setdefault(wp_res, "")
+    owned_pages: list[Path] = []
+    for wp in list_port_files(ctx):
+        rel_parts = wp.relative_to(ctx.port_root).parts
+        if rel_parts[0] != "pages" or wp.suffix != ".md":
+            continue
+        wp_res = wp.resolve()
+        owned_pages.append(wp_res)
+        if wp_res not in p_files:
+            p_files.append(wp_res)
+        if "sources" in rel_parts:
+            p_ref_owners.setdefault(wp_res, "")
+    block_only = {
+        (ctx.port_root / rel).resolve() for rel in ctx.merged_files
+        if rel.startswith("pages/") and rel.endswith(".md") and (ctx.port_root / rel).is_file()
+    }
+    p_files.extend(sorted(block_only - set(p_files)))
 
     broken, direction, outbound, n_links = _scan_links_in_tree(
-        ctx.port_root, p_files, p_skill_entries, set(p_ref_owners), p_ref_owners, None
+        ctx.port_root, p_files, p_skill_entries, set(p_ref_owners), p_ref_owners, None, block_only
     )
     reach_errs: list[str] = []
     router_paths = [p for p, s in p_skill_entries.items() if s == rules.ROUTER_SKILL]
@@ -308,8 +349,9 @@ def _check_port_links_and_reach(ctx: ConformanceContext) -> tuple[list[str], lis
         for ref_p, owner in sorted(p_ref_owners.items()):
             if owner == sname and ref_p not in linked:
                 reach_errs.append(f"{ref_p.relative_to(ctx.port_root).as_posix()}:1")
-    if pages_dir.is_dir():
-        _check_wiki_pages_reach(ctx.port_root, pages_dir, outbound, reach_errs)
+    _check_ambient_inbound(ctx, outbound, reach_errs)
+    if owned_pages or block_only:
+        _check_wiki_pages_reach(ctx, owned_pages, outbound, reach_errs)
     return broken, direction, reach_errs, n_links
 
 
@@ -338,7 +380,8 @@ def _check_c3_10_to_12(ctx: ConformanceContext) -> list[CheckOutcome]:
 def _check_c3_11_artifact_refs(ctx: ConformanceContext) -> tuple[list[str], int]:
     nodes = (ctx.port_graph or {}).get("concepts", [])
     if ctx.canonical_only:
-        return vpk.check_artifact_refs(ctx.core_root, nodes), len(nodes)
+        n_refs = sum(len(c.get("artifact_refs", [])) for c in nodes if isinstance(c, dict))
+        return vpk.check_artifact_refs(ctx.core_root, nodes), n_refs
     map_by_canon = {
         str(m.get("canonical")): [str(p) for p in m.get("port", [])]
         for m in ctx.manifest.get("mappings", [])
@@ -381,308 +424,9 @@ def _check_c3_11_artifact_refs(ctx: ConformanceContext) -> tuple[list[str], int]
                 md_cands = [d for d in candidates if d.suffix in {".md", ".mdc"}]
                 if md_cands and not any(frag[0] in vpk.headings_of(d, hcache) for d in md_cands):
                     errs.append(f"{cid}:0 ({ref} fragment)")
-    return errs, max(examined, len(nodes))
+    return errs, examined
 
 
 def evaluate_gate_c3(ctx: ConformanceContext) -> list[CheckOutcome]:
     """Evaluate C3.1 through C3.12."""
     return _check_c3_budgets_and_frontmatter(ctx) + _check_c3_links_and_reachability(ctx) + _check_c3_10_to_12(ctx)
-
-
-def _skill_descriptions_map(ctx: ConformanceContext) -> dict[str, str]:
-    out: dict[str, str] = {}
-    for d in rules.skill_dirs(ctx.core_root):
-        fm = rules.parse_frontmatter(rules.read_lines(d / "SKILL.md")) or {}
-        out[d.name] = fm.get("description", "")
-    return out
-
-
-def _strip_yaml_scalar(val: str) -> str:
-    s = val.strip()
-    if len(s) >= 2 and s[0] == s[-1] and s[0] in {'"', "'"}:
-        return s[1:-1]
-    return s
-
-
-def _load_all_eval_cases(ctx: ConformanceContext) -> dict[str, list[dict[str, str]]]:
-    evals: dict[str, list[dict[str, str]]] = {}
-    for d in rules.skill_dirs(ctx.core_root):
-        cpath = d / "evals" / "cases.yaml"
-        if not cpath.is_file():
-            evals[d.name] = []
-            continue
-        parsed = rules.parse_cases(rules.read_lines(cpath))
-        evals[d.name] = [{k: _strip_yaml_scalar(v) for k, v in item.items()} for item in parsed]
-    return evals
-
-
-def _extract_skill_desc(text: str) -> str | None:
-    meta, err = rules.parse_frontmatter_strict(rules.split_lines_n2(text))
-    if not err and meta and "description" in meta:
-        return meta["description"]
-    cm = re.search(r"<!--\s*summary:\s*(.*?)\s*-->", text, re.S)
-    return cm.group(1) if cm else None
-
-
-def _port_skill_descriptions_map(ctx: ConformanceContext) -> tuple[dict[str, str], dict[str, str], list[str]]:
-    descs: dict[str, str] = {}
-    locs: dict[str, str] = {}
-    errs: list[str] = []
-    served = _load_served_units(ctx)
-    for m in ctx.manifest.get("mappings", []):
-        if not isinstance(m, dict):
-            continue
-        c_rel = Path(str(m.get("canonical", "")))
-        if not (len(c_rel.parts) == 4 and c_rel.parts[:2] == ("knowledge", "skills") and c_rel.name == "SKILL.md"):
-            continue
-        sname = c_rel.parts[2]
-        ports = m.get("port", [])
-        if not isinstance(ports, list) or not ports:
-            errs.append(f"port/{sname}/SKILL.md:0")
-            continue
-        pr = str(ports[0])
-        if pr in served:
-            txt = served[pr]
-            locs[sname] = pr
-        else:
-            pp = ctx.port_root / pr
-            if not pp.is_file():
-                if not ("DEV-NOFILES" in ctx.deviation_ids and pr.startswith("ppa:")):
-                    errs.append(f"port/{pr}:0")
-                continue
-            txt, uerr = rules.read_text_strict(pp)
-            if uerr or txt is None:
-                errs.append(f"port/{pr}:1")
-                continue
-            locs[sname] = f"port/{pr}"
-        desc = _extract_skill_desc(txt)
-        if desc is None:
-            errs.append(f"{locs[sname]}:1 (missing description)")
-        else:
-            descs[sname] = desc
-    return descs, locs, errs
-
-
-def _check_descs_boundaries(
-    descs: dict[str, str],
-    locs: dict[str, str],
-    all_known_siblings: set[str],
-    c41_e: list[str],
-    c42_e: list[str],
-    c43_e: list[str],
-) -> int:
-    siblings = [s for s in sorted(descs) if s != rules.ROUTER_SKILL]
-    for sname, desc in sorted(descs.items()):
-        where = locs.get(sname, f"{sname}/SKILL.md")
-        if "Use when" not in desc or not any(m in desc for m in rules.NEGATIVE_MARKERS):
-            c41_e.append(f"{where}:1")
-            continue
-        neg_idx = min(desc.index(m) for m in rules.NEGATIVE_MARKERS if m in desc)
-        neg_clause = desc[neg_idx:]
-        targets = (set(siblings) if len(siblings) >= 2 else all_known_siblings) - {sname}
-        if not any(re.search(rf"(?<![A-Za-z0-9-]){re.escape(t)}(?![A-Za-z0-9-])", neg_clause) for t in targets):
-            c42_e.append(f"{where}:1")
-    pair_pool = siblings if len(siblings) >= 2 else sorted(descs)
-    n_pairs = 0
-    for s1, s2 in itertools.combinations(pair_pool, 2):
-        n_pairs += 1
-        t1 = {w for w in TOKEN4_RE.findall(descs[s1].lower()) if w != "ppa"}
-        t2 = {w for w in TOKEN4_RE.findall(descs[s2].lower()) if w != "ppa"}
-        jacc = (len(t1 & t2) / len(t1 | t2)) if (t1 | t2) else 1.0
-        if jacc >= 0.50:
-            c43_e.append(f"{locs.get(s1, s1)}<->{locs.get(s2, s2)}:1 (jaccard={jacc:.3f})")
-    return n_pairs
-
-
-def _load_port_eval_cases(ctx: ConformanceContext) -> dict[str, list[dict[str, str]]]:
-    evals: dict[str, list[dict[str, str]]] = {}
-    for pr, pp in _mapped_port_paths(ctx, lambda c: c.endswith("/evals/cases.yaml")):
-        sname = Path(pr).parent.parent.name if pp.parent.name == "evals" else pr
-        if not pp.is_file():
-            evals[f"port/{sname}"] = []
-            continue
-        parsed = rules.parse_cases(rules.read_lines(pp))
-        evals[f"port/{sname}"] = [{k: _strip_yaml_scalar(v) for k, v in item.items()} for item in parsed]
-    return evals
-
-
-def evaluate_gate_c4(ctx: ConformanceContext) -> list[CheckOutcome]:
-    """Evaluate C4.1 through C4.8."""
-    descs = _skill_descriptions_map(ctx)
-    all_skills = sorted(descs)
-    siblings = [s for s in all_skills if s != rules.ROUTER_SKILL]
-    all_known_siblings = {
-        "ppa-dataflow-and-slicing", "ppa-control-flow-and-constraints",
-        "ppa-abstract-interpretation", "ppa-types-effects-and-regions",
-        "ppa-fixedpoint-solvers", "ppa-cyber-vulnerability-analysis",
-    } | set(siblings)
-    c41_e: list[str] = []
-    c42_e: list[str] = []
-    c43_e: list[str] = []
-    n_pairs = _check_descs_boundaries(descs, {s: f"{s}/SKILL.md" for s in all_skills}, all_known_siblings, c41_e, c42_e, c43_e)
-    n_skills_checked = len(all_skills)
-    if not ctx.canonical_only:
-        p_descs, p_locs, p_missing = _port_skill_descriptions_map(ctx)
-        c41_e.extend(p_missing)
-        if p_descs:
-            n_pairs += _check_descs_boundaries(p_descs, p_locs, all_known_siblings, c41_e, c42_e, c43_e)
-            n_skills_checked += len(p_descs)
-
-    c44_e, c44_n = _check_c4_4_router_table(ctx, siblings)
-    evals = _load_all_eval_cases(ctx)
-    c45_e, c46_e, c46_n = _check_c4_5_6_evals(evals, "knowledge/skills")
-    if not ctx.canonical_only and (pevals := _load_port_eval_cases(ctx)):
-        p45, p46, p_eval_cnt = _check_c4_5_6_evals(pevals, "port")
-        c45_e.extend(p45)
-        c46_e.extend(p46)
-        c46_n += p_eval_cnt
-    c47_e, c47_n = _check_c4_7_isomorphism(ctx, evals)
-    c48_e, c48_n = _check_c4_8_collision(ctx, all_skills)
-    return [
-        make_check("C4.1", n_skills_checked, c41_e, "C4_BOUNDARY_MISSING"),
-        make_check("C4.2", n_skills_checked, c42_e, "C4_NO_REDIRECT"),
-        make_check("C4.3", n_pairs, c43_e, "C4_DESCRIPTION_OVERLAP"),
-        make_check("C4.4", c44_n, c44_e, "C4_ROUTER_INCOMPLETE"),
-        make_check("C4.5", len(evals), c45_e, "C4_EVAL_COVERAGE"),
-        make_check("C4.6", c46_n, c46_e, "C4_EVAL_CONTRADICTION"),
-        make_check("C4.7", c47_n, c47_e, "C4_ISOMORPHISM_BOUNDARY"),
-        make_check("C4.8", c48_n, c48_e, "C4_NAME_COLLISION"),
-    ]
-
-
-def _check_router_text(txt: str, label: str, siblings: list[str]) -> tuple[list[str], int]:
-    route_counts: dict[str, int] = {}
-    errs: list[str] = []
-    rows_seen = 0
-    in_decision = False
-    for lineno, line in rules.strip_fences_and_frontmatter(txt):
-        if line.startswith("## "):
-            in_decision = "Decision" in line or "Routing" in line
-            continue
-        if not in_decision or not line.strip().startswith("|"):
-            continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 4 or set(cells[0]) <= {":", "-", " "} or cells[1].lower().startswith("route"):
-            continue
-        rows_seen += 1
-        m_sk = re.findall(r"ppa-[a-z0-9-]+", cells[1])
-        if len(m_sk) != 1 or not cells[2] or not cells[3]:
-            errs.append(f"{label}:{lineno}")
-            continue
-        route_counts[m_sk[0]] = route_counts.get(m_sk[0], 0) + 1
-    for sib in siblings:
-        if route_counts.get(sib, 0) != 1:
-            errs.append(f"{label}:1 ({sib} rows={route_counts.get(sib, 0)})")
-    return errs, max(rows_seen, len(siblings))
-
-
-def _check_c4_4_router_table(ctx: ConformanceContext, siblings: list[str]) -> tuple[list[str], int]:
-    router_path = ctx.core_root / "knowledge" / "skills" / rules.ROUTER_SKILL / "SKILL.md"
-    if not router_path.is_file():
-        return [f"{rules.ROUTER_SKILL}/SKILL.md:0"], 0
-    txt, uerr = rules.read_text_strict(router_path)
-    if uerr or txt is None:
-        return [f"{rules.ROUTER_SKILL}/SKILL.md:1"], 1
-    errs, total_n = _check_router_text(txt, f"knowledge/skills/{rules.ROUTER_SKILL}/SKILL.md", siblings)
-    if not ctx.canonical_only:
-        served = _load_served_units(ctx)
-        for pr, pp in _mapped_port_paths(ctx, lambda c: c == f"knowledge/skills/{rules.ROUTER_SKILL}/SKILL.md"):
-            if pr in served:
-                pe, pn = _check_router_text(served[pr], pr, siblings)
-                errs.extend(pe)
-                total_n += pn
-            elif pp.is_file():
-                ptxt, perr = rules.read_text_strict(pp)
-                if perr or ptxt is None:
-                    errs.append(f"port/{pr}:1")
-                else:
-                    pe, pn = _check_router_text(ptxt, f"port/{pr}", siblings)
-                    errs.extend(pe)
-                    total_n += pn
-    return errs, total_n
-
-
-def _check_c4_5_6_evals(
-    evals: dict[str, list[dict[str, str]]], prefix_base: str = "knowledge/skills"
-) -> tuple[list[str], list[str], int]:
-    c45_e: list[str] = []
-    c46_e: list[str] = []
-    prompt_owner: dict[str, tuple[str, str]] = {}
-    total_cases = 0
-    for sname, cases in sorted(evals.items()):
-        bare = sname.removeprefix("port/")
-        where = f"{sname}/evals/cases.yaml" if sname.startswith("port/") else f"{prefix_base}/{bare}/evals/cases.yaml"
-        pos = sum(1 for c in cases if c.get("expect_skill") == bare)
-        neg = sum(1 for c in cases if c.get("expect_skill") and c.get("expect_skill") != bare)
-        if pos < 3 or neg < 2:
-            c45_e.append(f"{where}:1 (pos={pos}, neg={neg})")
-        for idx, c in enumerate(cases, start=1):
-            total_cases += 1
-            norm_p = common.normalized_body_n5(c.get("prompt", ""))
-            exp = c.get("expect_skill", "")
-            prev = prompt_owner.get(norm_p)
-            if prev is not None and prev[0] != exp:
-                c46_e.append(f"{where}:{idx} vs {prev[1]}")
-            else:
-                prompt_owner[norm_p] = (exp, bare)
-    return c45_e, c46_e, total_cases
-
-
-def _owning_non_router_skills(node: dict) -> set[str]:
-    owners: set[str] = set()
-    for ref in node.get("artifact_refs", []):
-        m = re.search(r"(?:^|/)skills/(ppa-[a-z0-9-]+)(?:/|$)", str(ref))
-        if m and m.group(1) != rules.ROUTER_SKILL:
-            owners.add(m.group(1))
-    return owners
-
-
-def _check_c4_7_isomorphism(
-    ctx: ConformanceContext, evals: dict[str, list[dict[str, str]]]
-) -> tuple[list[str], int]:
-    nodes = (ctx.port_graph or {}).get("concepts", [])
-    by_id = {str(n.get("id")): n for n in nodes if isinstance(n, dict) and n.get("id")}
-    errs: list[str] = []
-    edges_seen = 0
-    for cid, node in sorted(by_id.items()):
-        src_skills = _owning_non_router_skills(node)
-        for edge in node.get("related_edges", []):
-            if not isinstance(edge, dict) or edge.get("relation") != "corresponds_to":
-                continue
-            edges_seen += 1
-            basis = edge.get("basis")
-            if not isinstance(basis, dict) or not basis.get("unification_id"):
-                errs.append(f"{cid}:0 missing basis.unification_id")
-            tgt = by_id.get(str(edge.get("target_id", "")))
-            if tgt is None:
-                continue
-            for s_a in sorted(src_skills):
-                for s_b in sorted(_owning_non_router_skills(tgt)):
-                    if s_a == s_b:
-                        continue
-                    has_ab = any(c.get("expect_skill") == s_b for c in evals.get(s_a, []))
-                    has_ba = any(c.get("expect_skill") == s_a for c in evals.get(s_b, []))
-                    if not (has_ab and has_ba):
-                        errs.append(f"{s_a}<->{s_b}:1 ({cid})")
-    return errs, edges_seen
-
-
-def _check_c4_8_collision(ctx: ConformanceContext, canonical_skills: list[str]) -> tuple[list[str], int]:
-    if ctx.canonical_only:
-        dupes = len(canonical_skills) - len(set(canonical_skills))
-        return (["knowledge/skills:0"] if dupes else []), len(canonical_skills)
-    pre = {str(x) for x in ctx.manifest.get("pre_existing_discovery", [])}
-    disc = {
-        str(e.get("name", "")) for e in ctx.manifest.get("discovery_entries", [])
-        if isinstance(e, dict)
-    }
-    amb_dir = ctx.core_root / "knowledge" / "ambient-context"
-    amb_stems = {p.stem for p in amb_dir.glob("ppa-*.md")} if amb_dir.is_dir() else set()
-    canonical_all = set(canonical_skills) | amb_stems
-    errs: list[str] = []
-    for coll in sorted(pre & canonical_all):
-        errs.append(f"port_manifest.json:0 collision {coll}")
-    for s in canonical_skills:
-        if s not in disc:
-            errs.append(f"port_manifest.json:0 missing/renamed {s}")
-    return errs, len(canonical_skills) + len(pre)

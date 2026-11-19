@@ -562,8 +562,8 @@ Source: [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249), [PPA §4.2.2, 
   monotonicity of `f` (left implicit in text, `F-U4a-06`), with `l_n^Δ = [f]_Δ^n` by induction. ■
 - **`[U4a:4.2.2-b]` Non-duality (`p. 232`)**: narrowing is **not** the lattice-theoretic dual of widening —
   `(f_∇^n)_n` may leave `Ext(f)` in order to enter `Red(f)`, whereas `([f]_Δ^n)_n` starts inside `Red(f)` and
-  remains inside `Red(f)` at every step (the true dual of widening approximates `gfp(f)` from above in
-  `Exercise 4.9` `[derived]`).
+  remains inside `Red(f)` at every step (dualising `Fact 4.14(iv)` `lfp_∇(f) ⊒ lfp(f)`, a true dual widening
+  yields an **under**-approximation `⊑ gfp(f)`, approaching `gfp(f)` from below `[derived]`).
 
 #### Example 4.18 (Threshold Narrowing Operator `Δ_N` on `Interval`)
 
@@ -583,7 +583,7 @@ int₁ Δ_N int₂ = ⊥          if int₁ = ⊥  ∨  int₂ = ⊥
   many sub-intervals `[derived]`), and (w.l.o.g. assuming `sup = ∞` and `inf ∈ Z` via chain monotonicity,
   left implicit `F-U4a-06`) force `inf(int_{n₂}^Δ) > N`, freezing `int_n^Δ = int_{n₂}^Δ` for all `n ≥ n₂`,
   contradiction. *(Notice whenever both bounds of `int₂` are finite, `Δ_N` adopts `[inf(int₂), sup(int₂)]`
-  regardless of `N`, taking up to `O(M)` steps on shrinking finite bounds `[derived]`.)* ■
+  regardless of `N`, so shrinking finite bounds may take many finite steps; the book states no bound `[derived]`.)* ■
 
 ---
 
@@ -961,7 +961,7 @@ all four displays of `Example 4.1`, both displays of `⊑_CFA`/`(4.6)`, the `6`-
 - G-U4a-13: In `Example 4.15` (`∇_K`), `int₁ = ⊥, int₂ = [z₃, z₄]` falls into `otherwise` (`inf(⊥) = ∞ > z₃`), blowing up `⊥ ∇_∅ [0, 0] = [-∞, ∞]` on iteration 1 unless `⊥ ∇_K x = x` is enforced; termination requires `K ⊆ Z` to be finite and fixed. [PPA Example 4.15, pp. 228–229] (book p. 228; PDF p. 245) (book p. 229; PDF p. 246)
 - G-U4a-14: Although `§4.2.2` says narrowing `Δ` need not be absorptive, `l₂ ⊑ l₁ ⇒ l₂ ⊑ (l₁ Δ l₂) ⊑ l₁` at `l₁ = l₂ = l` forces `l Δ l = l` (`[derived]`). [PPA §4.2.2, p. 230] (book p. 230; PDF p. 247)
 - G-U4a-15: Narrowing is **not** the lattice dual of widening: `(f_∇^n)_n` may leave `Ext(f)` to enter `Red(f)`, whereas `([f]_Δ^n)_n` requires `f(f_∇^m) ⊑ f_∇^m` (`n = 0`) and remains inside `Red(f)` above `lfp(f)` throughout (`Lemma 4.16`, `(4.7)`); `Lemma 4.16` basis prints uninstantiated `n` on `p. 231`, and `Proposition 4.17` leaves monotonicity of `f` tacit on `p. 232`. [PPA Lemma 4.16, pp. 230–231] (book p. 230; PDF p. 247) (book p. 231; PDF p. 248); [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249)
-- G-U4a-16: Threshold narrowing `Δ_N` (`Example 4.18`) checks `±N` only when an endpoint is `±∞`, adopting `int₂`'s finite endpoints unconditionally (requiring up to `O(M)` steps on large finite ranges `[derived]`), and its proof assumes chain monotonicity implicitly on `p. 233`. [PPA Example 4.18, pp. 232–233] (book p. 232; PDF p. 249) (book p. 233; PDF p. 250)
+- G-U4a-16: Threshold narrowing `Δ_N` (`Example 4.18`) checks `±N` only when an endpoint is `±∞`, adopting `int₂`'s finite endpoints unconditionally (possibly many finite steps on large finite ranges, no bound stated in the book `[derived]`), and its proof assumes chain monotonicity implicitly on `p. 233`. [PPA Example 4.18, pp. 232–233] (book p. 232; PDF p. 249) (book p. 233; PDF p. 250)
 - G-U4a-17: In `(L, α, γ, M)`, `(4.8)`–`(4.9)` require monotonicity of both `α` and `γ`, whereas the adjunction law `(4.10)` (`α(l) ⊑ m ⇔ l ⊑ γ(m)`) implies monotonicity automatically (`Proposition 4.20`); in `Example 4.19`, `α_ZI(∅) = ⊥` cannot be subsumed into `[inf'(∅), sup'(∅)]`. [PPA Example 4.19, p. 235] (book p. 235; PDF p. 252); [PPA Proposition 4.20, p. 236] (book p. 236; PDF p. 253)
 - G-U4a-18: Any `β : V → L` induces `(𝒫(V), α, γ, L)` (`α(V') = ⨆ β[V']`), and any extraction `η : V → D` induces `(𝒫(V), α_η, γ_η, 𝒫(D))` (`Example 4.21`); this is a Galois insertion **iff `η` is surjective** (`p. 244`). [PPA §4.3, pp. 237–238] (book p. 237; PDF p. 254) (book p. 238; PDF p. 255); [PPA Lemma 4.27, p. 244] (book p. 244; PDF p. 261)
 - G-U4a-19: `α` (left/lower adjoint) uniquely determines `γ` and preserves all joins `⨆` (`α(⊥) = ⊥`, not `⊓` or `⊤` in general), while `γ` (right/upper adjoint) uniquely determines `α` and preserves all meets `⨅` (`γ(⊤) = ⊤`, not `⊔` or `⊥` in general) (`Lemmas 4.22–4.23`); `Fact 4.24` gives `α ∘ γ ∘ α = α` and `γ ∘ α ∘ γ = γ`. [PPA Lemma 4.22, p. 239] (book p. 239; PDF p. 256); [PPA Lemma 4.23, pp. 239–240] (book p. 239; PDF p. 256) (book p. 240; PDF p. 257); [PPA Fact 4.24, p. 240] (book p. 240; PDF p. 257)

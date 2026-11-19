@@ -88,10 +88,11 @@ Shape∘(ℓ) = ι if ℓ=init(S⋆);  ⋃{Shape•(ℓ') | (ℓ',ℓ)∈flow(S�
 ```
 
 - **Outer-May / Inner-Must Soundness (`G-U2b-22`, `F-U2b-10`)**: Here `f_ℓ^SA(SG)` uses `SG` (`p. 116`) as a
-  meta-variable ranging over subsets `X ∈ 𝒫(SG)`. Because `f_ℓ^SA` distributes over binary `⋃` on a finite
-  lattice (and satisfies strictness `f_ℓ^SA(∅) = ∅`), `Shape` is a finite **Distributive Framework**, yielding
-  `MFP = MOP` whenever `∀ℓ : path∘(ℓ) ≠ ∅` (`[PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)`, noting strictness
-  handles empty paths per `Exercise 2.13` `[derived]`). Externally it is a *may* union,
+  meta-variable ranging over subsets `X ∈ 𝒫(SG)`. The book only calls `Shape` "an instance of a Monotone
+  Framework" (`p. 115`). `[derived]`: `f_ℓ^SA` is a pointwise union lift, so it distributes over binary `⋃` on a
+  finite lattice (and is strict, `f_ℓ^SA(∅) = ∅`), making `Shape` a finite **Distributive Framework**; then
+  `Lemma 2.32` yields `MFP = MOP` provided `path∘(ℓ) ≠ ∅` for all `ℓ` in `E` and `F`
+  (`[PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)`; strictness handles empty paths per `Exercise 2.13` `[derived]`). Externally it is a *may* union,
   while internally each `(S, H, is)` carries *must* absence of extra aliases/edges (Invariants 1–3 ensure every
   non-empty `n_X` represents at most one concrete cell), enabling **strong update** and **strong nullification**
   [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134) [PPA §2.6.3, p. 116] (book p. 116; PDF p. 135).

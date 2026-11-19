@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-001: Standalone L0 ambient context for Chapter 5 Type and Effect Systems, Region Inference, and Behaviours. -->
+<!-- @description: Orientation for type and effect systems that annotate types with analysis information: annotated control flow types, subeffecting and subtyping variance, polymorphic generalisation, inference by unification plus constraint solving, side effects on references, exceptions, region inference for stack memory management, and communication behaviours of Concurrent ML processes. Use when an analysis is phrased as typing judgements, or effects, regions or channel protocols must be tracked compositionally. -->
 
 # Type and Effect Systems, Region Inference, and Concurrent Behaviours
 
@@ -99,7 +100,7 @@ Chapter 5 separates two orderings on `Typê[τ]` that must never be conflated:
 | Ground validation `θ_G` | Covering `θ_A ∘ θ_T` with `θ_A ⊨ C` yielding valid `⊢_CFA` derivations [PPA §5.3.2, p. 309] (book p. 309; PDF p. 326) |
 | Shape-conformant `≤` | Polarised subtyping preserving underlying shape `⌊τ̂₁⌋ = ⌊τ̂₂⌋` [PPA §5.4.1, p. 324] (book p. 324; PDF p. 341) |
 | Compound scheme `∀β⃗,[ϱ⃗]` | Effect/region-polymorphic recursive scheme instantiated via `[place]` / `[ins₂]` [PPA §5.4.3, p. 335] (book p. 335; PDF p. 352) |
-| `Observe(Γ̂, τ̂, r)(φ)` | Lexical filter hiding local `{put ϱ, get ϱ}` effects absent from `(Γ̂, τ̂, r)` [PPA §5.4.3, p. 338] (book p. 338; PDF p. 355) |
+| `Observe(Γ̂, τ̂, r)(φ)` | Lexical filter hiding local `{put ϱ, get ϱ}` effects absent from `(Γ̂, τ̂, r)`, keeping any `β` occurring there [PPA §5.4.3, p. 338] (book p. 338; PDF p. 355) [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356) |
 | Behaviour `φ ∈ Ann_CA` | Causal term (`Λ, ;, +, rec β.φ, spawn, r!τ̂, r?τ̂`) ordered by `Table 5.18` [PPA §5.5.1, p. 344] (book p. 344; PDF p. 361) |
 
 ## Out of Scope Here (Adjacent Skills)

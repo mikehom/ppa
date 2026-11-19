@@ -229,7 +229,7 @@ Once `f_∇^m ∈ Red(f)` is found (`f(f_∇^m) ⊑ f_∇^m`), descending `[exte
      else `[z_1, z_2]` where `z_1 = inf(int_1)` if `N < inf(int_2) ∧ sup(int_2) = ∞` (else `inf(int_2)`) and
      `z_2 = sup(int_1)` if `inf(int_2) = -∞ ∧ sup(int_2) < -N` (else `sup(int_2)`). On `[n, ∞]_n` with `N = 3`,
      `([n, ∞]^Δ)_n` stabilises at `[0, ∞], [1, ∞], [2, ∞], [3, ∞], [3, ∞], ⋯`, while bounded changes adopt `int_2`'s
-     finite bounds unconditionally (`O(M)` steps on large finite shifts)
+     finite bounds unconditionally (possibly many finite steps on large finite shifts; no bound stated, `[derived]`)
      [PPA Example 4.18, p. 232] (book p. 232; PDF p. 249); [PPA Example 4.18, p. 233] (book p. 233; PDF p. 250).
    - Under `DCC`, `⊓` is a narrowing operator (`Exercise 4.12`); prefix-determined *descending chain truncators* `ϒ`
      (`Exercise 4.11`, `G-U4b-24`) stop at finite iterates `lfp_∇^ϒ(f) = f^{m'}(f_∇^m)`, whereas `Δ` can jump past `ω`

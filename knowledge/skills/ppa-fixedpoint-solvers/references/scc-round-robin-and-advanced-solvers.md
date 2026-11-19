@@ -104,6 +104,14 @@ Chapter 6 *Concluding Remarks* (`pp. 384–387`, `G-U6-19`) surveys three solver
 | **Elimination Methods (`[146, 154, 144, 11, 170, 171]`)** | *Structural* postorder control-tree reduction (`[154, 144]`); *Interval* single-entry cycle graphs (`[11]`); *Path algebras* / regular expressions (`[170, 171]`). | Algebraic bottom-up transfer synthesis + top-down pass (`Ex 6.14` `f̄`); structural reduction also translates low-level code to high-level programs. Restricted to reducible/algebraically closed domains (`G-U6-19`). |
 | **Generator Toolkits (`[177, 185, 104, 172, 8]`)** | `Spare [177]`, `System Z [185]`, `PAG [104]` (bit vectors, AVL `[4]`, `BDD's [26]`, widenings), graph rewriting `[17]`, modal logic `[97]`, `Sharlit [172]`, `BANE [8]` (set constraints `[7]`). | Declarative specification compilers generating specialised fixed-point engines. |
 
+### 3.1 Repaired Top-Down Local Solver Sketch (`[derived]`, `G-U6-19`)
+
+The book names the top-down (`[29]`) and timestamp (`[51, 54]`) local solvers but prints no pseudo-code; the `solve(x)` block in the `ppa-fixedpoint-solvers` SKILL (Procedure 4, step 3) is a `[derived]` reconstruction, not book pseudo-code [PPA Chapter 6 Concluding Remarks, p. 385] (book p. 385; PDF p. 401). Its invariants:
+- **Provisional reads**: a call `solve(y)` with `y` already on the stack returns the current `memo[y]` (a lower bound of `μ_𝒮(y)` under monotone RHS) and `mark_cycle(y)` records the stack segment from `y` upward as one dynamic SCC rooted at its lowest stack entry (`is_scc_root`). A back edge to a node that is already a non-root member does not make it a root: cycles sharing stack entries merge and keep the lowest root.
+- **Single-pass members, iterating root**: the exit test `until (not is_scc_root(x)) or (changes = stamp)` lets every non-root member (and every acyclic variable) leave after one pass; only the root repeats. A global counter `changes` is incremented whenever `old ≠ memo[x]`, so `changes = stamp` means no memo entry anywhere in the dynamic SCC changed during the root's last pass, i.e. the SCC is stable.
+- **Deferred settling**: members stay unsettled (and are re-evaluated on each root pass) until the root exits; then the root settles itself and exactly the members left unsettled during its own activation (a sibling acyclic node or an unrelated inner root must not settle them). Settling a member earlier freezes a provisional value and under-approximates `μ_𝒮`.
+- **Termination**: with ACC each root pass either increases some `memo` entry or ends the loop, and the earlier literal exit (`(root and stabilised) or (not in cycle)`) could never fire for a non-root member. Minimal check: `x ⊒ {1} ⊔ y, y ⊒ x` must stop at `x = y = {1}` after two root passes.
+
 ---
 
 ## 4. Subject Index (`pp. 433–437`) and Bibliography (`pp. 439–452`) Concordance

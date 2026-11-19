@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-008: L0 ambient orientation for program analysis as treated in Principles of Program Analysis (Unit 1). -->
+<!-- @description: Orientation on what static program analysis is and why every useful analysis must approximate: undecidability of exact answers, safe over-approximation, semantics-based correctness, and the Chapter 1 survey of formulations, together with the Appendix mathematics of partial orders, complete lattices, Tarski fixed points, ascending chains, induction versus coinduction, and flow graph traversal with dominators and loop connectedness. Use when someone asks which paradigm suits a problem, how least and greatest fixed points differ, or what an order-theoretic term means before choosing a specialised analysis. -->
 
 # Program Analysis Foundations (Orientation)
 

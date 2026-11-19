@@ -185,7 +185,7 @@ p. 350 line 15, `F-U5b-11`, `G-U5b-22`) with **contravariant** arrow domains and
   (τ̂₁ →^φ τ̂₂) ≤ (τ̂'₁ →^{φ'} τ̂'₂)
 ```
 
-- **`Exercise 5.9` non-Moore theorem (`G-U5b-07`)**: Although `(Typê[τ], ≤)` is a complete lattice (flipping
+- **`Exercise 5.9` non-Moore answer (`G-U5b-07`) `[derived]`** (exercise answer, not book text): Although `(Typê[τ], ≤)` is a complete lattice (flipping
   meets/joins in contravariant slots), **`Proposition 5.12` FAILS under `≤`**! On `fn_X x => x` at
   `τ = (int → int) → (int → int)`, valid typings `(int →^φ int) →^{\{X\}} (int →^φ int)` for all `φ` have
   `≤`-meet `(int →^⊤ int) →^{\{X\}} (int →^∅ int)` — an **unsound non-typing**! Principal subtyped polymorphism
@@ -224,7 +224,7 @@ requires every variable lookup `x^ℓ` in `(5.2)` to derive `τ̂' = τ̂_x` (`E
 | **Program scope** | `⊢_UL`-typable `FUN` (`G-U5a-01`) | `⊢_UL`-typable `FUN` (`[external: equi-recursive]` drops occurs check) | Arbitrary untyped `FUN` (accepts `fn x => x x`) |
 | **Flow constraints** | Symmetric unification `[β' ↦ β]` + atomic `β ⊇ {π}` | Contravariant `τ̂'₁ ≤ τ̂₁` emits directed `β₁ ⊆ β₂` + `(5.2)` `ρ̃, C̃` | Conditional subset constraints `{t} ⊆ C(ℓ₁) ⇒ ···` (`Table 3.6`) |
 | **Precision** | Bidirectional smearing (`Example 5.5`: `{Y,Z}`) | Exact directional parity with `0-CFA` on well-typed `FUN` (`[71]` Heintze; `[external: Palsberg–O'Keefe 1995]`) | Asymmetric call-site flow (`Example 3.4` separates `{id_y}` / `{id_z}`) |
-| **Complexity** | Near-linear `𝒰_CFA` + `O(\|C\|)` bucket `θ_A` | Underlying HM + `O(n³)` directed inclusion closure | `O(n³)` dynamic constraint-graph worklist (`Table 3.7`) |
+| **Complexity** | `𝒰_CFA` (`[external]` near-linear only with union-find/DAG sharing) + `O(\|C\|)` bucket `θ_A` `[derived]` | Underlying HM + directed inclusion closure (`[external]` `O(n³)`) | `O(n³)` dynamic constraint-graph worklist (`Table 3.7`) |
 
 ### Subtyping Taxonomy and Proof-Normalisation Summary (`Concluding Remarks`, `Exercise 5.13`)
 

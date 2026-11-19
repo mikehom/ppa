@@ -93,11 +93,15 @@ and the Chapter 5 type-based `U8` counterparts (`⊢_CFA`, `𝒲_CFA`, `§5.4.1`
     for `{t} ⊆ p ⇒ p₁ ⊆ p₂`, `if t ∈ D[p] then add(p₂, D[p₁])` (where `add(q, d)` updates `D[q] := D[q] ∪ d`
     and pushes `W := cons(q, W)` iff `¬(d ⊆ D[q])`). Step 4 copies `D[C(ℓ)]` and `D[r(x)]` to `(Ĉ, ρ̂)`.
   - **Why dual registration (`E[p₁]` and `E[p]`) is mandatory (`G-U3a-24`, `Figures 3.4-3.5`, `Example 3.23`)**:
-    In `Example 3.23` (`Figure 3.4` initialisation, `Figure 3.5` 6-step trace), `W = [C(4), C(2)]` pops `C(4)`
-    *before* `C(2)` while `id_x ∈ D[C(2)]` already holds; if `{t} ⊆ p ⇒ p₁ ⊆ p₂` were registered only in `E[p₁]`,
-    any call where `D[p₁]` populated *before* `t` arrived in `D[p]` would silently drop the call's argument/return
-    edges forever [PPA Figure 3.4, p. 179] (book p. 179; PDF p. 197) [PPA Example 3.23, p. 179] (book p. 179; PDF p. 197)
-    [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198).
+    If `{t} ⊆ p ⇒ p₁ ⊆ p₂` were registered only in `E[p₁]`, any call where `p₁` is popped (and never changes
+    again) *before* `t` reaches `D[p]` in Step 3 silently drops the call's argument/return edges forever.
+    `Example 3.23` is only the baseline `Table 3.7` trace and **cannot** expose this: Step 2 already seeds
+    `id_x ∈ D[C(2)]` (`Figure 3.4`), so an `E[p₁]`-only solver reproduces `Figure 3.5` exactly
+    [PPA Figure 3.4, p. 179] (book p. 179; PDF p. 197) [PPA Example 3.23, p. 179] (book p. 179; PDF p. 197)
+    [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198). Indirect-operator witness `[derived]`:
+    `(let f = (fn x => x^1)^2 in (f^3 (fn y => y^4)^5)^6)^7` — `D[C(3)]` gains `id_x` only during Step 3 via
+    `C(2) ⊆ r(f) ⊆ C(3)`; if LIFO `W` pops `C(5)` (`D = {id_y}`) first, the `E[p₁]`-only solver ends with
+    `r(x) = C(1) = C(6) = C(7) = ∅`, the dual-registered one with `{id_y}`. Test both seeding orders.
 - **Correctness (`Proposition 3.24`) and `O(n³)` vs `O(n⁴)` complexity (`G-U3a-25`, `BKL-011`, `BKL-055`)**:
   - **`Proposition 3.24`**: `Table 3.7` terminates and outputs `(Ĉ, ρ̂) = ⨅ {(Ĉ', ρ̂') | (Ĉ', ρ̂') ⊨_c 𝒞_⋆⟦e_⋆⟧}`
     (displayed `⨅` equation erased in OCR on `p. 180`, `BKL-011`) [PPA Proposition 3.24, p. 180] (book p. 180; PDF p. 198).
@@ -132,9 +136,10 @@ and the Chapter 5 type-based `U8` counterparts (`⊢_CFA`, `𝒲_CFA`, `§5.4.1`
   [PPA Mini Project 3.3, p. 204] (book p. 204; PDF p. 222); canonical **`U3`** unifies `Table 3.7` with Chapter 6 `Table 6.1` (`Examples 6.2, 6.6`) in [worklist-and-rpo-algorithms.md](../../ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md) [PPA §6.1.2, p. 373] (book p. 373; PDF p. 389).
 - **Set Constraints & `[9]` (`[external: Aiken et al.]`) lazy two-step solver (`Concluding Remarks`, `G-U3b-23`, `G-U3b-24`, `BKL-059`)**:
   Set-Constraint Based Analysis (`S₁ ⊆ S₂` over union `∪`, intersection `∩`, constructor expressions `C(S₁, ..., S_a)`,
-  and projections `C^{-i}(S)`, `p. 201`) stays monotone (`S₁ ∩ S₂` is monotone!) until complement `¬S` or
-  variable-LHS conditional guards `(S₁ ⊆ S₂) ⇒ S₃` break monotonicity (`G-U3b-23`, requiring Banach's
-  Contraction Theorem instead of Tarski's Theorem)
+  and projections `C^{-i}(S)`, `p. 201`) stays monotone (`S₁ ∩ S₂` is monotone!); the book attributes loss of
+  the Tarski guarantee to complement `¬S`, where "sometimes a version of Banach's Theorem may be used" instead
+  (`G-U3b-23`). Variable-LHS guards `(S₁ ⊆ S₂) ⇒ S₃` (listed by the book as an allowed form) are antitone in
+  `S₁` and also break monotonicity `[derived]`
   [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219). `[9]`'s (`[external: Aiken et al.]`) two-step solver
   expands conditional constraints `{t} ⊆ p ⇒ ...` *on the fly* only when `t` actually arrives in `D[p]`, avoiding
   upfront `O(n²)` instantiation over unreachable `Term_⋆` (`G-U3b-24`)

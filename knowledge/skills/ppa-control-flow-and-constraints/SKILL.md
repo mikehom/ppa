@@ -63,10 +63,11 @@ Execute these steps when building an AST-based closure, callback, or function-po
    - Declare may-polarity: `Val̂_⋆ = 𝒫(Term_⋆)` ordered by `⊆` (`⊥ = ∅`, `⊤ = Term_⋆`, join `⋃`, meet `⋂`) over
      product lattice `Cachê_⋆ × Env̂_⋆` (`(Lab_⋆ → Val̂_⋆) × (Var_⋆ → Val̂_⋆)`).
    - **Precondition check**: Never define or verify acceptability on cyclic call graphs via inductive witness
-     trees (`lfp(𝒬)`); acceptability is coinductive (`⊨ = gfp(𝒬)`, `Proposition 3.13`), while the solver
-     computes the least solution `lfp(F_⋆)` (`Proposition 3.22`) [PPA §3.1.2, p. 152] (book p. 152; PDF p. 170).
-   - *Violation symptom*: Inductive checkers reject valid recursive/self-applicable programs (`loop`, `Ω`)
-     with *zero* acceptable models (`∅`, `Proposition 3.16`) [PPA Proposition 3.16, p. 165] (book p. 165; PDF p. 183).
+     trees (`lfp(𝒬)`); acceptability is coinductive (`⊨ = gfp(𝒬)`, `§3.1.2`), while the solver
+     computes the least solution `lfp(F_⋆)` (`Proposition 3.22`) [PPA §3.1.2, p. 151] (book p. 151; PDF p. 169).
+   - *Violation symptom*: Inductive checkers reject valid self-applicable programs: for the `Ω`-style `e_⋆`
+     the inductive `⊨'` admits *zero* acceptable models (`∅`, `Proposition 3.16`) [PPA Proposition 3.16, p. 165] (book p. 165; PDF p. 183);
+     for recursive `loop` the book only exhibits the circular obligation [PPA Example 3.6, p. 151] (book p. 151; PDF p. 169).
 3. **Intern finite `Term_⋆` to enforce `(Ĉ, ρ̂) ⊑ (Ĉ_⋆^⊤, ρ̂_⋆^⊤)` (`G-U3a-19`, `G-U3b-26`)**:
    - Pre-scan `e_⋆` once to index all `fn x => t₀^{ℓ₀}` and `fun f x => t₀^{ℓ₀}` subterms into a dense table
      `0 .. |Term_⋆|-1` (`|Term_⋆| ≤ n`), storing *unlabelled* `Term_⋆` entries (never `Exp` with outer labels!).
@@ -87,7 +88,8 @@ Execute these steps when building an AST-based closure, callback, or function-po
      lazily only when a closure `t` actually arrives in `D[C(ℓ₁)]`!).
    - **Pass `MONOTONICITY_GATE` (`G-U3a-21`, `G-U3b-23`)**: Keep guards strictly of singleton form `{t} ⊆ rhs'`
      (or positive constructor projections `C^{-i}(S)`). While `S₁ ∩ S₂` preserves monotonicity, complement `¬S`
-     and variable-LHS guards `(S₁ ⊆ S₂) ⇒ S₃` break monotonicity (`p. 201`, `BKL-059`).
+     forfeits the Tarski guarantee (`p. 201`, `BKL-059`); variable-LHS guards `(S₁ ⊆ S₂) ⇒ S₃` (a form the book
+     lists as allowed) are antitone in `S₁` and so also break monotonicity `[derived]`.
 
 ## 3. Procedure 2: Implement the O(n^3) Dual-Observer Worklist Graph Solver (Section 3.4.2, Table 3.7)
 
@@ -102,21 +104,28 @@ when coding the constraint solver [PPA Table 3.7, p. 178] (book p. 178; PDF p. 1
    - `{t} ⊆ p ⇒ p₁ ⊆ p₂`: append to **BOTH `E[p₁]` AND `E[p]`** (deduplicating if `p = p₁`).
    - **Precondition check (`DUAL_OBSERVER_CHECK`)**: Verify unit tests cover *both* arrival orders: (a) `t`
      reaches `D[p]` before `D[p₁]` populates, and (b) `D[p₁]` populates *before* `t` reaches `D[p]`!
-   - *Violation symptom*: Omitting `E[p]` silently drops call arguments/returns whenever an argument expression
-     is evaluated in the worklist before the operator closure resolves (`Example 3.23`, `Figure 3.5` step 1)
-     [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198).
+   - *Violation symptom*: Omitting `E[p]` silently drops call arguments/returns whenever argument node `p₁` is
+     popped (and never changes again) *before* the operator closure `t` reaches `D[p]` during `Step 3`.
+     `Example 3.23`/`Figure 3.5` **cannot** expose this (Step 2 already seeds `id_x ∈ D[C(2)]`, so the
+     `E[p₁]`-only trace is identical); keep it only as the baseline trace [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198).
+     Witness `[derived]`: `(let f = (fn x => x^1)^2 in (f^3 (fn y => y^4)^5)^6)^7`: `id_x` reaches `D[C(3)]` only in
+     Step 3 via `C(2) ⊆ r(f) ⊆ C(3)`; with LIFO `W` popping `C(5)` first, an `E[p₁]`-only solver ends with
+     `r(x) = C(1) = C(6) = C(7) = ∅` instead of `{id_y}`. Run both seeding orders.
 3. **Iterate to fixed point in true `O(n^3)` elementary time (`Step 3`, `CONVERGENCE_GATE`, `G-U3a-25`, `BKL-055`)**:
-   - **Precondition check**: Finiteness of `Term_⋆`, `Lab_⋆`, `Var_⋆` guarantees `ACC` (`≤ n` additions per node,
-     `Proposition 3.24`) [PPA Proposition 3.24, p. 180] (book p. 180; PDF p. 198).
+   - **Precondition check**: Finiteness of `Term_⋆`, `Lab_⋆`, `Var_⋆` guarantees termination (`Proposition 3.24`:
+     each `D[q]` grows "a finite number of times") [PPA Proposition 3.24, p. 180] (book p. 180; PDF p. 198); the
+     `≤ n` enlargements-per-node bound is the complexity paragraph's [PPA §3.4.2, p. 181] (book p. 181; PDF p. 199).
    - **Avoid the `O(n^4)` scalar-union trap**: `Table 3.7`'s `add(p₂, D[p₁])` executes `O(n^3)` edge traversals
      (`p. 181`), which degrades to `O(n^4)` elementary operations if `D[p₁]` is scanned as a list on every pop!
      Either represent `D[q]` as fixed-width bitsets (`O(n^4 / w)`) or push *differential `(q, t)` pairs* onto `W`
      (installing active edge `p₁ → p₂` once when `(p, t)` pops, and forwarding single `t` in `O(1)` bitset lookup
      when `(p₁, t)` pops) for exact **`O(n^3)`** elementary operations [external].
    - **Audit open-system / external-code boundaries (`p. 182`, `BKL-008`, `G-U3a-26`)**:
-     - Whenever `e_∘` calls unanalysed host APIs, FFI imports, reflection, or deserialization hooks `[external]`,
-       insert an explicit stub fragment `e_⋆` that invokes every escaping closure with conservative argument
-       tokens and returns all externally reachable callbacks [PPA §3.4.2, p. 182] (book p. 182; PDF p. 200).
+     - Book basis: for an open system `e_∘` using an unspecified library `e_⋆`, `(Ĉ, ρ̂) ⊨ e_⋆` lets `e_⋆` be
+       replaced by any `e'_⋆` with `(Ĉ, ρ̂) ⊨ e'_⋆` [PPA §3.4.2, p. 182] (book p. 182; PDF p. 200).
+     - Engineering recipe `[derived]` `[external]`: for unanalysed host APIs, FFI imports, reflection, or
+       deserialization hooks, insert a stub `e_⋆` that invokes every escaping closure with conservative argument
+       tokens and returns all externally reachable callbacks.
      - *Violation symptom*: Soundness holds only for replacements `e'_⋆` satisfying `(Ĉ, ρ̂)`'s clauses without
        label/variable clashes; unmodelled callbacks yield silent false negatives in reachability/CFI [external] scans.
 4. **Enforce solver resource & call-graph audit budgets (`p. 181`, `Concluding Remarks`, `BKL-008`)**:
@@ -152,9 +161,11 @@ mutable references ([polyvariant-kcfa-cpa-and-dfa.md](./references/polyvariant-k
      `Z_⊥^⊤ × 𝒫({tt, ff})` (`Example 3.29`), binary `f_+` must check `z₁ = ⊥ or z₂ = ⊥ ↦ (⊥, ∅)` *before* `⊤`,
      and `Table 3.8` `op̂` must intersect operands with `Data` (`v̂_i ∩ Data`) so closures do not crash `d_op`.
 3. **Enforce finiteness and `STRONG_UPDATE_GATE` on constructors and heap refs (`G-U3b-26`, `G-U3b-27`, `BKL-060`, `BKL-061`)**:
-   - For algebraic constructors `C(e₁, ···, e_n)` (`Mini Project 3.2`, `p. 203`), strip outer expression labels from
-     constructor payloads (`Val̂` must not store evolving labels `C(ℓ₁, ···, ℓ_n)` if preserving `Fact 3.11`!) and
-     bound constructor nesting depth `[derived]` so `Val̂` stays finite!
+   - For algebraic constructors `C(e₁, ···, e_n)` (`Mini Project 3.2`), use the book's flat, finite, label-indexed
+     domain `Val̂ = 𝒫(Term ∪ {C(ℓ₁, ···, ℓ_n) | C ∈ Constr, ℓᵢ ∈ Lab})` (`ℓᵢ` = creation point of component `i`;
+     no nesting, finite over `Lab_⋆`) for the syntax-directed (`Table 3.5`) and constraint (`Tables 3.6/3.7`)
+     analogues [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221). `Fact 3.11` bears only on the "more
+     ambitious" open question of an abstract (`Table 3.1`) analogue, not on these two analyses.
    - For mutable references (`(new_π x := e₁ in e₂)^ℓ | (! x)^ℓ | (x := e₀)^ℓ | (e₁ ; e₂)^ℓ`, `me : Var → Pnt`,
      `Mini Project 3.4`, `pp. 204-205`), `π ∈ Pnt` abstracts unbounded heap cells per allocation site, so
      `[assign]` **must perform weak update** (`[external: weak update]`) merging new closures into `Ŝ_•(ℓ)(p)`
@@ -169,11 +180,12 @@ When monovariant `0-CFA` smears closures across callers (`Example 3.32`), select
 1. **Match `Δ` and closure representation to language idioms (`G-U3b-10`, `G-U3b-11`, `G-U3b-15..17`, `G-U3b-21`)**:
    - **Stay at `0-CFA` (`O(n^3)`)** when functions are mostly monomorphic or `let`-cloning (`Example 3.33`) /
      type-directed filtering suffices.
-   - **Choose Polynomial `k`-CFA (`Val̂ = 𝒫(Term × Δ)`, `Δ = Lab^{≤k}`, `O(n^6)` at `k = 1`, `p. 195`) or flat
+   - **Choose contexts-only `Val̂ = 𝒫(Term × Δ)` (`Δ = Lab^{≤k}`; polynomial lattice height, "closely related to"
+     polynomial `k`-CFA, which is `O(n^6)` at `k = 1`, `p. 195`) or flat
      `m`-CFA `[external]` (`Val̂ = 𝒫(Term)`)** when worst-case polynomial bounds are mandatory or functions lack
      deep curried free-variable capture (e.g. first-order / flat-closure modules, `Exercise 3.16`).
    - **Choose Uniform `k`-CFA (`Table 3.10`, `Cachê = (Lab × Δ) → Val̂`, `Val̂ = 𝒫(Term × CEnv)`) or standard `k`-CFA
-     (`[156, 157, 158]` `[external: Shivers]`, `Cachê = (Lab × CEnv) → Val̂`, `Val̂ = 𝒫(Term × CEnv)`)** when
+     (Shivers `[156, 157, 158]` [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216), `Cachê = (Lab × CEnv) → Val̂`, `Val̂ = 𝒫(Term × CEnv)`)** when
      higher-order wrappers capture free variables in distinct call chains (`Example 3.34`), *budgeting* solver
      timeouts for exponential **`[external: DEXPTIME]` (`|Val̂|` height `O(n · n^p)`) worst-case** (`BKL-007`), even
      though `1-CFA` often runs faster than `0-CFA` in practice by pruning spurious edges (`[80]`, `G-U3b-16`). For
@@ -235,15 +247,15 @@ When monovariant `0-CFA` smears closures across callers (`Example 3.32`), select
 | **Constraint `0-CFA` (`𝒞_⋆`)** | `Nodes = C(Lab_⋆) ∪ r(Var_⋆)`, `D[q] ⊆ Term_⋆` | None (`monovariant`) | **`O(n^3)`** steps (`O(n^2)` constraints) | [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196) |
 | **Coupled `CFA + DFA` (`⊨_D`)** | `Ĉ : Lab → 𝒫(Term)`, `D̂ : Lab → L` (`ACC`) | None (online branch prune) | Finite iff `L` satisfies `ACC` | [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206) |
 | **Uniform `k`-CFA** | `Val̂ = 𝒫(Term × CEnv)`, `Cachê = (Lab × Δ) → Val̂` | `Δ = Lab^{≤k}` + `ce ∈ CEnv` | **`[external: DEXPTIME]`** (`O(n · n^p)` height) | [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210) |
-| **Standard `k`-CFA (`[156, 157, 158]` `[external: Shivers]`)** | `Val̂ = 𝒫(Term × CEnv)`, `Cachê = (Lab × CEnv) → Val̂` | `Δ = Lab^{≤k}` per free var | **`[external: DEXPTIME]`** for `k ≥ 1` (`BKL-007`) | [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211) |
-| **Polynomial `1-CFA`** | `Val̂ = 𝒫(Term × Δ)`, `Cachê = (Lab × Δ) → Val̂` | `Δ = Lab^{≤1}` (`m`-CFA `[external]`: `𝒫(Term)`) | **`O(n^6)`** polynomial (`p. 195`) | [PPA §3.6.1, p. 195] (book p. 195; PDF p. 213) |
-| **`CPA` (`[2]` `[external: Agesen]`)** | `Val̂ = 𝒫(Term)`, `Cachê = (Lab × Δ) → Val̂` | `Δ = Term^m` (arg `m`-tuple) | Exponential worst; fast w/ templates | [PPA §3.6.2, p. 197] (book p. 197; PDF p. 215) |
+| **Standard `k`-CFA (Shivers `[156, 157, 158]`, `p. 198`)** | `Val̂ = 𝒫(Term × CEnv)`, `Cachê = (Lab × CEnv) → Val̂` | `Δ = Lab^{≤k}` per free var | **`[external: DEXPTIME]`** for `k ≥ 1` (`BKL-007`) | [PPA §3.6.1, p. 193] (book p. 193; PDF p. 211) |
+| **Contexts-only `𝒫(Term × Δ)` ("closely related to" polynomial `1-CFA`)** | `Val̂ = 𝒫(Term × Δ)`, `Cachê = (Lab × Δ) → Val̂` | `Δ = Lab^{≤1}` (`m`-CFA `[external]`: `𝒫(Term)`) | Polynomial height; polynomial `1-CFA` is **`O(n^6)`** (`p. 195`) | [PPA §3.6.1, p. 195] (book p. 195; PDF p. 213) |
+| **`CPA` (`[2]` `[external: Agesen]`)** | `Val̂ = 𝒫(Term)`, `Cachê = (Lab × Δ) → Val̂` | `Δ = Term^m` (arg `m`-tuple) | Not stated by the book (`[external: exponential worst case; template sharing]`) | [PPA §3.6.2, p. 197] (book p. 197; PDF p. 215) |
 
 ## 8. Anti-Degradation Gates & Non-Blocking Chapter 3 Backlog (`ARCHITECTURE.md` §§6.4, 7)
 
 ### Anti-Degradation Gate Checklist
 
-- **No `SMOOTHING_TRAP`**: Never state `⊨_s ⇔ ⊨` (`Corollary 3.25` gives `⊨_s ⇒ ⊨` only under `(Ĉ, ρ̂) ⊑ (Ĉ_⋆^⊤, ρ̂_⋆^⊤)`,
+- **No `SMOOTHING_TRAP`**: Never state `⊨_s ⇔ ⊨` (`Proposition 3.18` gives `⊨_s ⇒ ⊨` only under `(Ĉ, ρ̂) ⊑ (Ĉ_⋆^⊤, ρ̂_⋆^⊤)`,
   `G-U3a-17`, `G-U3a-19`), never claim `(Ĉ, ρ̂)` from `⊨_d`/`⊨_D` satisfies `Table 3.1` `⊨` (`G-U3b-04`), and
   never omit `Data` finiteness / `L` `ACC` (`G-U3b-05`) or `k-CFA` `[external: DEXPTIME]` cost (`BKL-007`).
 - **No `SIGNATURE_DISTORTION`**: Keep `gfp(𝒬)` on acceptability vs `lfp(F_⋆)` on constraint solving (`G-U3a-07`),
@@ -266,6 +278,6 @@ When monovariant `0-CFA` smears closures across callers (`Example 3.32`), select
 - `BKL-057`: `§3.6.1` `p. 191` defines total `CEnv = Var → Δ` vs finite partial `ce | FV(...)` (`ce₀ = []`); `Example 3.34` mis-cites `Example 3.33` (`p. 194`).
 - `BKL-058`: `§3.6.2` `p. 197` `CPA` `[app]` omits `)` before `^ℓ` and `, δ_b` in `ρ̂(x_i, δ_b)`, `p. 198` writes `Δ = Term`, and empty args collapse to `∅`.
 - `BKL-059`: Pure `0-CFA` collapses shadowed variable names (`p. 199`); set-constraint `¬S` and variable-LHS guards break monotonicity (`p. 201`).
-- `BKL-060`: `Mini Project 3.1` (`p. 202`) prose line 10 writes `⊨_s` for `⊨'_s`; `Mini Project 3.2` (`p. 203`) embeds `ℓ_i` in `Val̂` breaking `Fact 3.11`.
+- `BKL-060`: `Mini Project 3.1` (`p. 202`) prose line 10 writes `⊨_s` for `⊨'_s`; `Mini Project 3.2` (`p. 203`) embeds `ℓ_i` in `Val̂` (flat & finite for Tables 3.5–3.7; `Fact 3.11` concerns only the abstract-spec open question).
 - `BKL-061`: `Mini Project 3.4` (`pp. 204-205`) leaves `[assign]` acceptability unprinted; singleton strong kill (`strong update` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134)) needs local stores + ref counts (`p. 200` `[133]`).
 - `BKL-062`: `Exercise 3.3` (`"cannot produced"`), `Exercise 3.4` (`(3.8)` non-upward-closure), `Exercise 3.16` (`f(x)= e`, `"defined in D"`), `Exercise 3.17` (`"Cartesian Production"`).

@@ -1,5 +1,6 @@
 <!-- @governing: REQ-TECH-PPA-001 @parent: REQ-PRD-PPA-001 -->
 <!-- @decision DEC-PPA-001: Standalone L0 ambient-context orientation for Chapter 3 (Constraint-Based Control Flow Analysis, Coupled CFA+DFA, and Polyvariant k-CFA/CPA). -->
+<!-- @description: Orientation for control flow analysis of higher-order functional code: which lambda abstractions reach each application, abstract caches and environments, coinductive acceptability, syntax-directed and conditional subset constraints, the cubic graph worklist, coupled data values, and polyvariance via uniform k-CFA, call contexts and the Cartesian product algorithm. Use when closures, first-class functions or dynamic dispatch hide the call graph until analysis resolves it. -->
 
 # Control Flow Analysis and Constraint-Based Systems — Orientation
 
@@ -54,9 +55,9 @@ Pure `0-CFA` is **flow-insensitive**, **branch-insensitive**, and **context-inse
 - **Adding Context (`§3.6`, `Unification U5`)**: Monovariant `0-CFA` merges all calls to a polymorphic helper
   (`Example 3.32`). **Uniform `k`-CFA** ([PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)) indexes caches
   (`Cachê = (Lab × Δ) → Val̂`) and environments by `k`-bounded call strings `Δ = Lab^{≤k}` while embedding
-  lexical contexts `Val̂ = 𝒫(Term × CEnv)` (`[156, 157, 158]` `[external: Shivers]` curried counterpart to
-  `§2.5.4` call strings; still exponential `[external: DEXPTIME]` for `k ≥ 1`, vs `O(n^6)` *polynomial `k`-CFA* at
-  `k = 1` when `Val̂ = 𝒫(Term × Δ)` drops `CEnv`, `BKL-007`), while **`CPA` (`[2]` `[external: Agesen]`)**
+  lexical contexts `Val̂ = 𝒫(Term × CEnv)` (Shivers `[156, 157, 158]`, [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216); curried counterpart to
+  `§2.5.4` call strings; still exponential `[external: DEXPTIME]` for `k ≥ 1`, whereas `Val̂ = 𝒫(Term × Δ)` gives
+  polynomial height and is closely related to *polynomial `k`-CFA*, `O(n^6)` at `k = 1`, `BKL-007`), while **`CPA` (`[2]` `[external: Agesen]`)**
   ([PPA §3.6.2, p. 197] (book p. 197; PDF p. 215)) indexes contexts by concrete `m`-tuples of abstract
   arguments `Δ = Term^m` (counterpart to `§2.5.5` small assumption sets, related to OO receiver sensitivity `[external]`).
 

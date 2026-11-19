@@ -69,8 +69,8 @@ lattice `(L, ⊑)`, and query workload:
 | :--- | :--- | :--- | :--- |
 | **3-Queue SCC + Local RPO (`Table 6.6` + `Ex 6.12`)** | `(W.c, W.pc, W.pf)` + membership bitset/`[external: sparse-set]` | `O(h · M · N)` after `M = 1` split (`8–10` pops on `Ex 6.1`; downstream DAGs evaluated **once**) | **Default production global solver** for general ACC lattices, interprocedural CFGs, and static constraint graphs [PPA Table 6.6, p. 384] (book p. 384; PDF p. 400), [PPA Exercise 6.12, p. 391] (book p. 391; PDF p. 407). |
 | **Hierarchical `[external: Bourdoncle WTO]` (`[25]`)** | Recursive head-stripped component hierarchy | Stabilises inner loops before outer back-edges; canonical `∇` cutsets | Deeply **nested loops** (`while ... while ...`, merged into one flat SCC by `Table 6.6`, `G-U6-17`) or infinite-height Chapter 4 domains needing loop-head widening [PPA Example 6.14, p. 382] (book p. 382; PDF p. 398), [PPA Bibliography [25], p. 441] (book p. 441; PDF p. 454). |
-| **Round Robin in RPO (`Table 6.4`)** | `Analysis[x]` + `change : bool` (`zero` worklist/`infl` memory!) | **`≤ d(G_𝒮, T) + 3` passes** = `O((d + 1) · N)` (`≤ 6` passes for `d ≤ 3`) | **Bit Vector / fast distributive frameworks** (`f ∘ f ⊑ f ⊔ id`) on dense reducible intraprocedural CFGs (`Lemma 6.12`, `G-U6-13`) [PPA Table 6.4, p. 379] (book p. 379; PDF p. 395), [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396). |
-| **2-Queue Eager RPO (`Table 6.3` + `Ex 6.7`)** | `(W.c, W.p)` routing `rp' > rp` to `W.c`, `≤` to `W.p` | Skips quiescent blocks unlike Round Robin (`9–11` pops on `Ex 6.1`) | Sparse intraprocedural updates where full `[1..N]` sweeps waste checks, or graphs where SCC condensation is skipped [PPA Table 6.3, p. 376] (book p. 376; PDF p. 392), [PPA Exercise 6.7, p. 390] (book p. 390; PDF p. 406). |
+| **Round Robin in RPO (`Table 6.4`)** | `Analysis[x]` + `change : bool` (`zero` worklist/`infl` memory!) | **`≤ d(G_𝒮, T) + 3` passes** = `O((d + 1) · N)` (`≤ 6` passes for `d ≤ 3`) | **Bit Vector Frameworks only** (`L = 𝒫(D)`, every RHS `(x_{j_i} ∩ Y_i^1) ∪ Y_i^2`) on dense reducible intraprocedural CFGs (`Lemma 6.12`, `G-U6-13`) [PPA Table 6.4, p. 379] (book p. 379; PDF p. 395), [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396). |
+| **2-Queue Eager RPO (`Table 6.3` + `Ex 6.7`)** | `(W.c, W.p)` routing `rp' > rp` to `W.c`, `≤` to `W.p` | Skips quiescent blocks unlike Round Robin (`8` pops on `Ex 6.1`, with or without membership check) | Sparse intraprocedural updates where full `[1..N]` sweeps waste checks, or graphs where SCC condensation is skipped [PPA Table 6.3, p. 376] (book p. 376; PDF p. 392), [PPA Exercise 6.7, p. 390] (book p. 390; PDF p. 406). |
 | **Segregated / Differential Worklist (`Ex 6.6`, `MP 6.2`, `[52, 53]`)** | Variable queue `(q, Δ_q)` + dynamic edge activation | `O(n³)` on `0-CFA`; avoids re-scanning old set elements | Dynamic conditional constraints (`if c ⊑ x₂ then x₁` in `0-CFA`/points-to) whose graph `G_𝒮` grows online (`G-U6-20`) [PPA Example 6.6, p. 373] (book p. 373; PDF p. 389), [PPA Mini Project 6.2, p. 388] (book p. 388; PDF p. 404). |
 | **Local Demand-Driven (`[29, 51, 54]`)** | Recursive `memo[x]` + `on_stack[x]` or timestamp max-PQ | Proportional to backward cone `{y \| y →* x_query}` | `[external: editor IDE]` hover queries, patch-diff checks, or single-sink security audits in multi-million-line codebases (`G-U6-19`) [PPA Chapter 6 Concluding Remarks, p. 385] (book p. 385; PDF p. 401). |
 | **Elimination / Fastness Closure (`Ex 6.14`, `[154, 11, 170]`)** | Control-tree or path-expression algebraic reduction | Closed-form `lfp(F) = f̄ = f ⊔ id` on reducible Bit-Vector loops | Structured/reducible CFGs with algebraically composable transfer functions (or decompilation via `[154]` control trees) [PPA Chapter 6 Concluding Remarks, p. 386] (book p. 386; PDF p. 402), [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407). |
@@ -97,10 +97,9 @@ Before instantiating any worklist, apply four mandatory normalisations
      predecessors grouped at non-header joins (or apply `∇` strictly at feedback loop headers) so
      `[0,0]` and `[1,1]` join via `⊔` to `[0,1]` rather than widening via `∇` to `[0, +∞]`.
 2. **Close the Flow-Variable Universe `X` (`G-U6-04`)**:
-   - Initialise `Analysis[x] := ⊥_L` and `infl[x] := ∅` explicitly over `X = LHS(𝒮) ∪ ⋃_i FV(t_i)`.
-   - Never copy `Table 6.1` Step 1's loop indentation literally (`for all x ⊒ t in 𝒮 do ...
-     Analysis[x] := ⊥; infl[x] := ∅`), which redundantly resets multi-inequation LHSs and leaves
-     unconstrained RHS input variables uninitialised (`F-U6-01`)
+   - `Table 6.1` Step 1 is correct under the book's assumption `FV(t_i) ⊆ X`; its repeated resets
+     all precede Step 2. Only **if you relax that assumption** (open RHS input variables) must you
+     initialise `Analysis[x] := ⊥_L`, `infl[x] := ∅` over `X = LHS(𝒮) ∪ ⋃_i FV(t_i)` (`F-U6-01`)
      [PPA §6.1, p. 367] (book p. 367; PDF p. 383), [PPA Table 6.1, p. 369] (book p. 369; PDF p. 385).
 3. **Register All `FV(t)` Observers on Conditional RHS Terms (`G-U6-05`, `G-U6-20`)**:
    - For `x ⊒ if c ⊑ t₁ then t₂` (`Example 6.2`, `Mini Project 6.2`), ensure `eval` returns `⊥_L`
@@ -164,16 +163,19 @@ Execute this workflow to build the production `Table 6.6` + `Exercise 6.12` solv
 
 ## 5. Procedure 3 — Round-Robin Fast Path (`Lemma 6.12`) & Closed-Form Loops (`Ex 6.14`)
 
-1. **Gate Round Robin (`Table 6.4`) Strictly by Bit-Vector / Fastness Preconditions (`G-U6-13..15`)**:
-   - Verify `L = 𝒫(D)` (`D` finite) and every RHS is `t_i = (x_{j_i} ∩ Y_i^1) ∪ Y_i^2` (or
-     `f ∘ f ⊑ f ⊔ id` distributive, `Exercise 6.14`), with constraints indexed `1..N` in `rPostorder`
-     of DFSF `T`.
+1. **Gate Round Robin (`Table 6.4`) Strictly by Bit Vector Framework Preconditions (`G-U6-13..15`)**:
+   - Verify `L = 𝒫(D)` (`D` finite) and every RHS is `t_i = (x_{j_i} ∩ Y_i^1) ∪ Y_i^2` (single flow
+     variable), with constraints indexed `1..N` in `rPostorder` of DFSF `T`. `Lemma 6.12` covers
+     only this Bit Vector Framework class.
    - Under these preconditions, `Table 6.4` needs zero queue/`infl` allocations and halts in
      **`≤ d(G_𝒮, T) + 3` total iterations** (`1` Step 1 init + `≤ d + 1` propagation sweeps + `1`
      quiescence sweep = `O((d + 1) · N)` assignments; `d ≤ 3` on structured `WHILE`/Fortran programs
      `[98]`) [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396).
-   - **Hard Stop**: Reject `d + 3` pass bounds on Constant Propagation, `0-CFA`, or intervals, or on
-     `[external: obfuscated]` irreducible state-machine CFGs where `d(G_𝒮, T) = Θ(N)` (`G-U6-13`, `G-U6-15`).
+   - Extending a similar bound to fast distributive (`f ∘ f ⊑ f ⊔ id`) non-Bit-Vector frameworks is
+     `[external: Kam–Ullman rapid frameworks]` `[derived]` and has no book proof.
+   - **Hard Stop**: Never quote `d + 3` for Constant Propagation, `0-CFA`, or intervals. Do not assume
+     `d(G_𝒮, T)` is small on `[external: obfuscated]` irreducible CFGs (the bound stays valid for any
+     DFSF `T`, but `d` depends on `T` and can reach `Θ(N)`) (`G-U6-13`, `G-U6-15`).
 2. **Elimination / Non-Iterative Loop Closure (`Exercise 6.14`, `Concluding Remarks p. 386`, `G-U6-23`)**:
    - On structured/reducible graphs (`[154]` control trees, `[11]` intervals, `[170, 171]` path
      expressions) with fast distributive transfers (`f ∘ f ⊑ f ⊔ id`), replace iterative loop solving
@@ -190,30 +192,36 @@ Execute this workflow to build the production `Table 6.6` + `Exercise 6.12` solv
      need not equal `a` when `b ⊑ a`!), keeping operand order `old ∇ new` and confirming `X` is
      finite [PPA Exercise 6.13, p. 391] (book p. 391; PDF p. 407).
 2. **Sound Resource-Budget `[external: Timeouts]` (`G-U6-07` — Zero Silent `[external: False Negatives]`)**:
-   - Never abort `Table 6.1` via `if steps > MAX_STEPS: return Analysis`! By `Lemma 6.4` Part (i),
-     every intermediate `Analysis_i` satisfies `Analysis_i ⊑ μ_𝒮` and `Analysis_i ∉ Red(F_𝒮)`, so
-     early cutoff **silently under-approximates** `[external: may-taint]` and call-graph sets (`[external: CWE-407]`
-     evasion hazard) [PPA §6.1.1, p. 371] (book p. 371; PDF p. 387).
+   - Never abort `Table 6.1` via `if steps > MAX_STEPS: return Analysis`! `Lemma 6.4` Part (i) proves
+     only `Analysis_i ⊑ μ_𝒮` for intermediate states; reductiveness is proved only at `W = empty`
+     (Part (ii)). An intermediate state may already equal `μ_𝒮` (`Figure 6.1` row 10, `Figure 6.3`
+     rows 7–12), but it is not *certified* reductive while `W ≠ empty`, so early cutoff *may*
+     under-approximate `μ_𝒮` (`[external: may-taint]`, call graphs; `[external: CWE-407]` evasion)
+     [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386), [PPA §6.1.1, p. 371] (book p. 371; PDF p. 387).
    - **Mandatory `[external: Timeout]` Protocol**: If step budget expires with `W ≠ empty`, either switch dirty
      variables to widening `∇` until `W = empty` or assign `Analysis[z] := ⊤_L` across the forward
      cone reachable in `G_𝒮` from `{LHS(c) | c ∈ W}` and emit a degraded-precision status flag.
 3. **Demand-Driven Local Solver for Single-Sink / `[external: editor IDE]` Queries (`Concluding Remarks p. 385`, `G-U6-19`)**:
    - When only `Analysis[x_query]` is needed, traverse backward edges `{y ∈ FV(t) | (x ⊒ t) ∈ 𝒮}`
-     from `x_query` via a top-down memoised solver (`[29]`) or timestamp max-PQ (`[51, 54]`):
+     from `x_query` via a top-down memoised solver (`[29]`) or timestamp max-PQ (`[51, 54]`). The
+     book only names these approaches; the block below is `[derived]` (L1 explanation in
+     [scc-round-robin-and-advanced-solvers.md](./references/scc-round-robin-and-advanced-solvers.md)):
    ```text
-   solve(x):
+   solve(x):                                  (* [derived], not book pseudo-code *)
        if x ∈ settled then return memo[x]
-       if x ∈ on_stack then mark_scc_cyclic(x); return memo[x]   (* provisional lower bound *)
-       on_stack.add(x)
+       if x ∈ on_stack then mark_cycle(x); return memo[x]   (* provisional lower bound *)
+       on_stack.push(x)
        repeat
-           old := memo[x]
+           stamp := changes;  old := memo[x]
            for each (x ⊒ t) ∈ 𝒮 do memo[x] := memo[x] ⊔ eval_rec(t, solve)
-       until (x is SCC_root and whole dynamic SCC stabilised) or (x not in active cycle)
-       on_stack.remove(x); if not in_unfinished_scc(x) then settled.add(x)
+           if old ≠ memo[x] then changes := changes + 1
+       until (not is_scc_root(x)) or (changes = stamp)    (* whole dynamic SCC stable *)
+       on_stack.pop(x)
+       if is_scc_root(x) or x ∉ cyclic then settle(x and every member rooted at x)
        return memo[x]
    ```
-   - Never freeze `settled.add(y)` for an inner node `y` of an active cycle `x → y → x` until the
-     cycle root `x` reaches quiescence [PPA Chapter 6 Concluding Remarks, p. 385] (book p. 385; PDF p. 401).
+   - Non-root cycle members exit after one pass with a provisional value; only the root repeats.
+     Never settle an inner node `y` of an active cycle `x → y → x` before root `x` is stable `[derived]`.
 
 ---
 
@@ -237,7 +245,7 @@ infl[x]          = { (x' ⊒ t') ∈ 𝒮 | x ∈ FV(t') },   ∑_{x∈X} |infl[
 LIFO (Table 6.2) : empty = nil, insert(c,W) = cons(c,W), extract(W) = (head(W), tail(W))
 RPO  (Table 6.3) : empty = (nil,∅), insert(c,(W.c,W.p)) = (W.c, W.p ∪ {c}), refill W.c := sort_rPostorder(W.p)
 SCC  (Table 6.6) : scc := min { fst(srPostorder[c]) | c ∈ W.p }, W.c := sort_srPostorder(W_scc), W.p := W.p \ W_scc
-Fast (Ex 6.14)   : f ∘ f ⊑ f ⊔ id  ⇒  lfp(λg. id ⊔ (g ∘ f)) = f̄ = (f ⊔ id)^{i_f} (= f ⊔ id if f distributive)
+Fast (Ex 6.14)   : f distributive  ⇒  lfp(λg. id ⊔ (g ∘ f)) = f̄ = (f ⊔ id)^{i_f} ;  f̄ = f ⊔ id if also fast (f ∘ f ⊑ f ⊔ id)
 ```
 
 ### Golden Regression Oracles (`Examples 6.1–6.15`, `Exercises 6.3, 6.6, 6.8, 6.11`)
@@ -261,8 +269,8 @@ Fast (Ex 6.14)   : f ∘ f ⊑ f ⊔ id  ⇒  lfp(λg. id ⊔ (g ∘ f)) = f̄ =
 
 ## 8. Anti-Degradation Sign-Off Checklist
 
-- [ ] **No `SMOOTHING_TRAP`**: Never claim `≤ d(G_𝒮, T) + 3` passes outside Bit Vector / fast
-  distributive frameworks (`G-U6-13`), never drop ACC without `∇` (`G-U6-06`, `G-U6-22`), and never
+- [ ] **No `SMOOTHING_TRAP`**: Never claim `≤ d(G_𝒮, T) + 3` passes outside Bit Vector Frameworks
+  (`Lemma 6.12`, `G-U6-13`), never drop ACC without `∇` (`G-U6-06`, `G-U6-22`), and never
   conflate `x = t₁ ⊔ ··· ⊔ t_n` general solutions with `x ⊒ t_i` solutions (`G-U6-02`).
 - [ ] **Reductiveness (`Red(F_𝒮)`) & `[external: Timeout]` Integrity**: Assert `∀(x ⊒ t) ∈ 𝒮: ⟦t⟧(Analysis) ⊑ Analysis[x]`
   (`Analysis ∈ Red(F_𝒮)`) at termination and forbid silent `W ≠ empty` early returns (`G-U6-07`).

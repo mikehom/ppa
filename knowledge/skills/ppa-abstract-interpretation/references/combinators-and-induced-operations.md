@@ -150,8 +150,9 @@ Cousot–Halbwachs convex polygons `[41]` (`[external: convex polyhedra]`), Gran
      [PPA Proposition 4.44, p. 268] (book p. 268; PDF p. 285); [PPA Exercise 4.23, p. 281] (book p. 281; PDF p. 298).
 2. **`Lemma 4.45` (`(4.14)`–`(4.15)`, `G-U4b-17`)**: If `(L, α, γ, M)` is a **Galois insertion** **and** **`γ(⊥_M) = ⊥_L`**,
    then **`lfp_{∇_L}(f) = γ(lfp_{∇_M}(α ∘ f ∘ γ))`** (`f_{∇_L}^n = γ(g_{∇_M}^n)` `(4.14)` and
-   `f(f_{∇_L}^n) ⊑ f_{∇_L}^n ⇔ g(g_{∇_M}^n) ⊑ g_{∇_M}^n` `(4.15)`). Applying `∇_L` selectively at CFG loop headers while
-   keeping `L` elsewhere strictly improves precision over global `α ∘ f ∘ γ`
+   `f(f_{∇_L}^n) ⊑ f_{∇_L}^n ⇔ g(g_{∇_M}^n) ⊑ g_{∇_M}^n` `(4.15)`), i.e. **equality** for the global `f`. The book
+   adds only that `L`'s greater precision for all other operations makes widening "often preferable" to `§4.5.1`;
+   selective `∇_L` at loop headers gains `⊑`, not guaranteed `⊏`, precision `[derived]`
    [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286); [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287).
 3. **Failure of `γ`-induced narrowing (`Exercise 4.24`, `G-U4b-18`)**: **`l_1 Δ_L l_2 = γ(α(l_1) Δ_M α(l_2))` is NOT a
    narrowing operator** whenever `γ ∘ α ≠ id_L` (even on a Galois insertion with finite `M`!), because `l_1 ∉ γ[M]` gives

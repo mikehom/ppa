@@ -94,7 +94,8 @@ Over `φ ∈ Ann_ES ::= {s} | φ₁ ∪ φ₂ | ∅ | β`, `τ̂ ∈ Type_ES ::=
   - `[handle]` may omit `φ₁` (`Exercise 5.14`) **iff BOTH `s ∉ φ₂` AND `AV(φ₂) = ∅`**
     [PPA Exercise 5.14, p. 362] (book p. 362; PDF p. 379).
   - Lifting `Table 5.10` conclusions to `σ̂` (`Exercise 5.15`) requires defining scheme subtyping `σ̂ ≤ σ̂'`
-    (misprinted `τ̂ ≤ τ̂'` on p. 363, `F-U5b-13`, `G-U5b-26`) and adds zero power over prenex schemes
+    (misprinted `τ̂ ≤ τ̂'` on p. 363, `F-U5b-13`, `G-U5b-26`) ; the book only asks whether this is more powerful, and the answer "zero added power over prenex
+    schemes" is `[derived]`
     [PPA Exercise 5.15, p. 363] (book p. 363; PDF p. 380).
 
 ## 3. Stack-Based Region Inference and Lexical Masking (Section 5.4.3, Figure 5.1, Tables 5.11-5.13)
@@ -222,7 +223,7 @@ Preorder & congruence (6):  φ ⊑ φ;   (φ₁⊑φ₂ ∧ φ₂⊑φ₃) ⟹ �
 Monoid, + & rec (13):       φ₁;(φ₂;φ₃) ⊑ (φ₁;φ₂);φ₃;   (φ₁;φ₂);φ₃ ⊑ φ₁;(φ₂;φ₃);
                             (φ₁+φ₂);φ₃ ⊑ (φ₁;φ₃)+(φ₂;φ₃);   (φ₁;φ₃)+(φ₂;φ₃) ⊑ (φ₁+φ₂);φ₃;   (* RIGHT-ONLY! *)
                             φ ⊑ Λ;φ;  Λ;φ ⊑ φ;  φ ⊑ φ;Λ;  φ;Λ ⊑ φ;   φ₁ ⊑ φ₁+φ₂;  φ₂ ⊑ φ₁+φ₂;  φ+φ ⊑ φ;
-                            rec β.φ ⊑ φ[β ↦ rec β.φ];   φ[β ↦ rec β.φ] ⊑ rec β.φ   (* positive β, F-U5b-09 *)
+                            rec β.φ ⊑ φ[β ↦ rec β.φ];   φ[β ↦ rec β.φ] ⊑ rec β.φ   (* no polarity condition *)
 Channel/IO variance (3):    (τ̂≤τ̂' ∧ τ̂'≤τ̂ ∧ r⊆r') ⟹ τ̂ chan r ⊑ τ̂' chan r';
                             (r₁⊆r₂ ∧ τ̂₁≤τ̂₂) ⟹ r₁!τ̂₁ ⊑ r₂!τ̂₂;      (r₁⊆r₂ ∧ τ̂₂≤τ̂₁) ⟹ r₁?τ̂₁ ⊑ r₂?τ̂₂
 ```
@@ -271,5 +272,5 @@ plus `[external: CWE-367 TOCTOU]` ordering; note `p. 353` safety-vs-liveness bou
   `BKL-078` (`F-U5b-02/03`: runtime `ξ ∈ Loc`, unbraced `ϖ`, `p. 323` `"argument e_1"`, `ref_ϖ` invariance);
   `BKL-079` (`F-U5b-04/13`: `Example 5.30` `'0` indexing, `AV(φ₂) = ∅`, `Exercise 5.15` `σ̂ ≤ σ̂'`);
   `BKL-080` (`F-U5b-05..07`: `Table 5.11` `dom(ς₁)`, `Table 5.12` `σ̂ @ r`, `Table 5.13` `Type_RI` invariance, `Observe` + `ϱ⃗ ∈ φ`);
-  `BKL-081` (`F-U5b-08..10`: unbraced `{C}`, positive `rec β.φ`, right-only `;` over `+`); and
+  `BKL-081` (`F-U5b-08..10`: unbraced `{C}`, `[derived]` positive `rec β.φ`, right-only `;` over `+`); and
   `BKL-082` (`F-U5b-11/12/14`: `p. 350` `§5.1` mis-citation, `Mini Project 5.5` `+` base check, Unit 5b OCR drops).

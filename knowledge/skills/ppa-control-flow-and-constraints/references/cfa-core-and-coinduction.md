@@ -189,7 +189,10 @@ the Chapter 1 constraint preview lives in
   - `Exercise 3.5` (coarse `Ĉ(ℓ₁) ⊆ ρ̂(f)` pollutes `ρ̂(f)` with sibling lambdas) & `Exercise 3.6` (`Val̂ = 𝒫(Exp)`
     breaks `Fact 3.11` and `Theorem 3.10` because `[bind₂]`/`[if₂,₃]` relabel `v^{ℓ₁} → v^ℓ`, `G-U3b-26`, `BKL-052`)
     [PPA Exercise 3.5, p. 206] (book p. 206; PDF p. 224) [PPA Exercise 3.6, p. 206] (book p. 206; PDF p. 224);
-  - `Exercise 3.7` (remaining `Theorem 3.10` cases + static-scoping `0-CFA`, `"semantics allow"`, `BKL-062`), `Exercise 3.8` (`Table 3.1`
+  - `Exercise 3.7` (α-renaming bound variables changes acceptability/precision of `Table 3.1`; develop a
+    static-scoping-faithful abstract `0-CFA` agreeing with `Table 3.1` when no variable has multiple defining
+    occurrences; NOT about `Theorem 3.10`, whose proof the book completes on p. 161 with five cases `[var]`,
+    `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]`; `"semantics allow"`, `BKL-062`), `Exercise 3.8` (`Table 3.1`
     remains sound under call-by-name/lazy SOS), and `Exercises 3.9-3.12` (uniqueness of `𝒬_s`, necessity of
     `(Ĉ_⋆^⊤, ρ̂_⋆^⊤)`, counterexamples to `⊨ ⇒ ⊨_s`, direct subject reduction for `⊨_s`)
     [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225) [PPA Exercise 3.8, p. 207] (book p. 207; PDF p. 225)

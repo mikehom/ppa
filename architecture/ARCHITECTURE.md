@@ -176,14 +176,16 @@ conversation -> [R1] ambient file (orientation, <=250 lines)
 
 | Target (public convention) | `R1` ambient | `R2` skills and references | `R3` lookup | `R0` surface left untouched |
 | :--- | :--- | :--- | :--- | :--- |
-| Claude Code (`.claude/`) | Router-linked reference, or native mechanism if present | `.claude/skills/<name>/SKILL.md` with `references/` | File read by anchor | `CLAUDE.md` |
+| Claude Code (`.claude/`) | Router-linked reference `<router>/references/ambient-<slug>.md` (reference adapter default), or native mechanism if present | `.claude/skills/<name>/SKILL.md` with `references/` | File read by anchor | `CLAUDE.md` |
 | Gemini CLI (`~/.gemini/`) | Native on-demand context if present, else router-linked | Skill directory with `SKILL.md` and `references/` | File read by anchor | `GEMINI.md` |
-| Codex / `AGENTS.md` convention | Scoped file inside the installed package directory | Skill directory or scoped documents | File read by anchor | Root `AGENTS.md` |
+| Codex / `AGENTS.md` convention | Router-linked reference `<router>/references/ambient-<slug>.md` inside the installed package directory | Skill directory or scoped documents | File read by anchor | Root `AGENTS.md` |
 | Cursor (`.cursor/rules/`) | `.mdc` rule with a description and `alwaysApply: false` | `.mdc` rules, description-triggered | File read by anchor | Any rule with `alwaysApply: true` |
 | Knowledge wiki, MCP server, or Graph-RAG | Page or resource listing with descriptions | Page, prompt, or resource per skill | Graph query tool over `concept_graph.json` | Server-injected system text; vault-wide templates |
 
 **Degradation rule.** If a target lacks a channel, content moves to the next *more explicit* channel
-(`R1` content becomes an `R2` reference linked from the router). It never moves toward `R0`.
+(`R1` content becomes an `R2` reference linked from the router). It never moves toward `R0`. An
+ambient file that is neither indexed by description nor linked from another installed unit is
+unreachable and fails `CONFORMANCE_SPEC.md` check `C3.9`.
 
 ## 5. Multi-Dimensional Domain Projections
 
@@ -218,7 +220,7 @@ Every concept node carries one formal core and four projections. The keys match 
 | Concept (source) | (a) `cs_theory` | (b) `swe_architecture` | (c) `practical_debugging` | (d) `cyber` |
 | :--- | :--- | :--- | :--- | :--- |
 | Monotone Framework instance (§2.3) | Complete lattice with Ascending Chain Condition, monotone transfer functions closed under composition | Strategy objects (lattice, transfer, flow, extremal value) plugged into a Template Method solver | Non-termination or oscillation means a transfer function is not monotone or chains are infinite | A taint or reachability rule set is an instance; a non-monotone rule silently invalidates the result |
-| MFP versus MOP (§2.4) | MFP safely approximates MOP (Lemma 2.32); equality needs a distributive framework *and* `path∘(ℓ) ≠ ∅` for every label of `E` and `F`; MOP is undecidable for Constant Propagation (Lemma 2.31) | Join-at-merge is an architectural precision decision, not an implementation detail | Unexpected imprecision at merge points traces to non-distributivity | Merging loses path correlation; correlated sanitisation checks produce false alarms |
+| MFP versus MOP (§2.4) | MFP safely approximates MOP (Lemma 2.32); equality is guaranteed when the framework is distributive *and* `path∘(ℓ) ≠ ∅` for every label of `E` and `F` (a sufficient condition; the source does not state it as necessary); MOP is undecidable for Constant Propagation (Lemma 2.31) | Join-at-merge is an architectural precision decision, not an implementation detail | Unexpected imprecision at merge points traces to non-distributivity | Merging loses path correlation; correlated sanitisation checks produce false alarms |
 | Reaching Definitions and ud/du chains (§1.2, §2.1.2, §2.1.5) | Forward may-analysis, least solution | Def-use index service consumed by transformations | Backward slice from a wrong value to candidate assignments | Trace an unsafe value at a sink back to its defining assignments |
 | 0-CFA acceptability (§3.1, §3.2) | Coinductively specified relation (§3.1); least solution exists by a Moore family argument (§3.2) | Call-graph construction separated into specification, constraint generation, solving | Resolve which functions an indirect call may reach | Indirect-call target sets bound which code a tainted value can enter |
 | Call strings and assumption sets (§2.5), uniform k-CFA (§3.6) | Context as an extra lattice component; valid-path precision | Context is a cache key; `k` is a cost and precision dial | Spurious cross-call flows indicate insufficient context | Context-insensitive merging links unrelated callers; bounded context trades alarms for cost |
@@ -281,6 +283,21 @@ relation `corresponds_to` and carries a `basis` object (`unification_id`, `citat
 section MUST state the conditions under which the correspondence holds and at least one difference.
 An "analogy" with no stated basis in the source is recorded as an interpretive projection, not an edge.
 
+**Extended bridges `X1`-`X5`.** The whole-book synthesis in `ontology/cross_paradigm_matrix.md`
+records five further cross-chapter bridges. They are `L3` syntheses indexed beside `U1`-`U10`, not
+graph edges: an `X*` bridge carries no `corresponds_to` edge and no `basis` object, each of its
+endpoints keeps its own citations, and any step the source does not state is marked `[derived]` or
+`[external]` (rule `P2`). An `X*` bridge is promoted to a `U*` edge only when a passage stating the
+correspondence is cited.
+
+| Bridge | From | To |
+| :--- | :--- | :--- |
+| `X1` | Shape analysis (§2.6) | Region inference and the stack of regions (§5.4.3, Mini Project 4.2) |
+| `X2` | Distributive frameworks, where the MFP and MOP solutions coincide (§2.3.2, §2.4.2) | Completely additive abstraction and exactly induced fixed points (§4.3, §4.5.1, §4.5.3) |
+| `X3` | Widening and narrowing (§4.2, §4.5.3) | Worklist solving with widening (Exercise 6.13) |
+| `X4` | Coinduction (App B) | Acceptability of control flow analyses (§3.1-§3.2) and recursive behaviours (§5.5, Table 5.18) |
+| `X5` | The five formulations of Chapter 1 (§1.3-§1.8) | Fixed points on complete lattices (App A.4) and the worklist invariant (Lemma 6.4) |
+
 ### 6.4 Isolating Contradictions and Edge Cases
 
 - A contradiction or edge case becomes one `issues/backlog/BKL-*.md` item with citations for every
@@ -317,6 +334,11 @@ Tier B and is reported as not implemented, never as passed.
 - **Tier A.** Each node lists its side conditions as discrete `conditions` entries; every artifact
   section in `artifact_refs` links to the node's `L1` anchor, and that anchor carries a conditions
   list with as many entries. Whether each entry preserves the source's wording is Tier B.
+  *In force:* the discrete-entry clause (`arch_7_1_conditions_parity` in
+  `scripts/validate_ppa_knowledge.py`: every entry non-empty and unique, every `corresponds_to`
+  basis complete, every node with conditions anchored in a skill artifact) and, for compiled concept
+  cards, exact entry-count parity (`CONFORMANCE_SPEC.md` `C1.8`). *Not in force:* the anchor clause;
+  `L1` anchors carry no delimited conditions list, so the validator prints it as `NOT_IMPLEMENTED`.
 - **Tier B.** Reviewer reads the `L3` entry and the restatement side by side and names the lost clause.
 
 ### 7.2 `SIGNATURE_DISTORTION`
@@ -331,6 +353,8 @@ Tier B and is reported as not implemented, never as passed.
   forest `T`: one initial pass, `d + 1` propagating passes, and one pass that detects stability.
 - **Tier A.** Every signature and numeric bound above `L3` is compared with the entry in
   `ontology/notation_index.md` or the cited `L3` anchor; literal mismatch fails.
+  *Not in force:* no script performs this comparison; the validator prints it as `NOT_IMPLEMENTED`
+  in every mode, certification included, and the rule is covered by Tier B review until it is built.
 - **Tier B.** Reviewer re-derives direction and parameter meaning from the rendered page image.
 
 ### 7.3 `SILENT_GOTCHA_TRUNCATION`
@@ -402,7 +426,7 @@ unit introduces the concept (rule `B6`, trigger `T2`); references used by every 
 ## 9. Change Control
 
 - Changes to this document require an entry in the Decision Log of `MASTER_PLAN.md` and a `REF-*`
-  issue naming the affected rules by identifier (`R-CORE-*`, `B*`, `P*`, `T*`, `U*`, `I*`).
+  issue naming the affected rules by identifier (`R-CORE-*`, `B*`, `P*`, `T*`, `U*`, `X*`, `I*`).
 - Budgets, altitude definitions, the zero-byte `R0` rule, and the five contracts are invariants of
   `DEC-PPA-001`; altering one is a new decision. Rule identifiers are stable; retired rules keep theirs.
 

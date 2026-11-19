@@ -7,7 +7,7 @@ printing 2005).
 ## Purpose
 
 Guides engineers and static analysis authors through constructing, debugging, and proving classical
-intraprocedural analyses (`AE, RD, VB, LV`), `ud`/`du` slicing and SSA lowering, Monotone and Distributive
+intraprocedural analyses (`AE, RD, VB, LV`), `ud`/`du` slicing, Monotone and Distributive
 Frameworks, Constant Propagation, interprocedural call-string and assumption-set extensions, flow-insensitive
 side-effect sets (`IAV`, `[external: mod-ref]` summaries), and heap shape analysis with strong updates.
 

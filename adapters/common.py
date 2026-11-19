@@ -3,6 +3,9 @@
 # @decision DEC-PPA-009: Shared stdlib-only compilation primitives enforcing LF
 #   normalisation (N4-N6), sorted file walks and JSON keys (N7, C5.7), symbolic
 #   always-on surface snapshots (C2.1-C2.2, C5.3), and symlink-free output.
+# @decision DEC-PPA-009: Ownership of port files is derived from the previous
+#   port manifest only; operator pointer stubs on always-on surfaces are detected
+#   on disk so a recompilation can never re-baseline adapter-written bytes.
 """Shared deterministic compilation helpers for PPA reference harness adapters."""
 from __future__ import annotations
 
@@ -27,6 +30,14 @@ MINIMUM_ALWAYS_ON_SURFACES: dict[str, tuple[str, ...]] = {
     "mcp-graph-rag": ("system_prompt.md", "templates/always.md"),
     "knowledge-wiki": ("system_prompt.md", "templates/default.md"),
 }
+
+STUB_START = "<!-- PPA_STUB_START -->"
+STUB_END = "<!-- PPA_STUB_END -->"
+STUB_MARKERS = (STUB_START, "# PPA On-Demand Knowledge Index")
+KNOWLEDGE_BLOCK_START = "<!-- PPA_KNOWLEDGE_START -->"
+KNOWLEDGE_BLOCK_END = "<!-- PPA_KNOWLEDGE_END -->"
+OWNED_LIST_KEYS = ("extra_units", "index_files", "manifest_files", "notebooklm_bundle")
+AMBIENT_DESC_RE = re.compile(r"<!--\s*@description:\s*(.*?)\s*-->", re.S)
 
 SKIP_NAMES = {
     ".git",
@@ -124,13 +135,6 @@ def write_utf8_lf(dest: Path, content: str) -> None:
     dest.write_bytes(normalize_lf(content).encode("utf-8"))
 
 
-def copy_lossless(src: Path, dest: Path) -> None:
-    """Copy a canonical UTF-8 file with LF line endings and zero symlinks."""
-    if src.is_symlink():
-        raise AdapterError(f"canonical source must not be a symlink: {src}")
-    write_utf8_lf(dest, read_utf8_strict(src))
-
-
 def sorted_files_under(base: Path, suffixes: set[str] | None = None) -> list[Path]:
     """Return sorted regular files under base, skipping transient caches."""
     if not base.is_dir():
@@ -195,28 +199,47 @@ def resolve_user_home(port_root: Path, explicit_home: str | None = None) -> Path
     return Path.home().resolve()
 
 
-def compute_surface_sha256(port_root: Path, surface: str, user_home: Path) -> str | None:
-    """Compute raw-byte SHA-256 (or deterministic multi-file glob digest) for a surface."""
+def surface_files(port_root: Path, surface: str, user_home: Path) -> list[Path]:
+    """Return the existing regular files a surface specification denotes (glob-aware)."""
     if surface.startswith("~/"):
-        rel_pattern = surface[2:]
-        anchor = user_home
+        rel_pattern, anchor = surface[2:], user_home
     else:
-        rel_pattern = surface.lstrip("/")
-        anchor = port_root
+        rel_pattern, anchor = surface.lstrip("/"), port_root
     if any(ch in rel_pattern for ch in ("*", "?", "[")):
-        matches = sorted(p for p in anchor.glob(rel_pattern) if p.is_file())
-        if not matches:
-            return None
-        h = hashlib.sha256()
-        for m in matches:
-            rel_m = m.relative_to(anchor).as_posix()
-            file_digest = hashlib.sha256(m.read_bytes()).hexdigest()
-            h.update(f"{rel_m}:{file_digest}\n".encode("utf-8"))
-        return h.hexdigest()
+        return sorted(p for p in anchor.glob(rel_pattern) if p.is_file())
     target_path = anchor / rel_pattern
-    if not target_path.is_file():
+    return [target_path] if target_path.is_file() else []
+
+
+def compute_surface_sha256(port_root: Path, surface: str, user_home: Path) -> str | None:
+    """Compute raw-byte SHA-256 (or deterministic multi-file glob digest) for a surface.
+
+    A glob surface is digested as SHA-256 over one ``<relative path>:<file sha256>``
+    line per matching file, in sorted path order; no match yields None.
+    """
+    matches = surface_files(port_root, surface, user_home)
+    if not matches:
         return None
-    return hashlib.sha256(target_path.read_bytes()).hexdigest()
+    is_glob = any(ch in surface for ch in ("*", "?", "["))
+    if not is_glob:
+        return hashlib.sha256(matches[0].read_bytes()).hexdigest()
+    anchor = user_home if surface.startswith("~/") else port_root
+    h = hashlib.sha256()
+    for m in matches:
+        rel_m = m.relative_to(anchor).as_posix()
+        file_digest = hashlib.sha256(m.read_bytes()).hexdigest()
+        h.update(f"{rel_m}:{file_digest}\n".encode("utf-8"))
+    return h.hexdigest()
+
+
+def surface_stub_markers(port_root: Path, surface: str, user_home: Path) -> list[str]:
+    """Return the names of surface files that carry a pointer-stub marker."""
+    markers = [marker.encode("utf-8") for marker in STUB_MARKERS]
+    return [
+        path.name
+        for path in surface_files(port_root, surface, user_home)
+        if any(marker in path.read_bytes() for marker in markers)
+    ]
 
 
 def discover_extra_always_on(port_root: Path, target: str) -> list[str]:
@@ -255,8 +278,14 @@ def snapshot_always_on_surfaces(
     target: str,
     extra_surfaces: list[str] | None,
     user_home: Path,
-) -> list[dict[str, str | None]]:
-    """Snapshot minimum + dynamic + caller-declared always-on surfaces pre-install."""
+    baseline_bytes: dict[str, bytes | None] | None = None,
+) -> list[dict[str, object]]:
+    """Snapshot minimum + dynamic + caller-declared always-on surfaces pre-install.
+
+    ``baseline_bytes`` maps a surface to its content with adapter-written bytes
+    removed (None or empty: absent); it replaces the on-disk bytes for that surface
+    so a pointer stub written by an earlier run is never recorded as the baseline.
+    """
     ordered: list[str] = list(MINIMUM_ALWAYS_ON_SURFACES.get(target, ()))
     for item in discover_extra_always_on(port_root, target):
         if item not in ordered:
@@ -265,29 +294,103 @@ def snapshot_always_on_surfaces(
         clean = item.strip()
         if clean and clean not in ordered:
             ordered.append(clean)
-    return [
-        {"path": surf, "sha256_before": compute_surface_sha256(port_root, surf, user_home)}
-        for surf in ordered
-    ]
+    out: list[dict[str, object]] = []
+    for surf in ordered:
+        if baseline_bytes is not None and surf in baseline_bytes:
+            raw = baseline_bytes[surf] or b""
+            digest = hashlib.sha256(raw).hexdigest() if raw else None
+            size: int | None = len(raw) if raw else None
+        else:
+            files = surface_files(port_root, surf, user_home)
+            digest = compute_surface_sha256(port_root, surf, user_home)
+            size = sum(f.stat().st_size for f in files) if files else None
+        out.append({"bytes_before": size, "path": surf, "sha256_before": digest})
+    return out
+
+
+def is_safe_rel(rel: str) -> bool:
+    """True when rel is a non-empty relative POSIX path with no parent traversal."""
+    if not rel or rel.startswith("/") or "\\" in rel or re.match(r"^[A-Za-z]:", rel):
+        return False
+    return ".." not in rel.split("/")
+
+
+def load_prior_manifest(port_root: Path) -> dict[str, object] | None:
+    """Return the previous port_manifest.json as a dict, or None when absent/unreadable."""
+    manifest_path = port_root / "port_manifest.json"
+    if manifest_path.is_symlink() or not manifest_path.is_file():
+        return None
+    try:
+        doc = json.loads(read_utf8_strict(manifest_path))
+    except (json.JSONDecodeError, AdapterError) as exc:
+        logging.getLogger("ppa_adapters").warning(
+            "ignoring unreadable previous port_manifest.json (treated as foreign): %s", exc)
+        return None
+    return doc if isinstance(doc, dict) else None
+
+
+def manifest_listed_paths(manifest: dict[str, object]) -> set[str]:
+    """File-backed port outputs a manifest declares (mappings and owned-list keys)."""
+    listed: set[str] = {"port_manifest.json"}
+    mappings = manifest.get("mappings")
+    for m in mappings if isinstance(mappings, list) else []:
+        ports = m.get("port") if isinstance(m, dict) else None
+        listed.update(str(p) for p in (ports if isinstance(ports, list) else []))
+    for key in OWNED_LIST_KEYS:
+        vals = manifest.get(key)
+        listed.update(str(p) for p in (vals if isinstance(vals, list) else []))
+    return {p for p in listed if not p.startswith("ppa:")}
+
+
+def manifest_owned_paths(port_root: Path, manifest: dict[str, object]) -> set[str]:
+    """Port-relative paths owned by a manifest: its listed outputs plus the corpus_root tree."""
+    owned = {p for p in manifest_listed_paths(manifest) if is_safe_rel(p)}
+    corpus_rel = str(manifest.get("corpus_root") or "").strip("/")
+    if corpus_rel and is_safe_rel(corpus_rel) and (port_root / corpus_rel).is_dir():
+        for dirpath, dirnames, filenames in os.walk(port_root / corpus_rel, followlinks=False):
+            here = Path(dirpath)
+            linked_dirs = [d for d in dirnames if (here / d).is_symlink()]
+            for name in sorted(filenames) + linked_dirs:
+                owned.add((here / name).relative_to(port_root).as_posix())
+    return owned
+
+
+def emitted_discovery_names(manifest: dict[str, object]) -> set[str]:
+    """Discovery names a port actually emits: skill directories, rule stems, indexed entries."""
+    names: set[str] = set()
+    mappings = manifest.get("mappings")
+    for m in mappings if isinstance(mappings, list) else []:
+        ports = m.get("port") if isinstance(m, dict) else None
+        for raw in ports if isinstance(ports, list) else []:
+            parts = str(raw).split("/")
+            if parts[-1].endswith(".mdc"):
+                names.add(parts[-1][: -len(".mdc")])
+            elif parts[-1] == "SKILL.md" and len(parts) >= 2:
+                names.add(parts[-2])
+    entries = manifest.get("discovery_entries")
+    for e in entries if isinstance(entries, list) else []:
+        if isinstance(e, dict) and e.get("name"):
+            names.add(str(e["name"]))
+    return names
 
 
 def scan_preexisting_discovery(
-    port_root: Path, target: str, custom_skills_dir: Path | None = None
+    port_root: Path,
+    target: str,
+    custom_skills_dir: Path | None = None,
+    prior: dict[str, object] | None = None,
 ) -> list[str]:
-    """Collect non-manifest discovery names present in port_root prior to install."""
+    """Collect discovery names present before install that no previous port emitted.
+
+    A collision recorded by a previous (forced) run is carried forward: once a
+    foreign entry was overwritten, recompiling must not erase the record (C4.8).
+    """
+    prior_emitted = emitted_discovery_names(prior) if prior else set()
+    carried: set[str] = set()
+    if prior and isinstance(prior.get("pre_existing_discovery"), list):
+        carried = {str(x) for x in prior["pre_existing_discovery"]} & prior_emitted
     if not port_root.is_dir():
-        return []
-    manifest_path = port_root / "port_manifest.json"
-    prior_managed: set[str] = set()
-    if manifest_path.is_file():
-        try:
-            prior = json.loads(read_utf8_strict(manifest_path))
-            prior_managed = {
-                str(e.get("name", "")) for e in prior.get("discovery_entries", [])
-                if isinstance(e, dict)
-            }
-        except json.JSONDecodeError:
-            prior_managed = set()
+        return sorted(carried)
     candidates: set[str] = set()
     search_dirs = {
         "claude-code": [port_root / ".claude" / "skills"],
@@ -304,12 +407,25 @@ def scan_preexisting_discovery(
         if rdir.is_dir():
             for mdc in sorted(rdir.glob("*.mdc")):
                 candidates.add(mdc.stem)
-    return sorted(candidates - prior_managed)
+    return sorted((candidates - prior_emitted) | carried)
 
 
 def ambient_trigger_description(amb_path: Path) -> str:
-    """Synthesize a portable <=1024-char ambient description (zero N8 or lists)."""
+    """Return the ambient file's discovery description (<=1024 chars, no N8, no lists).
+
+    The canonical ``<!-- @description: ... -->`` directive is lifted verbatim (inner
+    whitespace runs collapsed to one space); a title-based sentence is synthesised
+    only when the file carries no directive.
+    """
     text = read_utf8_strict(amb_path)
+    declared = AMBIENT_DESC_RE.search(text)
+    if declared:
+        desc = " ".join(declared.group(1).split())
+        if not desc or len(desc) > 1024 or '"' in desc or "\\" in desc:
+            raise AdapterError(
+                f"{amb_path.name}: @description must be 1-1024 characters without "
+                "double quotes or backslashes")
+        return desc
     title = amb_path.stem.replace("-", " ")
     for line in split_lines_n2(text):
         if line.startswith("# "):
@@ -350,17 +466,6 @@ def collect_skill_discovery(repo_root: Path, include_ambient: bool = False) -> l
     return entries
 
 
-def copy_corpus_closure(repo_root: Path, corpus_files: list[Path], dest_corpus_dir: Path) -> list[str]:
-    """Copy text/JSON corpus files into port core for R3 lookup & C3.11 closure."""
-    copied: list[str] = []
-    for cpath in corpus_files:
-        rel_c = cpath.relative_to(repo_root / "corpus")
-        out_path = dest_corpus_dir / rel_c
-        copy_lossless(cpath, out_path)
-        copied.append(rel_c.as_posix())
-    return copied
-
-
 def ensure_safe_subpath(port_root: Path, raw_subpath: str, flag_name: str) -> Path:
     """Resolve a configurable directory inside port_root, rejecting escapes."""
     cand = Path(raw_subpath)
@@ -369,13 +474,6 @@ def ensure_safe_subpath(port_root: Path, raw_subpath: str, flag_name: str) -> Pa
     if resolved != root_res and root_res not in resolved.parents:
         raise AdapterError(f"{flag_name} {raw_subpath!r} escapes port_root")
     return resolved
-
-
-def write_port_manifest(port_root: Path, manifest: dict[str, object]) -> Path:
-    """Serialize deterministic sorted-key port_manifest.json (CONFORMANCE_SPEC N7)."""
-    out = port_root / "port_manifest.json"
-    write_utf8_lf(out, json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
-    return out
 
 
 def base_arg_parser(description: str) -> argparse.ArgumentParser:
@@ -391,6 +489,8 @@ def base_arg_parser(description: str) -> argparse.ArgumentParser:
                     default=[], help="additional always-on surface path (repeatable)")
     ap.add_argument("--user-home", default=None,
                     help="isolated user-scope home directory for '~/' surface checks")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite pre-existing files that no previous port manifest owns")
     return ap
 
 
