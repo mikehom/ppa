@@ -1,4 +1,5 @@
 <!-- @governing: REQ-TECH-PPA-002 @parent: REQ-PRD-PPA-002 -->
+<!-- @decision DEC-PPA-001: L3 lossless corpus shard for Unit 2b (Chapter 2 §§2.5-2.6, End Matter). -->
 # Unit 2b Raw Knowledge Shard: Chapter 2 (§§2.5–2.6, End Matter)
 
 Scope: Chapter 2 (*Data Flow Analysis*), §§2.5–2.6 (*Interprocedural Analysis* and *Shape Analysis*),

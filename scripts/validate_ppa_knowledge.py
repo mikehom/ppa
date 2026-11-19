@@ -388,13 +388,8 @@ def github_slug(heading: str) -> str:
     return re.sub(r"\s", "-", s.strip())
 
 
-def headings_of(path: Path, cache: dict[Path, set[str]]) -> set[str]:
-    if path in cache:
-        return cache[path]
-    text, err = rules.read_text_strict(path)
-    if err is not None or text is None:
-        cache[path] = set()
-        return set()
+def headings_of_text(text: str) -> set[str]:
+    """Return GitHub-style normalized heading anchor slugs for markdown text."""
     slugs: set[str] = set()
     counts: dict[str, int] = {}
     for _, line in rules.strip_fences_and_frontmatter(text):
@@ -405,6 +400,17 @@ def headings_of(path: Path, cache: dict[Path, set[str]]) -> set[str]:
             counts[base] = idx + 1
             slugs.add(base if idx == 0 else f"{base}-{idx}")
             slugs.add(re.sub(r"-+", "-", base).strip("-"))
+    return slugs
+
+
+def headings_of(path: Path, cache: dict[Path, set[str]]) -> set[str]:
+    if path in cache:
+        return cache[path]
+    text, err = rules.read_text_strict(path)
+    if err is not None or text is None:
+        cache[path] = set()
+        return set()
+    slugs = headings_of_text(text)
     cache[path] = slugs
     return slugs
 
@@ -617,7 +623,20 @@ def validate(root: Path, strict_gotchas: bool = False, certify: bool = False) ->
         report.add("inline_citations", check_inline_citations(root, pm))
     report.add("links", check_links(root))
     report.add("issues", check_issues(root))
-    report.add_not_implemented("deferred_conformance_gates", DEFERRED_CHECKS)
+    if certify:
+        import verify_port_conformance as vpc  # noqa: PLC0415
+        vpc_rep, vpc_code = vpc.certify(core_root=root, canonical_only=True)
+        bad_chks = [
+            f"{g}:{c['id']}:{c['failure_code']} {c.get('locations', [])[:2]}"
+            for g in vpc.GATE_ORDER
+            for c in vpc_rep["gates"][g]["checks"]  # type: ignore[index]
+            if c.get("status") != "PASS"
+        ]
+        if vpc_code != 0 and not bad_chks:
+            bad_chks = [f"verdict={vpc_rep.get('verdict')}"]
+        report.add("conformance_gates_canonical", bad_chks)
+    else:
+        report.add_not_implemented("deferred_conformance_gates", DEFERRED_CHECKS)
     return report
 
 
@@ -628,7 +647,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--strict-gotchas", action="store_true",
                     help="fail on unreferenced gotcha-ledger IDs (C1.9 whole-book gate)")
     ap.add_argument("--certify", action="store_true",
-                    help="fail on any NOT_IMPLEMENTED or WARN check")
+                    help="enforce strict gotchas and full C1-C6 canonical conformance gates")
     args = ap.parse_args(argv)
     root = Path(args.root).resolve()
     try:

@@ -170,6 +170,17 @@ def copy_tracker(dst: Path) -> None:
                     ignore=shutil.ignore_patterns("export_manifest.json"))
 
 
+def _reset_open_shards(root: Path, *ids: str) -> list[Path]:
+    out = []
+    for iid in ids:
+        p = root / f"issues/shards/{iid}.md"
+        t = re.sub(r"(?m)^status: .*", "status: open", re.sub(r"(?m)^aligned_models: .*", "aligned_models: []", p.read_text(encoding="utf-8")))
+        t = re.sub(r"(?s)## 3-Model Adversarial Alignment & Rebuttal Log\s*\n.*?(?=\n+## Cross-Referenced)", "## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._", t)
+        p.write_text(re.sub(r"(?s)## Verification Receipts\s*\n.*", "## Verification Receipts\n\n_Pending._\n", t.replace("- [x] ", "- [ ] ")), encoding="utf-8")
+        out.append(p)
+    return out
+
+
 class IssueCtlTests(unittest.TestCase):
     """issues/ schema, controller transitions, graph rules and export."""
 
@@ -196,15 +207,14 @@ class IssueCtlTests(unittest.TestCase):
         with scratch() as tmp:
             root = Path(tmp)
             copy_tracker(root)
-            ok = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01",
-                         "in_progress", "--date", "2026-11-19")
+            _reset_open_shards(root, "ISS-W8-01", "ISS-W8-02")
+            ok = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01", "in_progress", "--date", "2026-11-19")
             self.assertEqual(ok.returncode, 0, ok.stderr)
             text = (root / "issues/shards/ISS-W8-01.md").read_text(encoding="utf-8")
             self.assertIn("status: in_progress", text)
             self.assertIn("updated_at: 2026-11-19", text)
             self.assertTrue((root / "tmp" / "issues.lock").exists())
-            bad = run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                          "ISS-W8-02", "closed")
+            bad = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-02", "closed")
             self.assertEqual(bad.returncode, 1)
             self.assertIn("illegal transition", bad.stderr)
 
@@ -212,9 +222,9 @@ class IssueCtlTests(unittest.TestCase):
         with scratch() as tmp:
             root = Path(tmp)
             copy_tracker(root)
+            path = _reset_open_shards(root, "ISS-W8-01", "ISS-W8-02")[0]
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "set-status",
                                      "ISS-W8-01", "in_progress").returncode, 0)
-            path = root / "issues/shards/ISS-W8-01.md"
             r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01", "aligned")
             self.assertEqual(r.returncode, 1)
             # Duplicate judge IDs must fail.
@@ -238,8 +248,7 @@ class IssueCtlTests(unittest.TestCase):
             r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01",
                         "closed", "--receipt", "tests green", "--date", "2026-11-20")
             self.assertEqual(r.returncode, 0, r.stderr)
-            self.assertEqual(run_cli("issue_ctl.py", "--root", str(root),
-                                     "validate").returncode, 0)
+            self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "validate").returncode, 0)
 
     def mutate_and_collect(self, rel: str, old: str, new: str) -> list[str]:
         with scratch() as tmp:
@@ -252,18 +261,12 @@ class IssueCtlTests(unittest.TestCase):
             return issue_ctl.collect(root)[1]
 
     def test_preamble_comments_tilde_fences_and_unknown_dirs_enforced(self):
-        errs = self.mutate_and_collect("issues/backlog/BKL-001.md",
-                                       "\n## Summary", "\nPreamble line.\n\n## Summary")
+        errs = self.mutate_and_collect("issues/backlog/BKL-001.md", "\n## Summary", "\nPreamble line.\n\n## Summary")
         self.assertTrue(any("preamble" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/backlog/BKL-001.md",
-                                       "status: open", "# comment\nstatus: open")
+        errs = self.mutate_and_collect("issues/backlog/BKL-001.md", "status: open", "# comment\nstatus: open")
         self.assertTrue(any("comments are not permitted" in e for e in errs), errs)
         # Level-2 heading inside a ~~~ fence is ignored rather than splitting sections.
-        errs = self.mutate_and_collect(
-            "issues/backlog/BKL-001.md",
-            "## Summary\n\n",
-            "## Summary\n\n~~~\n## Not A Section\n~~~\n\n",
-        )
+        errs = self.mutate_and_collect("issues/backlog/BKL-001.md", "## Summary\n\n", "## Summary\n\n~~~\n## Not A Section\n~~~\n\n")
         self.assertEqual(errs, [])
         with scratch() as tmp:
             root = Path(tmp)
@@ -273,21 +276,17 @@ class IssueCtlTests(unittest.TestCase):
             self.assertTrue(any("unexpected entry" in e for e in errs), errs)
 
     def test_graph_rules_are_enforced(self):
-        errs = self.mutate_and_collect("issues/shards/ISS-W2-03.md",
-                                       "blocks: [ISS-W2-04]", "blocks: []")
+        errs = self.mutate_and_collect("issues/shards/ISS-W2-03.md", "blocks: [ISS-W2-04]", "blocks: []")
         self.assertTrue(any("ISS-W2-03.blocks lacks ISS-W2-04" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/shards/ISS-W0-01.md",
-                                       "depends_on: []", "depends_on: [ISS-W9-99]")
+        errs = self.mutate_and_collect("issues/shards/ISS-W0-01.md", "depends_on: []", "depends_on: [ISS-W9-99]")
         self.assertTrue(any("unknown reference" in e for e in errs), errs)
         with scratch() as tmp:
             root = Path(tmp)
             copy_tracker(root)
             p1 = root / "issues/shards/ISS-W0-01.md"
             pb = root / "issues/backlog/BKL-001.md"
-            p1.write_text(p1.read_text(encoding="utf-8").replace(
-                "depends_on: []", "depends_on: [BKL-001]"), encoding="utf-8")
-            pb.write_text(pb.read_text(encoding="utf-8").replace(
-                "blocks: []", "blocks: [ISS-W0-01]"), encoding="utf-8")
+            p1.write_text(p1.read_text(encoding="utf-8").replace("depends_on: []", "depends_on: [BKL-001]"), encoding="utf-8")
+            pb.write_text(pb.read_text(encoding="utf-8").replace("blocks: []", "blocks: [ISS-W0-01]"), encoding="utf-8")
             errs = issue_ctl.collect(root)[1]
             self.assertTrue(any("C6.8" in e for e in errs), errs)
 

@@ -134,7 +134,7 @@ and [interprocedural-and-correctness.md](../../ppa-dataflow-and-slicing/referenc
   `(new_π x := e₁ in e₂)^ℓ | (! x)^ℓ | (x := e₀)^ℓ | (e₁ ; e₂)^ℓ` with `me : Var → Pnt` extends acceptability to
   `(Ĉ, ρ̂, Ŝ_∘, Ŝ_•) ⊨_{me} e` (`Ŝ_∘, Ŝ_• : Lab → (Pnt → Val̂)`), challenging readers to formulate rules including
   `[assign]`. Because `π ∈ Pnt` abstracts multiple allocations, default `[assign]` performs `[external: weak update]`,
-  while sound `[external: strong update]` (`"kill"`) requires both
+  while sound `strong update` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134) (`"kill"`) requires both
   per-program-point local stores and abstract reference counts proving singleton allocation (`p. 200` `[133]`, `BKL-061`)
   [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218)
   [PPA Mini Project 3.4, p. 204] (book p. 204; PDF p. 222) [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223).

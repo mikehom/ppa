@@ -802,8 +802,8 @@ recursion (`∀β⃗, [ϱ⃗]`) and lexical effect masking (`Observe`)
      observational state encapsulation (precursor to
      `[external: Launchbury–Peyton Jones Haskell runST :: (∀s. ST s a) -> a]`). Contrasting with §2.6 Shape
      Analysis, §2.6 is *flow-sensitive* over mutable pointer graphs `SG = (S, H, is)` with singleton
-     materialisation and in-place `[external: strong updates]` at exponential cost, whereas §5.4.3 is
-     *type-directed and lexically scoped*, sacrificing per-cell `[external: strong updates]` to obtain modular
+     materialisation and in-place `strong updates` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134) at exponential cost, whereas §5.4.3 is
+     *type-directed and lexically scoped*, sacrificing per-cell `strong updates` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134) to obtain modular
      region-polymorphic summaries and `O(1)` bulk stack deallocation.
 - swe_architecture: Comparing `[175, 176]` (`[external: Tofte–Talpin]`) `letregion` (`[external: MLKit]`) with `[external: Cyclone arenas]`
   and `[external: Rust lifetimes / borrowck]`: both statically attach region/`[external: lifetime]` parameters

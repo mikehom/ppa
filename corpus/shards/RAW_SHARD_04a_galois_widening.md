@@ -1,4 +1,5 @@
 <!-- @governing: REQ-TECH-PPA-002 @parent: REQ-PRD-PPA-002 -->
+<!-- @decision DEC-PPA-001: L3 lossless corpus shard for Unit 4a (Chapter 4 Opening & §§4.1-4.3). -->
 # Unit 4a Raw Knowledge Shard: Chapter 4 Opening & §§4.1–4.3 (Abstract Interpretation Foundations)
 
 Scope: Chapter 4 (*Abstract Interpretation*) opening, §4.1 (*A Mundane Approach to Correctness*: `§§4.1.1–4.1.3`),

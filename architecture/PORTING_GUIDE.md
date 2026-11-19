@@ -27,7 +27,8 @@ Execute these checks on the canonical source repository before writing any targe
 
 ```bash
 python3 -B scripts/check_portability_hygiene.py .
-python3 -B scripts/validate_ppa_knowledge.py --certify
+python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas
+python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .
 ```
 
 Record the verified canonical revision identifier (`canonical_revision`, commit hash or release tag)
@@ -133,11 +134,12 @@ byte delta (`sha256_after == sha256_before`, `0` added bytes per `C2.6`; absent 
    ```
 2. **Channel mapping (`R0`-`R3`)**:
    - `R0`: `CLAUDE.md`, `.claude/CLAUDE.md`, `~/.claude/CLAUDE.md` remain untouched (`0` added bytes).
-   - `R1`: Place `knowledge/ambient-context/ppa-*.md` either into `.claude/rules/ppa-<slug>.md` (only
-     when the target runtime supports conditional path/description matching without turn-0 injection)
-     OR apply `ARCHITECTURE.md` §4.4 degradation (`R1 -> R2`) by stripping frontmatter (`C3.6`) and
-     placing them under `.claude/skills/ppa-program-analysis/references/ambient-<slug>.md` linked from
-     the router table (keeping router `< 100` lines, `C3.1`).
+   - `R1`: Place `knowledge/ambient-context/ppa-*.md` either into `.claude/ppa-ambient/ppa-*.md` (default path in
+     `adapters/claude_code_adapter.py`) or `.claude/rules/ppa-<slug>.md` (only when the target runtime supports
+     conditional path/description matching without turn-0 injection) OR apply `ARCHITECTURE.md` §4.4 degradation
+     (`R1 -> R2`) by stripping frontmatter (`C3.6`) and placing them under
+     `.claude/skills/ppa-program-analysis/references/ambient-<slug>.md` linked from the router table
+     (keeping router `< 100` lines, `C3.1`).
    - `R2`: Losslessly mirror all 7 canonical skill packages into `.claude/skills/<name>/`.
    - `R3`: Reference `.claude/core/corpus/RAW_KNOWLEDGE.md` and `.claude/core/ontology/concept_graph.json`
      by anchor or line span; never instruct models to load entire `L3` files.
@@ -148,30 +150,34 @@ byte delta (`sha256_after == sha256_before`, `0` added bytes per `C2.6`; absent 
 
 ### 3.2 Target 2: Gemini CLI (`~/.gemini/`) and Knowledge Wiki + NotebookLM Sync
 
-1. **Local Skills (`~/.gemini/skills-local/` or project `.gemini/skills-local/`)**:
-   - Install all 7 canonical skill directories losslessly into `~/.gemini/skills-local/<name>/`
-     (retaining `SKILL.md`, `references/*.md`, and `evals/cases.yaml`).
+1. **Local Skills (`skills-local/` or `~/.gemini/skills-local/`)**:
+   - Install all 7 canonical skill directories losslessly into `skills-local/<name>/` (default relative
+     layout in `adapters/gemini_harness_adapter.py`; `--skills-dir` overrides for `~/.gemini/skills-local/<name>/`),
+     retaining `SKILL.md`, `references/*.md`, and `evals/cases.yaml`.
    - Keep `~/.gemini/GEMINI.md`, project `GEMINI.md`, `~/.gemini/rules/*.md`, and any read-only
      upstream symlinked `SKILL.md` targets untouched (`0` bytes added).
    - Store any operator-approved post-port runtime refinements exclusively inside
      `~/.gemini/skill-overlays/<name>.md` as non-canonical deltas—never edit canonical files in place.
 2. **Ambient Semantic Context (`R1`)**:
    - Install `knowledge/ambient-context/ppa-*.md` into semantic-retrieval topic storage
-     (`~/.gemini/topics/ppa-<slug>.md`) when semantic topic matching is active; otherwise place them
-     with frontmatter removed under `~/.gemini/skills-local/ppa-program-analysis/references/ambient/`
+     (`memory/topics/ppa-*.md` by default in `adapters/gemini_harness_adapter.py`, or `--memory-dir ~/.gemini/topics`)
+     when semantic topic matching is active; otherwise place them
+     with frontmatter removed under `skills-local/ppa-program-analysis/references/ambient/`
      and link them from the router (`R1 -> R2`, `C3.1`).
 3. **Knowledge Wiki + NotebookLM Transforming Port (`<wiki_root>/`)**:
-   - **Concept pages (`L1`/`L3`)**: Emit `<wiki_root>/pages/concepts/<concept_id>.md` for every node in
+   - **Concept & skill pages (`L0`/`L1`/`L3`)**: `adapters/wiki_sync_adapter.py` emits transformed skill/ambient
+     pages (`pages/concepts/ppa-*.md`) plus one concept card (`pages/concepts/ppa-node-<slug>.md`) per node in
      `ontology/concept_graph.json`, preserving `formal_summary`, all 4 `projections` (`P1`-`P5`, `[external]`
-     attribution tags intact), `conditions` bullets, `U1`-`U10` edges (`corresponds_to` `basis`),
-     `gotcha` pointers, and all `N8` citations (`C1.8`).
-   - **Source digests (`L3`)**: Emit `<wiki_root>/pages/sources/ppa-<unit>.md` per extraction unit (`u0`..`u6`)
-     directly from verified `corpus/RAW_KNOWLEDGE.md` text with `(book p. X; PDF p. Y)` coordinates.
-   - **Navigation & Chronological Log (`L0`)**: Update `<wiki_root>/pages/index.md` (`<= 250` lines
-     per topic card) and append one chronological ingest entry to `<wiki_root>/pages/log.md` (`C2.6`
-     untouched on vault templates).
+     attribution tags intact), `conditions` bullets, `issue_refs`, `U1`-`U10` edges (`corresponds_to` `basis`),
+     and all `N8` citations (`C1.8`).
+   - **Source digests (`L3`)**: Emit chunked `<= 450L` reference/shard pages (`pages/sources/ppa-ref-*.md` and
+     `pages/sources/ppa-shard-<unit>-part<NN>.md`) directly from canonical references and verified `corpus/shards/RAW_SHARD_*.md`
+     text with `(book p. X; PDF p. Y)` coordinates (plus lossless mirrors in `core/`).
+   - **Navigation & Chronological Log (`L0`)**: Emit `<wiki_root>/pages/index.md` (`<= 250` lines), hierarchical
+     sub-index cards (`pages/concepts/ppa-index-*.md`, `pages/sources/ppa-index-sources.md`, each `<= 250L`) reaching
+     `100%` of emitted `pages/` files without orphans (`C3.9`), and `<wiki_root>/pages/log.md` (`C2.6` untouched on vault templates).
    - **NotebookLM sync**: Package exported source-unit Markdown files together with
-     `ontology/notation_index.md` into the notebook ingestion batch so mathematical formulas, arrows,
+     `ontology/notation_index.md` into `notebooklm_sources_bundle/` so mathematical formulas, arrows,
      and subscripts stay faithful to visual inspection rather than degraded PDF OCR (`ARCHITECTURE.md` §7.4).
 
 ### 3.3 Target 3: Codex / Standard `AGENTS.md` + `.agents/skills/` Harnesses
@@ -179,20 +185,20 @@ byte delta (`sha256_after == sha256_before`, `0` added bytes per `C2.6`; absent 
 1. **Target filesystem layout**:
    ```text
    <port_root>/.agents/
+     ppa-ambient/ppa-*.md              (default adapters/agents_md_adapter.py R1 path)
      skills/
        ppa-program-analysis/{SKILL.md, references/*.md, evals/cases.yaml}
-       ... (all 7 canonical skill directories)
-       ppa-program-analysis/references/ambient/ppa-*.md
+       ... (all 7 canonical skill directories; optional R1->R2 references/ambient/)
      core/
-       ontology/{concept_graph.json, concept_graph.schema.json, notation_index.md}
-       corpus/{RAW_KNOWLEDGE.md, pdf_page_map.json}
+       ontology/{concept_graph.json, concept_graph.schema.json, cross_paradigm_matrix.md, notation_index.md}
+       corpus/{RAW_KNOWLEDGE.md, pdf_page_map.json, shards/RAW_SHARD_*.md}
    ```
 2. **Channel mapping (`R0`-`R3`)**:
    - `R0`: Root `AGENTS.md` and every pre-existing nested `AGENTS.md` retain identical `sha256_before`
      bytes (`0` added bytes).
-   - `R1 -> R2` degradation (`ARCHITECTURE.md` §4.4): Standard `AGENTS.md` harnesses discover skills under
-     `.agents/skills/` rather than floating ambient directories. Strip YAML frontmatter from each
-     `knowledge/ambient-context/ppa-*.md` (`C3.6`), install into
+   - `R1` default & `R1 -> R2` fallback (`ARCHITECTURE.md` §4.4): `adapters/agents_md_adapter.py` places
+     `knowledge/ambient-context/ppa-*.md` into `.agents/ppa-ambient/ppa-*.md` by default; where a runtime
+     only discovers `.agents/skills/`, strip YAML frontmatter (`C3.6`), install into
      `.agents/skills/ppa-program-analysis/references/ambient/`, link all 7 under `# Orientation Guides`
      inside `.agents/skills/ppa-program-analysis/SKILL.md` (confirming line count stays `50-99`, `C3.1`),
      and record this step as `transforming` in `port_manifest.json` (`C1.8`).
@@ -274,7 +280,7 @@ Every port MUST emit `<port_root>/port_manifest.json` conforming to `CONFORMANCE
      "canonical_revision": "<commit-sha>",
      "mappings": [
        {"canonical": "knowledge/skills/ppa-program-analysis/SKILL.md", "port": [".cursor/rules/ppa-router.mdc"], "kind": "transforming"},
-       {"canonical": "knowledge/skills/ppa-fixedpoint-solvers/references/ch6_worklist_rpo_algorithms.md", "port": [".cursor/ppa/skills/ppa-fixedpoint-solvers/references/ch6_worklist_rpo_algorithms.md"], "kind": "lossless"}
+       {"canonical": "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md", "port": [".cursor/ppa/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md"], "kind": "lossless"}
      ],
      "always_on_surfaces": [
        {"path": ".cursorrules", "sha256_before": null}
@@ -316,7 +322,7 @@ hygiene checks run before evidence serialization:
 
 ```bash
 python3 -B scripts/check_portability_hygiene.py <port_root>
-python3 -B scripts/validate_ppa_knowledge.py --certify
+python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas
 python3 -B scripts/verify_port_conformance.py --core . --port <port_root> --manifest <port_root>/port_manifest.json
 ```
 

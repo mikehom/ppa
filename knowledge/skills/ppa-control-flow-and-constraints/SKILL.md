@@ -159,7 +159,7 @@ mutable references ([polyvariant-kcfa-cpa-and-dfa.md](./references/polyvariant-k
      `Mini Project 3.4`, `pp. 204-205`), `π ∈ Pnt` abstracts unbounded heap cells per allocation site, so
      `[assign]` **must perform weak update** (`[external: weak update]`) merging new closures into `Ŝ_•(ℓ)(p)`
      while copying unaffected sites `p'`, unless **both** per-program-point local abstract stores and abstract
-     reference counts prove singleton allocation (`p. 200` `[133]`, `[external: strong update]`, `BKL-061`).
+     reference counts prove singleton allocation (`p. 200` `[133]`, `strong update` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134), `BKL-061`).
 
 ## 5. Procedure 4: Select Polyvariant Context Sensitivity — 0-CFA vs Uniform k-CFA vs Polynomial k-CFA vs CPA (Section 3.6)
 
@@ -267,5 +267,5 @@ When monovariant `0-CFA` smears closures across callers (`Example 3.32`), select
 - `BKL-058`: `§3.6.2` `p. 197` `CPA` `[app]` omits `)` before `^ℓ` and `, δ_b` in `ρ̂(x_i, δ_b)`, `p. 198` writes `Δ = Term`, and empty args collapse to `∅`.
 - `BKL-059`: Pure `0-CFA` collapses shadowed variable names (`p. 199`); set-constraint `¬S` and variable-LHS guards break monotonicity (`p. 201`).
 - `BKL-060`: `Mini Project 3.1` (`p. 202`) prose line 10 writes `⊨_s` for `⊨'_s`; `Mini Project 3.2` (`p. 203`) embeds `ℓ_i` in `Val̂` breaking `Fact 3.11`.
-- `BKL-061`: `Mini Project 3.4` (`pp. 204-205`) leaves `[assign]` acceptability unprinted; singleton strong kill (`[external: strong update]`) needs local stores + ref counts (`p. 200` `[133]`).
+- `BKL-061`: `Mini Project 3.4` (`pp. 204-205`) leaves `[assign]` acceptability unprinted; singleton strong kill (`strong update` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134)) needs local stores + ref counts (`p. 200` `[133]`).
 - `BKL-062`: `Exercise 3.3` (`"cannot produced"`), `Exercise 3.4` (`(3.8)` non-upward-closure), `Exercise 3.16` (`f(x)= e`, `"defined in D"`), `Exercise 3.17` (`"Cartesian Production"`).

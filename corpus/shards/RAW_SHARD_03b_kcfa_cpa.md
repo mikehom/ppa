@@ -731,7 +731,7 @@ speedups, and lazy conditional-constraint solving
   - *Object-oriented languages*: track *objects* (classes/allocations) instead of functions (`[3, 124, 137]`,
     or Chapter 2-style data-flow `[178, 139]`). Advanced OO analyses combine `k`-CFA-like context with an
     *abstract store* (`[133]`): achieving precision requires **per-program-point local abstract stores** plus
-    **abstract reference counts** to enable strong updates (`"kill"` components as in Chapter 2, `[external: strong update]`).
+    **abstract reference counts** to enable strong updates (`"kill"` components as in Chapter 2, [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134)).
   - *Concurrent & logic languages*: concurrent functional languages with dynamic processes and shared
     locations/channels appear in `[78, 57, 60, 22, 23]`; set-based analysis originated in logic programming
     `[72, 73]`.
@@ -785,9 +785,9 @@ speedups, and lazy conditional-constraint solving
   α-uniquify bound variable IDs first (`p. 199`, `Exercise 3.7`); if a polymorphic hub (`id`, `map`, event
   bus) still causes `O(M²)` cross-edge saturation, upgrading to `1-CFA` or `CPA` often *reduces* wall-clock
   runtime (`[80]`) [PPA Chapter 3 Concluding Remarks, p. 199] (book p. 199; PDF p. 217); [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219).
-- cyber: Sound heap taint / capability revocation (`"strong kill"` on `x.f := clean`, `p. 200` `[133]`, `[external: taint / capability / strong update]`)
+- cyber: Sound heap taint / capability revocation (`"strong kill"` [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134) on `x.f := clean`, `p. 200` `[133]`, `[external: taint / capability]`)
   requires **both** per-point local abstract stores and singleton reference-count / must-not-alias proofs;
-  performing strong kills `[external]` on a summary allocation site `π` unsoundly erases taint `[external]` on aliased heap objects
+  performing strong kills on a summary allocation site `π` unsoundly erases taint `[external]` on aliased heap objects
   [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218).
 
 ---
@@ -899,7 +899,7 @@ algebraic data structures (`3.2`), an SML/Haskell prototype (`3.3`), and flow-se
 - cyber: Constructor-origin tuples `C(ℓ₁, ···, ℓ_n)` (`Mini Project 3.2`) track field-sensitive provenance of
   nested deserialized payloads (`CWE-502` [external]), while `Ŝ_∘, Ŝ_• : Lab → (Pnt → Val̂)` (`Mini Project 3.4`)
   tracks flow-sensitive heap mutation across closures (defaulting to weak updates `⊔` `[external]` unless singleton
-  reference counts justify strong kills `[external: weak/strong update]`) [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221);
+  reference counts justify strong kills [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134)) [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221);
   [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223).
 
 ---
@@ -1100,7 +1100,7 @@ schemes, and open/recursive `CPA` [PPA Exercise 3.1, p. 205] (book p. 205; PDF p
 - G-U3b-24: `[9]`'s (`[external: Aiken et al.]`) two-step **lazy** conditional-constraint solver (`pp. 201–202`, expanding conditional rules dynamically as guards become non-empty) avoids `Tables 3.6–3.7`'s eager `Term_⋆` pre-instantiation overhead in practice. [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219); [PPA Chapter 3 Concluding Remarks, p. 202] (book p. 202; PDF p. 220)
 - G-U3b-25: In `Mini Project 3.1` (`Reach = Lab → 𝒫({on})`, `(Ĉ, ρ̂, R̂) ⊨'_s e`, misprinted `⊨_s` on line 10), `⊨ e_⋆` implies `∃R̂ : ⊨'_s e_⋆` *only* when labels are unique: sharing body label `ℓ₀` between a called and an uncalled abstraction forces `{on} ⊆ R̂(ℓ₀)` to constrain the dead body `[derived]`. [PPA Mini Project 3.1, p. 202] (book p. 202; PDF p. 220)
 - G-U3b-26: Embedding labels inside `Val̂` — either via `Val̂ = 𝒫(Exp)` (`Exercise 3.6`) or via constructor field labels `C(ℓ₁, ···, ℓ_n)` (`Mini Project 3.2`) — breaks `Fact 3.11` and `Table 3.1` subject reduction because small-step SOS rewrites outer expression labels during evaluation. [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221); [PPA Exercise 3.6, p. 206] (book p. 206; PDF p. 224); [PPA Exercise 3.6, p. 207] (book p. 207; PDF p. 225)
-- G-U3b-27: Flow-sensitive imperative heap stores `Ŝ_∘, Ŝ_• : Lab → (Pnt → Val̂)` (`Mini Project 3.4`) perform weak updates by default (`[external: weak update]`); sound **strong updates (`"kill"`, `[external: strong update]`)** on heap/object fields require both per-point local stores and abstract reference counts proving singleton allocation (`p. 200` `[133]`). [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218); [PPA Mini Project 3.4, p. 204] (book p. 204; PDF p. 222); [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223)
+- G-U3b-27: Flow-sensitive imperative heap stores `Ŝ_∘, Ŝ_• : Lab → (Pnt → Val̂)` (`Mini Project 3.4`) perform weak updates by default (`[external: weak update]`); sound **strong updates (`"kill"`, [PPA §2.6.3, p. 115] (book p. 115; PDF p. 134))** on heap/object fields require both per-point local stores and abstract reference counts proving singleton allocation (`p. 200` `[133]`). [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218); [PPA Mini Project 3.4, p. 204] (book p. 204; PDF p. 222); [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223)
 - G-U3b-28: Declarative acceptability `(Ĉ, ρ̂) ⊨ e` (`(3.8)`) is **not upward-closed** in `⊑` (`(3.8) ⇒ (3.9)` strictly in `Exercise 3.4`, because adding spurious closures to `Ĉ(ℓ₁)` triggers new `[app]` body obligations), and equational constraints `𝒞_⋆^=⟦e_⋆⟧` (`Exercise 3.13`) match `𝒞_⋆⟦e_⋆⟧` on the **least** solution only. [PPA Exercise 3.4, p. 206] (book p. 206; PDF p. 224); [PPA Exercise 3.13, p. 208] (book p. 208; PDF p. 226)
 - G-U3b-29: Standard `k`-CFA (`Table 3.10`) flushes outer callers from `⌈δ, ℓ⌉_k` after `k` self-recursive steps (`[1, 2, 2, 1, 1] ↦ [1, 1]`), whereas `Exercise 3.15`'s stuttering compression (`[1, 2, 2, 1, 1] ↦ [2, 1]`) preserves caller context across unbounded direct recursion. [PPA Exercise 3.15, p. 208] (book p. 208; PDF p. 226)
 - G-U3b-30: The `pdftotext` OCR layer of `ppa.pdf` erases the entire `[op]` body in `Table 3.9` (`p. 188`), both displays in `Example 3.28` (`p. 186`), both numbered displays `(3.8)` and `(3.9)` in `Exercise 3.4` (`p. 206`), and grammar/judgement displays in `Mini Projects 3.2 & 3.4` (`pp. 203–205`). [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206); [PPA Exercise 3.4, p. 206] (book p. 206; PDF p. 224)

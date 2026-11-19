@@ -5583,7 +5583,7 @@
     "cs_theory": "Canonical variable-membership abstraction with instrumentation predicate is (TVLA [150] precursor) [external].",
     "swe_architecture": "Check all 5 invariants (+ x∈X ⇒ (x,n_X)∈S) via automated property assertion after every transfer.",
     "practical_debugging": "Absent variable edge means non-pointer, nil, or undef — never assume proven non-nil without a separate domain.",
-    "cyber": "Invariants 1–3 prove unique concrete cell identity for X ≠ ∅, licensing sound strong updates [external]."
+    "cyber": "Invariants 1–3 prove unique concrete cell identity for X ≠ ∅, licensing sound strong updates."
    },
    "related_edges": [
     {
@@ -7516,13 +7516,13 @@
    "formal_summary": "Extends FUN CFA to algebraic constructors C(e_1, ..., e_n) / case e_0 of C(x_1, ..., x_n) => e_1 or x => e_2 via flat finite Val_hat = P(Term union {C(l_1, ..., l_n)}) (Mini Project 3.2) and to ML mutable references new_pi x := e_1 in e_2, !x, x := e_0, e_1 ; e_2 with me : Var -> Pnt and flow-sensitive stores S_circ, S_bullet : Lab -> (Pnt -> Val_hat) ((C_hat, rho_hat, S_circ, S_bullet) |=_{me} e, Mini Project 3.4).",
    "conditions": [
     "Embedding expression labels l_i inside flat C(l_1, ..., l_n) breaks Fact 3.11 and Theorem 3.10 once SOS rewrites outer labels (Mini Project 3.2, p. 203, BKL-060).",
-    "Mini Project 3.4 (pp. 204-205) leaves exact [assign] clauses unprinted as a design exercise; abstract allocation sites pi in Pnt force weak updates [external] by default, whereas sound strong updates (\"kill\", [external]) require per-program-point local stores plus abstract reference counts (p. 200 [133], BKL-061)."
+    "Mini Project 3.4 (pp. 204-205) leaves exact [assign] clauses unprinted as a design exercise; abstract allocation sites pi in Pnt force weak updates [external] by default, whereas sound strong updates (\"kill\") require per-program-point local stores plus abstract reference counts (p. 200 [133], BKL-061)."
    ],
    "projections": {
     "cs_theory": "Couples flow-insensitive environment bindings rho_hat with flow-sensitive per-label store maps S_circ/S_bullet.",
     "swe_architecture": "Index heap cells by allocation label pi in Pnt and propagate weak store joins across dynamic call edges.",
-    "practical_debugging": "Lost prior heap pointees after := indicate an unsound strong update ([external]) on summary site pi or missing preservation of unaffected cells.",
-    "cyber": "Tracks closures stored inside heap structs/callbacks (function-pointer fields) needed for heap-indirect call recovery, gating capability revocation ([external: strong update]) on singleton reference proofs."
+    "practical_debugging": "Lost prior heap pointees after := indicate an unsound strong update on summary site pi or missing preservation of unaffected cells.",
+    "cyber": "Tracks closures stored inside heap structs/callbacks (function-pointer fields) needed for heap-indirect call recovery, gating capability revocation ([external: capability revocation]) via strong update on singleton reference proofs."
    },
    "related_edges": [
     {

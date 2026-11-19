@@ -76,6 +76,7 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 | 2026-11-18 | `DEC-PPA-006` | `ppa-v1` | Hermetic Wave 0 Test Suite | Real scratch fixtures, independent front-matter inventories (List of Tables/Figures, TOC, end-matter) as oracles, no mocks | `tests/test_wave0_foundation.py` | Active |
 | 2026-11-18 | `DEC-PPA-007` | `ppa-v1` | Shared Artifact-Shape Rules Module | Single implementation of `CONFORMANCE_SPEC.md` `N1`–`N3`, `N8` (`C1.10`–`C1.11`), `C1.9` shape & coverage, `C3.1`–`C3.6`, `C3.10`, `C3.12`, `C4.1`–`C4.2` | `scripts/ppa_artifact_rules.py` | Active |
 | 2026-11-18 | `DEC-PPA-008` | `ppa-v1` | Shared Appendix Reference Ownership | Router-owned `knowledge/skills/ppa-program-analysis/references/` hosts all three shared foundation `L1` references (`appendix-a`, `appendix-b`, and `appendix-c`, with `appendix-c-graphs-dfsf-and-rpo.md` promoted at Gate #1 so Ch 2/3/5/6 skills link cleanly under `C3.8`/`C3.9`) | `knowledge/skills/ppa-program-analysis/references/` | Active |
+| 2026-11-19 | `DEC-PPA-009` | `ppa-v1` | Portable Target Harness Adapters & Binary C1–C6 Conformance Engine | Stdlib compilers for Claude Code, Gemini CLI, Codex/`AGENTS.md`, Cursor `.mdc`, and Knowledge Wiki/NotebookLM preserving `R0 = 0` bytes, LF normalisation, and full 55-check `verify_port_conformance.py` certification | `adapters/`, `scripts/verify_port_conformance.py` | Active |
 
 ---
 
@@ -83,7 +84,7 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ### Initiative: Exhaustive PPA Knowledge Extraction, 3-Model Enrichment & Portable Harness Suite (`INIT-2026-11-18-ppa-v1`)
 
-- **Status:** active
+- **Status:** completed
 - **Dominant Constraint:** reliability & maintainability
 - **Requirements:** `REQ-PRD-PPA-001`..`006` / `REQ-TECH-PPA-001`..`006`
 
@@ -142,16 +143,16 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 7: Cross-Harness Porting Documentation, Reference Adapters & Conformance Suite
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W7-1` (`ISS-W7-01`)**: Author `README.md`, `architecture/PORTING_GUIDE.md`, `architecture/MODEL_ADAPTATION_GUIDE.md`, 5 target harness adapters (`adapters/*.py`), `scripts/verify_port_conformance.py`, and `tests/test_adapters_and_conformance.py`.
+- [x] **`W7-1` (`ISS-W7-01`)**: Author `README.md`, `architecture/PORTING_GUIDE.md`, `architecture/MODEL_ADAPTATION_GUIDE.md`, 5 target harness adapters (`adapters/*.py`), `scripts/verify_port_conformance.py`, and `tests/test_adapters_and_conformance.py` (`CONFORMANT` exit `0` across all 5 default targets; Gate #11 `3/3 [ALIGNED gate11-v2]` — CLOSED).
 
 ## Phase 8: Whole-Book Full Audit, Local Deployment & Final 3-Model Gate
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W8-1` (`ISS-W8-01`)**: Whole-Book Audit, Global Altitude Refactoring & GitHub Issue Export Manifest (`issues/export_manifest.json`).
-- [ ] **`W8-2` (`ISS-W8-02`)**: Gate #11 (Whole-Book 3-Model Adversarial Loop) + Local Harness & Knowledge Wiki Deployment + Live Conformance Verification.
+- [x] **`W8-1` (`ISS-W8-01`)**: Whole-Book Audit, Global Altitude Refactoring (`REF-008`) & GitHub Issue Export Manifest (`issues/export_manifest.json`) — CLOSED (`3/3 [ALIGNED gate11-v2]`).
+- [x] **`W8-2` (`ISS-W8-02`)**: Gate #11 (`CLOSED 3/3 [ALIGNED gate11-v2]`, `#295`, `#296`, `#297`) + Non-Destructive Local Harness & Knowledge Wiki Deployment + Live `55/55` Conformance Verification (`EPIC-001` `CLOSED`).
 
 ---
 
@@ -159,6 +160,7 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 | Initiative | Period | Waves | P0s | Key DECs | Archive Path |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| `INIT-2026-11-18-ppa-v1` (`EPIC-001` — CLOSED) | 2026-11-18..2026-11-19 | W0–W8 (`ISS-W0-01`..`ISS-W8-02`, `REF-001`..`REF-008`) | `P0` Closed (`Gate #0`..`Gate #11`) | `DEC-PPA-001`..`DEC-PPA-009` | `issues/epics/EPIC-001.md` |
 
 ---
 
