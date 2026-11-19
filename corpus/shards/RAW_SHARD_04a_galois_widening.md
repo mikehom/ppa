@@ -811,7 +811,7 @@ Source: [PPA §4.3.2, p. 246] (book p. 246; PDF p. 263), [PPA Example 4.32, p. 2
   ```
 - **`Example 4.32` (`p. 246`)**: `signparity[Z] = {(-, odd), (-, even), (0, even), (+, odd), (+, even)}`
   yields the `32`-element Galois insertion `(𝒫(Z), α_{signparity}, γ_{signparity}, 𝒫(signparity[Z]))`. ■
-- **`[U4a:4.3.2-e]` Unit 4a/4b Boundary (`book p. 246; PDF p. 263`)**: directly below `Example 4.32`, section
+- **`[U4a:4.3.2-e]` Unit 4a/4b Boundary (book p. 246; PDF p. 263)**: directly below `Example 4.32`, section
   `4.4 Systematic Design of Galois Connections` begins (`Sequential composition.`, continuing to
   `Example 4.33` on `p. 247` in Unit 4b) [PPA §4.4, p. 246] (book p. 246; PDF p. 263).
 

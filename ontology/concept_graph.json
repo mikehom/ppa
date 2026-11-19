@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "description": "Canonical L0-L3 concept graph for Principles of Program Analysis across Appendices A-C, Chapters 1-4 (Units U0, U1, U2a, U2b, U3a, U3b, U4a, U4b).",
+ "description": "Canonical L0-L3 concept graph for Principles of Program Analysis across Appendices A-C, Chapters 1-6, and Cross-Book Security Projections (Units U0, U1, U2a, U2b, U3a, U3b, U4a, U4b, U5a, U5b, U6, Cyber).",
  "concepts": [
   {
    "id": "ppa.order.partial-order",
@@ -345,6 +345,11 @@
     {
      "target_id": "ppa.order.lemma-a9",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.solvers.fastness-closure",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -421,6 +426,11 @@
     {
      "target_id": "ppa.order.function-properties",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.solvers.fastness-closure",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -694,6 +704,41 @@
     {
      "target_id": "ppa.tes.monotone-and-unit-types",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.flow-variable-constraints",
+     "relation": "prerequisite_of",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.solvers.worklist-widening",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U7",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "Exercises",
+        "book_page": 391,
+        "pdf_page": 407,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "A",
+        "section": "A.3",
+        "book_page": 400,
+        "pdf_page": 416,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Pointwise widening on finite X -> L replaces the Ascending Chain Condition on L to guarantee finite worklist stabilisation."
+      ],
+      "differs": [
+       "ACC guarantees exact convergence to mu_S = lfp(F_S) via joins, whereas pointwise widening terminates at a sound reductive upper bound mu_S <= Analysis."
+      ]
+     }
     }
    ],
    "artifact_refs": [
@@ -872,6 +917,16 @@
     {
      "target_id": "ppa.tes.inference-soundness-completeness",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "prerequisite_of",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1041,6 +1096,16 @@
     {
      "target_id": "ppa.ai.best-induced-transformer",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "prerequisite_of",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1534,6 +1599,16 @@
     {
      "target_id": "ppa.tes.communication-behaviour-analysis",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "prerequisite_of",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1721,6 +1796,11 @@
     {
      "target_id": "ppa.graphs.strong-components",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.scc-worklist",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1764,6 +1844,41 @@
     {
      "target_id": "ppa.graphs.digraph-paths",
      "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.scc-worklist",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.3",
+        "book_page": 381,
+        "pdf_page": 397,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.3",
+        "book_page": 384,
+        "pdf_page": 400,
+        "table_or_fig": "Table 6.6"
+       }
+      ],
+      "conditions": [
+       "Strong components (Fact C.3) and acyclic reduced graph (Lemma C.5) ordered via reverse postorder (Corollary C.11) partition G_S for Table 6.6."
+      ],
+      "differs": [
+       "Appendix C defines strong components and reduced DAGs structurally, whereas §6.3 layers local RPO (srPostorder) and 3-queue (W.c, W.pc, W.pf) barrier scheduling on top."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1811,6 +1926,36 @@
     {
      "target_id": "ppa.graphs.forests-trees",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 375,
+        "pdf_page": 391,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "C",
+        "section": "C.1",
+        "book_page": 419,
+        "pdf_page": 434,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Finite constraint digraph G_S admits at least one minimal handle H_S reaching every constraint without adding dummy roots."
+      ],
+      "differs": [
+       "Appendix C defines handles abstractly on arbitrary digraphs (allowing dummy roots), whereas §6.2 picks a minimal handle of constraint nodes directly to avoid dummy constraints."
+      ]
+     }
     }
    ],
    "artifact_refs": [
@@ -1904,6 +2049,11 @@
     {
      "target_id": "ppa.fixpoint.fixed-points",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "implemented_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -1966,6 +2116,11 @@
     {
      "target_id": "ppa.notation.index",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2076,6 +2231,41 @@
     {
      "target_id": "ppa.solvers.worklist-mfp",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 375,
+        "pdf_page": 391,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 376,
+        "pdf_page": 392,
+        "table_or_fig": "Table 6.3"
+       }
+      ],
+      "conditions": [
+       "rPostorder computed by Table C.1 on (G_S, H_S) provides the priority key for sort_rPostorder(W.p)."
+      ],
+      "differs": [
+       "Appendix C defines reverse postorder statically on DFSFs, whereas §6.2 operationalises it across dynamic two-buffer (W.c, W.p) worklist refills."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2112,6 +2302,41 @@
     {
      "target_id": "ppa.graphs.reducibility",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.round-robin-loop-bound",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2.1",
+        "book_page": 380,
+        "pdf_page": 396,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "C",
+        "section": "C.2",
+        "book_page": 424,
+        "pdf_page": 439,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "d(G_S, T) is the maximum number of back edges of DFSF T on any cycle-free path of G_S, equalling maximal while-loop nesting depth on reducible WHILE graphs."
+      ],
+      "differs": [
+       "Appendix C defines d(G, T) purely graph-theoretically, whereas Lemma 6.12 binds d(G_S, T) to Bit Vector Round Robin iteration counts (d(G_S, T) + 3)."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2176,6 +2401,7 @@
     "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
    ],
    "issue_refs": [
+    "BKL-010",
     "BKL-018"
    ]
   },
@@ -2223,6 +2449,11 @@
     {
      "target_id": "ppa.tes.communication-behaviour-analysis",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2323,6 +2554,11 @@
     {
      "target_id": "ppa.fixpoint.fixed-points",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.index.subject-index",
+     "relation": "contrasts_with",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2371,6 +2607,16 @@
     {
      "target_id": "ppa.ai.mundane-correctness-and-representations",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "prerequisite_of",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.fn-fp-triage-and-oracles",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2837,6 +3083,11 @@
     {
      "target_id": "ppa.tes.annotated-cfa-types",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -2892,6 +3143,11 @@
     {
      "target_id": "ppa.ai.generalised-monotone-framework",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3009,6 +3265,11 @@
        "Section 1.5 induces Reaching Definitions over finite/infinite traces on WHILE directly, whereas Section 4.5.2 lifts arbitrary complete lattices without ACC over node-indexed generalised Monotone Frameworks (strictly coarser than edge-filtered collecting semantics on branch tests, Remark p. 266)."
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3068,6 +3329,11 @@
     {
      "target_id": "ppa.tes.monotone-and-unit-types",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3131,6 +3397,11 @@
     {
      "target_id": "ppa.tes.annotated-cfa-types",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3192,6 +3463,16 @@
     {
      "target_id": "ppa.tes.side-effect-analysis",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.region-escape-lifetime-firewall",
+     "relation": "refined_by",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.exception-and-concurrent-protocol-safety",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3247,6 +3528,16 @@
     {
      "target_id": "ppa.cfa.cubic-worklist-solver",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "specializes",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3532,6 +3823,11 @@
     {
      "target_id": "ppa.dfa.monotone-framework",
      "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3609,6 +3905,16 @@
     {
      "target_id": "ppa.dfa.rd-instrumented-correctness",
      "relation": "proved_by"
+    },
+    {
+     "target_id": "ppa.solvers.flow-variable-constraints",
+     "relation": "specializes",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3756,6 +4062,11 @@
     {
      "target_id": "ppa.dfa.ud-du-chains",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -3835,6 +4146,11 @@
     {
      "target_id": "ppa.transform.constant-folding",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "related_to",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4265,6 +4581,11 @@
     {
      "target_id": "ppa.ai.generalised-monotone-framework",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.solvers.round-robin-loop-bound",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4434,6 +4755,47 @@
     {
      "target_id": "ppa.cfa.cubic-worklist-solver",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U2",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 372,
+        "pdf_page": 388,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 373,
+        "pdf_page": 389,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone Framework over finite flow graph F with ACC complete lattice L and unary edge transfers Analysis[l'] >= f_l(Analysis[l]) (M = 1).",
+       "Table 6.1 instantiated with LIFO stack (Table 6.2) recovers O(h * b) work and O(b^2) for Reaching Definitions (Example 6.5)."
+      ],
+      "differs": [
+       "Table 2.8 stores CFG edges (l, l') on W and seeds extremal labels E to iota directly, whereas Table 6.1 stores general M-variable constraints (x >= t) with explicit infl[x] index."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.solvers.lifo-fifo-worklist",
+     "relation": "related_to",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "refined_by",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4517,6 +4879,11 @@
     {
      "target_id": "ppa.interproc.valid-paths-mvp",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.cyber.fn-fp-triage-and-oracles",
+     "relation": "prerequisite_of",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4671,6 +5038,11 @@
     {
      "target_id": "ppa.interproc.embellished-framework",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4863,6 +5235,11 @@
        "Section 2.5.4 embellishes first-order data states over static call sites, whereas Uniform k-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retains CEnv = Var -> Delta inside Val_hat = P(Term x CEnv), causing exponential worst-case complexity ([external: DEXPTIME]) for k >= 1 (BKL-007); polynomial k-CFA drops CEnv from Val_hat to P(Term x Delta) for O(n^6) at k=1 (p. 195)"
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -4972,6 +5349,11 @@
        "Section 2.5.5 tabulates relational (input, output) state pairs over static procedures (avoiding large P(D) non-monotonicity, BKL-003), whereas CPA instantiates memoised higher-order function templates per m-tuple in C_hat(l_1, delta) x ... x C_hat(l_m, delta)"
       ]
      }
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -5223,6 +5605,11 @@
     {
      "target_id": "ppa.tes.region-inference-translation",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cyber.heap-strong-update-and-uaf-safety",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -5333,6 +5720,11 @@
     {
      "target_id": "ppa.dfa.monotone-framework",
      "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.cyber.heap-strong-update-and-uaf-safety",
+     "relation": "generalizes",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -6354,6 +6746,11 @@
        "Contravariant subtyping recovers exact directional 0-CFA precision on simply-typed FUN ([71] Heintze; [external: Palsberg-O'Keefe 1995]) yet destroys unconstrained Moore-family principal types on Type_hat[tau] (Exercise 5.9)"
       ]
      }
+    },
+    {
+     "target_id": "ppa.solvers.conditional-constraint-simplification",
+     "relation": "related_to",
+     "citations": []
     }
    ],
    "artifact_refs": [
@@ -6450,6 +6847,37 @@
     {
      "target_id": "ppa.cfa.set-constraints-and-paradigms",
      "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "corresponds_to",
+     "citations": [],
+     "basis": {
+      "unification_id": "U3",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.1",
+        "book_page": 367,
+        "pdf_page": 383,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 373,
+        "pdf_page": 389,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Syntax-directed finite universe Term_* (height h <= n, N = O(n^2), M = 1) with conditional constraints encoded as monotone RHS terms if {t} subseteq p_2 then p_1 (else empty) (Examples 6.2 and 6.6).",
+       "Table 6.1 + Table 6.2 recovers O(n^3) worst-case complexity matching Section 3.4.2."
+      ],
+      "differs": [
+       "Table 3.7 uses a segregated flow-variable worklist W subseteq Node propagating single terms with E[p]/D[p] arrays, whereas Table 6.1 uses an integrated constraint worklist over arbitrary monotone RHS terms."
+      ]
+     }
     }
    ],
    "artifact_refs": [
@@ -10303,6 +10731,2085 @@
    "issue_refs": [
     "BKL-030",
     "BKL-082"
+   ]
+  },
+  {
+   "id": "ppa.solvers.flow-variable-constraints",
+   "title": "Flow-Variable Inequation Systems, Equations vs Inequations, and Unary Join Splitting (§6.1, Examples 6.1–6.2, Exercise 6.5)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.1",
+     "book_page": 365,
+     "pdf_page": 381,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1",
+     "book_page": 366,
+     "pdf_page": 382,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1",
+     "book_page": 367,
+     "pdf_page": 383,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 389,
+     "pdf_page": 405,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Unifies Data Flow Analysis and Constraint Based Analysis as finite monotone constraint systems S = (x_i >= t_i)_{i=1}^N over flow variables X = {x_i | 1 <= i <= N} into an ACC complete lattice (L, <=), where FV(t_i) subseteq X and [[t]]psi depends solely and monotonically on {psi(x) | x in FV(t)}. Multiple inequations x >= t_1, ..., x >= t_M share all solutions with x = x join t_1 join ... join t_M and share the exact least solution with x = t_1 join ... join t_M, while Exercise 6.5 proves splitting M-way joins into M unary inequations drops solver cost from O(h * M^2 * N) to O(h * M * N).",
+   "conditions": [
+    "Finite system S = (x_i >= t_i)_{i=1}^N with N >= 1 (LHS variables need not be distinct).",
+    "Closed flow-variable universe FV(t_i) subseteq X = {x_i | 1 <= i <= N}; unconstrained inputs need an explicit LHS constraint.",
+    "(L, <=) is a complete lattice satisfying the Ascending Chain Condition (ACC).",
+    "Each RHS valuation [[t]]psi is monotone in psi and local to FV(t); one-armed conditionals implicitly evaluate to bot when false.",
+    "General solutions of x >= t_1, ..., x >= t_n strictly include non-fixed-point reductive solutions excluded by x = t_1 join ... join t_n."
+   ],
+   "projections": {
+    "cs_theory": "Separates constraint granularity from least-fixed-point semantics; splitting M-ary joins into M unary inequations matches [external: semi-naive Datalog] and [external: finite differencing], removing a quadratic M factor.",
+    "swe_architecture": "Normalise multi-predecessor merge equations into edge-level unary inequations before building infl so high fan-in switch/phi blocks stay linear in fan-in.",
+    "practical_debugging": "Uninitialised Analysis[y] errors trace to RHS variables missing from LHS(S); missing updates on conditional rules trace to omitting the guard or payload from FV(t).",
+    "cyber": "Prevents [external: CWE-407] cubic solver stalls on high fan-in dispatchers and [external: obfuscated control-flow flattening] merge blocks."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.dfa.rd-chapter2",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.solvers.conditional-constraint-simplification",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#chapter-6-opening-and-61-worklist-algorithms",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#example-61-reaching-definitions-as-a-12-variable-and-6-variable-equation-system",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#example-62-encoding-chapter-3-conditional-constraints-as-rhs-terms",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md#1-flow-variable-constraint-systems-and-equations-vs-inequations-61",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#3-procedure-1-normalise-constraint-systems-infl-before-solving",
+    "knowledge/ambient-context/ppa-fixedpoint-solvers.md#core-mental-model-correctness-is-order-free-performance-is-graph-driven"
+   ],
+   "issue_refs": [
+    "BKL-013",
+    "BKL-014",
+    "BKL-084",
+    "BKL-085",
+    "BKL-092"
+   ],
+   "altitude": "L0"
+  },
+  {
+   "id": "ppa.solvers.abstract-worklist",
+   "title": "Abstract Worklist Algorithm, Influence Sets infl, and Lemma 6.4 Least-Solution Proof (§6.1.1, Table 6.1, Example 6.3, Lemma 6.4)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 368,
+     "pdf_page": 384,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 369,
+     "pdf_page": 385,
+     "table_or_fig": "Table 6.1"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 370,
+     "pdf_page": 386,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 371,
+     "pdf_page": 387,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 372,
+     "pdf_page": 388,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Table 6.1 parameterises chaotic fixed-point iteration over an abstract worklist ADT (empty, insert, extract), precomputing infl[x] = {(x' >= t') in S | x in FV(t')} and updating Analysis[x] := Analysis[x] join eval(t, Analysis) whenever Analysis[x] not>= new. Lemma 6.4 proves termination under ACC and exact convergence Analysis = mu_S = lfp(F_S) via lower-bound invariant Analysis_i <= mu_S (Part i) and reductiveness F_S(Analysis) <= Analysis at W = empty (Part ii), in O(h * M^2 * N) worst-case steps.",
+   "conditions": [
+    "Satisfies all five §6.1 constraint-system assumptions plus finite-multiset insert/extract behaviour.",
+    "Termination and exactness require draining W completely to empty; intermediate states satisfy Analysis_i <= mu_S and are not reductive.",
+    "O(h * M^2 * N) assumes |FV(t)| <= M, O(M) eval, O(1) lattice join/check, O(1)/O(M) amortised queue ops, and height <= h.",
+    "Table 6.1 Step 1 initialises Analysis[x] and infl[x] over LHS variables of S; implementations should iterate over all X."
+   ],
+   "projections": {
+    "cs_theory": "Instance of Chaotic Iteration (Table 1.5) decoupling order-independent Tarski least-fixed-point correctness from extraction scheduling.",
+    "swe_architecture": "Implements [external: Template Method] (Table 6.1 loop + infl observer table) parameterised by a pluggable [external: Queue Strategy] ADT.",
+    "practical_debugging": "Verify post-solve reductiveness [[t]](Analysis) <= Analysis[x] for every constraint; failures indicate missing infl observers or premature loop exit.",
+    "cyber": "Aborting Table 6.1 on a step timeout while W != empty returns a strict under-approximation Analysis_i <= mu_S, enabling silent [external: false-negative] taint/callgraph evasion unless dirty cones are widened or topped [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.chaotic-iteration",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.worklist-mfp",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U2",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 372,
+        "pdf_page": 388,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 373,
+        "pdf_page": 389,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone Framework over finite flow graph F with ACC complete lattice L and unary edge transfers Analysis[l'] >= f_l(Analysis[l]) (M = 1).",
+       "Table 6.1 instantiated with LIFO stack (Table 6.2) recovers O(h * b) work and O(b^2) for Reaching Definitions (Example 6.5)."
+      ],
+      "differs": [
+       "Table 2.8 stores CFG edges (l, l') on W and seeds extremal labels E to iota directly, whereas Table 6.1 stores general M-variable constraints (x >= t) with explicit infl[x] index."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.cfa.cubic-worklist-solver",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U3",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.1",
+        "book_page": 367,
+        "pdf_page": 383,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.1.2",
+        "book_page": 373,
+        "pdf_page": 389,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Syntax-directed finite universe Term_* (height h <= n, N = O(n^2), M = 1) with conditional constraints encoded as monotone RHS terms if {t} subseteq p_2 then p_1 (else empty) (Examples 6.2 and 6.6).",
+       "Table 6.1 + Table 6.2 recovers O(n^3) worst-case complexity matching Section 3.4.2."
+      ],
+      "differs": [
+       "Table 3.7 uses a segregated flow-variable worklist W subseteq Node propagating single terms with E[p]/D[p] arrays, whereas Table 6.1 uses an integrated constraint worklist over arbitrary monotone RHS terms."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.solvers.flow-variable-constraints",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.lifo-fifo-worklist",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.scc-worklist",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.worklist-widening",
+     "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#611-the-structure-of-worklist-algorithms",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#table-61-the-abstract-worklist-algorithm",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#lemma-64-correctness-and-complexity-of-table-61",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md#2-the-abstract-worklist-algorithm-and-lemma-64-611",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#2-solver-architecture-selection-matrix",
+    "knowledge/ambient-context/ppa-fixedpoint-solvers.md#core-mental-model-correctness-is-order-free-performance-is-graph-driven"
+   ],
+   "issue_refs": [
+    "BKL-013",
+    "BKL-014",
+    "BKL-084",
+    "BKL-086"
+   ],
+   "altitude": "L0"
+  },
+  {
+   "id": "ppa.solvers.lifo-fifo-worklist",
+   "title": "LIFO Stack and FIFO Queue Worklist Realisations (§6.1.2, Table 6.2, Figure 6.1, Examples 6.5–6.7, Exercises 6.1–6.3)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.2",
+     "book_page": 372,
+     "pdf_page": 388,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.2",
+     "book_page": 373,
+     "pdf_page": 389,
+     "table_or_fig": "Table 6.2"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.2",
+     "book_page": 374,
+     "pdf_page": 390,
+     "table_or_fig": "Figure 6.1"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 389,
+     "pdf_page": 405,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Table 6.2 instantiates Table 6.1 as a cons/head/tail LIFO stack (with FIFO queue as a breadth-style alternative on p. 374), specialising to Chapter 2 Table 2.8 in O(h * b) / O(b^2) (Example 6.5) and Chapter 3 Table 3.7 0-CFA in O(n^3) (Example 6.6). Without membership checks, naive LIFO pushes duplicate constraints onto W, requiring 14 Step 2 iterations on Example 6.1 (Figure 6.1; 20 Step 2 pops on reversed [x_6..x_1] in Exercise 6.1) versus 8 Step 2 pops (9 table rows incl. init, evaluating x_6 once) when deduplicated (Exercise 6.3).",
+   "conditions": [
+    "Table 6.2 does not test membership before cons, permitting duplicate entries on W until deduplicated per Exercise 6.3.",
+    "O(b^2) in Example 6.5 assumes M = 1 and RD lattice height h = O(b); O(n^3) in Example 6.6 assumes N = O(n^2), h <= n, and O(1) incremental union."
+   ],
+   "projections": {
+    "cs_theory": "Demonstrates that worst-case asymptotic bounds match across LIFO/FIFO while concrete iteration counts degrade severely under duplicate pushes.",
+    "swe_architecture": "Always pair stack or queue worklists with an O(1) membership bitset or [external: Briggs-Torczon sparse set] to prevent duplicate queueing.",
+    "practical_debugging": "Repeated evaluation of downstream join variables like x_6 in Figure 6.1 indicates LIFO traversal across sibling loop branches before upstream convergence.",
+    "cyber": "Un-deduplicated LIFO stacks amplify [external: CWE-400] solver resource exhaustion on diamond-heavy [external: obfuscated] control-flow graphs."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.solvers.worklist-mfp",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#612-iterating-in-lifo-and-fifo",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#table-62-iterating-in-last-in-first-out-order-lifo",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#figure-61-and-example-67-lifo-iteration-walkthrough",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md#3-lifofifo-specialisations-612-and-cross-chapter-bridges-u2-u3",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#7-diagnostic-playbook-golden-regression-oracles"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-088"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.rpo-worklist",
+   "title": "Constraint Digraph G_S, Minimal Handles H_S, and Double-Buffered RPO Worklist (§6.2, Table 6.3, Figures 6.2–6.3, Exercises 6.4, 6.6–6.7)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.2",
+     "book_page": 375,
+     "pdf_page": 391,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2",
+     "book_page": 376,
+     "pdf_page": 392,
+     "table_or_fig": "Figure 6.2"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2",
+     "book_page": 376,
+     "pdf_page": 392,
+     "table_or_fig": "Table 6.3"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2",
+     "book_page": 377,
+     "pdf_page": 393,
+     "table_or_fig": "Figure 6.3"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2",
+     "book_page": 378,
+     "pdf_page": 394,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 389,
+     "pdf_page": 405,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 390,
+     "pdf_page": 406,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Orders constraints of G_S (edge c_i -> c_j iff LHS(c_i) in FV(RHS(c_j))) via Table C.1 reverse postorder rooted at a minimal handle H_S (handling rootless backward DFA and 0-CFA graphs without dummy nodes). Table 6.3 splits W into current sorted pass W.c and pending set W.p, finishing Example 6.1 in 11 pops (Figure 6.3; 8 Step 2 pops / 9 table rows incl. init deduplicated in Exercise 6.6), while Exercise 6.7 routes forward edges rPostorder[c'] > rPostorder[c] directly into W.c and Exercise 6.4 dualises Table 6.1 for greatest-solution dominators Dom(n).",
+   "conditions": [
+    "Minimal handle H_S must reach every constraint node in G_S (always exists, not necessarily unique; {x_2, x_4} in Example 6.2).",
+    "Length-N bit-vector W.p achieves O(N) per dense refill but scans O(h * N^2) bits across Theta(h * N) sparse 1-bit refills unless sparse-indexed.",
+    "Figure 6.3 row 6 displays the refilled W.c one step earlier than Table 6.3's extract executes.",
+    "Dualising Table 6.1 for must analyses (Dom(n) Exercise 6.4, AE Exercise 6.8) requires bot_L = U and join_L = intersection."
+   ],
+   "projections": {
+    "cs_theory": "Two-buffer (W.c, W.p) sweep discipline guarantees forward topological propagation per pass while preserving Lemma 6.4 correctness via W = W.c U W.p.",
+    "swe_architecture": "Avoid replacing (W.c, W.p) with a single min-heap on rPostorder, which lets an inner self-loop starve downstream nodes; use Exercise 6.7 two-queue routing or [external: Briggs-Torczon sparse sets].",
+    "practical_debugging": "Unnumbered constraints on backward DFA or 0-CFA indicate single-root DFS instead of minimal handle H_S; empty dominator sets inside loops indicate bot_L = empty instead of U.",
+    "cyber": "Ensures complete reachability over disconnected entrypoints, callbacks, and exception handlers when computing dominance or reverse-postorder schedules [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.solvers.lifo-fifo-worklist",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.solvers.round-robin-loop-bound",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.solvers.scc-worklist",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.graphs.dfsf",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.dominators",
+     "relation": "implements"
+    },
+    {
+     "target_id": "ppa.graphs.handles-roots",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 375,
+        "pdf_page": 391,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "C",
+        "section": "C.1",
+        "book_page": 419,
+        "pdf_page": 434,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Finite constraint digraph G_S admits at least one minimal handle H_S reaching every constraint without adding dummy roots."
+      ],
+      "differs": [
+       "Appendix C defines handles abstractly on arbitrary digraphs (allowing dummy roots), whereas §6.2 picks a minimal handle of constraint nodes directly to avoid dummy constraints."
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.graphs.reverse-postorder",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 375,
+        "pdf_page": 391,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.2",
+        "book_page": 376,
+        "pdf_page": 392,
+        "table_or_fig": "Table 6.3"
+       }
+      ],
+      "conditions": [
+       "rPostorder computed by Table C.1 on (G_S, H_S) provides the priority key for sort_rPostorder(W.p)."
+      ],
+      "differs": [
+       "Appendix C defines reverse postorder statically on DFSFs, whereas §6.2 operationalises it across dynamic two-buffer (W.c, W.p) worklist refills."
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#62-iterating-in-reverse-postorder",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#figure-62-table-63-and-example-68-constraint-graph-dfst-and-rpo-worklist",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#figure-63-and-example-69-reverse-postorder-iteration-walkthrough",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md#4-reverse-postorder-worklists-62-table-63-and-u10-graph-ordering",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#4-procedure-2-implement-shadow-free-3-queue-scc-local-rpo-solver-6263"
+   ],
+   "issue_refs": [
+    "BKL-016",
+    "BKL-017",
+    "BKL-019",
+    "BKL-087",
+    "BKL-092"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.round-robin-loop-bound",
+   "title": "Round Robin Algorithm and Bit-Vector Loop-Connectedness Bound d(G_S, T) + 3 (§6.2.1, Table 6.4, Figure 6.4, Lemmas 6.11–6.12, Mini Project 6.1)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 378,
+     "pdf_page": 394,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 379,
+     "pdf_page": 395,
+     "table_or_fig": "Table 6.4"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 379,
+     "pdf_page": 395,
+     "table_or_fig": "Figure 6.4"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 380,
+     "pdf_page": 396,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 381,
+     "pdf_page": 397,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Mini Projects",
+     "book_page": 387,
+     "pdf_page": 403,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 390,
+     "pdf_page": 406,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Table 6.4 eliminates W.p and infl by sweeping pre-sorted constraints 1..N in reverse postorder while boolean change remains true, computing mu_S (Lemma 6.11, Figure 6.4: 2 while-sweeps = 12 eval checks). For Bit Vector Frameworks (L = P(D), t_i = (x_{j_i} cap Y_i^1) cup Y_i^2), Lemma 6.12 proves Table 6.4 halts in at most d(G_S, T) + 3 iterations (1 init + <= d + 1 propagation sweeps + 1 quiescence sweep) and O((d(G_S, T) + 1) * N) assignments; on WHILE programs d equals loop nesting depth (d <= 3 Folk Theorem).",
+   "conditions": [
+    "Lemma 6.12 holds strictly for Bit Vector (or fast distributive) frameworks, never unconditionally for general ACC lattices like Constant Propagation or 0-CFA.",
+    "Constraints 1..N must be ordered in reverse postorder of DFSF T over G_S; on irreducible graphs d(G_S, T) depends on T.",
+    "Iteration count n includes Step 1 initialisation as iteration 1 plus n - 1 Step 2 while-sweeps (d + 3 total, not d + 2).",
+    "Book p. 380 mis-cites Example 2.8 instead of Example 2.30 for the O(b^2) Reaching Definitions comparison."
+   ],
+   "projections": {
+    "cs_theory": "Exploits Bit-Vector idempotence and distributivity so every fact propagates along cycle-free paths bounded by loop connectedness d(G_S, T).",
+    "swe_architecture": "Zero worklist and zero infl memory makes Table 6.4 [external: cache-optimal] for dense intraprocedural bit-vector compiler passes with shallow loop depth.",
+    "practical_debugging": "Seeing O(b) sweeps on an acyclic backward analysis indicates forward CFG rPostorder was applied instead of reverse-CFG rPostorder.",
+    "cyber": "Irreducible [external: control-flow flattening] and [external: VM-dispatcher] binaries break the Fortran Folk Theorem d <= 3 assumption ([98]; d = Theta(|V|)), degrading Round Robin to O(N^2) [external: CWE-407] DoS."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.dfa.monotone-framework",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.fastness-closure",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.graphs.loop-connectedness",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.2.1",
+        "book_page": 380,
+        "pdf_page": 396,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "C",
+        "section": "C.2",
+        "book_page": 424,
+        "pdf_page": 439,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "d(G_S, T) is the maximum number of back edges of DFSF T on any cycle-free path of G_S, equalling maximal while-loop nesting depth on reducible WHILE graphs."
+      ],
+      "differs": [
+       "Appendix C defines d(G, T) purely graph-theoretically, whereas Lemma 6.12 binds d(G_S, T) to Bit Vector Round Robin iteration counts (d(G_S, T) + 3)."
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#621-the-round-robin-algorithm",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#table-64-figure-64-example-610-and-lemma-611-round-robin-algorithm",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#lemma-612-and-example-613-bit-vector-loop-connectedness-bound",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md#5-round-robin-621-table-64-and-lemma-612",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#5-procedure-3-round-robin-fast-path-lemma-612-closed-form-loops-ex-614"
+   ],
+   "issue_refs": [
+    "BKL-010",
+    "BKL-012",
+    "BKL-018",
+    "BKL-088"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.scc-worklist",
+   "title": "Strong-Component Condensation, srPostorder Numbering, and Three-Queue SCC Iteration (§6.3, Tables 6.5–6.6, Figures 6.5–6.6, Exercises 6.10–6.12)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 381,
+     "pdf_page": 397,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 382,
+     "pdf_page": 398,
+     "table_or_fig": "Figure 6.5"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 382,
+     "pdf_page": 398,
+     "table_or_fig": "Table 6.5"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 383,
+     "pdf_page": 399,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 384,
+     "pdf_page": 400,
+     "table_or_fig": "Table 6.6"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 384,
+     "pdf_page": 400,
+     "table_or_fig": "Figure 6.6"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 390,
+     "pdf_page": 406,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 391,
+     "pdf_page": 407,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Partitions G_S into strong components whose reduced DAG is topologically ordered; Table 6.5 assigns srPostorder[x >= t] = (scc, rp) (topological component index, local RPO), and Table 6.6 settles the minimum active component completely before extracting downstream components (10 pops in Figure 6.6; 8 deduplicated in Exercise 6.11, evaluating x_6 strictly once). Exercise 6.12 splits W.p into three queues (W.c, W.pc, W.pf) matching currentQ/pendingQ/futureQ.",
+   "conditions": [
+    "Reduced graph of strong components is a DAG (Lemma C.5), ensuring updates never re-activate already-settled earlier (< scc) components.",
+    "Table 6.5 contains a variable-shadowing bug reusing identifier scc for both integer counter and component node-set; separate scc_id from comp.",
+    "Flat SCCs merge nested inner while-loops into their enclosing outer loop SCC; only non-trivial SCCs represent loops (correcting Example 6.14 p. 382).",
+    "Exercise 6.12 prints 'two priority queues' while naming three queues (W.c, W.pc, W.pf)."
+   ],
+   "projections": {
+    "cs_theory": "Reduces global lfp(F_S) into sequential component-wise least fixed points along the condensation DAG, avoiding redundant cross-component evaluations.",
+    "swe_architecture": "Default production worklist scheduler; upgrade flat [external: Tarjan SCC] to recursive [external: Bourdoncle WTO] when nested loops need inner-first stabilisation.",
+    "practical_debugging": "Translating Table 6.5 verbatim triggers a type/shadowing crash at scc := scc + 1; verify downstream DAG joins evaluate strictly once after upstream SCCs converge.",
+    "cyber": "Isolates high-iteration loop components from downstream security sinks, mitigating [external: CWE-400] cascade blowup in whole-program static analysers."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.solvers.rpo-worklist",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.graphs.dag-topological-sort",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.strong-components",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U10",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "6.3",
+        "book_page": 381,
+        "pdf_page": 397,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "6",
+        "section": "6.3",
+        "book_page": 384,
+        "pdf_page": 400,
+        "table_or_fig": "Table 6.6"
+       }
+      ],
+      "conditions": [
+       "Strong components (Fact C.3) and acyclic reduced graph (Lemma C.5) ordered via reverse postorder (Corollary C.11) partition G_S for Table 6.6."
+      ],
+      "differs": [
+       "Appendix C defines strong components and reduced DAGs structurally, whereas §6.3 layers local RPO (srPostorder) and 3-queue (W.c, W.pc, W.pf) barrier scheduling on top."
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#63-iterating-through-strong-components",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#example-614-figure-65-and-table-65-strong-components-and-srpostorder",
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#table-66-figure-66-and-example-615-strong-component-worklist-walkthrough",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#1-strong-component-condensation-and-srpostorder-63-tables-6566",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#4-procedure-2-implement-shadow-free-3-queue-scc-local-rpo-solver-6263",
+    "knowledge/ambient-context/ppa-fixedpoint-solvers.md#core-mental-model-correctness-is-order-free-performance-is-graph-driven"
+   ],
+   "issue_refs": [
+    "BKL-010",
+    "BKL-023",
+    "BKL-083",
+    "BKL-089",
+    "BKL-090"
+   ],
+   "altitude": "L0"
+  },
+  {
+   "id": "ppa.solvers.conditional-constraint-simplification",
+   "title": "Online Simplification of Conditional Constraints and Dynamic Dependency Graphs (Mini Project 6.2)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.1",
+     "book_page": 367,
+     "pdf_page": 383,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Mini Projects",
+     "book_page": 388,
+     "pdf_page": 404,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Mini Project 6.2 defines RHS grammar t ::= x | bot | c | t_1 join t_2 | t_1 meet t_2 | if t_1 != bot then t_2 | if c <= t_1 then t_2 with upward-closed monotone guards (implicit else bot). Once a guard turns true during iteration it stays permanently true, enabling online simplification to t_2; under RPO/SCC schedulers, dynamically activated edges can merge SCCs and invalidate static orderings.",
+   "conditions": [
+    "Guard c <= t_1 requires c to be a fixed primitive constant (not a variable) so the guard is upward-closed in psi.",
+    "Implicit else-branch value must be bot_L to preserve monotonicity and equivalence with Chapter 3 Table 3.6.",
+    "Lazy edge activation must both immediately enqueue x >= t_2 and register it in infl[FV(t_2)] when the guard triggers."
+   ],
+   "projections": {
+    "cs_theory": "Upward-closed monotone guards form persistent triggers whose activation monotonically expands the active dependency subgraph of G_S.",
+    "swe_architecture": "Supports online call-graph discovery in 0-CFA and points-to solvers without pre-generating dense O(n^2) dormant edges.",
+    "practical_debugging": "Stale static srPostorder numbers after lazy edge insertion can re-open an already-settled component unless dynamic SCC maintenance or fallback queues are used.",
+    "cyber": "Models indirect-call and virtual-dispatch target discovery; omitting payload infl registration silently drops reachable [external: exploit gadget] call paths."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.flow-variable-constraints",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cfa.constraint-0cfa",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#mini-projects-6162-and-exercises-61614",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#21-online-simplification-of-conditional-constraints-mini-project-62-g-u6-20",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#3-procedure-1-normalise-constraint-systems-infl-before-solving"
+   ],
+   "issue_refs": [
+    "BKL-014",
+    "BKL-085"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.worklist-widening",
+   "title": "Pointwise Worklist Widening Over Non-ACC Complete Lattices (Exercise 6.13)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 387,
+     "pdf_page": 403,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 391,
+     "pdf_page": 407,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Exercise 6.13 extends Table 6.1 to arbitrary complete lattices L lacking ACC by replacing Analysis[x] := Analysis[x] join new with Analysis[x] := Analysis[x] widen new inside the if Analysis[x] not>= new guard. Because X is finite, widening on L lifts pointwise to X -> L, guaranteeing finite termination at a sound reductive upper approximation mu_S <= Analysis.",
+   "conditions": [
+    "Variable set X must be finite for pointwise widening on X -> L to guarantee ascending-chain stabilisation.",
+    "Must retain the if Analysis[x] not>= new guard and old-before-new operand order (Analysis[x] widen new), since widening is not monotone.",
+    "Output satisfies mu_S <= Analysis (reductive upper bound), not necessarily exact equality Analysis = mu_S.",
+    "Applying widening to split acyclic join inequations over-widens finite branches; restrict widening to feedback cutsets."
+   ],
+   "projections": {
+    "cs_theory": "Bridges chaotic worklist iteration to infinite-height abstract domains by trading exact least fixed points for finite-step reductive upper bounds.",
+    "swe_architecture": "Inject widening selectively at loop-head cutsets (e.g., [external: WTO] heads) while keeping standard join on acyclic merge blocks.",
+    "practical_debugging": "Non-termination under widening indicates a missing Analysis[x] not>= new guard or reversed operand order; instant jump to top on if-else indicates widening on split acyclic inequations.",
+    "cyber": "Provides a sound [external: timeout] fallback when solver step budgets expire, preventing silent under-approximation [external: false negatives]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U7",
+      "citations": [
+       {
+        "chapter_or_app": "6",
+        "section": "Exercises",
+        "book_page": 391,
+        "pdf_page": 407,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "A",
+        "section": "A.3",
+        "book_page": 400,
+        "pdf_page": 416,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Pointwise widening on finite X -> L replaces the Ascending Chain Condition on L to guarantee finite worklist stabilisation."
+      ],
+      "differs": [
+       "ACC guarantees exact convergence to mu_S = lfp(F_S) via joins, whereas pointwise widening terminates at a sound reductive upper bound mu_S <= Analysis."
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#mini-projects-6162-and-exercises-61614",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#22-worklist-solver-with-widening-exercise-613-u7-g-u6-22",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#6-procedure-4-non-acc-widening-u7-sound-timeouts-demand-driven-slicing"
+   ],
+   "issue_refs": [
+    "BKL-002",
+    "BKL-013",
+    "BKL-092"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.fastness-closure",
+   "title": "Fast Functions and Fastness Closure for Non-Iterative Loop Fixed Points (Exercise 6.14)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 391,
+     "pdf_page": 407,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 392,
+     "pdf_page": 408,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "A monotone function f : L -> L is fast iff f o f <= f join id (satisfied by all idempotent and hence all Bit Vector transfer functions). Writing f^{<n>} = (f join id)^n, the fastness closure f_bar = f^{<i_f>} at stabilisation is well-defined, idempotent, fast, and satisfies f_bar = f join id when f is fast and distributive; for distributive f, the simple-loop functional F(g) = id join (g o f) has lfp(F) = f_bar.",
+   "conditions": [
+    "Closed-form lfp(F) = f_bar requires f to be distributive (additive on binary joins) and f^{<n>} to stabilise at some finite i_f.",
+    "One-step collapse f_bar = f join id requires both fastness (f o f <= f join id) and distributivity.",
+    "Book p. 391 contains a duplicated-word typo ('the the fastness closure')."
+   ],
+   "projections": {
+    "cs_theory": "Algebraic [external: Kleene star] collapse explaining both [external: Kam–Ullman rapid frameworks] ([92]) and path-algebra elimination solvers ([170, 171]).",
+    "swe_architecture": "Allows elimination-based compiler optimisers to compute loop summaries symbolically in one pass without iterative worklists.",
+    "practical_debugging": "Applying f_bar = f join id to non-fast transfers (such as constant propagation or multi-step increments) silently misses multi-iteration loop effects.",
+    "cyber": "Clarifies why fast bit-vector taint passes converge in constant loop depth while value/bounds analyses require iterative solving or widening [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.round-robin-loop-bound",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.affine-powerset-maps",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#mini-projects-6162-and-exercises-61614",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#23-fast-functions-and-fastness-closure-f-exercise-614-g-u6-23",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#5-procedure-3-round-robin-fast-path-lemma-612-closed-form-loops-ex-614"
+   ],
+   "issue_refs": [
+    "BKL-022",
+    "BKL-090"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.solvers.local-and-elimination-solvers",
+   "title": "Local Demand-Driven Solvers, Elimination Methods, and Practical Analyzer Generators (Chapter 6 Concluding Remarks)",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 384,
+     "pdf_page": 400,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 385,
+     "pdf_page": 401,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 386,
+     "pdf_page": 402,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 387,
+     "pdf_page": 403,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Chapter 6 Concluding Remarks contrasts integrated (constraint-queued) vs segregated (variable-queued) worklists [69], surveys demand-driven local solvers (top-down [29], timestamp max-PQ [51, 54], differential worklist [52, 53]) solving only queried backward cones, surveys elimination methods (Ryder and Paull [146], structural control trees [154], interval analysis [11], path algebras [170, 171]), and catalogues analyzer generators (Spare [177], System Z [185], PAG [104], Sharlit [172], BANE [8]).",
+   "conditions": [
+    "Local solvers compute partial least solutions restricted to the queried variables' backward dependency cone while discovering SCCs dynamically.",
+    "Elimination methods require algebraically composable transfer functions and (for interval analysis) reducible flow graphs.",
+    "None of local solvers, differential worklists, or elimination methods appear as Subject Index entries."
+   ],
+   "projections": {
+    "cs_theory": "Connects demand-driven local solving to [external: tabled SLG resolution] and elimination methods to [external: regular path algebras].",
+    "swe_architecture": "Powers incremental [external: editor IDE] query engines ([external: Salsa/Pluto]) and declarative static-analyser generators backed by bit vectors, AVL trees, or BDD's.",
+    "practical_debugging": "In top-down recursive local solvers, marking an in-flight cyclic node final before its dynamic SCC root stabilises silently drops loop-carried updates.",
+    "cyber": "Enables interactive single-sink taint and reachability auditing on massive codebases without running whole-program batch fixed points [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.abstract-worklist",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.solvers.conditional-constraint-simplification",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.solvers.fastness-closure",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.regular-expressions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.bib.bibliography-concordance",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#concluding-remarks",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#3-local-demand-driven-elimination-and-practical-solvers-concluding-remarks",
+    "knowledge/skills/ppa-fixedpoint-solvers/SKILL.md#6-procedure-4-non-acc-widening-u7-sound-timeouts-demand-driven-slicing"
+   ],
+   "issue_refs": [
+    "BKL-010",
+    "BKL-091"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.index.subject-index",
+   "title": "Subject Index Concordance — Book Pages 433–437, PDF Pages 447–451, Offset +14",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "Index",
+     "section": null,
+     "book_page": 433,
+     "pdf_page": 447,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Index",
+     "section": null,
+     "book_page": 434,
+     "pdf_page": 448,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Index",
+     "section": null,
+     "book_page": 435,
+     "pdf_page": 449,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Index",
+     "section": null,
+     "book_page": 436,
+     "pdf_page": 450,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Index",
+     "section": null,
+     "book_page": 437,
+     "pdf_page": 451,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Five-page two-column alphabetical Subject Index spanning 379 headwords (69 + 79 + 80 + 80 + 71) from 'abstract 0-CFA, 147' (p. 433) to 'Y2K, 356' (p. 437) at constant PDF offset +14 (after omitted blank versos pp. 416, 428 and preceding omitted blank verso p. 438). Indexes Chapter 6 worklist/RPO/SCC/fastness terms and toolkits (BANE, PAG, Sharlit, Spare, System Z) while omitting local and elimination solver headings.",
+   "conditions": [
+    "Subject Index uses PDF = book + 14 (distinct from Chapter 6's +16 and Bibliography's +13).",
+    "Verified minor errata preserved at L3: 'lower adjoint , 239' (p. 435), 'Side Effect Analysis, 320' (starts p. 319), and OCR corruption 'd'Ur-chain' for 'du-chain' (p. 434)."
+   ],
+   "projections": {
+    "cs_theory": "Provides the book's authoritative cross-chapter terminology index separating core lattice/proof vocabulary from concluding-remarks literature.",
+    "swe_architecture": "Serves as a deterministic lexical lookup map alongside ontology/concept_graph.json for concept-retrieval evaluation.",
+    "practical_debugging": "Checking unindexed terms (local solvers, elimination methods, srPostorder) prevents [external: false negatives] when auditing book coverage by index scan alone.",
+    "cyber": "Not applicable beyond cross-referencing security-relevant book terms such as clearances, Y2K, and side-effect analysis [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.notation.index",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.bib.bibliography-concordance",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#subject-index-book-pages-433437-pdf-pages-447451-offset-14",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#4-subject-index-pp-433437-and-bibliography-pp-439452-concordance"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-091"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.bib.bibliography-concordance",
+   "title": "Closed 185-Entry Bibliography Directory [1]–[185] — Book Pages 439–452, PDF Pages 452–465, Offset +13",
+   "unit": "U6",
+   "citations": [
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[1]",
+     "book_page": 439,
+     "pdf_page": 452,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[25]",
+     "book_page": 441,
+     "pdf_page": 454,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[29]",
+     "book_page": 441,
+     "pdf_page": 454,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[51]",
+     "book_page": 443,
+     "pdf_page": 456,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[77]",
+     "book_page": 445,
+     "pdf_page": 458,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[92]",
+     "book_page": 446,
+     "pdf_page": 459,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[154]",
+     "book_page": 450,
+     "pdf_page": 463,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[170]",
+     "book_page": 451,
+     "pdf_page": 464,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Bibliography",
+     "section": "[185]",
+     "book_page": 452,
+     "pdf_page": 465,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Contiguous 185-entry primary bibliography ([1] Abadi et al. POPL '99 on p. 439 through [185] Yi and Harrison System Z POPL '93 on p. 452) at constant PDF offset +13 (after omitted blank verso p. 438), anchoring foundational attributions across DFA, CFA, Abstract Interpretation, Type/Effect/Region systems, and iterative, local, and elimination fixed-point solvers.",
+   "conditions": [
+    "Bibliography uses PDF = book + 13 across all 14 pages: book pages 439–452 map to PDF pages 452–465.",
+    "Verified printed quirks preserved at L3 ([24] JFP vol. 10 in 1992, [42] 'Zadek', [90] POPL '91 dated 1990, [180] omitted volume); external URL in [130] omitted in core per C5.4."
+   ],
+   "projections": {
+    "cs_theory": "Grounds exact historical provenance for Tarski/Kildall/Cousot/Kam–Ullman/Bourdoncle/Tofte–Talpin/Tarjan theorems cited throughout PPA.",
+    "swe_architecture": "Maps textbook solver variants directly to reference implementations (PAG, BANE, Sharlit, Spare, System Z) and algorithmic papers.",
+    "practical_debugging": "Use visually verified entry brackets [1]–[185] rather than raw OCR text, which corrupts [63]–[75] and [172] into closing parentheses.",
+    "cyber": "Anchors foundational security-analysis literature including [1] Dependency Core Calculus, [23] no read-up/write-down, [74] SLam calculus, and [46] AnnoDomini [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.local-and-elimination-solvers",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.index.subject-index",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_06_algorithms_bib.md#bibliography-book-pages-439452-pdf-pages-452465-offset-13",
+    "knowledge/skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md#4-subject-index-pp-433437-and-bibliography-pp-439452-concordance"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-091"
+   ],
+   "altitude": "L1"
+  },
+  {
+   "id": "ppa.cyber.taint-sanitizer-polarity",
+   "title": "May-taint union vs must-sanitization intersection polarity and secret-wipe liveness",
+   "altitude": "L0",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 2,
+     "pdf_page": 22,
+     "table_or_fig": "Figure 1.1"
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.1.1",
+     "book_page": 40,
+     "pdf_page": 59,
+     "table_or_fig": "Table 2.1"
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.1.2",
+     "book_page": 44,
+     "pdf_page": 63,
+     "table_or_fig": "Table 2.2"
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.1.4",
+     "book_page": 50,
+     "pdf_page": 69,
+     "table_or_fig": "Table 2.4"
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.3",
+     "book_page": 66,
+     "pdf_page": 85,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "In Monotone Frameworks, forward may-analyses (RD, ⊆, ∪, ⊥_L = ∅, ι = {(x, ?) | x ∈ FV(S⋆)}) over-approximate reaching assignment pairs, forward must-analyses (AE, ⊇, ∩, ⊥_L = AExp⋆, ι = ∅) under-approximate expressions available on every path, and backward may-analyses (LV) preserve assignments only to variables live at exit ι under unconditional ⊔ ι^ℓ_E boundary equations.",
+   "conditions": [
+    "Unconditional join ⊔ ι^ℓ_E (§2.3, p. 66) is required whenever entry or exit blocks sit inside loops.",
+    "Non-extremal nodes in must-analyses (⊇) must initialise to universal carrier ⊥_L = U rather than ∅.",
+    "gen_AE([x := a]^ℓ) excludes expressions with x ∈ FV(a') because x mutates after RHS evaluation.",
+    "MFP = MOP requires both distributivity and ∀ℓ : path∘(ℓ) ≠ ∅ (Lemma 2.32, p. 80)."
+   ],
+   "projections": {
+    "cs_theory": "Dual powerset lattices (𝒫(D), ⊆) and (𝒫(D), ⊇) unify may-defect reachability and must-validation under least fixed points in information order.",
+    "swe_architecture": "Encode taint and sanitization as separate dual lattice instances sharing one unconditional Monotone Framework engine [external].",
+    "practical_debugging": "If taint disappears after a single-branch sanitizer or loop headers collapse to ∅, check for ∪/∩ polarity inversion or ⊥_L = ∅ initialisation on must-passes [external].",
+    "cyber": "Prevents single-branch CWE-20/CWE-89 sanitizer bypasses, flags uninitialised ? ∈ UD(x, ℓ') inputs (CWE-457), and protects trailing secret-zeroization stores from CWE-14 dead-store elimination via ι [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.safe-approximation",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.dfa.rd-chapter2",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.dfa.available-expressions",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.dfa.live-variables",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.dfa.ud-du-chains",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.context-sensitive-sanitization",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cyber.security-types-variance-and-value-restriction",
+     "relation": "related_to",
+     "citations": []
+    },
+    {
+     "target_id": "ppa.cyber.fn-fp-triage-and-oracles",
+     "relation": "prerequisite_of",
+     "citations": []
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/ambient-context/ppa-cyber-analysis.md#the-central-security-thesis-safe-approximation-soundness-preconditions",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/taint-sanitization-and-information-flow.md#1-safe-approximation-direction-may-taint-vs-must-sanitization-polarity-chapters-12",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#2-procedure-1-design-audit-source-to-sink-taint-and-sanitizer-rules-polarityauditgate"
+   ],
+   "issue_refs": [
+    "BKL-006",
+    "BKL-016",
+    "BKL-036",
+    "BKL-038",
+    "BKL-050"
+   ],
+   "external_terms": [
+    "CWE-14",
+    "CWE-20",
+    "CWE-78",
+    "CWE-79",
+    "CWE-89",
+    "CWE-457",
+    "CWE-862"
+   ]
+  },
+  {
+   "id": "ppa.cyber.context-sensitive-sanitization",
+   "title": "Context-sensitive taint and sanitizer summaries across wrapper calls",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "2",
+     "section": "2.5.2",
+     "book_page": 89,
+     "pdf_page": 108,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.5.3",
+     "book_page": 93,
+     "pdf_page": 112,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.5.4",
+     "book_page": 98,
+     "pdf_page": 117,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.5.5",
+     "book_page": 100,
+     "pdf_page": 119,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "3",
+     "section": "3.6.2",
+     "book_page": 196,
+     "pdf_page": 214,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Valid paths VP⋆ enforce matched call/return 4-tuples (ℓ_c, ℓ_n, ℓ_x, ℓ_r) ∈ IF with binary return transfer f̂²_{ℓ_c,ℓ_r}(A∘(ℓ_c), A∘(ℓ_r)), while bounded call strings Δ = Lab^{≤k}, small assumption sets Δ = D (𝒫(D × D)), Uniform k-CFA (𝒫(Term × CEnv)), polynomial k-CFA (𝒫(Term × Δ)), and CPA (Δ = Term^m) prevent k = 0 cross-caller merging.",
+   "conditions": [
+    "VP requires terminal (ℓ₁ = ℓ₂), intraprocedural ((ℓ₁, ℓ₂) ∈ F), and matched call-return ((ℓ_c, ℓ_n, ℓ_x, ℓ_r) ∈ IF) productions.",
+    "Large assumption sets Δ = 𝒫(D) with exact equality δ' = {d'' | (δ, d'') ∈ Z} break monotonicity unless relaxed to ⊆.",
+    "Unbounded call strings Δ = Lab* violate ACC on recursive call cycles."
+   ],
+   "projections": {
+    "cs_theory": "Separates unrealizable interprocedural cross-over paths (MOP ⊏ MVP) via call-stack mementos or relational input-output summary pairs.",
+    "swe_architecture": "Tabulate procedure taint/sanitizer summaries over Δ = D (IFDS-style) or argument-tuple CPA contours to scale across deep helper layers [external].",
+    "practical_debugging": "False taint alarms on clean callers of shared validation helpers trace to k < wrapper_depth or unary return transfers dropping A∘(ℓ_c) [external].",
+    "cyber": "Eliminates cross-caller taint smearing and false sanitization inheritance across shared HTTP/RPC validator wrappers [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.interproc.valid-paths-mvp",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.interproc.call-strings",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.interproc.assumption-sets",
+     "relation": "specializes"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/taint-sanitization-and-information-flow.md#2-interprocedural-context-sensitivity-sanitizer-wrapper-precision-25-36",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#2-procedure-1-design-audit-source-to-sink-taint-and-sanitizer-rules-polarityauditgate"
+   ],
+   "issue_refs": [
+    "BKL-003",
+    "BKL-007",
+    "BKL-013",
+    "BKL-045"
+   ],
+   "external_terms": [
+    "IFDS taint summaries"
+   ]
+  },
+  {
+   "id": "ppa.cyber.security-types-variance-and-value-restriction",
+   "title": "Security type clearances, mutable ref/chan invariance, and effect-guarded polymorphism",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 324,
+     "pdf_page": 341,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 328,
+     "pdf_page": 345,
+     "table_or_fig": "Table 5.10"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 346,
+     "pdf_page": 363,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 347,
+     "pdf_page": 364,
+     "table_or_fig": "Table 5.17"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 356,
+     "pdf_page": 373,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Monotone security type systems propagate clearance annotations C₁ ⊑ ··· ⊑ C_k through operators and conditionals (Mini Project 5.4), shape-conformant subtyping makes arrows contravariant in domain while requiring τ̂ ≤ τ̂' ∧ τ̂' ≤ τ̂ invariance on ref_ϖ τ̂ and τ̂ chan r, and [gen] forbids quantifying variables free in Γ̂ or effect/behaviour φ (Example 5.36).",
+   "conditions": [
+    "Requires an underlying typed language (Chapter 5, p. 283).",
+    "Both τ̂ ≤ τ̂' and τ̂' ≤ τ̂ must hold on ref_ϖ τ̂ and τ̂ chan r.",
+    "[gen] requires ζ_i ∉ FV(Γ̂, φ), while [ins] instantiates θ with dom(θ) ⊆ {ζ₁, ..., ζ_n} preserving φ."
+   ],
+   "projections": {
+    "cs_theory": "Bidirectional read/write capabilities combine covariant output and contravariant input into payload invariance; effect-guarded [gen] provides a semantic counterpart to syntactic value restriction [external].",
+    "swe_architecture": "Encode taint/integrity qualifiers with contravariant parameter subtyping, invariant mutable containers, and pc-tainted side-effect guards [external].",
+    "practical_debugging": "Type-confusion escapes across generic containers or channels trace to covariant mutable type parameters or generalising effectful allocations [external].",
+    "cyber": "Prevents CWE-843 type/taint confusion on mutable references and concurrent channels and tracks confidentiality clearances (adding pc lower bounds for imperative implicit flows) [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.annotated-type-constructors",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/taint-sanitization-and-information-flow.md#3-annotated-security-types-subtyping-invariance-value-restriction-chapter-5",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#2-procedure-1-design-audit-source-to-sink-taint-and-sanitizer-rules-polarityauditgate"
+   ],
+   "issue_refs": [
+    "BKL-009"
+   ],
+   "external_terms": [
+    "Biba integrity",
+    "CWE-843",
+    "Denning confidentiality lattice",
+    "Volpano-Smith-Irvine noninterference",
+    "Wright value restriction"
+   ]
+  },
+  {
+   "id": "ppa.cyber.heap-strong-update-and-uaf-safety",
+   "title": "Heap shape singleton strong-update barrier and summary-node UAF/double-free safety",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "2",
+     "section": "2.6.2",
+     "book_page": 110,
+     "pdf_page": 129,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.6.2",
+     "book_page": 114,
+     "pdf_page": 133,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.6.3",
+     "book_page": 115,
+     "pdf_page": 134,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.6.3",
+     "book_page": 122,
+     "pdf_page": 141,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.6.3",
+     "book_page": 125,
+     "pdf_page": 144,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Compatible shape graphs SG = (S, H, is) separate concrete singleton cells n_X (X ≠ ∅) from summary node n_∅ under Invariants 1-5, permitting destructive updates via kill_x and kill_{x.sel} on n_X while requiring n_U ∈ is ∧ #into(n_U, H') ≤ 1 ∧ ¬∃sel' : (n_∅, sel', n_U) ∈ H' before clearing heap sharing in is.",
+   "conditions": [
+    "Piecewise Shape∘(ℓ) equations assume a label consistent program with isolated entries (§2.6.3, p. 115).",
+    "Pointer language forbids pointer arithmetic, interior pointers, and union type-punning.",
+    "Clearing n_U ∈ is in kill_{x.sel} requires verifying no incoming edge from summary node n_∅ remains in H'."
+   ],
+   "projections": {
+    "cs_theory": "Outer powerset union over inner must-singletons n_X (X ≠ ∅) isolates exact alias sets so destructive updates remain sound.",
+    "swe_architecture": "Gate strong state transitions on abstract-location cardinality = 1 and degrade to weak union updates on summary locations [external].",
+    "practical_debugging": "Missed use-after-free or ownership bugs on linked structures trace to clearing sharing bits without checking incoming n_∅ summary edges [external].",
+    "cyber": "Defines exact formal strong-update and materialisation preconditions for CWE-416 use-after-free, CWE-415 double-free, and pre-Case-1 CWE-476 null-dereference verification [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.shape.shape-graphs-invariants",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.shape.transfer-and-materialisation",
+     "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.cyber.region-escape-lifetime-firewall",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/memory-heap-and-numeric-bounds-safety.md#1-heap-shape-graphs-26-strong-update-soundness-summary-aliasing",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#3-procedure-2-audit-memory-lifetime-heap-aliasing-numeric-bounds-aliasstrongupdategate-numericwraparoundgate"
+   ],
+   "issue_refs": [
+    "BKL-005"
+   ],
+   "external_terms": [
+    "CWE-415",
+    "CWE-416",
+    "CWE-476",
+    "weak update"
+   ]
+  },
+  {
+   "id": "ppa.cyber.region-escape-lifetime-firewall",
+   "title": "Lexical region Observe escape firewall and polymorphic-recursion arena safety",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 331,
+     "pdf_page": 348,
+     "table_or_fig": "Figure 5.1"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 334,
+     "pdf_page": 351,
+     "table_or_fig": "Table 5.11"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 337,
+     "pdf_page": 354,
+     "table_or_fig": "Table 5.12"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 338,
+     "pdf_page": 355,
+     "table_or_fig": "Table 5.13"
+    }
+   ],
+   "formal_summary": "Region Inference translates FUN into stack-allocated lexical regions (Figure 5.1, Table 5.11 ς₂ \\\\ rn⃗) using [region] side condition φ' = Observe(Γ̂, τ̂, r)(φ) so deallocated region variables ϱ⃗ do not escape in observable Γ̂, τ̂, or r, while compound schemes (∀β⃗, [ϱ⃗].τ̂)@r enable per-call region placement in recursive functions.",
+   "conditions": [
+    "Deallocating rn⃗ in [region] requires ϱ⃗ to occur in φ and not in Observe(Γ̂, τ̂, r)(φ) (Table 5.13, p. 338).",
+    "Polymorphic recursion in [fun] excludes type variables α⃗ for decidability (§5.4.3, p. 336).",
+    "Fresh runtime regions satisfy {rn⃗} ∩ dom(ς₁) = ∅ (Table 5.11, p. 334)."
+   ],
+   "projections": {
+    "cs_theory": "Lexical effect masking sound-approximates dynamic stack-of-regions deallocation without per-object reference counting or GC.",
+    "swe_architecture": "Model request/arena bump allocators with non-escape region effects and region-polymorphic server loops; contrast with affine alias-XOR-mutability borrow checking [external].",
+    "practical_debugging": "Dangling-pool crashes trace to closures/pointers escaping Observe, while unbounded arena growth in loops traces to monomorphic region binding [external].",
+    "cyber": "Prevents stack/arena CWE-416 use-after-free on scope exit and CWE-400 arena memory exhaustion in long-running recursive handlers [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.call-tracking-effects",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.cyber.heap-strong-update-and-uaf-safety",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/memory-heap-and-numeric-bounds-safety.md#2-stack-based-lexical-region-inference-543-vs-shape-analysis-26",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#3-procedure-2-audit-memory-lifetime-heap-aliasing-numeric-bounds-aliasstrongupdategate-numericwraparoundgate"
+   ],
+   "external_terms": [
+    "CWE-400",
+    "CWE-416",
+    "Rust borrow checker"
+   ]
+  },
+  {
+   "id": "ppa.cyber.relational-bounds-and-modular-wraparound",
+   "title": "Relational idx < len bounds domains, widening/narrowing discipline, and machine-integer wraparound",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "4",
+     "section": "4.2",
+     "book_page": 221,
+     "pdf_page": 238,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "4",
+     "section": "4.2.1",
+     "book_page": 226,
+     "pdf_page": 243,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "4",
+     "section": "4.2.2",
+     "book_page": 230,
+     "pdf_page": 247,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "4",
+     "section": "4.4.1",
+     "book_page": 249,
+     "pdf_page": 266,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "4",
+     "section": "4.4.2",
+     "book_page": 257,
+     "pdf_page": 274,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 358,
+     "pdf_page": 375,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Interval (§4.2) abstracts unbounded 𝒫(Z) using non-monotone widening ∇_K (guarded by f(x) ⊑ x in Red(f)) and narrowing Δ; Independent Attribute L₁ × L₂ (§4.4.1) drops cross-variable relations preserved by tensor/reduced products ς[M₁ × M₂] (Example 4.39 AB), while Mini Project 5.5 enforces affine scale BASE base typing.",
+   "conditions": [
+    "Interval semantics in §4.2 assumes unbounded mathematical integers Z rather than modular machine bit-vectors.",
+    "Widening iteration f_∇^n requires testing f(f_∇^n) ⊑ f_∇^n, operand order old ∇ new, and ⊥ ∇_K x = x (pp. 226, 229).",
+    "Affine base addition in Mini Project 5.5 forbids adding two non-none origin bases (p. 358)."
+   ],
+   "projections": {
+    "cs_theory": "Galois reduction ς = α ∘ γ prunes infeasible product atoms; non-monotone ∇ accelerates stabilisation across infinite chains while Δ refines reductive post-solutions downward.",
+    "swe_architecture": "Combine modular bit-vector interval transfers with relational difference/octagon domains and loop-header ∇_K + Δ recovery [external].",
+    "practical_debugging": "Missed alloc(n + 1) overflows trace to Z-interval transfers ignoring wraparound; false alarms on guarded buf[i] trace to Independent Attribute losing i < n or missing narrowing [external].",
+    "cyber": "Governs CWE-787/CWE-125 buffer-bounds verification, CWE-190/CWE-195 integer-overflow and signedness traps, and CWE-682 epoch/unit confusion [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.ai.collecting-semantics",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.ai.adjunction-induced-analysis",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/memory-heap-and-numeric-bounds-safety.md#3-numeric-bounds-relational-products-machine-wraparound-4145-mini-project-55",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#3-procedure-2-audit-memory-lifetime-heap-aliasing-numeric-bounds-aliasstrongupdategate-numericwraparoundgate"
+   ],
+   "issue_refs": [
+    "BKL-001",
+    "BKL-002"
+   ],
+   "external_terms": [
+    "CWE-125",
+    "CWE-190",
+    "CWE-195",
+    "CWE-682",
+    "CWE-787",
+    "Octagons",
+    "Polyhedra",
+    "Zones"
+   ]
+  },
+  {
+   "id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+   "title": "Open-system 0-CFA callback/gadget reachability and online dead-branch pruning",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "3",
+     "section": "3.1.1",
+     "book_page": 146,
+     "pdf_page": 164,
+     "table_or_fig": "Table 3.1"
+    },
+    {
+     "chapter_or_app": "3",
+     "section": "3.1.1",
+     "book_page": 149,
+     "pdf_page": 167,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "3",
+     "section": "3.4.2",
+     "book_page": 178,
+     "pdf_page": 196,
+     "table_or_fig": "Table 3.7"
+    },
+    {
+     "chapter_or_app": "3",
+     "section": "3.4.2",
+     "book_page": 182,
+     "pdf_page": 200,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "3",
+     "section": "3.5.2",
+     "book_page": 188,
+     "pdf_page": 206,
+     "table_or_fig": "Table 3.9"
+    }
+   ],
+   "formal_summary": "Coinductive 0-CFA (Table 3.1) and its O(n³) conditional-constraint solver (Table 3.7) bound closures reaching indirect call sites, open-system formulations e_∘ / e_⋆ (§§3.1.1, 3.4.2) model unknown external callers, and data-qualified (Ĉ, D̂, ρ̂, δ̂) ⊨_D e co-iteration (Table 3.9) suppresses unreachable conditional branches (Examples 3.27, 3.31).",
+   "conditions": [
+    "Exported libraries and callback interfaces must be analysed as open systems e_∘ / e_⋆ rather than closed terms (§3.1.1, p. 149).",
+    "Dead-branch suppression requires online (Ĉ, D̂, ρ̂, δ̂) ⊨_D e co-iteration rather than staged 0-CFA followed by ⊨'_D (Example 3.31, p. 189).",
+    "Non-terminating reactive loops require small-step SOS soundness (Theorem 3.10) rather than vacuous big-step Natural Semantics (§5.2.1, p. 292)."
+   ],
+   "projections": {
+    "cs_theory": "Greatest-fixed-point acceptability (gfp) coincides with least solutions of monotone conditional inclusion constraints over finite Term powersets.",
+    "swe_architecture": "Seed public APIs and deserialization entrypoints as open-world roots and co-iterate reachability with constant/flag propagation [external].",
+    "practical_debugging": "Empty call targets on plugin hooks indicate closed-world entry assumptions; bloated indirect-call sets trace to dead-branch pollution or 0-CFA monovariance [external].",
+    "cyber": "Bounds indirect-call Control-Flow Integrity (CFI) target sets and CWE-502 deserialization/callback gadget chains without closed-world blind spots [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.cfa.intro-control-flow-analysis",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/callgraph-cfi-concurrency-and-scanner-dos.md#1-open-world-0-cfa-k-cfa-indirect-dispatch-gadget-pruning-chapter-3",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#4-procedure-3-audit-indirect-dispatch-concurrencyexceptions-scanner-resilience-higherorderdispatchgate-fixpointterminationgate"
+   ],
+   "issue_refs": [
+    "BKL-004",
+    "BKL-008"
+   ],
+   "external_terms": [
+    "Control-Flow Integrity (CFI)",
+    "CWE-502"
+   ]
+  },
+  {
+   "id": "ppa.cyber.exception-and-concurrent-protocol-safety",
+   "title": "Uncaught-exception cleanup bypass and branching-time concurrent behaviour auditing",
+   "altitude": "L1",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 328,
+     "pdf_page": 345,
+     "table_or_fig": "Table 5.10"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 330,
+     "pdf_page": 347,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 343,
+     "pdf_page": 360,
+     "table_or_fig": "Table 5.15"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 347,
+     "pdf_page": 364,
+     "table_or_fig": "Table 5.17"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 348,
+     "pdf_page": 365,
+     "table_or_fig": "Table 5.18"
+    }
+   ],
+   "formal_summary": "Exception Analysis (Table 5.10) tracks raised exceptions on handle s as e₁ in e₂ via φ₁ ∪ (φ₂ \\ {s}) with conservative variable law β \\ {s} = β (p. 330), while Communication Analysis (Tables 5.15-5.18) extracts small-step CML causal behaviours ordered by a 22-rule preorder with right-only distributivity (φ₁ + φ₂) ; φ₃ ≡ (φ₁ ; φ₃) + (φ₂ ; φ₃).",
+   "conditions": [
+    "Uninstantiated effect variables must satisfy β \\ {s} = β until concrete instantiation (§5.4.2, p. 330).",
+    "send e₁ on e₂ has behaviour φ₁ ; φ₂ ; r₂!τ̂ and receive e₀ has φ₀ ; r₀?τ̂ (Table 5.17, p. 347), synchronising directly via [comm] between distinct processes p₁ ≠ p₂ (Table 5.15, p. 343).",
+    "Left-distributivity φ₁ ; (φ₂ + φ₃) ≡ (φ₁ ; φ₂) + (φ₁ ; φ₃) is omitted in Table 5.18 (p. 348)."
+   ],
+   "projections": {
+    "cs_theory": "Omitting left-distributivity preserves branching-time choice commitments over synchronous rendezvous; β \\ {s} = β preserves substitution soundness under effect polymorphism.",
+    "swe_architecture": "Audit RAII/lock-release paths against non-empty exception effects and extract process-algebraic causal summaries across [comm] rendezvous points [external].",
+    "practical_debugging": "Missed callback exceptions trace to simplifying β \\ {s} early; missed deadlocks trace to collapsing causal behaviours into regular trace sets [external].",
+    "cyber": "Detects CWE-755/CWE-404 exception-driven lock or privilege-drop bypasses, CWE-367 TOCTOU rendezvous interleavings, and CWE-833 branching-time deadlocks [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.call-tracking-effects",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/callgraph-cfi-concurrency-and-scanner-dos.md#2-exception-cleanup-bypass-542-concurrent-causal-behaviours-551",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#4-procedure-3-audit-indirect-dispatch-concurrencyexceptions-scanner-resilience-higherorderdispatchgate-fixpointterminationgate"
+   ],
+   "issue_refs": [
+    "BKL-009"
+   ],
+   "external_terms": [
+    "CWE-367",
+    "CWE-404",
+    "CWE-755",
+    "CWE-833",
+    "Milner CCS branching-time bisimulation"
+   ]
+  },
+  {
+   "id": "ppa.cyber.solver-dos-and-timeout-evasion",
+   "title": "SAST complexity-DoS hardening and early-cutoff under-approximation evasion defense",
+   "altitude": "L0",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 369,
+     "pdf_page": 385,
+     "table_or_fig": "Table 6.1"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 371,
+     "pdf_page": 387,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.2.1",
+     "book_page": 380,
+     "pdf_page": 396,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.3",
+     "book_page": 384,
+     "pdf_page": 400,
+     "table_or_fig": "Table 6.6"
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Concluding Remarks",
+     "book_page": 385,
+     "pdf_page": 401,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 389,
+     "pdf_page": 405,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "Exercises",
+     "book_page": 391,
+     "pdf_page": 407,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Abstract Worklist (Table 6.1, Lemma 6.4) maintains Analysis_i[x] ⊑ μ_𝒮(x) at every step and reaches Red(F_𝒮) only when W = empty in O(h · M² · N) time (lowered to O(h · M · N) by Exercise 6.5 splitting, scheduled via RPO/SCC Tables 6.3-6.6 or local solvers on p. 385, and bounded under non-ACC by Exercise 6.13 widening).",
+   "conditions": [
+    "Intermediate states Analysis_i satisfy F_𝒮(Analysis_i) ⊑ Analysis_i only upon W = empty (Lemma 6.4, p. 371).",
+    "Round Robin bound d(G_𝒮, T) + 3 requires a Bit Vector Framework iterated in DFSF reverse postorder (Lemma 6.12, p. 380).",
+    "Worklist widening requires guarding Analysis[x] := Analysis[x] ∇_L new with Analysis[x] ⋣ new (Exercise 6.13, p. 391)."
+   ],
+   "projections": {
+    "cs_theory": "Ascending worklist iterates approach lfp(F_𝒮) from below and cross into reductive upper bounds Red(F_𝒮) strictly at worklist exhaustion.",
+    "swe_architecture": "Split M-ary joins, schedule SCCs in topological RPO, support demand-driven backward sink cones, and widen dirty cones on step-budget exhaustion [external].",
+    "practical_debugging": "Scanner timeouts on flattened dispatchers trace to O(h · M² · N) fan-in or high d(G_𝒮, T); missing alerts on large functions trace to returning partial Analysis_i at timeout [external].",
+    "cyber": "Defends SAST/taint engines against CWE-400/CWE-407 algorithmic complexity DoS and closes the CWE-693 timeout-evasion false-negative primitive [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.solvers.chaotic-iteration",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.solvers.worklist-mfp",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.graphs.reverse-postorder",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.strong-components",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.loop-connectedness",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cyber.open-world-cfa-and-gadget-reachability",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.cyber.fn-fp-triage-and-oracles",
+     "relation": "prerequisite_of",
+     "citations": []
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/ambient-context/ppa-cyber-analysis.md#five-non-negotiable-security-soundness-invariants",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/callgraph-cfi-concurrency-and-scanner-dos.md#3-hardening-sast-solvers-against-complexity-dos-timeout-evasion-chapter-6",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#4-procedure-3-audit-indirect-dispatch-concurrencyexceptions-scanner-resilience-higherorderdispatchgate-fixpointterminationgate",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#5-procedure-4-execute-demand-driven-sink-to-source-triage-patch-diff-audits"
+   ],
+   "issue_refs": [
+    "BKL-010",
+    "BKL-012"
+   ],
+   "external_terms": [
+    "CWE-400",
+    "CWE-407",
+    "CWE-693"
+   ]
+  },
+  {
+   "id": "ppa.cyber.fn-fp-triage-and-oracles",
+   "title": "False-negative vs false-positive root-cause triage matrix and security regression oracles",
+   "altitude": "L2",
+   "unit": "X",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 2,
+     "pdf_page": 22,
+     "table_or_fig": "Figure 1.1"
+    },
+    {
+     "chapter_or_app": "2",
+     "section": "2.4.2",
+     "book_page": 80,
+     "pdf_page": 99,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "4",
+     "section": "4.5.2",
+     "book_page": 266,
+     "pdf_page": 283,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "6",
+     "section": "6.1.1",
+     "book_page": 371,
+     "pdf_page": 387,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Classifies static-analysis discrepancies by whether an abstraction violated a soundness precondition (producing under-approximation relative to concrete semantics) or incurred safe join/context/widening over-approximation (MFP ⊒ MOP, Independent Attribute, k = 0, or ∇_K).",
+   "conditions": [
+    "Soundness triage tests lattice polarity, extremal seeds, singleton strong-update guards, modular arithmetic semantics, and W = empty completion first.",
+    "Precision triage tests distributivity (Lemma 2.32), edge-attached branch guards (§4.5.2, p. 266), context depth k, and relational domain coupling second."
+   ],
+   "projections": {
+    "cs_theory": "Maps operational soundness gaps vs Galois/MFP over-approximation slack onto systematic counterexample witnesses.",
+    "swe_architecture": "Embed minimal 5-oracle regression suites into CI for every custom SAST query or abstract interpreter pass [external].",
+    "practical_debugging": "Bisects scanner bugs in O(1) steps between broken soundness invariants (FN) and domain/context coarseness (FP) [external].",
+    "cyber": "Operationalises end-to-end SAST/taint rule auditing so false-positive suppression patches never introduce silent false-negative vulnerability blind spots [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.safe-approximation",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.dfa.mop-vs-mfp",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cyber.taint-sanitizer-polarity",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cyber.solver-dos-and-timeout-evasion",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#6-false-negative-vs-false-positive-root-cause-triage-matrix",
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#7-golden-security-oracles"
+   ],
+   "external_terms": [
+    "false negative",
+    "false positive",
+    "SARIF"
    ]
   }
  ]

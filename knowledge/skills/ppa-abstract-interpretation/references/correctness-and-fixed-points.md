@@ -246,7 +246,7 @@ Once `f_∇^m ∈ Red(f)` is found (`f(f_∇^m) ⊑ f_∇^m`), descending `[exte
   bound operators and `⊔` itself is a widening operator with `lfp_⊔(f) = ⨆_n f^n(⊥) = lfp(f)` (for `ACC` / affine `f`)
   [PPA Exercise 4.7, p. 277] (book p. 277; PDF p. 294).
 - **Key difference**: Without `ACC`, `∇` sacrifices exactness (`lfp(f) ⊑ lfp_∇(f)`) and monotonicity (`BKL-002`), making
-  iteration order (`Chapter 6 Exercise 6.13` worklist widening) and `[external: CFG loop-cutset placement]` affect precision rather than mere runtime.
+  iteration order (`Chapter 6 Exercise 6.13` worklist widening in [scc-round-robin-and-advanced-solvers.md](../../ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md) [PPA Exercise 6.13, p. 391] (book p. 391; PDF p. 407)) and `[external: CFG loop-cutset placement]` affect precision rather than mere runtime.
 
 ## 7. Verified Source Errata and Implicit Hypotheses (Sections 4.1-4.2 and Exercises 4.1-4.12)
 

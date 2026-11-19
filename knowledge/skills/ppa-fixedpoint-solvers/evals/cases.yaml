@@ -1,0 +1,66 @@
+# Routing and boundary cases for ppa-fixedpoint-solvers.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: fps-join-splitting-and-complexity
+    prompt: 'Our constraint solver evaluates M-predecessor merge equations x_i = t_1 join ... join t_M in O(h * M^2 * N) time and stalls on large switch blocks. Show how to split them into inequations without changing the least solution and prove the new complexity bound.'
+    expect_skill: ppa-fixedpoint-solvers
+    must_mention:
+      - 'O(h · M · N)'
+      - 'Exercise 6.5'
+    notes: 'Multi-LHS inequation equivalence (p. 366) and Exercise 6.5 O(h*M^2*N) -> O(h*M*N) splitting.'
+  - id: fps-rpo-double-buffer-and-handles
+    prompt: 'Design a reverse-postorder worklist for a backward data flow or 0-CFA constraint graph that has no single root node, and explain why Table 6.3 uses two collections (W.c, W.p) or Exercise 6.7 priority routing instead of one min-heap.'
+    expect_skill: ppa-fixedpoint-solvers
+    must_mention:
+      - 'minimal handle'
+      - 'W.c'
+    notes: 'Minimal handle H_S (p. 375), Table 6.3 double-buffered (W.c, W.p), and Exercise 6.7 forward-edge routing.'
+  - id: fps-scc-three-queue-and-table65-bug
+    prompt: 'Implement three-queue strong-component iteration (W.c, W.pc, W.pf) over srPostorder so downstream DAG nodes evaluate only once, while avoiding the variable-shadowing bug in Table 6.5.'
+    expect_skill: ppa-fixedpoint-solvers
+    must_mention:
+      - 'srPostorder'
+      - 'W.pf'
+    notes: 'Table 6.5 scc shadowing erratum (p. 382), Table 6.6 SCC barrier, and Exercise 6.12 three-queue routing.'
+  - id: fps-round-robin-preconditions-and-fastness
+    prompt: 'When does the Round Robin algorithm halt in at most d(G_S, T) + 3 iterations, why does that bound fail on Constant Propagation, and how does the fastness closure solve simple Bit Vector loops without iteration?'
+    expect_skill: ppa-fixedpoint-solvers
+    must_mention:
+      - 'Bit Vector'
+      - 'd(G_𝒮, T) + 3'
+    notes: 'Lemma 6.12 preconditions (p. 380) and Exercise 6.14 fastness closure (pp. 391-392).'
+  - id: fps-widening-timeouts-and-local-solvers
+    prompt: 'Guard a non-ACC worklist solver with pointwise widening per Exercise 6.13, prevent silent false-negative under-approximation when a step timeout fires with a non-empty worklist, and sketch a top-down demand-driven local solver for single-variable queries.'
+    expect_skill: ppa-fixedpoint-solvers
+    must_mention:
+      - 'Red(F_𝒮)'
+      - 'Exercise 6.13'
+    notes: 'Exercise 6.13 guarded widening, Lemma 6.4 Part (i) early-cutoff trap, and Concluding Remarks p. 385 local solvers.'
+  - id: neg-dfa-reaching-defs-and-shape
+    prompt: 'Formulate Reaching Definitions, Available Expressions, ud/du slicing chains, and compatible heap shape graphs with materialisation for a WHILE program.'
+    expect_skill: ppa-dataflow-and-slicing
+    notes: 'U2 boundary: formulating Chapter 2 transfer equations and shape graphs belongs to ppa-dataflow-and-slicing.'
+  - id: neg-cfa-closure-constraints
+    prompt: 'Derive syntax-directed 0-CFA and uniform k-CFA abstract cache constraints for higher-order lambda terms and prove coinductive soundness.'
+    expect_skill: ppa-control-flow-and-constraints
+    notes: 'U3 boundary: generating higher-order closure constraints belongs to ppa-control-flow-and-constraints.'
+  - id: neg-ai-galois-domain-design
+    prompt: 'Construct a Galois connection and reduced product between Sign and Parity domains and prove best induced transformer optimality.'
+    expect_skill: ppa-abstract-interpretation
+    notes: 'U7 boundary: designing abstract domains and Galois connections belongs to ppa-abstract-interpretation.'
+  - id: neg-types-effects-region-inference
+    prompt: 'Build an annotated type and effect inference system with polymorphic region inference and CML channel behaviours.'
+    expect_skill: ppa-types-effects-and-regions
+    notes: 'Type and effect systems belong to Chapter 5 (ppa-types-effects-and-regions).'
+  - id: neg-cyber-sink-audit-policy
+    prompt: 'Define an untrusted HTTP input to command-execution sink taint policy, sanitiser soundness contract, and CWE triage workflow.'
+    expect_skill: ppa-cyber-vulnerability-analysis
+    notes: 'Vulnerability-class policy and triage belong to ppa-cyber-vulnerability-analysis.'
+  - id: neg-router-paradigm-and-appc-proofs
+    prompt: 'Compare the four program analysis paradigms on Chapter 1 factorial or prove Lemma C.9 classifying advancing, retreating, back, and cross edges in a depth-first spanning forest.'
+    expect_skill: ppa-program-analysis
+    notes: 'U10 boundary: paradigm comparison and foundational Appendix A-C graph proofs belong to ppa-program-analysis.'
+  - id: neg-none-dynamic-benchmark-profiler
+    prompt: 'Profile CPU cache misses at run time using hardware performance counters on a compiled binary.'
+    expect_skill: none
+    notes: 'Dynamic runtime profiling is outside static program analysis.'

@@ -15,7 +15,7 @@ Book numbers are preserved verbatim; unnumbered subsections carry local identifi
 Terms marked `[external]` lie outside the book; `[derived]` marks direct logical consequences of printed
 definitions.
 
-## Closed Inventory (Book pages 82–139 / PDF pages 101–158)
+## Closed Inventory: Book pages 82–139 / PDF pages 101–158
 
 | Kind | Count | Identifiers |
 | :--- | ---: | :--- |

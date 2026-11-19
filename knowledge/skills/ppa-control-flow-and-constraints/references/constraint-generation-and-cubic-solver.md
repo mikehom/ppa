@@ -129,7 +129,7 @@ and the Chapter 5 type-based `U8` counterparts (`⊢_CFA`, `𝒲_CFA`, `§5.4.1`
   form (though `⊨ e_⋆` remains slightly tighter when `R̂(ℓ) = {on}` holds at an `[app]` with `Ĉ(ℓ₁) = ∅`, `G-U3b-25`)
   [PPA Mini Project 3.1, p. 202] (book p. 202; PDF p. 220).
   `Mini Project 3.3` gives the SML AST (`datatype exp = Label of term * label`) for prototyping `𝒞_⋆` and `Table 3.7`
-  [PPA Mini Project 3.3, p. 204] (book p. 204; PDF p. 222).
+  [PPA Mini Project 3.3, p. 204] (book p. 204; PDF p. 222); canonical **`U3`** unifies `Table 3.7` with Chapter 6 `Table 6.1` (`Examples 6.2, 6.6`) in [worklist-and-rpo-algorithms.md](../../ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md) [PPA §6.1.2, p. 373] (book p. 373; PDF p. 389).
 - **Set Constraints & `[9]` (`[external: Aiken et al.]`) lazy two-step solver (`Concluding Remarks`, `G-U3b-23`, `G-U3b-24`, `BKL-059`)**:
   Set-Constraint Based Analysis (`S₁ ⊆ S₂` over union `∪`, intersection `∩`, constructor expressions `C(S₁, ..., S_a)`,
   and projections `C^{-i}(S)`, `p. 201`) stays monotone (`S₁ ∩ S₂` is monotone!) until complement `¬S` or

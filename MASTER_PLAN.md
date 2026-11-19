@@ -135,10 +135,10 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 6: Part III — Chapter 6 (Algorithms), Cyber Synthesis & Part III Gate
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W6-1` (`ISS-W6-01`)**: Unit 6 — Ch 6 Worklist, RPO, Round-Robin & SCC Solvers + Subject/Bib Index (`RAW_SHARD_06_algorithms_bib.md`, `ppa-fixedpoint-solvers`, `ppa-fixedpoint-solvers.md`) + Gate #9 (Ch 6 3-Model Loop).
-- [ ] **`W6-2` (`ISS-W6-02`)**: Cross-Book Cyber Program Analysis Skill (`ppa-cyber-vulnerability-analysis`, `ppa-cyber-analysis.md`), Merged `corpus/RAW_KNOWLEDGE.md` & Gate #10 (Part III 3-Model Loop).
+- [x] **`W6-1` (`ISS-W6-01`)**: Unit 6 — Ch 6 Worklist, RPO, Round-Robin & SCC Solvers + Subject/Bib Index (`RAW_SHARD_06_algorithms_bib.md`, `ppa-fixedpoint-solvers`, `ppa-fixedpoint-solvers.md`, `REF-007`) + Gate #9 (Ch 6 3-Model Loop — CLOSED `3/3 [ALIGNED gate9-v2]`).
+- [x] **`W6-2` (`ISS-W6-02`)**: Cross-Book Cyber Program Analysis Skill (`ppa-cyber-vulnerability-analysis`, `ppa-cyber-analysis.md`), Merged `corpus/RAW_KNOWLEDGE.md`, Refactoring (`REF-007`) & Gate #10 (Part III 3-Model Loop — CLOSED `3/3 [ALIGNED gate10-v2]`; Part III complete).
 
 ## Phase 7: Cross-Harness Porting Documentation, Reference Adapters & Conformance Suite
 

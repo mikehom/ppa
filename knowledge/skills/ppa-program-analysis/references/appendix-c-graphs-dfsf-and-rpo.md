@@ -355,7 +355,7 @@ regular expression over `Σ₂` and `ℒ(h(R)) = h(ℒ(R))`.
 | "`d(G)` = loop nesting depth" | stated for uniquely labelled WHILE flow graphs (Example C.13; BKL-018, G-U0-42) | [PPA §C.2, p. 425] (book p. 425; PDF p. 440) |
 | "paths are strictly increasing in rPostorder" | Corollary C.14 states "monotonically increasing" for reducible cycle-free paths from `H` (strict `<` on each step follows via Lemma C.12 + Corollary C.11 `[derived]`; G-U0-43) | [PPA §C.2, p. 426] (book p. 426; PDF p. 441) |
 | "preorder works as well" | preorder and breadth-first order need not sort cross edges (G-U0-43) | [PPA §C.2, p. 426] (book p. 426; PDF p. 441) |
-| "Round Robin needs `d + 2` passes" | Lemma 6.12 states `d(G_S, T) + 3` iterations, under its Bit Vector assumptions | [PPA §6.2, p. 380] (book p. 380; PDF p. 396) |
+| "Round Robin needs `d + 2` passes" | Lemma 6.12 states `d(G_S, T) + 3` iterations, under its Bit Vector assumptions (`U10` RPO/SCC scheduling in [worklist-and-rpo-algorithms.md](../../ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md) and [scc-round-robin-and-advanced-solvers.md](../../ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md)) | [PPA §6.2, p. 380] (book p. 380; PDF p. 396) |
 
 ---
 
