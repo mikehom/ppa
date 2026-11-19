@@ -2,7 +2,7 @@
 id: ISS-W2-01
 title: "W2-1 Ch 2a §2.1–2.4 intraprocedural DFA, SOS soundness, monotone frameworks"
 issue_type: shard
-status: open
+status: closed
 priority: P0
 labels: [ppa, wave-2]
 milestone: W2
@@ -11,9 +11,9 @@ depends_on: [ISS-W1-02]
 blocks: [ISS-W2-03]
 ppa_scope: ["§2.1 Intraprocedural Analysis (book pp. 35–53; PDF pp. 54–72)", "§2.2 Theoretical Properties (book pp. 54–64; PDF pp. 73–83)", "§2.3 Monotone Frameworks (book pp. 65–73; PDF pp. 84–92)", "§2.4 Equation Solving (book pp. 74–81; PDF pp. 93–100)"]
 altitudes: [L1, L2, L3]
-aligned_models: []
+aligned_models: [P-SWE, P-ARCH, P-CYBER]
 created_at: 2026-11-18
-updated_at: 2026-11-18
+updated_at: 2026-11-19
 github_issue_number: null
 ---
 
@@ -39,21 +39,24 @@ Source slice: book pp. 35–81 (source slices regenerated as untracked working f
 
 ## Acceptance Gates
 
-- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`
-- [ ] All 9 tables and 6 figures in book pp. 35–81 are anchored (no omissions)
-- [ ] Artifact `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md` exists and passes `scripts/validate_ppa_knowledge.py`
-- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0
-- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0
+- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`
+- [x] All 9 tables and 6 figures in book pp. 35–81 are anchored (no omissions)
+- [x] Artifact `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md` exists and passes `scripts/validate_ppa_knowledge.py`
+- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0
+- [x] `python3 -B scripts/issue_ctl.py validate` exits 0
 
 ## 3-Model Adversarial Alignment & Rebuttal Log
 
-_Pending._
+- 2026-11-19 extraction complete; staged for Gate #3 three-track adversarial panel review (`W2-3` integration merged into `ontology/concept_graph.json`, `ppa-dataflow-and-slicing/`, `BKL-036..040`, and `BKL-006`).
+- 2026-11-19 Gate #3 Round 2 `[ALIGNED gate3-v2]` across all 3 independent review tracks (`P-SWE`, `P-ARCH`, `P-CYBER`): `0` `HARD_BLOCK`, `0` `BLOCKING`.
 
 ## Cross-Referenced Concepts & Artifacts
 
 - Parent: EPIC-001; depends on: ISS-W1-02; blocks: ISS-W2-03
 - `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md`
+- `knowledge/skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md`
 
 ## Verification Receipts
 
-_Pending._
+- 2026-11-19 [in_progress] Unit 2a extraction verified: `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md` (`G-U2a-01..35` `35/35` covered, `9/9` Tables `2.1–2.9`, `6/6` Figures `2.1–2.6`); `validate_ppa_knowledge.py --strict-gotchas` PASS, `check_portability_hygiene.py .` PASS. Ready for Gate #3.
+- 2026-11-19 [closed] Gate #3 Round 2 unanimous 3/3 [ALIGNED gate3-v2] across P-SWE, P-ARCH, and P-CYBER; 0 HARD_BLOCK, 0 BLOCKING; validators, hygiene, and 47/47 unit tests PASS.

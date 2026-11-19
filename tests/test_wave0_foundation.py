@@ -292,20 +292,17 @@ class IssueCtlTests(unittest.TestCase):
             self.assertTrue(any("C6.8" in e for e in errs), errs)
 
     def test_schema_rules_are_enforced(self):
-        errs = self.mutate_and_collect("issues/shards/ISS-W1-01.md",
-                                       "priority: P0", "priority: P0\nowner: someone")
+        rel = "issues/shards/ISS-W1-01.md"
+        errs = self.mutate_and_collect(rel, "priority: P0", "priority: P0\nowner: someone")
         self.assertTrue(any("unknown keys" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/shards/ISS-W1-01.md",
-                                       "## Acceptance Gates", "## Gates")
+        errs = self.mutate_and_collect(rel, "## Acceptance Gates", "## Gates")
         self.assertTrue(any("sections must be exactly" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/shards/ISS-W1-01.md",
-                                       "issue_type: shard", "issue_type: refactor")
+        errs = self.mutate_and_collect(rel, "issue_type: shard", "issue_type: refactor")
         self.assertTrue(any("not allowed in shards/" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/shards/ISS-W1-01.md",
-                                       "altitudes: [L1, L2, L3]", "altitudes: [L1, L9]")
+        errs = self.mutate_and_collect(rel, "altitudes: [L1, L2, L3]", "altitudes: [L1, L9]")
         self.assertTrue(any("altitudes must be a subset" in e for e in errs), errs)
-        errs = self.mutate_and_collect("issues/shards/ISS-W1-01.md",
-                                       "updated_at: 2026-11-18", "updated_at: 2026-11-01")
+        cur = re.search(r"updated_at: \S+", (ROOT / rel).read_text(encoding="utf-8")).group(0)
+        errs = self.mutate_and_collect(rel, cur, "updated_at: 2026-11-01")
         self.assertTrue(any("earlier than created_at" in e for e in errs), errs)
 
     def test_export_dry_run_is_topological_deterministic_and_supports_out(self):

@@ -49,11 +49,11 @@ normative architecture.
 | Topic | Decision | Implemented in |
 | :--- | :--- | :--- |
 | Ambient-context altitude | `L0` only (80–250 lines), per `ARCHITECTURE.md` §3.1; `MASTER_PLAN.md` relabelled | `scripts/ppa_artifact_rules.py` (ambient budget) |
-| Inline citation grammar | `CONFORMANCE_SPEC.md` `N8` token `[PPA <locator>, p. <page>]` or `[PPA <locator>, pp. <A>-<B>]`, optionally paired with `(book p. X; PDF p. Y)`; validated fail-closed (`C1.10`) against `corpus/pdf_page_map.json` | `ppa_artifact_rules.resolve_locator`, `validate_ppa_knowledge.check_inline_citations` |
+| Inline citation grammar | `CONFORMANCE_SPEC.md` `N8` syntax pairs a strict bracketed locator (`[PPA §2.1, p. 35]` or a multi-page chapter locator) with its matching book/PDF coordinate pair (e.g. `(book p. 35; PDF p. 54)`); validated fail-closed (`C1.10`) against `corpus/pdf_page_map.json` | `ppa_artifact_rules.resolve_locator`, `validate_ppa_knowledge.check_inline_citations` |
 | Accepted `N8` locators | `Preface`, `Contents`, `List of Tables`, `List of Figures` (Roman labels); `§2.1` / `2.1.3`; `Table 2.1` / `Figure C.3`; `Lemma A.4`, `Exercise 2.4`, `Example 6.13` (`statements` inventory, `C1.11`); `Chapter 2` / `Appendix A` (+ `Concluding Remarks`, `Mini Projects`, `Exercises`); `Index of Notation`, `Index`, `Bibliography`; `[12]` | same |
 | Citation tolerances | Section: exact `[book_start, book_end]` using `shares_last_page` and `end_matter` boundaries; numbered statements: `[book_page, book_end]`; table/figure: ±1 page; bibliography entry: +1 page | same |
 | Edge relation vocabulary | 20 relations (including `corresponds_to` with `basis` for §6.3 unifications) with declared inverses in `ontology/concept_graph.schema.json` (`x-relation-inverses`); symmetry enforced mechanically | `validate_ppa_knowledge.check_graph` |
-| Gotcha ledger format | Last level-2 heading of each `corpus/shards/RAW_SHARD_*.md` is `## Gotcha Ledger`; entries `- G-<unit>-<NN>: <text> [PPA <locator>, p. <n>]`, ids unique across the corpus (e.g. `G-U0-01`); downstream reference coverage checked (`C1.9`) | `ppa_artifact_rules.collect_gotcha_ledgers`, `ppa_artifact_rules.check_gotcha_coverage` |
+| Gotcha ledger format | Last level-2 heading of each `corpus/shards/RAW_SHARD_*.md` is `## Gotcha Ledger`; entries `- G-<unit>-<NN>: <text>` paired with a strict `N8` locator (for example `[PPA §A.1, p. 393] (book p. 393; PDF p. 409)`), ids unique across the corpus (e.g. `G-U0-01`); downstream reference coverage checked (`C1.9`) | `ppa_artifact_rules.collect_gotcha_ledgers`, `ppa_artifact_rules.check_gotcha_coverage` |
 | `SKILL.md` frontmatter | Exactly `name` + `description`; `name` equals directory, matches `^ppa-[a-z0-9]+(-[a-z0-9]+)*$`; description ≤ 1,024 chars with `Use when` and `Do not use` (or `Don't use`) naming a non-router sibling on token boundaries | `ppa_artifact_rules.check_skill` |
 | `evals/cases.yaml` | Required `id`, `prompt`, `expect_skill`; optional `must_mention`, `must_not_mention`, `notes`; every skill (router included) has one (`C3.10`) | `ppa_artifact_rules.check_evals` |
 | Export manifest provenance | Each entry carries `frontmatter`, `source_body` (`N4`/`N5` normalised), `body_sha256` (`N6`), and `published_body_sha256` | `scripts/issue_ctl.py export-github --dry-run` |
@@ -89,7 +89,7 @@ corresponding result (rule C2). The cyber skill instantiates them; sibling skill
 | :--- | :--- | :--- |
 | `POLARITY_GATE` | Declare may/must direction, order, join and extremal value before designing transfer functions | [PPA §2.3, p. 66] (book p. 66; PDF p. 85) |
 | `MONOTONICITY_GATE` | Every transfer function is monotone; non-monotone constructions are named (BKL-003; widening is not required to be monotone, BKL-002) | [PPA §2.3, p. 68] (book p. 68; PDF p. 87) |
-| `STRONG_UPDATE_GATE` | Apply strong update or strong nullification ("remove the existing binding before adding a new one") only where the shape-graph conditions of §2.6 license it; the sharing component may be reset only in the case `#into(n_U, H') ≤ 1` with no remaining pointer from the summary node. The fallback wording "otherwise weak update" is `[external]` terminology; the book does not use the term | [PPA §2.6, p. 115] (book p. 115; PDF p. 134), `kill_x`: [PPA §2.6, p. 118] (book p. 118; PDF p. 137); unsharing: [PPA §2.6, p. 125] (book p. 125; PDF p. 144), [PPA Figure 2.21, p. 126] (book p. 126; PDF p. 145) |
+| `STRONG_UPDATE_GATE` | Apply strong update or strong nullification ("remove the existing binding before adding a new one") only where the shape-graph conditions of §2.6 license it; the sharing component may be reset only in the case `#into(n_U, H') ≤ 1` with no remaining pointer from the summary node. The fallback wording "otherwise weak update" is `[external]` terminology; the book does not use the term | [PPA §2.6, p. 115] (book p. 115; PDF p. 134), `kill_x`: [PPA §2.6, p. 117] (book p. 117; PDF p. 136); unsharing: [PPA §2.6, p. 125] (book p. 125; PDF p. 144), [PPA Figure 2.21, p. 126] (book p. 126; PDF p. 145) |
 | `VARIANCE_GATE` | Mutable reference types are invariant in their content type; channel types `τ chan r` are both covariant and contravariant in `τ` (hence invariant) and covariant in `r`; generalisation side condition enforced (BKL-009) | references: [PPA §5.4, p. 324] (book p. 324; PDF p. 341); channels: [PPA §5.5, p. 348] (book p. 348; PDF p. 365) |
 | `CONVERGENCE_GATE` | Ascending Chain Condition or a widening operator; iteration bounds quoted with their preconditions and parameters: the Round Robin bound `d(G_S, T) + 3` holds for instances of a Bit Vector Framework, with DFSF `T` and reverse postorder, and is not quoted for other frameworks | [PPA §4.2, p. 226] (book p. 226; PDF p. 243); [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396) |
 
@@ -145,9 +145,9 @@ tolerance notes are recorded as validator decisions (§2).
 1. **Home of shared appendix references.** Proposal (`P-SWE`): Appendices A and B live in
    `knowledge/skills/ppa-program-analysis/references/` (router-owned, one hop from the router, so
    `C3.9` ownership holds and siblings may link to them without entering another `SKILL.md` body,
-   `C3.8`); Appendix C is co-located with `ppa-fixedpoint-solvers` (`P-ARCH` proposal). A neutral
-   top-level location has no owning `SKILL.md` and would fail `C3.9`. **Resolved** as `DEC-PPA-008`
-   (entry 2026-11-18, Gate #0 corrections, below).
+   `C3.8`); originally `P-ARCH` proposed co-locating Appendix C with `ppa-fixedpoint-solvers`. A neutral
+   top-level location has no owning `SKILL.md` and would fail `C3.9`. **Resolved** in `DEC-PPA-008`
+   and subsequently updated in `W1-2` (`MASTER_PLAN.md`, see `Entry 2026-11-19`) to router-own all three appendices `A–C`.
 2. **Unification candidates `U11`/`U12`** (`P-ARCH` §4): `U11` folds into the `U1`/`U8` write-up;
    `U12` has an external right-hand side and becomes a projection, not an edge.
 
@@ -170,9 +170,11 @@ rendered page image.
 | 8 | Rule C7 quotes "can be omitted on a first reading" verbatim; EC-08 uses the book's "single static assignment" wording | F-OJ-020 |
 | 9 | `MONOTONICITY_GATE` also names BKL-002 | F-CJ-008 |
 
-**Decision `DEC-PPA-008` (shared appendix references).** Shared `L1` references for Appendices A
-and B are router-owned and live under `knowledge/skills/ppa-program-analysis/references/`; sibling
-skills link to them there. Appendix C references go with `ppa-fixedpoint-solvers`. Recorded in the
+**Decision `DEC-PPA-008` (shared appendix references; revised `W1-2` / `W2-4`).** Shared `L1` references
+for Appendices A, B, and C (amended from Wave 0's initial Appendix C placement in `ppa-fixedpoint-solvers`
+via `MASTER_PLAN.md` `W1-2` and `REF-001`) are permanently router-owned under
+`knowledge/skills/ppa-program-analysis/references/`; sibling skills link to them there (`C3.8`, `C3.9`),
+while Chapter 6 iterative solver algorithms remain scoped to `ppa-fixedpoint-solvers`. Recorded in
 `MASTER_PLAN.md` Decision Log; closes open decision 1 above.
 
 **Node `altitude` semantics (F-FJ-009).** In `ontology/concept_graph.json`, a node's `altitude` is
@@ -181,7 +183,40 @@ always exists, whatever the value of `altitude`; the field never means "the only
 authors apply this reading when seeding and refactoring nodes; refactor triggers that "raise
 `altitude`" use the same reading.
 
+## Entry 2026-11-19 — Wave 2 (`W2-3`) & Part I Holistic Altitude Refactoring (`W2-4`)
+
+### 1. Unit 2 (`W2-3`) Coverage & Budget Summary
+
+- Added `22` Chapter 2 concept nodes (`ontology/concept_graph.json` `59 -> 81`, covering `10/10` Tables `2.1–2.10` and `23/23` Figures `2.1–2.23`) grounded in `corpus/shards/RAW_SHARD_02a_intraproc_dfa.md` (`G-U2a-01..35`) and `corpus/shards/RAW_SHARD_02b_interproc_shape.md` (`G-U2b-01..34`).
+- Packaged Unit 2 deliverables strictly inside altitude ceilings (`N2`): `knowledge/ambient-context/ppa-dataflow-and-shape.md` (`122L` in `[80, 250]`, `0` YAML frontmatter), `knowledge/skills/ppa-dataflow-and-slicing/SKILL.md` (`270L` in `[250, 499)`), and three `L1` reference modules (`intraprocedural-analyses-and-frameworks.md` `208L`, `interprocedural-and-correctness.md` `164L`, `shape-analysis.md` `159L`, all `<= 450L`).
+- Instantiated non-blocking Chapter 2 backlog `BKL-036`..`BKL-050` alongside reconciled pre-seeded `BKL-003`, `BKL-005`, `BKL-006`.
+
+### 2. Part I Holistic Altitude Review (`App A–C + Ch 1 + Ch 2`, `W2-4`)
+
+Evaluated every Part I artifact across `L0`–`L3` against `architecture/ARCHITECTURE.md` §6 (`T1`–`T9`, `I1`–`I6`):
+
+- **`T1` Ceilings**: Audited `knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md` (`446/450L`). Because all 446 lines remain strictly scoped to Chapter 1's five-approach comparison and `Tables 1.1–1.6`, zero lines duplicate Chapter 2 general frameworks; flagged at `4L` below ceiling (no Chapter 2 additions permitted into Chapter 1).
+- **`T2` Cross-Skill Shared Promotion (`DEC-PPA-008`)**: Rather than repeating lattice/ACC foundations, Tarski/induction proofs, or Chapter 1 formulations inside Chapter 2 references, wired direct `L1 -> L1` links from `ppa-dataflow-and-slicing/references/*.md` to router-owned `chapter-1-five-formulations.md` and `appendix-{a,b,c}*.md` (`DEC-PPA-008` revised in `W1-2` so router permanently hosts all three appendices), plus reverse active-module links in `ppa-program-analysis/SKILL.md` (`80L` `< 99L`, `0` `C3.8` violations).
+- **`T3` Procedure vs Specification Separation**: Audited `ppa-dataflow-and-slicing/SKILL.md` (`270L`, incl. the 6-line operator quick-reference card in `§7`). Confirmed all full semantic/framework definition tables, proof derivations, and `Case 1–3` / `Invariants 1–5` specs stay at `L1`/`L3`, leaving only precondition gates and compact operator reminders at `L2`.
+- **`T4` Unification Purity (`U1`–`U10`) & Cross-Unit Symmetry**: Audited all 81 concept nodes for premature `U*` tags. Fixed staged `U4` -> `U6` and subsequently reclassified the two Part I cross-unit pairs (`ppa.dfa.constant-propagation` and `ppa.dfa.mop-vs-mfp` targeting `ppa.ai.adjunction-induced-analysis`) from `corresponds_to` to symmetric `related_to` (reserving `U6` `corresponds_to` for `§4.3–§4.5` in Wave 4 where the source explicitly proves `§4.5` adjunctions), reclassified `worklist-mfp -> chaotic-iteration` (`refines`), `worklist-mfp -> reverse-postorder` (`related_to`), and `flow-insensitive-iav -> annotated-type-constructors` (`contrasts_with`) so `U2`/`U5`/`U10` stay clean for Chapters 3 and 6, and closed all 18 missing cross-unit inverse edges.
+- **`T5` Sibling Boundary Sharpening (`C4`)**: Excluded Ch 1 approach comparison and App A–C theory in `ppa-dataflow-and-slicing/SKILL.md` `description` (`829` chars `< 1024`, Jaccard `0.1917 < 0.50`) and added reciprocal eval discrimination cases (`sib-dataflow-shape-interproc`, `neg-router-approach-foundations`).
+- **`T6` & `T7` Provenance and Symbol Scoping**: Added unindexed Chapter 2 symbols `U-35`, `U-36`, `U-38` (`Lab_{⋆}^{?}`, `flow_{⋆}^{R}/inter-flow_{⋆}^{R}`, `k_{x} : ALoc → ALoc` `[PPA §2.6.3, p. 117]`) and scoped `H`/`⊑`/`k` under `Overloaded symbols` in `ontology/notation_index.md`, aligned `Rule B1` node `altitude` across all `81` `concept_graph.json` nodes (`10` `U0`/`U2b` `L3 -> L1`, `6` `U2` `L2 -> L1`, removed casual `L0` mention ref on `while-flow-graphs`), wired all `BKL-003/005/006` and `BKL-036..050` pointers (`C6.6`, `C6.7`, `§6.4`), and re-verified invariants `I1`–`I5`.
+
+## Entry 2026-11-19 — Gate #3 & Gate #4 Round 1 Remediation (`gate3-v2` / `gate4-v2`)
+
+**Trigger:** Round 1 adversarial judge reviews (`F-FJ-301..307, 401..405`, `F-OJ-301..307, 401..406`, `F-CJ-301..306, 401..405`; recorded in `issues/shards/ISS-W2-03.md` and `ISS-W2-04.md`).
+
+| # | Remediation | Finding IDs |
+| :--- | :--- | :--- |
+| 1 | Restored `kill_x` comprehension guards, `Case 3` / `[x.sel:=y]` guards, `℘` `dom(ℋ)` domain, isolated-entries + `path∘(ℓ) ≠ ∅` `MFP = MOP` guards, and full `CP`/`VP` productions across `ppa-dataflow-and-slicing` `L1`/`L2` & `RAW_SHARD_02b` | `F-FJ-301..303`, `F-OJ-301`, `F-CJ-301, 304` |
+| 2 | Removed `𝒫(path∘(ℓ))` / `§1.5` misattribution at `p. 82`, tagged `[external]` security/literature terms, and standardised `Red(F)` (`F(x) ⊑ x`) terminology across `L0`–`L3` | `F-OJ-302, 303, 406`, `F-CJ-303`, `F-FJ-307` |
+| 3 | Repaired `evals/cases.yaml` YAML escaping (`≤`) + `y := x * x` alignment, eliminated raw `C1.10` placeholder & plural book-page range tokens across tracked files, and corrected `BKL-037/038` `L1 anchor` + backlog parity | `F-FJ-304, 305, 401, 403, 405`, `F-OJ-304..306, 405`, `F-CJ-302` |
+| 4 | Reconciled `concept_graph.json` `Rule B1` `altitude` (`81/81` nodes), reclassified premature `U6` `corresponds_to` to `related_to`, fixed `notation_index.md` (`U-35/36/38`, `H`, `⊑`, `k/k_x`), and synced `DEC-PPA-008` + `kill_x` `p. 117` in this log | `F-FJ-306, 402`, `F-OJ-401..404`, `F-CJ-305, 401..403` |
+
 ## Refactor movements
 
-None yet. Each movement records: moved item, from, to, trigger (`T1`–`T9`), and the refactor issue
-under `issues/refactors/` (conformance check `C6.9`).
+| Refactor ID | Moved / Updated Item | From | To | Trigger | Issue |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `REF-001` | Chapter 2 active routing, `L1` Appendix/Ch 1 foundation links, and reciprocal router/dataflow negative boundaries | Queued Ch 2 router stub + self-contained Ch 2 references | Live `ppa-program-analysis` ↔ `ppa-dataflow-and-slicing` routing (`80L` router, cross-skill `L1` links, updated `SKILL.md` desc & `evals`) | `T2`, `T5` | `issues/refactors/REF-001.md` |
+| `REF-002` | `U6` unification tagging (`U4 -> U6`), premature `U2/U5/U10` reclassification, 18 cross-unit inverse edges, `U-35..U-39` `T7` notation scoping, and `BKL-003/005/006 + BKL-036..050` `L1` reconciliation | Unlinked staged Ch 2 delta edges + pre-extraction `Proposed concept ids` | Symmetric `81`-node `ontology/concept_graph.json`, `U6` section in `L1`, `notation_index.md` `U-35..U-39`, wired `BKL-*` pointers | `T4`, `T6`, `T7` | `issues/refactors/REF-002.md` |
+

@@ -33,12 +33,12 @@ sends the task elsewhere when the discriminator does not hold.
 
 | Task shape | Route to | Discriminator (one line) | Negative route: not this skill when ... |
 | :--- | :--- | :--- | :--- |
-| Facts per program point in code whose control flow is known from its syntax: reaching definitions, live variables, available expressions, def-use chains, slicing, interprocedural or shape facts | `ppa-dataflow-and-slicing` | Control flow is an input to the analysis | ... call targets are themselves computed values (use `ppa-control-flow-and-constraints`), or only solver speed is in question (use `ppa-fixedpoint-solvers`) |
+| Facts per program point in code whose control flow is known from its syntax: reaching definitions, live/faint variables, available/very busy expressions, def-use chains, constant propagation, interprocedural context, or heap shape graphs | `ppa-dataflow-and-slicing` | Control flow is known syntactically (`§§2.1–2.6` active) | ... call targets are themselves computed values (use `ppa-control-flow-and-constraints`), Chapter 1 comparison or App A–C theory is asked (stay here), or only solver scheduling is in question (use `ppa-fixedpoint-solvers`) |
 | Which functions, closures or methods may be called or may reach an expression; higher-order or dynamic dispatch; constraint generation for control flow | `ppa-control-flow-and-constraints` | Control flow is an output of the analysis | ... the flow graph is already fixed and per-point facts are wanted (use `ppa-dataflow-and-slicing`) |
 | Designing, combining or justifying an abstract domain; abstraction and concretisation; widening and narrowing; proving an analysis correct against a semantics | `ppa-abstract-interpretation` | The question is what to approximate and why it is safe | ... the domain is settled and only iteration order or cost is in question (use `ppa-fixedpoint-solvers`) |
 | Expressing an analysis as inference rules over types: annotated types, effects for calls, side effects, exceptions, regions or communication | `ppa-types-effects-and-regions` | The analysis is attached to an underlying type system | ... there is no type system and per-point facts are wanted (use `ppa-dataflow-and-slicing`) |
 | Computing a least solution efficiently: worklists, iteration order, strong components, convergence speed of a constraint solver | `ppa-fixedpoint-solvers` | The question is how to compute, not what | ... termination is in doubt because the domain has unbounded chains (use `ppa-abstract-interpretation` for widening) |
-| A security property is the starting point: taint, injection, indirect-call reach, disclosure; choosing a technique and reading its alarms or guarantees | `ppa-cyber-vulnerability-analysis` | The task starts from a vulnerability class, not from a technique | ... the technique is already chosen and the question is technical (use that technique's skill from the rows above) |
+| A security property is the starting point: [external: taint], [external: injection], indirect-call reach, disclosure; choosing a technique and reading its alarms or guarantees | `ppa-cyber-vulnerability-analysis` | The task starts from a vulnerability class, not from a technique | ... the technique is already chosen and the question is technical (use that technique's skill from the rows above) |
 
 Stay in this skill when the task compares approaches, asks which one fits, asks about safe
 approximation in general, or needs one of the references below.
@@ -70,6 +70,10 @@ approximation in general, or needs one of the references below.
 - [appendix-c-graphs-dfsf-and-rpo.md](references/appendix-c-graphs-dfsf-and-rpo.md): directed graphs, regular path
   sets, depth-first spanning forests, reverse postorder, loop connectedness and reducibility
   (Appendix C).
+
+## Sibling Reference Modules (Active)
+
+- Chapter 2 (`ppa-dataflow-and-slicing`): [intraprocedural-analyses-and-frameworks.md](../ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md) (`§§2.1, 2.3–2.4`), [interprocedural-and-correctness.md](../ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md) (`§§2.2, 2.5`), and [shape-analysis.md](../ppa-dataflow-and-slicing/references/shape-analysis.md) (`§2.6`).
 
 ## Evaluation
 

@@ -1,0 +1,52 @@
+# Routing and boundary cases for ppa-dataflow-and-slicing.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: dfs-classical-bitvector-polarity
+    prompt: "Compare kill and gen functions for Available Expressions vs Very Busy Expressions on assignments, and explain why AE uses largest solutions under intersection while RD uses smallest solutions under union."
+    expect_skill: ppa-dataflow-and-slicing
+    must_mention: ["x ∉ FV(a')", "AExp(a)"]
+    notes: "Intraprocedural bit-vector framework polarity and gen_AE vs gen_VB asymmetry (§2.1, Table 2.1, Table 2.3)."
+  - id: dfs-slicing-constant-folding
+    prompt: "Compute ud-chains and du-chains from Reaching Definitions on this imperative function, and prove when replacing a variable use along a du-chain with a constant is sound."
+    expect_skill: ppa-dataflow-and-slicing
+    must_mention: ["UD", "uninitialised"]
+    notes: "Derived ud/du slicing and Mini Project 2.1 safety precondition across all reaching defs (§2.1.5)."
+  - id: dfs-monotone-vs-distributive
+    prompt: "Show why Constant Propagation fails distributivity so MFP differs from MOP, whereas Faint Variables stays distributive without being a Bit Vector Framework."
+    expect_skill: ppa-dataflow-and-slicing
+    must_mention: ["y := x * x", "Bit Vector"]
+    notes: "Framework expressiveness hierarchy Bit Vector ⊂ Distributive ⊂ Monotone (Lemma 2.27, Exercise 2.4, Exercise 2.9)."
+  - id: dfs-interproc-context-and-iav
+    prompt: "Lift a data flow analysis across mutually recursive procedures using bounded call strings vs large and small assumption sets, avoiding cross-over poisoning and non-monotonicity bugs."
+    expect_skill: ppa-dataflow-and-slicing
+    must_mention: ["inter-flow", "non-monotone"]
+    notes: "Embellished framework binary return f̂², unbounded vs Lab^{≤ k}, Δ = P(D) exact fiber snag, Δ = D (§2.5)."
+  - id: dfs-shape-materialisation-strong-update
+    prompt: "Verify in-situ linked-list reversal using compatible shape graphs (S, H, is), materialising n_{x} from summary node n_∅ on [x:=y.cdr] and checking when kill_{x.sel} can clear sharing in is."
+    expect_skill: ppa-dataflow-and-slicing
+    must_mention: ["Invariant", "n_∅"]
+    notes: "Shape graphs, Invariants 1-5, Case 3 materialisation, and 3-part unsharing guard in kill_{x.sel} (§2.6)."
+  - id: neg-cfa-dynamic-dispatch
+    prompt: "Resolve which closures or function objects flow into each higher-order call site in a functional language so I can build the dynamic dispatch call graph."
+    expect_skill: ppa-control-flow-and-constraints
+    notes: "Dynamic dispatch and higher-order control flow belong to Chapter 3."
+  - id: neg-ai-widening-intervals
+    prompt: "Construct a Galois connection between trace semantics and an infinite-height Interval lattice, and design a widening/narrowing schedule to guarantee convergence."
+    expect_skill: ppa-abstract-interpretation
+    notes: "Infinite-height lattices and widening/narrowing belong to Chapter 4."
+  - id: neg-types-effects-regions
+    prompt: "Design an annotated type and effect reconstruction algorithm with let-polymorphism and region inference for heap deallocation."
+    expect_skill: ppa-types-effects-and-regions
+    notes: "Type/effect reconstruction and region inference belong to Chapter 5."
+  - id: neg-solvers-rpo-scc
+    prompt: "Optimise our equation solver using strongly connected components, reverse postorder node scheduling, and loop-connectedness d(G, T) pass bounds."
+    expect_skill: ppa-fixedpoint-solvers
+    notes: "Algorithmic solver ordering, RPO, and SCC worklist scheduling belong to Chapter 6."
+  - id: neg-cyber-taint-policy
+    prompt: "Model an HTTP source-to-SQL-sink taint policy across untrusted user inputs, crypto zeroization requirements, and CWE classification for an application security audit."
+    expect_skill: ppa-cyber-vulnerability-analysis
+    notes: "Security policy and threat-oriented vulnerability audit live in ppa-cyber-vulnerability-analysis."
+  - id: neg-router-approach-foundations
+    prompt: "Compare how Data Flow Analysis, Constraint Based Analysis, Abstract Interpretation, and Type and Effect Systems relate on Chapter 1's WHILE factorial example, or state Tarski's Fixed Point Theorem from Appendix A."
+    expect_skill: ppa-program-analysis
+    notes: "Approach comparison (Chapter 1) and order/lattice/coinduction/graph foundations (Appendices A-C) belong to ppa-program-analysis."

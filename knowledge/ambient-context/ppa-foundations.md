@@ -90,7 +90,7 @@ rather than directly taking a least fixed point of equations
 
 Equations and inclusions over the same monotone operator `F` have the **same least solution**, while
 every equation solution is also a constraint solution (`Fix(F) ⊆ Red(F)`) and the inclusions
-additionally admit larger post-fixed points (`G-U1-09`)
+additionally admit larger reductive solutions (`Red(F)`, `G-U1-09`)
 [PPA §1.3.2, p. 10] (book p. 10; PDF p. 30). Least solutions exist and can be computed by iteration
 under conditions (monotone functions, a finite or otherwise suitably bounded lattice, a start at the
 least element); those conditions are stated in the Chapter 1 and Appendix A references, not here.

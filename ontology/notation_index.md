@@ -399,17 +399,18 @@ together with its chapter, section or page.
 | `β` | representation function (p. 216); annotation variable `β ∈ AVar` (p. 306). One entry. | N2-003 |
 | `θ` | substitution of augmented types for type variables (p. 301); isomorphism between partially ordered sets, with inverse `θ^{-1}` [PPA §A.1, p. 397] (not indexed). | N2-054 |
 | `ℛ` | the correctness relation between local environments and the abstract environment (p. 158); in Example B.1 the monotone functional `ℛ(R_{1}′, R_{2}′)` on pairs of relations [PPA Example B.1, p. 413] is not indexed. | N3-177 |
-| `H` | sans `H`, an abstract heap (pp. 111, 114); calligraphic `ℋ`, a concrete heap (p. 106); italic `H`, a handle, a set of nodes from which every node is reachable [PPA §C.1, p. 419] (not indexed). | N3-104, N3-105 |
+| `H` | sans `H`, an abstract heap (pp. 111, 114); calligraphic `ℋ`, a concrete heap (p. 106); italic `H`, a handle, a set of nodes from which every node is reachable [PPA §C.1, p. 419] (not indexed). | N3-104, N3-105, U-21 |
 | `∇` | widening operator `∇ : L × L → L` (p. 226); a `▽` printed over an arrow marks evaluation trees `d →^{▽} n` [PPA §B.1, p. 406] (not indexed). | N1-007, N3-086, N3-137 |
 | `φ` / `ϕ` | curly `φ`: effects and annotations (pp. 24, 287, 306, ...); straight `ϕ`: the shape-analysis transfer function `ϕ_{ℓ}^{SA}` (p. 116) and the arbitrary total function `ϕ : L × L → L` used to build `l_{n}^{ϕ}` (p. 225; see BKL-024). Only the glyph variant tells them apart. | N2-028, N2-029, N3-131 |
 | `→` | `■ → ■` is indexed only for one-step evaluation `e_{1} → e_{2}` (p. 341); the same arrow is the total and monotone function space [PPA §A.2, p. 398] and the transition arrow of `ρ ⊢_{⋆} … → …` (p. 86). | N1-002, N1-019, N1-020, N3-066 |
-| `⊑` / `⊒` | indexed only for the orderings on annotations, annotated types and behaviours (pp. 298, 348) and for constraints `x_{i} ⊒ t_{i}` (p. 367); the general partial ordering is defined in [PPA §A.1, p. 393] and is not indexed there. | N1-011, N1-012 |
+| `⊑` / `⊒` | indexed only for the orderings on annotations, annotated types and behaviours (pp. 298, 348) and for constraints `x_{i} ⊒ t_{i}` (p. 367); the general partial ordering is defined in [PPA §A.1, p. 393] (not indexed) and is instantiated in Chapter 2 Monotone Frameworks to `⊆` for may analyses (`RD`, `LV`) and `⊇` for must analyses (`AE`, `VB`) ([PPA Example 2.23, p. 67]; [PPA Figure 2.6, p. 70]). | N1-011, N1-012 |
 | `CP` | two separate italic entries with the same glyph and typeface: the set of immediately called procedures of a statement (p. 102) and the finite set of channels generated so far (p. 342). Only the page tells them apart. | N3-047, N3-048 |
 | `AV` | one entry with two unrelated meanings: the directly assigned variables of a statement (p. 101) and `AV(C)`, the annotation variables in a constraint set `C` (p. 317). | N3-024 |
 | `E` | one entry with two unrelated meanings: the finite set of extremal labels of an analysis instance (p. 69) and evaluation contexts (p. 341). | N3-065 |
 | `∅` | the empty set, as in `n_{∅}` (p. 110); also an atomic regular expression denoting the empty language [PPA §C.3, p. 426] (not indexed). | N3-149 |
-| `?` | uninitialised reaching-definition label in `Var_{⋆} × (Lab_{⋆} ∪ {?})` [PPA §1.2, p. 5] (and `Lab_{⋆}^{?}`, N3-130, p. 43) versus alphabet symbol in `{!, ?}` for regular-expression Reaching Definitions in Mini Project 1.1 [PPA Chapter 1 Mini Projects, p. 31] (not indexed standalone; see BKL-035). | N3-130, U-33 |
+| `?` | uninitialised reaching-definition label in `Var_{⋆} × (Lab_{⋆} ∪ {?})` [PPA §1.2, p. 5] (and `Lab_{⋆}^{?}`, U-35, [PPA §2.1.2, p. 43]) versus alphabet symbol in `{!, ?}` for regular-expression Reaching Definitions in Mini Project 1.1 [PPA Chapter 1 Mini Projects, p. 31] (not indexed standalone; see BKL-035). | N3-130, U-33, U-35 |
 | `𝒮` | regular-expression translation `𝒮(S)` of a `WHILE` statement in Mini Project 1.1 [PPA Chapter 1 Mini Projects, p. 30] (not indexed there) versus constraint-system generator `𝒮` in Chapter 6 (p. 367). | N3-199, U-34 |
+| `k` / `k_{x}` | italic `k` denotes bounded call-string depth ([PPA §2.5.4, p. 97]) and closure contour bound (p. 191), whereas `k_{x}` denotes the shape-node variable stripping map `ALoc → ALoc` ([PPA §2.6.3, p. 117]). | U-38 |
 
 ### Superscript of `l_{n}^{ϕ}` (book p. 225; PDF p. 242)
 
@@ -484,6 +485,9 @@ Each row cites the page where the book defines the symbol; the meaning restates 
 | U-32 | `⊔̆` | roman | upper bound operator on `L`: always returns an element larger than both arguments | [PPA §4.2, p. 225] |
 | U-33 | `?` | roman | special uninitialised-variable label in Reaching Definitions (`(x, ?)` on [PPA §1.2, p. 5]) versus alphabet symbol in `{!, ?}` in Mini Project 1.1 ([PPA Chapter 1 Mini Projects, p. 31]; see BKL-035) | [PPA §1.2, p. 5] |
 | U-34 | `𝒮(S)` | calligraphic | regular expression associated with `WHILE` statement `S` in Mini Project 1.1 (distinct from Chapter 6 constraint-system `𝒮`, N3-199) | [PPA Chapter 1 Mini Projects, p. 30] |
+| U-35 | `Lab_{⋆}^{?}`, `Var_{⋆} × Lab_{⋆}^{?}` | bold | label set extended with uninitialised sentinel `?` (`Lab_{⋆}^{?} = Lab_{⋆} ∪ {?}`, [PPA §2.1.2, p. 43]), required by `ud`/`du`/`UD`/`DU` ([PPA §2.1.5, p. 53]; BKL-036) and instrumented `Trace` ([PPA Table 2.10, p. 133]; BKL-049) | [PPA §2.1.2, p. 43] |
+| U-36 | `flow_{⋆}^{R}`, `inter-flow_{⋆}^{R}` | italic | reverse intraprocedural and interprocedural flows used for backward embellished frameworks ([PPA §2.5, p. 85]; BKL-041), distinct from intraprocedural `flow^{R}` (N3-097) | [PPA §2.5, p. 85] |
+| U-38 | `k_{x}` | italic | variable-kill shape-node remapping `ALoc → ALoc` (`k_{x}(n_{Z}) = n_{Z \setminus \{x\}}`, [PPA §2.6.3, p. 117]) | [PPA §2.6.3, p. 117] |
 
 ## Index Anomalies
 

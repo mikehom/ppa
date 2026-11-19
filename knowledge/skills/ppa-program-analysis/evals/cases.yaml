@@ -34,6 +34,10 @@ cases:
   - id: sib-dataflow-slice
     prompt: "Starting from a wrong value printed at line 40, find every assignment it may depend on using reaching definitions."
     expect_skill: ppa-dataflow-and-slicing
+  - id: sib-dataflow-shape-interproc
+    prompt: "Lift an intraprocedural monotone framework across mutually recursive procedures using bounded call strings and verify list-reversal non-cyclicity with compatible shape graphs."
+    expect_skill: ppa-dataflow-and-slicing
+    notes: "Interprocedural Chapter 2 frameworks (§2.5) and shape graphs (§2.6) route directly to ppa-dataflow-and-slicing."
   - id: sib-cfa-call-targets
     prompt: "Which closures may be applied at each call site of this higher-order functional program?"
     expect_skill: ppa-control-flow-and-constraints

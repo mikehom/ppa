@@ -11,7 +11,7 @@
 - **Languages:** Markdown (75%), Python 3 Standard Library (20%), JSON / YAML (5%)
 - **Issue Tracking:** Repository-local `issues/` Markdown suite (`EPIC-*`, `ISS-*`, `REF-*`, `BKL-*`) with lossless GitHub Issues export (`issues/export_manifest.json`)
 - **Created:** 2026-11-18
-- **Last updated:** 2026-11-18
+- **Last updated:** 2026-11-19
 
 Extracts, enriches, cross-references, and adversarially verifies all formal and practical intelligence from *Principles of Program Analysis* (Flemming Nielson, Hanne Riis Nielson, Chris Hankin; Springer, 1999 / Corrected 2nd Printing, 2005; `ppa.pdf`, 465 PDF pages / 452 book pages) into a conformantly portable, vendor-neutral 4-altitude (`L0`–`L3`) semantic knowledge architecture with target harness adapters.
 
@@ -89,7 +89,7 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 0: Bootstrap, Issue Engine, Portability Sanitizer, PDF Indexer & Architecture Spec
 
-**Status:** active
+**Status:** completed
 
 - [x] **`W0-1` (`ISS-W0-01`)**: Branch bootstrap, `issues/SCHEMA.md`, `scripts/issue_ctl.py`, `scripts/check_portability_hygiene.py`, `tests/test_wave0_foundation.py`, and upfront `EPIC-001` + `ISS-W0-01`..`ISS-W8-02` issue files.
 - [x] **`W0-2` (`ISS-W0-02`)**: Build `scripts/extract_ppa_structure.py`, `corpus/pdf_page_map.json`, `ontology/concept_graph.schema.json`, `scripts/validate_ppa_knowledge.py` (+ `scripts/ppa_artifact_rules.py`), and `tests/test_wave0_foundation.py`.
@@ -97,19 +97,19 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 1: Part I Foundations — Appendices A–C, Notation & Chapter 1
 
-**Status:** active
+**Status:** completed
 
 - [x] **`W1-1` (`ISS-W1-01`)**: Unit 0 — Appendices A, B, C & Notation Index (`RAW_SHARD_00_appendices.md`, `ontology/notation_index.md`, `concept_graph.json` seed) + Gate #1 (3-Model Loop).
 - [x] **`W1-2` (`ISS-W1-02`)**: Unit 1 — Chapter 1 Introduction (`RAW_SHARD_01_intro.md`, `ppa-program-analysis` Master Router, `ppa-foundations.md`) + Altitude Refactoring + Gate #2 (3-Model Loop).
 
 ## Phase 2: Part I Completion — Chapter 2 (Data Flow Analysis) & Part I Gate
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W2-1` (`ISS-W2-01`)**: Ch 2a (§2.1–2.4) Intraprocedural DFA, SOS Soundness, Monotone Frameworks & MFP/MOP (`RAW_SHARD_02a_intraproc_dfa.md`).
-- [ ] **`W2-2` (`ISS-W2-02`)**: Ch 2b (§2.5) Interprocedural Context & Ch 2c (§2.6) Heap Shape Analysis (`RAW_SHARD_02b_interproc_shape.md`).
-- [ ] **`W2-3` (`ISS-W2-03`)**: Unit 2 Synthesis (`ppa-dataflow-and-slicing`, `ppa-dataflow-and-shape.md`), Cumulative KB Refactoring & Gate #3 (Ch 2 3-Model Loop).
-- [ ] **`W2-4` (`ISS-W2-04`)**: Part I Holistic Altitude Refactoring & Gate #4 (Part I 3-Model Loop).
+- [x] **`W2-1` (`ISS-W2-01`)**: Ch 2a (§2.1–2.4) Intraprocedural DFA, SOS Soundness, Monotone Frameworks & MFP/MOP (`RAW_SHARD_02a_intraproc_dfa.md`).
+- [x] **`W2-2` (`ISS-W2-02`)**: Ch 2b (§2.5) Interprocedural Context & Ch 2c (§2.6) Heap Shape Analysis (`RAW_SHARD_02b_interproc_shape.md`).
+- [x] **`W2-3` (`ISS-W2-03`)**: Unit 2 Synthesis (`ppa-dataflow-and-slicing`, `ppa-dataflow-and-shape.md`), Cumulative KB Refactoring & Gate #3 (Ch 2 3-Model Loop).
+- [x] **`W2-4` (`ISS-W2-04`)**: Part I Holistic Altitude Refactoring & Gate #4 (Part I 3-Model Loop).
 
 ## Phase 3: Part II — Chapter 3 (Constraint Based Analysis)
 
