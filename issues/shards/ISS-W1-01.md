@@ -14,7 +14,7 @@ altitudes: [L1, L2, L3]
 aligned_models: [P-SWE, P-ARCH, P-CYBER]
 created_at: 2026-11-18
 updated_at: 2026-11-19
-github_issue_number: null
+github_issue_number: 5
 ---
 
 ## Summary

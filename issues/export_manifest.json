@@ -23,7 +23,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 1,
     "id": "EPIC-001",
     "issue_type": "epic",
     "labels": [
@@ -40,7 +40,7 @@
     "title": "EPIC-001 Exhaustive PPA knowledge extraction, 3-model enrichment and portable harness suite",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 1,
    "id": "EPIC-001",
    "labels": [
     "altitude:L0",
@@ -84,7 +84,7 @@
     ],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 2,
     "id": "ISS-W0-01",
     "issue_type": "shard",
     "labels": [
@@ -101,7 +101,7 @@
     "title": "W0-1 Issue engine, portability sanitizer and upfront issue suite",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 2,
    "id": "ISS-W0-01",
    "labels": [
     "altitude:L3",
@@ -144,7 +144,7 @@
     "depends_on": [
      "ISS-W0-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 3,
     "id": "ISS-W0-02",
     "issue_type": "shard",
     "labels": [
@@ -161,7 +161,7 @@
     "title": "W0-2 PDF coordinate indexer, concept-graph schema and knowledge validator",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 3,
    "id": "ISS-W0-02",
    "labels": [
     "altitude:L3",
@@ -203,7 +203,7 @@
     ],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 4,
     "id": "ISS-W0-03",
     "issue_type": "shard",
     "labels": [
@@ -220,7 +220,7 @@
     "title": "W0-3 Normative 4-altitude architecture, conformance spec and calibration log",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 4,
    "id": "ISS-W0-03",
    "labels": [
     "altitude:L0",
@@ -272,7 +272,7 @@
      "ISS-W0-02",
      "ISS-W0-03"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 5,
     "id": "ISS-W1-01",
     "issue_type": "shard",
     "labels": [
@@ -300,7 +300,7 @@
     "title": "W1-1 Unit 0: Appendices A–C and Index of Notation + Gate #1",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 5,
    "id": "ISS-W1-01",
    "labels": [
     "altitude:L1",
@@ -334,7 +334,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 6,
     "id": "BKL-011",
     "issue_type": "edge_case",
     "labels": [
@@ -354,7 +354,7 @@
     "title": "PDF text layer is OCR and corrupts mathematics: page-image verification is mandatory",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 6,
    "id": "BKL-011",
    "labels": [
     "altitude:L3",
@@ -388,7 +388,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 7,
     "id": "BKL-013",
     "issue_type": "edge_case",
     "labels": [
@@ -408,7 +408,7 @@
     "title": "ACC is not inherited by function spaces over infinite index sets",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 7,
    "id": "BKL-013",
    "labels": [
     "altitude:L1",
@@ -445,7 +445,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 8,
     "id": "BKL-014",
     "issue_type": "contradiction",
     "labels": [
@@ -465,7 +465,7 @@
     "title": "Non-monotone rules (negation, declassification) violate the monotonicity precondition of Proposition A.10",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 8,
    "id": "BKL-014",
    "labels": [
     "altitude:L1",
@@ -502,7 +502,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 9,
     "id": "BKL-015",
     "issue_type": "edge_case",
     "labels": [
@@ -523,7 +523,7 @@
     "title": "Coinductive readings collapse with trivial self-rules; gfp proofs may still need induction",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 9,
    "id": "BKL-015",
    "labels": [
     "altitude:L1",
@@ -559,7 +559,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 10,
     "id": "BKL-016",
     "issue_type": "edge_case",
     "labels": [
@@ -578,7 +578,7 @@
     "title": "Dominators are the greatest solution of their equation; least solution fails on non-handle cycles",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 10,
    "id": "BKL-016",
    "labels": [
     "altitude:L1",
@@ -613,7 +613,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 11,
     "id": "BKL-017",
     "issue_type": "edge_case",
     "labels": [
@@ -634,7 +634,7 @@
     "title": "Handle assumption fails for unreachable code and for backward CFGs with syntactic exit-less sink loops",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 11,
    "id": "BKL-017",
    "labels": [
     "altitude:L1",
@@ -670,7 +670,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 12,
     "id": "BKL-018",
     "issue_type": "edge_case",
     "labels": [
@@ -692,7 +692,7 @@
     "title": "Back edges and d(G, T) are forest-relative; nesting-depth equality holds only for reducible (WHILE) graphs",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 12,
    "id": "BKL-018",
    "labels": [
     "altitude:L1",
@@ -727,7 +727,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 13,
     "id": "BKL-019",
     "issue_type": "contradiction",
     "labels": [
@@ -746,7 +746,7 @@
     "title": "Table C.1 says 'choose a node h in H' where an unvisited node is intended",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 13,
    "id": "BKL-019",
    "labels": [
     "altitude:L3",
@@ -779,7 +779,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 14,
     "id": "BKL-020",
     "issue_type": "contradiction",
     "labels": [
@@ -799,7 +799,7 @@
     "title": "Source misprints in Appendices B and C (edge set E for A; duplicated words)",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 14,
    "id": "BKL-020",
    "labels": [
     "altitude:L3",
@@ -833,7 +833,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 15,
     "id": "BKL-021",
     "issue_type": "edge_case",
     "labels": [
@@ -853,7 +853,7 @@
     "title": "Index offset between f^{↑n} and fⁿ(⊥) in the transfinite iteration remark",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 15,
    "id": "BKL-021",
    "labels": [
     "altitude:L1",
@@ -888,7 +888,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 16,
     "id": "BKL-022",
     "issue_type": "edge_case",
     "labels": [
@@ -909,7 +909,7 @@
     "title": "'Distributive' means additive (binary joins) in Appendix A; its use in Chapter 2 must be checked",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 16,
    "id": "BKL-022",
    "labels": [
     "altitude:L1",
@@ -944,7 +944,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 17,
     "id": "BKL-023",
     "issue_type": "edge_case",
     "labels": [
@@ -963,7 +963,7 @@
     "title": "Graph model excludes parallel edges and infinite node sets",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 17,
    "id": "BKL-023",
    "labels": [
     "altitude:L1",
@@ -997,7 +997,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 18,
     "id": "BKL-024",
     "issue_type": "edge_case",
     "labels": [
@@ -1020,7 +1020,7 @@
     "title": "Index of Notation is incomplete and typeface-dependent; symbols are reused across scopes",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 18,
    "id": "BKL-024",
    "labels": [
     "altitude:L3",
@@ -1070,7 +1070,7 @@
     "depends_on": [
      "ISS-W1-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 19,
     "id": "ISS-W1-02",
     "issue_type": "shard",
     "labels": [
@@ -1097,7 +1097,7 @@
     "title": "W1-2 Unit 1: Chapter 1 Introduction, master router + Gate #2",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 19,
    "id": "ISS-W1-02",
    "labels": [
     "altitude:L0",
@@ -1134,7 +1134,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 20,
     "id": "BKL-025",
     "issue_type": "contradiction",
     "labels": [
@@ -1156,7 +1156,7 @@
     "title": "Printed control-flow constraints on p. 9 omit RD_entry(4) ⊇ RD_exit(3)",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 20,
    "id": "BKL-025",
    "labels": [
     "altitude:L1",
@@ -1191,7 +1191,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 21,
     "id": "BKL-026",
     "issue_type": "contradiction",
     "labels": [
@@ -1211,7 +1211,7 @@
     "title": "Explanation of [app] says 'operand' where the arrow type belongs to the operator",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 21,
    "id": "BKL-026",
    "labels": [
     "altitude:L3",
@@ -1244,7 +1244,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 22,
     "id": "BKL-027",
     "issue_type": "contradiction",
     "labels": [
@@ -1264,7 +1264,7 @@
     "title": "Mini Project 1.1 states the X condition over ℒ⟦h_y(𝒮(S))⟧ and drops a label in 𝒮(while …)",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 22,
    "id": "BKL-027",
    "labels": [
     "altitude:L3",
@@ -1298,7 +1298,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 23,
     "id": "BKL-028",
     "issue_type": "edge_case",
     "labels": [
@@ -1317,7 +1317,7 @@
     "title": "Distinct-labels assumption of Chapter 1 drifts silently into procedures",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 23,
    "id": "BKL-028",
    "labels": [
     "altitude:L1",
@@ -1352,7 +1352,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 24,
     "id": "BKL-029",
     "issue_type": "edge_case",
     "labels": [
@@ -1373,7 +1373,7 @@
     "title": "Finite carriers Var⋆ × Lab⋆ (§1.3) vs infinite Var × Lab (§1.5) in the induced analysis",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 24,
    "id": "BKL-029",
    "labels": [
     "altitude:L1",
@@ -1408,7 +1408,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 25,
     "id": "BKL-030",
     "issue_type": "edge_case",
     "labels": [
@@ -1428,7 +1428,7 @@
     "title": "'Safe' has a direction: larger is safe for Reaching Definitions, smaller for the X component of Table 1.3",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 25,
    "id": "BKL-030",
    "labels": [
     "altitude:L1",
@@ -1463,7 +1463,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 26,
     "id": "BKL-031",
     "issue_type": "edge_case",
     "labels": [
@@ -1483,7 +1483,7 @@
     "title": "Effect rules assume call-by-value",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 26,
    "id": "BKL-031",
    "labels": [
     "altitude:L1",
@@ -1518,7 +1518,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 27,
     "id": "BKL-032",
     "issue_type": "edge_case",
     "labels": [
@@ -1539,7 +1539,7 @@
     "title": "Analysis validity after transformation is shown only for Reaching Definitions under Constant Folding",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 27,
    "id": "BKL-032",
    "labels": [
     "altitude:L1",
@@ -1574,7 +1574,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 28,
     "id": "BKL-033",
     "issue_type": "edge_case",
     "labels": [
@@ -1594,7 +1594,7 @@
     "title": "Induced analysis is not strict: γ(∅) contains the empty trace",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 28,
    "id": "BKL-033",
    "labels": [
     "altitude:L1",
@@ -1628,7 +1628,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 29,
     "id": "BKL-034",
     "issue_type": "contradiction",
     "labels": [
@@ -1650,7 +1650,7 @@
     "title": "Chapter 1 typographical slips (pp. 6, 28, 31, 32)",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 29,
    "id": "BKL-034",
    "labels": [
     "altitude:L3",
@@ -1683,7 +1683,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 30,
     "id": "BKL-035",
     "issue_type": "edge_case",
     "labels": [
@@ -1703,7 +1703,7 @@
     "title": "Symbol ? is overloaded: uninitialised label and a letter of the Mini Project alphabet",
     "updated_at": "2026-11-18"
    },
-   "github_issue_number": null,
+   "github_issue_number": 30,
    "id": "BKL-035",
    "labels": [
     "altitude:L3",
@@ -1750,7 +1750,7 @@
     "depends_on": [
      "ISS-W1-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 31,
     "id": "ISS-W2-01",
     "issue_type": "shard",
     "labels": [
@@ -1770,7 +1770,7 @@
     "title": "W2-1 Ch 2a §2.1–2.4 intraprocedural DFA, SOS soundness, monotone frameworks",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 31,
    "id": "ISS-W2-01",
    "labels": [
     "altitude:L1",
@@ -1804,7 +1804,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 32,
     "id": "BKL-006",
     "issue_type": "edge_case",
     "labels": [
@@ -1824,7 +1824,7 @@
     "title": "Dead-code elimination via Live Variables removes secret-zeroization stores",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 32,
    "id": "BKL-006",
    "labels": [
     "altitude:L1",
@@ -1858,7 +1858,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 33,
     "id": "BKL-036",
     "issue_type": "contradiction",
     "labels": [
@@ -1879,7 +1879,7 @@
     "title": "ud/du and UD/DU signatures omit '?' sentinel from Lab⋆^?",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 33,
    "id": "BKL-036",
    "labels": [
     "altitude:L1",
@@ -1914,7 +1914,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 34,
     "id": "BKL-037",
     "issue_type": "contradiction",
     "labels": [
@@ -1934,7 +1934,7 @@
     "title": "Table 2.5 omits boolean literal clauses true and false",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 34,
    "id": "BKL-037",
    "labels": [
     "altitude:L1",
@@ -1969,7 +1969,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 35,
     "id": "BKL-038",
     "issue_type": "contradiction",
     "labels": [
@@ -1990,7 +1990,7 @@
     "title": "§2.2.2 LV^⊆ isolated-exits omission breaks Lemmas 2.16/2.18/2.20 and Theorem 2.21",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 35,
    "id": "BKL-038",
    "labels": [
     "altitude:L1",
@@ -2025,7 +2025,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 36,
     "id": "BKL-039",
     "issue_type": "contradiction",
     "labels": [
@@ -2044,7 +2044,7 @@
     "title": "Example 2.30 RD complexity height bound h <= v*b omits (x, ?) pairs",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 36,
    "id": "BKL-039",
    "labels": [
     "altitude:L1",
@@ -2079,7 +2079,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 37,
     "id": "BKL-040",
     "issue_type": "contradiction",
     "labels": [
@@ -2100,7 +2100,7 @@
     "title": "F-U2a-16 & F-U2a-01..04/07/08/10..13/15: Lemma 2.32 B-for-E & Unit 2a typographical bundle",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 37,
    "id": "BKL-040",
    "labels": [
     "altitude:L1",
@@ -2148,7 +2148,7 @@
     "depends_on": [
      "ISS-W1-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 38,
     "id": "ISS-W2-02",
     "issue_type": "shard",
     "labels": [
@@ -2166,7 +2166,7 @@
     "title": "W2-2 Ch 2b/2c §2.5–2.6 interprocedural context and shape analysis",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 38,
    "id": "ISS-W2-02",
    "labels": [
     "altitude:L1",
@@ -2201,7 +2201,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 39,
     "id": "BKL-003",
     "issue_type": "contradiction",
     "labels": [
@@ -2221,7 +2221,7 @@
     "title": "Large assumption sets yield non-monotone call/return transfer functions inside a monotone framework",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 39,
    "id": "BKL-003",
    "labels": [
     "altitude:L1",
@@ -2257,7 +2257,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 40,
     "id": "BKL-005",
     "issue_type": "edge_case",
     "labels": [
@@ -2276,7 +2276,7 @@
     "title": "Shape analysis language has no pointer arithmetic, interior pointers or type punning",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 40,
    "id": "BKL-005",
    "labels": [
     "altitude:L1",
@@ -2312,7 +2312,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 41,
     "id": "BKL-041",
     "issue_type": "edge_case",
     "labels": [
@@ -2331,7 +2331,7 @@
     "title": "Backward interprocedural flow⋆^R and inter-flow⋆^R left undefined on p. 85",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 41,
    "id": "BKL-041",
    "labels": [
     "altitude:L1",
@@ -2367,7 +2367,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 42,
     "id": "BKL-042",
     "issue_type": "contradiction",
     "labels": [
@@ -2387,7 +2387,7 @@
     "title": "§2.5.1 [ass]/z:=y unlabelled syntax and implicit ξ₁ ≠ ξ₂ requirement",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 42,
    "id": "BKL-042",
    "labels": [
     "altitude:L1",
@@ -2422,7 +2422,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 43,
     "id": "BKL-043",
     "issue_type": "contradiction",
     "labels": [
@@ -2442,7 +2442,7 @@
     "title": "Figure 2.9 f̂¹_{ℓ₁} typo and Example 2.40 k=1 domain notation",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 43,
    "id": "BKL-043",
    "labels": [
     "altitude:L1",
@@ -2477,7 +2477,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 44,
     "id": "BKL-044",
     "issue_type": "contradiction",
     "labels": [
@@ -2498,7 +2498,7 @@
     "title": "§2.5.5 ill-typed ι̂ for set ι ⊆ D and Example 2.41 state/variable mismatch",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 44,
    "id": "BKL-044",
    "labels": [
     "altitude:L1",
@@ -2533,7 +2533,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 45,
     "id": "BKL-045",
     "issue_type": "contradiction",
     "labels": [
@@ -2554,7 +2554,7 @@
     "title": "§2.5.6 prints 'context-insensitive' for flow-insensitive and omits \\ {y} in IAV(p)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 45,
    "id": "BKL-045",
    "labels": [
     "altitude:L1",
@@ -2589,7 +2589,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 46,
     "id": "BKL-046",
     "issue_type": "contradiction",
     "labels": [
@@ -2609,7 +2609,7 @@
     "title": "§2.6.1 signatures ℘, 𝒜, ℬ misuse finite-domain arrow →_fin on infinite State×Heap",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 46,
    "id": "BKL-046",
    "labels": [
     "altitude:L1",
@@ -2644,7 +2644,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 47,
     "id": "BKL-047",
     "issue_type": "contradiction",
     "labels": [
@@ -2666,7 +2666,7 @@
     "title": "Shape legends, Figure 2.14 row citation, Figure 2.22 (S',H'',is''), and fresh-t scope",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 47,
    "id": "BKL-047",
    "labels": [
     "altitude:L1",
@@ -2702,7 +2702,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 48,
     "id": "BKL-048",
     "issue_type": "edge_case",
     "labels": [
@@ -2723,7 +2723,7 @@
     "title": "Shape Case 1 nil-deref absorption, branch insensitivity, and no-GC graph explosion (>50 graphs)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 48,
    "id": "BKL-048",
    "labels": [
     "altitude:L1",
@@ -2759,7 +2759,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 49,
     "id": "BKL-049",
     "issue_type": "contradiction",
     "labels": [
@@ -2780,7 +2780,7 @@
     "title": "Mini Project 2.2 Trace omits '?', Y adds extra powerset layer, and isolated entries omitted",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 49,
    "id": "BKL-049",
    "labels": [
     "altitude:L1",
@@ -2816,7 +2816,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 50,
     "id": "BKL-050",
     "issue_type": "edge_case",
     "labels": [
@@ -2838,7 +2838,7 @@
     "title": "§2.5.2 back-refs and Exercise 2.7/2.11/2.13 preconditions",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 50,
    "id": "BKL-050",
    "labels": [
     "altitude:L1",
@@ -2888,7 +2888,7 @@
      "ISS-W2-01",
      "ISS-W2-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 51,
     "id": "ISS-W2-03",
     "issue_type": "shard",
     "labels": [
@@ -2906,7 +2906,7 @@
     "title": "W2-3 Unit 2 synthesis: dataflow skill, reference and Gate #3",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 51,
    "id": "ISS-W2-03",
    "labels": [
     "altitude:L1",
@@ -2954,7 +2954,7 @@
     "depends_on": [
      "ISS-W2-03"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 52,
     "id": "ISS-W2-04",
     "issue_type": "shard",
     "labels": [
@@ -2972,7 +2972,7 @@
     "title": "W2-4 Part I holistic altitude refactoring + Gate #4",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 52,
    "id": "ISS-W2-04",
    "labels": [
     "altitude:L0",
@@ -3021,7 +3021,7 @@
     "depends_on": [
      "ISS-W2-04"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 53,
     "id": "ISS-W3-01",
     "issue_type": "shard",
     "labels": [
@@ -3041,7 +3041,7 @@
     "title": "W3-1 Ch 3a §3.1–3.4 0-CFA formulations, coinduction and cubic solver",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 53,
    "id": "ISS-W3-01",
    "labels": [
     "altitude:L1",
@@ -3076,7 +3076,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 54,
     "id": "BKL-051",
     "issue_type": "contradiction",
     "labels": [
@@ -3098,7 +3098,7 @@
     "title": "Section 3.1 multi-binding let sugar, Table 3.1 prose typos, [let_2] FV(e_2), and [app_fun] binding order",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 54,
    "id": "BKL-051",
    "labels": [
     "altitude:L1",
@@ -3135,7 +3135,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 55,
     "id": "BKL-052",
     "issue_type": "edge_case",
     "labels": [
@@ -3157,7 +3157,7 @@
     "title": "Fact 3.11 OCR erasure, outer-label relabelling in [if_2,3]/[bind_2], and Val_hat = P(Exp) failure",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 55,
    "id": "BKL-052",
    "labels": [
     "altitude:L1",
@@ -3194,7 +3194,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 56,
     "id": "BKL-053",
     "issue_type": "contradiction",
     "labels": [
@@ -3216,7 +3216,7 @@
     "title": "Example 3.15 reuse of (C'_e, rho'_e), Proposition 3.16 IExp_e notation, and Proposition 3.19 typo",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 56,
    "id": "BKL-053",
    "labels": [
     "altitude:L1",
@@ -3253,7 +3253,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 57,
     "id": "BKL-054",
     "issue_type": "contradiction",
     "labels": [
@@ -3275,7 +3275,7 @@
     "title": "Section 3.4.2 mis-cites Proposition 3.18 for 3.19, writes Cache_* x Val_*, and drops _* on C[[e_*]]",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 57,
    "id": "BKL-054",
    "labels": [
     "altitude:L1",
@@ -3312,7 +3312,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 58,
     "id": "BKL-055",
     "issue_type": "edge_case",
     "labels": [
@@ -3334,7 +3334,7 @@
     "title": "Table 3.7 O(n^3) edge traversals vs O(n^4) scalar set-union cost, dual E[p] registration, and dead lambdas",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 58,
    "id": "BKL-055",
    "labels": [
     "altitude:L1",
@@ -3383,7 +3383,7 @@
     "depends_on": [
      "ISS-W3-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 59,
     "id": "ISS-W3-02",
     "issue_type": "shard",
     "labels": [
@@ -3402,7 +3402,7 @@
     "title": "W3-2 Ch 3b §3.5–3.6 CFA+DFA, k-CFA, CPA, synthesis + Gate #5",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 59,
    "id": "ISS-W3-02",
    "labels": [
     "altitude:L1",
@@ -3438,7 +3438,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 60,
     "id": "BKL-007",
     "issue_type": "edge_case",
     "labels": [
@@ -3458,7 +3458,7 @@
     "title": "Cost of context: uniform k-CFA is exponential for k > 0; polynomial and CPA variants differ",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 60,
    "id": "BKL-007",
    "labels": [
     "altitude:L1",
@@ -3494,7 +3494,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 61,
     "id": "BKL-056",
     "issue_type": "edge_case",
     "labels": [
@@ -3516,7 +3516,7 @@
     "title": "Section 3.5 coupled CFA+DFA non-projection to Table 3.1, non-singleton iota_true guard, and strict bottom f_+",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 61,
    "id": "BKL-056",
    "labels": [
     "altitude:L1",
@@ -3553,7 +3553,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 62,
     "id": "BKL-057",
     "issue_type": "contradiction",
     "labels": [
@@ -3575,7 +3575,7 @@
     "title": "Section 3.6.1 total CEnv = Var -> Delta vs finite partial ce | FV and Example 3.34 mis-citation of Example 3.33",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 62,
    "id": "BKL-057",
    "labels": [
     "altitude:L1",
@@ -3612,7 +3612,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 63,
     "id": "BKL-058",
     "issue_type": "contradiction",
     "labels": [
@@ -3634,7 +3634,7 @@
     "title": "Section 3.6.2 CPA [app] missing ')' / ', delta_b' in rho_hat(x_i, delta_b) and empty-product vacuity",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 63,
    "id": "BKL-058",
    "labels": [
     "altitude:L1",
@@ -3671,7 +3671,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 64,
     "id": "BKL-059",
     "issue_type": "edge_case",
     "labels": [
@@ -3692,7 +3692,7 @@
     "title": "Pure 0-CFA dynamic-scoping name collapse, set-constraint complement ¬S non-monotonicity, and lazy [9] dead bodies",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 64,
    "id": "BKL-059",
    "labels": [
     "altitude:L1",
@@ -3729,7 +3729,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 65,
     "id": "BKL-060",
     "issue_type": "contradiction",
     "labels": [
@@ -3749,7 +3749,7 @@
     "title": "Mini Project 3.1 (p. 202) |=_s prose typo for |='_s and Mini Project 3.2 (p. 203) constructor-label Fact 3.11 hazard",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 65,
    "id": "BKL-060",
    "labels": [
     "altitude:L1",
@@ -3786,7 +3786,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 66,
     "id": "BKL-061",
     "issue_type": "edge_case",
     "labels": [
@@ -3807,7 +3807,7 @@
     "title": "Mini Project 3.4 (pp. 204-205) unprinted [assign] clauses and p. 200 [133] singleton kill guard",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 66,
    "id": "BKL-061",
    "labels": [
     "altitude:L1",
@@ -3844,7 +3844,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 67,
     "id": "BKL-062",
     "issue_type": "contradiction",
     "labels": [
@@ -3866,7 +3866,7 @@
     "title": "Exercise 3.3-3.7/3.16-3.17 source typos, non-upward-closure of (3.8), and OCR display erasures",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 67,
    "id": "BKL-062",
    "labels": [
     "altitude:L1",
@@ -3915,7 +3915,7 @@
     "depends_on": [
      "ISS-W3-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 68,
     "id": "ISS-W4-01",
     "issue_type": "shard",
     "labels": [
@@ -3934,7 +3934,7 @@
     "title": "W4-1 Ch 4a §4.1–4.3 correctness relations, widening/narrowing, Galois connections",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 68,
    "id": "ISS-W4-01",
    "labels": [
     "altitude:L1",
@@ -3969,7 +3969,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 69,
     "id": "BKL-001",
     "issue_type": "edge_case",
     "labels": [
@@ -3988,7 +3988,7 @@
     "title": "Unbounded integers and error-free expressions vs machine bit-vectors and undefined behaviour",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 69,
    "id": "BKL-001",
    "labels": [
     "altitude:L1",
@@ -4024,7 +4024,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 70,
     "id": "BKL-002",
     "issue_type": "edge_case",
     "labels": [
@@ -4044,7 +4044,7 @@
     "title": "Widening operators are not required to be monotone: placement and precision hazards",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 70,
    "id": "BKL-002",
    "labels": [
     "altitude:L1",
@@ -4080,7 +4080,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 71,
     "id": "BKL-067",
     "issue_type": "contradiction",
     "labels": [
@@ -4099,7 +4099,7 @@
     "title": "Section 4.2.2 states narrowing need not be absorptive, but contractiveness forces l Delta l = l",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 71,
    "id": "BKL-067",
    "labels": [
     "altitude:L1",
@@ -4136,7 +4136,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 72,
     "id": "BKL-068",
     "issue_type": "edge_case",
     "labels": [
@@ -4156,7 +4156,7 @@
     "title": "Example 4.15 threshold widening nabla_K jumps bot nabla_K [z_3, z_4] to [-inf, inf] without bot short-circuit",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 72,
    "id": "BKL-068",
    "labels": [
     "altitude:L1",
@@ -4193,7 +4193,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 73,
     "id": "BKL-069",
     "issue_type": "edge_case",
     "labels": [
@@ -4217,7 +4217,7 @@
     "title": "Prop 4.13/4.17 boxes omit f-monotonicity; Lemma 4.16 basis prints n; Prop 4.44(ii) omits n_0 >= 1",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 73,
    "id": "BKL-069",
    "labels": [
     "altitude:L1",
@@ -4266,7 +4266,7 @@
     "depends_on": [
      "ISS-W4-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 74,
     "id": "ISS-W4-02",
     "issue_type": "shard",
     "labels": [
@@ -4285,7 +4285,7 @@
     "title": "W4-2 Ch 4b §4.4–4.5 Galois combinators, induced operations + Gate #6",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 74,
    "id": "ISS-W4-02",
    "labels": [
     "altitude:L1",
@@ -4321,7 +4321,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 75,
     "id": "BKL-063",
     "issue_type": "contradiction",
     "labels": [
@@ -4340,7 +4340,7 @@
     "title": "Lemma 4.45 proof misprints subscript nabla_L for nabla_M in g(g_{nabla_L}^n) <= g_{nabla_M}^n",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 75,
    "id": "BKL-063",
    "labels": [
     "altitude:L1",
@@ -4377,7 +4377,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 76,
     "id": "BKL-064",
     "issue_type": "contradiction",
     "labels": [
@@ -4397,7 +4397,7 @@
     "title": "Concluding Remarks p. 271 mis-cites Section 4.3 instead of Section 4.4.2 for reduced product",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 76,
    "id": "BKL-064",
    "labels": [
     "altitude:L1",
@@ -4434,7 +4434,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 77,
     "id": "BKL-065",
     "issue_type": "contradiction",
     "labels": [
@@ -4454,7 +4454,7 @@
     "title": "Mini Project 4.3 mis-cites Example 4.40 for Example 4.4 and prints Latin d_hat for Greek delta_hat",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 77,
    "id": "BKL-065",
    "labels": [
     "altitude:L1",
@@ -4491,7 +4491,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 78,
     "id": "BKL-066",
     "issue_type": "contradiction",
     "labels": [
@@ -4511,7 +4511,7 @@
     "title": "Exercise 4.14 misprints concrete subset V' for abstract subset D' in varsigma_eta(V') = V' cap eta[V]",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 78,
    "id": "BKL-066",
    "labels": [
     "altitude:L1",
@@ -4548,7 +4548,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 79,
     "id": "BKL-070",
     "issue_type": "contradiction",
     "labels": [
@@ -4567,7 +4567,7 @@
     "title": "Mini Project 4.1 formal asymmetric suffix definition (16 atoms) conflicts with symmetric prose gloss (20 atoms)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 79,
    "id": "BKL-070",
    "labels": [
     "altitude:L1",
@@ -4604,7 +4604,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 80,
     "id": "BKL-071",
     "issue_type": "edge_case",
     "labels": [
@@ -4625,7 +4625,7 @@
     "title": "Node-attached Monotone Frameworks make concrete Sets of States SS non-optimal on branch guards",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 80,
    "id": "BKL-071",
    "labels": [
     "altitude:L1",
@@ -4662,7 +4662,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 81,
     "id": "BKL-072",
     "issue_type": "edge_case",
     "labels": [
@@ -4682,7 +4682,7 @@
     "title": "Concretisation-induced formula gamma(alpha(l_1) Delta_M alpha(l_2)) fails narrowing contractiveness (Exercise 4.24)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 81,
    "id": "BKL-072",
    "labels": [
     "altitude:L1",
@@ -4731,7 +4731,7 @@
     "depends_on": [
      "ISS-W4-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 82,
     "id": "ISS-W5-01",
     "issue_type": "shard",
     "labels": [
@@ -4750,7 +4750,7 @@
     "title": "W5-1 Ch 5a §5.1–5.3 annotated types, natural semantics, W_UL / W_CFA inference",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 82,
    "id": "ISS-W5-01",
    "labels": [
     "altitude:L1",
@@ -4785,7 +4785,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 83,
     "id": "BKL-004",
     "issue_type": "edge_case",
     "labels": [
@@ -4804,7 +4804,7 @@
     "title": "Natural (big-step) semantics says nothing about diverging computations",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 83,
    "id": "BKL-004",
    "labels": [
     "altitude:L1",
@@ -4840,7 +4840,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 84,
     "id": "BKL-073",
     "issue_type": "contradiction",
     "labels": [
@@ -4860,7 +4860,7 @@
     "title": "F-U5a-04: Table 5.5 W_UL if-clause omits guard substitution composition o theta_0",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 84,
    "id": "BKL-073",
    "labels": [
     "altitude:L1",
@@ -4897,7 +4897,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 85,
     "id": "BKL-074",
     "issue_type": "edge_case",
     "labels": [
@@ -4918,7 +4918,7 @@
     "title": "F-U5a-08/F-U5b-01: Closed-form theta_A on pp. 318-319 leaves AVars outside AV(C) undefined",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 85,
    "id": "BKL-074",
    "labels": [
     "altitude:L1",
@@ -4955,7 +4955,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 86,
     "id": "BKL-075",
     "issue_type": "edge_case",
     "labels": [
@@ -4981,7 +4981,7 @@
     "title": "Typed-substrate boundary, monomorphic let, whole-tree C_hat(l), and smearing in §§5.1-5.3",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 86,
    "id": "BKL-075",
    "labels": [
     "altitude:L1",
@@ -5018,7 +5018,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 87,
     "id": "BKL-076",
     "issue_type": "edge_case",
     "labels": [
@@ -5040,7 +5040,7 @@
     "title": "Covariant Type_hat[tau] fibre order vs contravariant subtyping non-Moore breakdown (Prop 5.12, Ex 5.9)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 87,
    "id": "BKL-076",
    "labels": [
     "altitude:L1",
@@ -5077,7 +5077,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 88,
     "id": "BKL-077",
     "issue_type": "contradiction",
     "labels": [
@@ -5104,7 +5104,7 @@
     "title": "F-U5a-01..03, 05..07: Turnstile omissions, Table 5.8 unhatted tau_1, Ex 5.19 orientation & self-bindings",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 88,
    "id": "BKL-077",
    "labels": [
     "altitude:L1",
@@ -5153,7 +5153,7 @@
     "depends_on": [
      "ISS-W5-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 89,
     "id": "ISS-W5-02",
     "issue_type": "shard",
     "labels": [
@@ -5172,7 +5172,7 @@
     "title": "W5-2 Ch 5b §5.4–5.5 effects, exceptions, regions, behaviours + Gate #7",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 89,
    "id": "ISS-W5-02",
    "labels": [
     "altitude:L1",
@@ -5208,7 +5208,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 90,
     "id": "BKL-009",
     "issue_type": "edge_case",
     "labels": [
@@ -5229,7 +5229,7 @@
     "title": "Effect subtraction on polymorphic effect variables and the generalisation side condition",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 90,
    "id": "BKL-009",
    "labels": [
     "altitude:L1",
@@ -5265,7 +5265,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 91,
     "id": "BKL-078",
     "issue_type": "contradiction",
     "labels": [
@@ -5289,7 +5289,7 @@
     "title": "F-U5b-02/03: Side-effect runtime location omission, unbraced varpi BNF, and p. 323 operator slip",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 91,
    "id": "BKL-078",
    "labels": [
     "altitude:L1",
@@ -5326,7 +5326,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 92,
     "id": "BKL-079",
     "issue_type": "contradiction",
     "labels": [
@@ -5349,7 +5349,7 @@
     "title": "F-U5b-04/13: Exception beta \\ {s} = beta, AV(phi_2)=empty guard, and Ex 5.15 scheme subtyping typo",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 92,
    "id": "BKL-079",
    "labels": [
     "altitude:L1",
@@ -5386,7 +5386,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 93,
     "id": "BKL-080",
     "issue_type": "contradiction",
     "labels": [
@@ -5408,7 +5408,7 @@
     "title": "F-U5b-05..07: Region Table 5.11 dom(sigma_1) typo, omitted Type_RI subtyping, and Observe split",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 93,
    "id": "BKL-080",
    "labels": [
     "altitude:L1",
@@ -5445,7 +5445,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 94,
     "id": "BKL-081",
     "issue_type": "contradiction",
     "labels": [
@@ -5467,7 +5467,7 @@
     "title": "F-U5b-08..10: Unbraced region C in Ex 5.35/5.37, positive rec beta.phi, and right-only distributivity",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 94,
    "id": "BKL-081",
    "labels": [
     "altitude:L1",
@@ -5504,7 +5504,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 95,
     "id": "BKL-082",
     "issue_type": "contradiction",
     "labels": [
@@ -5527,7 +5527,7 @@
     "title": "F-U5b-11/12/14: Concluding Remarks p. 350 §5.1 mis-citation, implicit '+' guard, and Unit 5b OCR drops",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 95,
    "id": "BKL-082",
    "labels": [
     "altitude:L1",
@@ -5577,7 +5577,7 @@
     "depends_on": [
      "ISS-W5-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 96,
     "id": "ISS-W5-03",
     "issue_type": "shard",
     "labels": [
@@ -5595,7 +5595,7 @@
     "title": "W5-3 Part II cross-paradigm matrix + Gate #8",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 96,
    "id": "ISS-W5-03",
    "labels": [
     "altitude:L0",
@@ -5644,7 +5644,7 @@
     "depends_on": [
      "ISS-W5-03"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 97,
     "id": "ISS-W6-01",
     "issue_type": "shard",
     "labels": [
@@ -5666,7 +5666,7 @@
     "title": "W6-1 Unit 6: Ch 6 worklist, RPO, round-robin, SCC solvers + Gate #9",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 97,
    "id": "ISS-W6-01",
    "labels": [
     "altitude:L1",
@@ -5702,7 +5702,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 98,
     "id": "BKL-010",
     "issue_type": "edge_case",
     "labels": [
@@ -5722,7 +5722,7 @@
     "title": "Irreducible flow graphs: back edges, loop connectedness and solver bounds",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 98,
    "id": "BKL-010",
    "labels": [
     "altitude:L1",
@@ -5758,7 +5758,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 99,
     "id": "BKL-012",
     "issue_type": "contradiction",
     "labels": [
@@ -5777,7 +5777,7 @@
     "title": "Round Robin bound is d(G, T) + 3 iterations, not + 2 as quoted in project briefs",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 99,
    "id": "BKL-012",
    "labels": [
     "altitude:L1",
@@ -5813,7 +5813,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 100,
     "id": "BKL-083",
     "issue_type": "contradiction",
     "labels": [
@@ -5832,7 +5832,7 @@
     "title": "F-U6-08: Table 6.5 srPostorder variable-shadowing bug overloads scc as counter and node set",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 100,
    "id": "BKL-083",
    "labels": [
     "altitude:L1",
@@ -5869,7 +5869,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 101,
     "id": "BKL-084",
     "issue_type": "edge_case",
     "labels": [
@@ -5890,7 +5890,7 @@
     "title": "F-U6-01: Table 6.1 Step 1 omits semicolon; LHS-only init is safe unless FV(t_i) in X is relaxed",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 101,
    "id": "BKL-084",
    "labels": [
     "altitude:L1",
@@ -5927,7 +5927,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 102,
     "id": "BKL-085",
     "issue_type": "edge_case",
     "labels": [
@@ -5948,7 +5948,7 @@
     "title": "F-U6-02: One-armed conditional RHS terms in Ex 6.2 & MP 6.2 rely on implicit else-bot semantics",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 102,
    "id": "BKL-085",
    "labels": [
     "altitude:L1",
@@ -5985,7 +5985,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 103,
     "id": "BKL-086",
     "issue_type": "edge_case",
     "labels": [
@@ -6007,7 +6007,7 @@
     "title": "F-U6-03: Lemma 6.4 proof omits FV(t)=empty case, multiset ADT premise, and early-cutoff hazard",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 103,
    "id": "BKL-086",
    "labels": [
     "altitude:L1",
@@ -6044,7 +6044,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 104,
     "id": "BKL-087",
     "issue_type": "contradiction",
     "labels": [
@@ -6067,7 +6067,7 @@
     "title": "F-U6-04/05: Sparse-refill O(h*N^2) bit-vector scan caveat and Figure 6.3 row 6 eager refill",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 104,
    "id": "BKL-087",
    "labels": [
     "altitude:L1",
@@ -6104,7 +6104,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 105,
     "id": "BKL-088",
     "issue_type": "contradiction",
     "labels": [
@@ -6129,7 +6129,7 @@
     "title": "F-U6-06/10: \\u00a76.2.1 mis-cites Example 2.8 for 2.30 and leaves Bit Vector order implicit",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 105,
    "id": "BKL-088",
    "labels": [
     "altitude:L1",
@@ -6166,7 +6166,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 106,
     "id": "BKL-089",
     "issue_type": "contradiction",
     "labels": [
@@ -6187,7 +6187,7 @@
     "title": "F-U6-07: Example 6.14 overstates that every WHILE SCC is an outermost loop",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 106,
    "id": "BKL-089",
    "labels": [
     "altitude:L1",
@@ -6224,7 +6224,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 107,
     "id": "BKL-090",
     "issue_type": "contradiction",
     "labels": [
@@ -6247,7 +6247,7 @@
     "title": "F-U6-09: Ex 6.12 prints 'two priority queues' for three (W.c, W.pc, W.pf) and Ex 6.14 prints 'the the'",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 107,
    "id": "BKL-090",
    "labels": [
     "altitude:L1",
@@ -6284,7 +6284,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 108,
     "id": "BKL-091",
     "issue_type": "edge_case",
     "labels": [
@@ -6311,7 +6311,7 @@
     "title": "Unit 6 piecewise page offsets (+16/+14/+13), unindexed solvers, and Index/Bib errata (F-U6-11/12)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 108,
    "id": "BKL-091",
    "labels": [
     "altitude:L1",
@@ -6348,7 +6348,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 109,
     "id": "BKL-092",
     "issue_type": "edge_case",
     "labels": [
@@ -6370,7 +6370,7 @@
     "title": "Dual must-lattice bot_L = U polarity, Ex 6.5 join splitting vs Ex 6.13 guarded cutset widening",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 109,
    "id": "BKL-092",
    "labels": [
     "altitude:L1",
@@ -6419,7 +6419,7 @@
     "depends_on": [
      "ISS-W6-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 110,
     "id": "ISS-W6-02",
     "issue_type": "shard",
     "labels": [
@@ -6437,7 +6437,7 @@
     "title": "W6-2 Cross-book cyber program-analysis skill, merged corpus + Gate #10",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 110,
    "id": "ISS-W6-02",
    "labels": [
     "altitude:L0",
@@ -6472,7 +6472,7 @@
     "blocks": [],
     "created_at": "2026-11-18",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 111,
     "id": "BKL-008",
     "issue_type": "edge_case",
     "labels": [
@@ -6491,7 +6491,7 @@
     "title": "Closed-world syntax vs reflection, dynamic loading, foreign calls and asynchronous interrupts",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 111,
    "id": "BKL-008",
    "labels": [
     "altitude:L1",
@@ -6539,7 +6539,7 @@
     "depends_on": [
      "ISS-W6-02"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 112,
     "id": "ISS-W7-01",
     "issue_type": "shard",
     "labels": [
@@ -6556,7 +6556,7 @@
     "title": "W7-1 Porting docs, five reference harness adapters and conformance suite",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 112,
    "id": "ISS-W7-01",
    "labels": [
     "altitude:L0",
@@ -6605,7 +6605,7 @@
     "depends_on": [
      "ISS-W7-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 113,
     "id": "ISS-W8-01",
     "issue_type": "shard",
     "labels": [
@@ -6622,7 +6622,7 @@
     "title": "W8-1 Whole-book audit, global altitude refactoring, GitHub export manifest",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 113,
    "id": "ISS-W8-01",
    "labels": [
     "altitude:L0",
@@ -6659,7 +6659,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 114,
     "id": "BKL-093",
     "issue_type": "edge_case",
     "labels": [
@@ -6682,7 +6682,7 @@
     "title": "ARCH-7.1 L1-anchor clause and ARCH-7.2 signature/quantifier parity are unautomated (Tier B until implemented)",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 114,
    "id": "BKL-093",
    "labels": [
     "altitude:L0",
@@ -6731,7 +6731,7 @@
     "depends_on": [
      "ISS-W8-01"
     ],
-    "github_issue_number": null,
+    "github_issue_number": 115,
     "id": "ISS-W8-02",
     "issue_type": "shard",
     "labels": [
@@ -6749,7 +6749,7 @@
     "title": "W8-2 Gate #11 whole-book 3-model loop, local deployment, live conformance",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 115,
    "id": "ISS-W8-02",
    "labels": [
     "altitude:L0",
@@ -6790,7 +6790,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 116,
     "id": "REF-001",
     "issue_type": "refactor",
     "labels": [
@@ -6810,7 +6810,7 @@
     "title": "Activate Chapter 2 router routing, cross-skill L1 links, and router/dataflow negative boundaries",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 116,
    "id": "REF-001",
    "labels": [
     "altitude:L0",
@@ -6851,7 +6851,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 117,
     "id": "REF-002",
     "issue_type": "refactor",
     "labels": [
@@ -6871,7 +6871,7 @@
     "title": "Part I holistic U6 unification parity, graph inverse symmetry, T7 notation scoping, and C6.6/C6.7 backlog reconciliation",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 117,
    "id": "REF-002",
    "labels": [
     "altitude:L0",
@@ -6913,7 +6913,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 118,
     "id": "REF-003",
     "issue_type": "refactor",
     "labels": [
@@ -6933,7 +6933,7 @@
     "title": "Activate Chapter 3 router routing, reciprocal L1 links, U4/U5/U9 edges, and T7 notation audit",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 118,
    "id": "REF-003",
    "labels": [
     "altitude:L0",
@@ -6975,7 +6975,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 119,
     "id": "REF-004",
     "issue_type": "refactor",
     "labels": [
@@ -6995,7 +6995,7 @@
     "title": "Activate Chapter 4 router routing, reciprocal U6/U7 L1 links and evals, and T7 notation audit",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 119,
    "id": "REF-004",
    "labels": [
     "altitude:L0",
@@ -7037,7 +7037,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 120,
     "id": "REF-005",
     "issue_type": "refactor",
     "labels": [
@@ -7057,7 +7057,7 @@
     "title": "Activate Chapter 5 router routing, reciprocal U8/X1 L1 links, and T7 notation audit",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 120,
    "id": "REF-005",
    "labels": [
     "altitude:L0",
@@ -7099,7 +7099,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 121,
     "id": "REF-006",
     "issue_type": "refactor",
     "labels": [
@@ -7118,7 +7118,7 @@
     "title": "Part II Holistic Audit across Ch 3-5, ontology/cross_paradigm_matrix.md, and Gate #8 prep",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 121,
    "id": "REF-006",
    "labels": [
     "altitude:L0",
@@ -7160,7 +7160,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 122,
     "id": "REF-007",
     "issue_type": "refactor",
     "labels": [
@@ -7179,7 +7179,7 @@
     "title": "Activate Chapter 6 solvers & Cyber skills, symmetric U2/U3/U10/U7 edges, and RAW_KNOWLEDGE.md",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 122,
    "id": "REF-007",
    "labels": [
     "altitude:L0",
@@ -7221,7 +7221,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 123,
     "id": "REF-008",
     "issue_type": "refactor",
     "labels": [
@@ -7240,7 +7240,7 @@
     "title": "Whole-Book Global Audit across Ch 1-6, App A-C, Cyber, and Wave 7 Harness Adapters",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 123,
    "id": "REF-008",
    "labels": [
     "altitude:L0",
@@ -7264,8 +7264,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nRemediates every content-side finding of the post-quota-reset whole-book audit (`post-reset-v1`), which three lenses ran independently at the `EPIC-001` closure commit: `P-SWE` (practical SWE and mathematical fidelity: `OA-*`, `M1-F*`, `M2-*`, `M3-F*`), `P-CYBER` (cyber soundness and the `P2` firewall: `F-CA-PR-*`), and `P-ARCH` (architecture, altitude, and portability: `F-FA-*`, `P-FA-*`). It fixes false theorems and invariants attributed to `ppa.pdf`, misattributed exercises, hypothesis widening, cyber-node graph disconnection, `[external]` tags on book-native terms, and indistinguishable ambient discovery descriptions. It then re-assembles `corpus/RAW_KNOWLEDGE.md` deterministically. Code, adapter, verifier, test, and architecture-document findings (`F-FA-01`, `F-FA-05..07`, `F-FA-09..11`, `OA-01..03`, `OA-05`, `F-CA-PR-02`, `F-CA-PR-06`, including the `architecture/ARCHITECTURE.md` amendments recorded as `DEC-PPA-010` in `MASTER_PLAN.md`: line 221 implication wording, `X1`–`X5` registration in §6.3/§9, §4.4 router-linked `R1` fallback, and §7.1/§7.2 honest `[NOT_IMPLEMENTED]` reporting) were remediated in parallel under the same audit id and verified with 76 passing stdlib tests and all 5 reference target ports certifying `55/55 CONFORMANT`.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)\n- [PPA Theorem 3.10, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198)\n- [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216)\n- [PPA Fact 4.14, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)\n- [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355)\n- [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356)\n- [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)\n- [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386)\n- [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396)\n- [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407)\n\n## Technical Analysis / Mechanism\n\n1. **Chapter 2b/3 fidelity (`M1-F1..F11`)**:\n   - The Theorem 3.10 proof is restored to its five printed cases (`[var]` plus `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]`), ending \"This completes the proof.\". Exercise 3.7 is re-described as α-renaming sensitivity plus a static-scoping-faithful 0-CFA.\n   - Mini Project 3.2's flat finite label-indexed constructor domain is reinstated for Tables 3.5–3.7.\n   - The `E[p]`-omission oracle now uses an indirect-operator witness (`let f = fn x => x in f (fn y => y)`), simulated in both seeding orders. Example 3.23 is kept only as a baseline, because Step 2 already seeds `id_x ∈ D[C(2)]`.\n   - Banach wording and the `[derived]` antitone claim; Prop 3.13 / Prop 3.18 / Prop 3.24 attributions; Prop 3.16 restricted to the `Ω`-style witness; the open-system stub tagged `[derived]`/`[external]`; CPA cost `[external]` and \"closely related to\" polynomial k-CFA; Shape distributivity `[derived]` with Lemma 2.32 restricted to `ℓ ∈ E, F`; `n(n−1)` invalid cross-over pairs.\n2. **Chapter 4 fidelity (`M2-01..09`)**:\n   - Dual widening gives an under-approximation `⊑ gfp(f)`, and the wrong Exercise 4.9 reference is removed.\n   - The p. 270 wording \"often preferable\" replaces \"strictly improves\", with Lemma 4.45 stated as an equality.\n   - Removed or tagged: the invented `k ∈ {1,2,3}`, the Example 4.12 operand-order attribution, the `γ(⊥_M) ⊐ ⊥_L` direction, the unsound/voided-guarantee wording, the `[derived]` meet formula, the undefined `O(M)`, and the Fact 4.31 page.\n3. **Chapter 5/6 fidelity (`OA-04`/`M3-F2`, `M3-F1`/`F-FA-04`, `M3-F3..F9`, `F-FA-02`/`OA-07`, `F-FA-03`)**:\n   - The false invariant `Analysis_i ∉ Red(F_𝒮)` while `W ≠ ∅` is replaced by \"not *certified* reductive\". The replacement covers the skill, references, shard, L0 ambient file, and graph (`ppa.cyber.solver-dos-and-timeout-evasion`, `ppa.fixpoint.fixed-points` reductive note).\n   - Lemma 6.12 is restricted to Bit Vector Frameworks in the skill, references, shard (`G-U6-13`), ambient file, and graph `conditions`. Any rapid extension is tagged `[external: Kam–Ullman rapid frameworks]`.\n   - Distributivity is now required for `lfp(λg. id ⊔ g∘f) = f̄`. The `rec β.φ` positivity condition is removed from Table 5.18 and appears only as `[derived]` text (including `BKL-081`). The Table 6.1 Step 1 warning is made conditional (including `BKL-084`).\n   - Smaller fixes: `8` pops, \"do not assume `d` small\", `[external]` unification/inclusion costs, and `[derived]` Exercise 5.9/5.15 answers.\n   - The demand-driven local solver block is repaired (non-root members exit; the root iterates until a full pass makes no change) and tagged `[derived]`, with its L1 explanation in `scc-round-robin-and-advanced-solvers.md` §3.1.\n   - `MFP = MOP` is changed from \"iff\" to Lemma 2.32's implication in the graph and `ontology/cross_paradigm_matrix.md`. `BKL-093` tracks automated §7.2 parity.\n4. **Cyber provenance and `P2` (`F-CA-PR-01`, `F-CA-PR-03..05`)**:\n   - `25` symmetric cross-unit edges (plus `25` schema inverses) now connect the seven Ch 3–6 `ppa.cyber.*` nodes to their `U3a`–`U6` formal core nodes. The two misrouted `refines ppa.tes.call-tracking-effects` edges are removed, along with their `refined_by` inverses.\n   - `[external]` is removed from book-native `Shivers` at all canonical sites and from `LIFO` in `bulk LIFO free`.\n   - The `Observe` `β`-retention clause is cited at p. 339. The `[region]` side condition in the cyber skill now states both `ϱ⃗ ∈ φ` and `ϱ⃗ ∉ φ'`. A two-line `[external: CWE-362]` sequential-store guardrail is added.\n5. **Ambient discovery and altitude (`F-FA-08`, `P-FA-01`, `P-FA-04`, `P-FA-08`)**:\n   - Each of the seven ambient files carries a unique single-line `<!-- @description: ... -->` (476–610 chars, no N8, no lists), which adapters lift verbatim.\n   - The C4.3-tokeniser maximum Jaccard is `0.105` ambient–ambient, `0.270` skill–ambient, and `0.252` skill–skill over all `91` pairs.\n   - The solver ambient file is trimmed to its L0 mental model. \"SSA lowering\" is removed from the dataflow trigger. `chapter-1-five-formulations.md` now points to `ontology/cross_paradigm_matrix.md`.\n6. **Deterministic re-assembly**: `corpus/RAW_KNOWLEDGE.md` (`13,694L`) is rebuilt from the `11` shards. The rule is a 20-line header with refreshed per-shard counts, then each shard minus its two provenance comments, separated by `---`. Before use, the rule was proved byte-exact against the `EPIC-001` closure commit.\n\n## Acceptance Gates\n\n- [x] Every mandatory content-side finding of `post-reset-v1` is resolved at its listed file:line or an equivalent mirror site\n- [x] `ontology/concept_graph.json`: `0` dangling edges, `100%` inverse symmetry, `0` `depends_on` cycles, `0` book citations inside `projections`; all seven Ch 3–6 cyber nodes reach `U3a`–`U6`\n- [x] `corpus/RAW_KNOWLEDGE.md` has verbatim parity with all `11` shards\n- [x] All `91` skill/ambient description pairs score `< 0.35` Jaccard on the C4.3 tokeniser\n- [x] `validate_ppa_knowledge.py --strict-gotchas`, `issue_ctl.py validate`, and canonical-only port conformance pass after remediation\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 `post-reset-v1`: `[DISAGREE post-reset-v1]` from `P-SWE` (OA-01..04, M1-F1..F4, M2-01..02, M3-F1..F4 blocking), `P-CYBER` (F-CA-PR-01..04 blocking), and `P-ARCH` (F-FA-01 hard block; F-FA-02..11 blocking).\n- 2026-11-19 content remediation landed for all content-side items listed above. Code-side items were remediated in parallel.\n- 2026-11-19 `post-reset-v2` (Round 2): `P-ARCH` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `11` Round 1 findings); `P-CYBER` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `7` Round 1 findings + live deployments); `P-SWE` verified `12/13` Round 1 BLOCKING findings (`OA-01..03`, `OA-05..07`, `M3-F1/F3/F4`, `M2-01..02`, `M1-F1..F4`, `11/11` mutation rejections, `20/20` regressions) and flagged one 3-line mirror echo (`OA-04R`, also noted by `P-CYBER` as `F-CA-PR2-01`) in `concept_graph.json:12852`, `ppa-cyber-vulnerability-analysis/SKILL.md:193-195`, and `callgraph-cfi-concurrency-and-scanner-dos.md:110-113` (`[DISAGREE post-reset-v2]`). Under the 2-round hard cap (no 3rd round, no self-clearance of `P-SWE`), the undisputed 3-line `OA-04R` mirror echo and 1-line `R2-P3` wording were patched immediately and verified with `0` remaining occurrences, all validators green, and live deployments re-synced.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W8-01`; tracking follow-up: `BKL-093` (ARCH §7.2 automation)\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `RAW_SHARD_04a_galois_widening.md`, `RAW_SHARD_04b_combinators_induced.md`, `RAW_SHARD_05a_annotated_types_inference.md`, `RAW_SHARD_05b_effects_regions_behaviours.md`, `RAW_SHARD_06_algorithms_bib.md`, `corpus/RAW_KNOWLEDGE.md`\n- `ontology/concept_graph.json` (`ppa.dfa.mop-vs-mfp`, `ppa.solvers.round-robin-loop-bound`, `ppa.solvers.abstract-worklist`, `ppa.cfa.uniform-k-cfa`, `ppa.tes.region-inference-translation`, `ppa.cyber.*`), `ontology/cross_paradigm_matrix.md`, `ontology/altitude_alignment_log.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/`, `ppa-dataflow-and-slicing/`, `ppa-abstract-interpretation/`, `ppa-types-effects-and-regions/`, `ppa-fixedpoint-solvers/`, `ppa-cyber-vulnerability-analysis/`, `ppa-program-analysis/references/chapter-1-five-formulations.md`\n- `knowledge/ambient-context/` (all `7` files)\n- `issues/backlog/BKL-081.md`, `BKL-084.md`, `BKL-093.md`, `issues/export_manifest.json`\n\n## Verification Receipts\n\n- 2026-11-19 `python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas`: PASS (`323/323` gotchas covered).\n- 2026-11-19 `python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .`: CONFORMANT after manifest regeneration.\n- 2026-11-19 `python3 -B scripts/issue_ctl.py validate`: PASS; `issues/export_manifest.json` regenerated.\n- 2026-11-19 Graph integrity probe: `153` nodes, `0` dangling / asymmetric / duplicate edges, `0` `depends_on` cycles, `0` `P2` violations.\n- 2026-11-19 Local solver block executed on `x ⊒ {1} ⊔ y, y ⊒ x` (terminates at `x = y = {1}`) and on `500` random powerset systems (`0` mismatches against global lfp); the previous exit condition exceeds `10,000` passes.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L0\", \"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"REF-009\", \"parent_issue\": \"ISS-W8-01\", \"ppa_scope\": [\"Ch 2 \\u00a72.4-2.6, Ch 3, Ch 4, Ch 5, Ch 6 (book p. 80 to book p. 392)\", \"Cross-Book Cyber projections and L0 ambient discovery metadata\"], \"updated_at\": \"2026-11-19\"} -->\n",
-   "body_sha256": "6f09b2cea73453962a3a53ea46e81e25571f5a4009d2523eb26359da78c6b0de",
+   "body": "## Summary\n\nRemediates every content-side finding of the post-quota-reset whole-book audit (`post-reset-v1`), which three lenses ran independently at the `EPIC-001` closure commit: `P-SWE` (practical SWE and mathematical fidelity: `OA-*`, `M1-F*`, `M2-*`, `M3-F*`), `P-CYBER` (cyber soundness and the `P2` firewall: `F-CA-PR-*`), and `P-ARCH` (architecture, altitude, and portability: `F-FA-*`, `P-FA-*`). It fixes false theorems and invariants attributed to `ppa.pdf`, misattributed exercises, hypothesis widening, cyber-node graph disconnection, `[external]` tags on book-native terms, and indistinguishable ambient discovery descriptions. It then re-assembles `corpus/RAW_KNOWLEDGE.md` deterministically. Code, adapter, verifier, test, and architecture-document findings (`F-FA-01`, `F-FA-05..07`, `F-FA-09..11`, `OA-01..03`, `OA-05`, `F-CA-PR-02`, `F-CA-PR-06`, including the `architecture/ARCHITECTURE.md` amendments recorded as `DEC-PPA-010` in `MASTER_PLAN.md`: line 221 implication wording, `X1`–`X5` registration in §6.3/§9, §4.4 router-linked `R1` fallback, and §7.1/§7.2 honest `[NOT_IMPLEMENTED]` reporting) were remediated in parallel under the same audit id and verified with 76 passing stdlib tests and all 5 reference target ports certifying `55/55 CONFORMANT`.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)\n- [PPA Theorem 3.10, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198)\n- [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216)\n- [PPA Fact 4.14, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)\n- [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355)\n- [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356)\n- [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)\n- [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386)\n- [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396)\n- [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407)\n\n## Technical Analysis / Mechanism\n\n1. **Chapter 2b/3 fidelity (`M1-F1..F11`)**:\n   - The Theorem 3.10 proof is restored to its five printed cases (`[var]` plus `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]`), ending \"This completes the proof.\". Exercise 3.7 is re-described as α-renaming sensitivity plus a static-scoping-faithful 0-CFA.\n   - Mini Project 3.2's flat finite label-indexed constructor domain is reinstated for Tables 3.5–3.7.\n   - The `E[p]`-omission oracle now uses an indirect-operator witness (`let f = fn x => x in f (fn y => y)`), simulated in both seeding orders. Example 3.23 is kept only as a baseline, because Step 2 already seeds `id_x ∈ D[C(2)]`.\n   - Banach wording and the `[derived]` antitone claim; Prop 3.13 / Prop 3.18 / Prop 3.24 attributions; Prop 3.16 restricted to the `Ω`-style witness; the open-system stub tagged `[derived]`/`[external]`; CPA cost `[external]` and \"closely related to\" polynomial k-CFA; Shape distributivity `[derived]` with Lemma 2.32 restricted to `ℓ ∈ E, F`; `n(n−1)` invalid cross-over pairs.\n2. **Chapter 4 fidelity (`M2-01..09`)**:\n   - Dual widening gives an under-approximation `⊑ gfp(f)`, and the wrong Exercise 4.9 reference is removed.\n   - The p. 270 wording \"often preferable\" replaces \"strictly improves\", with Lemma 4.45 stated as an equality.\n   - Removed or tagged: the invented `k ∈ {1,2,3}`, the Example 4.12 operand-order attribution, the `γ(⊥_M) ⊐ ⊥_L` direction, the unsound/voided-guarantee wording, the `[derived]` meet formula, the undefined `O(M)`, and the Fact 4.31 page.\n3. **Chapter 5/6 fidelity (`OA-04`/`M3-F2`, `M3-F1`/`F-FA-04`, `M3-F3..F9`, `F-FA-02`/`OA-07`, `F-FA-03`)**:\n   - The false invariant `Analysis_i ∉ Red(F_𝒮)` while `W ≠ ∅` is replaced by \"not *certified* reductive\". The replacement covers the skill, references, shard, L0 ambient file, and graph (`ppa.cyber.solver-dos-and-timeout-evasion`, `ppa.fixpoint.fixed-points` reductive note).\n   - Lemma 6.12 is restricted to Bit Vector Frameworks in the skill, references, shard (`G-U6-13`), ambient file, and graph `conditions`. Any rapid extension is tagged `[external: Kam–Ullman rapid frameworks]`.\n   - Distributivity is now required for `lfp(λg. id ⊔ g∘f) = f̄`. The `rec β.φ` positivity condition is removed from Table 5.18 and appears only as `[derived]` text (including `BKL-081`). The Table 6.1 Step 1 warning is made conditional (including `BKL-084`).\n   - Smaller fixes: `8` pops, \"do not assume `d` small\", `[external]` unification/inclusion costs, and `[derived]` Exercise 5.9/5.15 answers.\n   - The demand-driven local solver block is repaired (non-root members exit; the root iterates until a full pass makes no change) and tagged `[derived]`, with its L1 explanation in `scc-round-robin-and-advanced-solvers.md` §3.1.\n   - `MFP = MOP` is changed from \"iff\" to Lemma 2.32's implication in the graph and `ontology/cross_paradigm_matrix.md`. `BKL-093` tracks automated §7.2 parity.\n4. **Cyber provenance and `P2` (`F-CA-PR-01`, `F-CA-PR-03..05`)**:\n   - `25` symmetric cross-unit edges (plus `25` schema inverses) now connect the seven Ch 3–6 `ppa.cyber.*` nodes to their `U3a`–`U6` formal core nodes. The two misrouted `refines ppa.tes.call-tracking-effects` edges are removed, along with their `refined_by` inverses.\n   - `[external]` is removed from book-native `Shivers` at all canonical sites and from `LIFO` in `bulk LIFO free`.\n   - The `Observe` `β`-retention clause is cited at p. 339. The `[region]` side condition in the cyber skill now states both `ϱ⃗ ∈ φ` and `ϱ⃗ ∉ φ'`. A two-line `[external: CWE-362]` sequential-store guardrail is added.\n5. **Ambient discovery and altitude (`F-FA-08`, `P-FA-01`, `P-FA-04`, `P-FA-08`)**:\n   - Each of the seven ambient files carries a unique single-line `<!-- @description: ... -->` (476–610 chars, no N8, no lists), which adapters lift verbatim.\n   - The C4.3-tokeniser maximum Jaccard is `0.105` ambient–ambient, `0.270` skill–ambient, and `0.252` skill–skill over all `91` pairs.\n   - The solver ambient file is trimmed to its L0 mental model. \"SSA lowering\" is removed from the dataflow trigger. `chapter-1-five-formulations.md` now points to `ontology/cross_paradigm_matrix.md`.\n6. **Deterministic re-assembly**: `corpus/RAW_KNOWLEDGE.md` (`13,694L`) is rebuilt from the `11` shards. The rule is a 20-line header with refreshed per-shard counts, then each shard minus its two provenance comments, separated by `---`. Before use, the rule was proved byte-exact against the `EPIC-001` closure commit.\n\n## Acceptance Gates\n\n- [x] Every mandatory content-side finding of `post-reset-v1` is resolved at its listed file:line or an equivalent mirror site\n- [x] `ontology/concept_graph.json`: `0` dangling edges, `100%` inverse symmetry, `0` `depends_on` cycles, `0` book citations inside `projections`; all seven Ch 3–6 cyber nodes reach `U3a`–`U6`\n- [x] `corpus/RAW_KNOWLEDGE.md` has verbatim parity with all `11` shards\n- [x] All `91` skill/ambient description pairs score `< 0.35` Jaccard on the C4.3 tokeniser\n- [x] `validate_ppa_knowledge.py --strict-gotchas`, `issue_ctl.py validate`, and canonical-only port conformance pass after remediation\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 `post-reset-v1`: `[DISAGREE post-reset-v1]` from `P-SWE` (OA-01..04, M1-F1..F4, M2-01..02, M3-F1..F4 blocking), `P-CYBER` (F-CA-PR-01..04 blocking), and `P-ARCH` (F-FA-01 hard block; F-FA-02..11 blocking).\n- 2026-11-19 content remediation landed for all content-side items listed above. Code-side items were remediated in parallel.\n- 2026-11-19 `post-reset-v2` (Round 2): `P-ARCH` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `11` Round 1 findings); `P-CYBER` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `7` Round 1 findings + live deployments); `P-SWE` verified `12/13` Round 1 BLOCKING findings (`OA-01..03`, `OA-05..07`, `M3-F1/F3/F4`, `M2-01..02`, `M1-F1..F4`, `11/11` mutation rejections, `20/20` regressions) and flagged one 3-line mirror echo (`OA-04R`, also noted by `P-CYBER` as `F-CA-PR2-01`) in `concept_graph.json:12852`, `ppa-cyber-vulnerability-analysis/SKILL.md:193-195`, and `callgraph-cfi-concurrency-and-scanner-dos.md:110-113` (`[DISAGREE post-reset-v2]`). Under the 2-round hard cap (no 3rd round, no self-clearance of `P-SWE`), the undisputed 3-line `OA-04R` mirror echo and 1-line `R2-P3` wording were patched immediately and verified with `0` remaining occurrences, all validators green, and live deployments re-synced.\n- 2026-11-19 Operator/Arbiter sign-off: User explicitly authorized closing the `OA-04R` post-R2 patch as final, pushing `feat/ppa-semantic-knowledge`, importing tracked issues to GitHub, syncing NotebookLM sources, committing `~/wiki`, and proceeding to non-blocking enhancements.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W8-01`; tracking follow-up: `BKL-093` (ARCH §7.2 automation)\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `RAW_SHARD_04a_galois_widening.md`, `RAW_SHARD_04b_combinators_induced.md`, `RAW_SHARD_05a_annotated_types_inference.md`, `RAW_SHARD_05b_effects_regions_behaviours.md`, `RAW_SHARD_06_algorithms_bib.md`, `corpus/RAW_KNOWLEDGE.md`\n- `ontology/concept_graph.json` (`ppa.dfa.mop-vs-mfp`, `ppa.solvers.round-robin-loop-bound`, `ppa.solvers.abstract-worklist`, `ppa.cfa.uniform-k-cfa`, `ppa.tes.region-inference-translation`, `ppa.cyber.*`), `ontology/cross_paradigm_matrix.md`, `ontology/altitude_alignment_log.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/`, `ppa-dataflow-and-slicing/`, `ppa-abstract-interpretation/`, `ppa-types-effects-and-regions/`, `ppa-fixedpoint-solvers/`, `ppa-cyber-vulnerability-analysis/`, `ppa-program-analysis/references/chapter-1-five-formulations.md`\n- `knowledge/ambient-context/` (all `7` files)\n- `issues/backlog/BKL-081.md`, `BKL-084.md`, `BKL-093.md`, `issues/export_manifest.json`\n\n## Verification Receipts\n\n- 2026-11-19 `python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas`: PASS (`323/323` gotchas covered).\n- 2026-11-19 `python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .`: CONFORMANT after manifest regeneration.\n- 2026-11-19 `python3 -B scripts/issue_ctl.py validate`: PASS; `issues/export_manifest.json` regenerated.\n- 2026-11-19 Graph integrity probe: `153` nodes, `0` dangling / asymmetric / duplicate edges, `0` `depends_on` cycles, `0` `P2` violations.\n- 2026-11-19 Local solver block executed on `x ⊒ {1} ⊔ y, y ⊒ x` (terminates at `x = y = {1}`) and on `500` random powerset systems (`0` mismatches against global lfp); the previous exit condition exceeds `10,000` passes.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L0\", \"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"REF-009\", \"parent_issue\": \"ISS-W8-01\", \"ppa_scope\": [\"Ch 2 \\u00a72.4-2.6, Ch 3, Ch 4, Ch 5, Ch 6 (book p. 80 to book p. 392)\", \"Cross-Book Cyber projections and L0 ambient discovery metadata\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "aaa2868cbb371a9697c7fd2df31cb628948df8d9ff96e4a4900618ebcdad3d0a",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [
@@ -7281,7 +7281,7 @@
     "blocks": [],
     "created_at": "2026-11-19",
     "depends_on": [],
-    "github_issue_number": null,
+    "github_issue_number": 124,
     "id": "REF-009",
     "issue_type": "refactor",
     "labels": [
@@ -7301,7 +7301,7 @@
     "title": "Post-reset-v1 3-model audit remediation: book fidelity, cyber provenance, P2 parity, ambient discovery",
     "updated_at": "2026-11-19"
    },
-   "github_issue_number": null,
+   "github_issue_number": 124,
    "id": "REF-009",
    "labels": [
     "altitude:L0",
@@ -7318,8 +7318,8 @@
    ],
    "milestone": "W8",
    "parent_issue": "ISS-W8-01",
-   "published_body_sha256": "becc74f3ac0455d6f9cb09100715af3a26b04cf5d045d3bda3c83b3b3cc155b3",
-   "source_body": "\n## Summary\n\nRemediates every content-side finding of the post-quota-reset whole-book audit (`post-reset-v1`), which three lenses ran independently at the `EPIC-001` closure commit: `P-SWE` (practical SWE and mathematical fidelity: `OA-*`, `M1-F*`, `M2-*`, `M3-F*`), `P-CYBER` (cyber soundness and the `P2` firewall: `F-CA-PR-*`), and `P-ARCH` (architecture, altitude, and portability: `F-FA-*`, `P-FA-*`). It fixes false theorems and invariants attributed to `ppa.pdf`, misattributed exercises, hypothesis widening, cyber-node graph disconnection, `[external]` tags on book-native terms, and indistinguishable ambient discovery descriptions. It then re-assembles `corpus/RAW_KNOWLEDGE.md` deterministically. Code, adapter, verifier, test, and architecture-document findings (`F-FA-01`, `F-FA-05..07`, `F-FA-09..11`, `OA-01..03`, `OA-05`, `F-CA-PR-02`, `F-CA-PR-06`, including the `architecture/ARCHITECTURE.md` amendments recorded as `DEC-PPA-010` in `MASTER_PLAN.md`: line 221 implication wording, `X1`–`X5` registration in §6.3/§9, §4.4 router-linked `R1` fallback, and §7.1/§7.2 honest `[NOT_IMPLEMENTED]` reporting) were remediated in parallel under the same audit id and verified with 76 passing stdlib tests and all 5 reference target ports certifying `55/55 CONFORMANT`.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)\n- [PPA Theorem 3.10, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198)\n- [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216)\n- [PPA Fact 4.14, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)\n- [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355)\n- [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356)\n- [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)\n- [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386)\n- [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396)\n- [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407)\n\n## Technical Analysis / Mechanism\n\n1. **Chapter 2b/3 fidelity (`M1-F1..F11`)**:\n   - The Theorem 3.10 proof is restored to its five printed cases (`[var]` plus `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]`), ending \"This completes the proof.\". Exercise 3.7 is re-described as α-renaming sensitivity plus a static-scoping-faithful 0-CFA.\n   - Mini Project 3.2's flat finite label-indexed constructor domain is reinstated for Tables 3.5–3.7.\n   - The `E[p]`-omission oracle now uses an indirect-operator witness (`let f = fn x => x in f (fn y => y)`), simulated in both seeding orders. Example 3.23 is kept only as a baseline, because Step 2 already seeds `id_x ∈ D[C(2)]`.\n   - Banach wording and the `[derived]` antitone claim; Prop 3.13 / Prop 3.18 / Prop 3.24 attributions; Prop 3.16 restricted to the `Ω`-style witness; the open-system stub tagged `[derived]`/`[external]`; CPA cost `[external]` and \"closely related to\" polynomial k-CFA; Shape distributivity `[derived]` with Lemma 2.32 restricted to `ℓ ∈ E, F`; `n(n−1)` invalid cross-over pairs.\n2. **Chapter 4 fidelity (`M2-01..09`)**:\n   - Dual widening gives an under-approximation `⊑ gfp(f)`, and the wrong Exercise 4.9 reference is removed.\n   - The p. 270 wording \"often preferable\" replaces \"strictly improves\", with Lemma 4.45 stated as an equality.\n   - Removed or tagged: the invented `k ∈ {1,2,3}`, the Example 4.12 operand-order attribution, the `γ(⊥_M) ⊐ ⊥_L` direction, the unsound/voided-guarantee wording, the `[derived]` meet formula, the undefined `O(M)`, and the Fact 4.31 page.\n3. **Chapter 5/6 fidelity (`OA-04`/`M3-F2`, `M3-F1`/`F-FA-04`, `M3-F3..F9`, `F-FA-02`/`OA-07`, `F-FA-03`)**:\n   - The false invariant `Analysis_i ∉ Red(F_𝒮)` while `W ≠ ∅` is replaced by \"not *certified* reductive\". The replacement covers the skill, references, shard, L0 ambient file, and graph (`ppa.cyber.solver-dos-and-timeout-evasion`, `ppa.fixpoint.fixed-points` reductive note).\n   - Lemma 6.12 is restricted to Bit Vector Frameworks in the skill, references, shard (`G-U6-13`), ambient file, and graph `conditions`. Any rapid extension is tagged `[external: Kam–Ullman rapid frameworks]`.\n   - Distributivity is now required for `lfp(λg. id ⊔ g∘f) = f̄`. The `rec β.φ` positivity condition is removed from Table 5.18 and appears only as `[derived]` text (including `BKL-081`). The Table 6.1 Step 1 warning is made conditional (including `BKL-084`).\n   - Smaller fixes: `8` pops, \"do not assume `d` small\", `[external]` unification/inclusion costs, and `[derived]` Exercise 5.9/5.15 answers.\n   - The demand-driven local solver block is repaired (non-root members exit; the root iterates until a full pass makes no change) and tagged `[derived]`, with its L1 explanation in `scc-round-robin-and-advanced-solvers.md` §3.1.\n   - `MFP = MOP` is changed from \"iff\" to Lemma 2.32's implication in the graph and `ontology/cross_paradigm_matrix.md`. `BKL-093` tracks automated §7.2 parity.\n4. **Cyber provenance and `P2` (`F-CA-PR-01`, `F-CA-PR-03..05`)**:\n   - `25` symmetric cross-unit edges (plus `25` schema inverses) now connect the seven Ch 3–6 `ppa.cyber.*` nodes to their `U3a`–`U6` formal core nodes. The two misrouted `refines ppa.tes.call-tracking-effects` edges are removed, along with their `refined_by` inverses.\n   - `[external]` is removed from book-native `Shivers` at all canonical sites and from `LIFO` in `bulk LIFO free`.\n   - The `Observe` `β`-retention clause is cited at p. 339. The `[region]` side condition in the cyber skill now states both `ϱ⃗ ∈ φ` and `ϱ⃗ ∉ φ'`. A two-line `[external: CWE-362]` sequential-store guardrail is added.\n5. **Ambient discovery and altitude (`F-FA-08`, `P-FA-01`, `P-FA-04`, `P-FA-08`)**:\n   - Each of the seven ambient files carries a unique single-line `<!-- @description: ... -->` (476–610 chars, no N8, no lists), which adapters lift verbatim.\n   - The C4.3-tokeniser maximum Jaccard is `0.105` ambient–ambient, `0.270` skill–ambient, and `0.252` skill–skill over all `91` pairs.\n   - The solver ambient file is trimmed to its L0 mental model. \"SSA lowering\" is removed from the dataflow trigger. `chapter-1-five-formulations.md` now points to `ontology/cross_paradigm_matrix.md`.\n6. **Deterministic re-assembly**: `corpus/RAW_KNOWLEDGE.md` (`13,694L`) is rebuilt from the `11` shards. The rule is a 20-line header with refreshed per-shard counts, then each shard minus its two provenance comments, separated by `---`. Before use, the rule was proved byte-exact against the `EPIC-001` closure commit.\n\n## Acceptance Gates\n\n- [x] Every mandatory content-side finding of `post-reset-v1` is resolved at its listed file:line or an equivalent mirror site\n- [x] `ontology/concept_graph.json`: `0` dangling edges, `100%` inverse symmetry, `0` `depends_on` cycles, `0` book citations inside `projections`; all seven Ch 3–6 cyber nodes reach `U3a`–`U6`\n- [x] `corpus/RAW_KNOWLEDGE.md` has verbatim parity with all `11` shards\n- [x] All `91` skill/ambient description pairs score `< 0.35` Jaccard on the C4.3 tokeniser\n- [x] `validate_ppa_knowledge.py --strict-gotchas`, `issue_ctl.py validate`, and canonical-only port conformance pass after remediation\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 `post-reset-v1`: `[DISAGREE post-reset-v1]` from `P-SWE` (OA-01..04, M1-F1..F4, M2-01..02, M3-F1..F4 blocking), `P-CYBER` (F-CA-PR-01..04 blocking), and `P-ARCH` (F-FA-01 hard block; F-FA-02..11 blocking).\n- 2026-11-19 content remediation landed for all content-side items listed above. Code-side items were remediated in parallel.\n- 2026-11-19 `post-reset-v2` (Round 2): `P-ARCH` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `11` Round 1 findings); `P-CYBER` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `7` Round 1 findings + live deployments); `P-SWE` verified `12/13` Round 1 BLOCKING findings (`OA-01..03`, `OA-05..07`, `M3-F1/F3/F4`, `M2-01..02`, `M1-F1..F4`, `11/11` mutation rejections, `20/20` regressions) and flagged one 3-line mirror echo (`OA-04R`, also noted by `P-CYBER` as `F-CA-PR2-01`) in `concept_graph.json:12852`, `ppa-cyber-vulnerability-analysis/SKILL.md:193-195`, and `callgraph-cfi-concurrency-and-scanner-dos.md:110-113` (`[DISAGREE post-reset-v2]`). Under the 2-round hard cap (no 3rd round, no self-clearance of `P-SWE`), the undisputed 3-line `OA-04R` mirror echo and 1-line `R2-P3` wording were patched immediately and verified with `0` remaining occurrences, all validators green, and live deployments re-synced.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W8-01`; tracking follow-up: `BKL-093` (ARCH §7.2 automation)\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `RAW_SHARD_04a_galois_widening.md`, `RAW_SHARD_04b_combinators_induced.md`, `RAW_SHARD_05a_annotated_types_inference.md`, `RAW_SHARD_05b_effects_regions_behaviours.md`, `RAW_SHARD_06_algorithms_bib.md`, `corpus/RAW_KNOWLEDGE.md`\n- `ontology/concept_graph.json` (`ppa.dfa.mop-vs-mfp`, `ppa.solvers.round-robin-loop-bound`, `ppa.solvers.abstract-worklist`, `ppa.cfa.uniform-k-cfa`, `ppa.tes.region-inference-translation`, `ppa.cyber.*`), `ontology/cross_paradigm_matrix.md`, `ontology/altitude_alignment_log.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/`, `ppa-dataflow-and-slicing/`, `ppa-abstract-interpretation/`, `ppa-types-effects-and-regions/`, `ppa-fixedpoint-solvers/`, `ppa-cyber-vulnerability-analysis/`, `ppa-program-analysis/references/chapter-1-five-formulations.md`\n- `knowledge/ambient-context/` (all `7` files)\n- `issues/backlog/BKL-081.md`, `BKL-084.md`, `BKL-093.md`, `issues/export_manifest.json`\n\n## Verification Receipts\n\n- 2026-11-19 `python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas`: PASS (`323/323` gotchas covered).\n- 2026-11-19 `python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .`: CONFORMANT after manifest regeneration.\n- 2026-11-19 `python3 -B scripts/issue_ctl.py validate`: PASS; `issues/export_manifest.json` regenerated.\n- 2026-11-19 Graph integrity probe: `153` nodes, `0` dangling / asymmetric / duplicate edges, `0` `depends_on` cycles, `0` `P2` violations.\n- 2026-11-19 Local solver block executed on `x ⊒ {1} ⊔ y, y ⊒ x` (terminates at `x = y = {1}`) and on `500` random powerset systems (`0` mismatches against global lfp); the previous exit condition exceeds `10,000` passes.",
+   "published_body_sha256": "328697446be4d128426ba18bedd424a1bc2c19f889c28c3ea8d253580a48df2c",
+   "source_body": "\n## Summary\n\nRemediates every content-side finding of the post-quota-reset whole-book audit (`post-reset-v1`), which three lenses ran independently at the `EPIC-001` closure commit: `P-SWE` (practical SWE and mathematical fidelity: `OA-*`, `M1-F*`, `M2-*`, `M3-F*`), `P-CYBER` (cyber soundness and the `P2` firewall: `F-CA-PR-*`), and `P-ARCH` (architecture, altitude, and portability: `F-FA-*`, `P-FA-*`). It fixes false theorems and invariants attributed to `ppa.pdf`, misattributed exercises, hypothesis widening, cyber-node graph disconnection, `[external]` tags on book-native terms, and indistinguishable ambient discovery descriptions. It then re-assembles `corpus/RAW_KNOWLEDGE.md` deterministically. Code, adapter, verifier, test, and architecture-document findings (`F-FA-01`, `F-FA-05..07`, `F-FA-09..11`, `OA-01..03`, `OA-05`, `F-CA-PR-02`, `F-CA-PR-06`, including the `architecture/ARCHITECTURE.md` amendments recorded as `DEC-PPA-010` in `MASTER_PLAN.md`: line 221 implication wording, `X1`–`X5` registration in §6.3/§9, §4.4 router-linked `R1` fallback, and §7.1/§7.2 honest `[NOT_IMPLEMENTED]` reporting) were remediated in parallel under the same audit id and verified with 76 passing stdlib tests and all 5 reference target ports certifying `55/55 CONFORMANT`.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 2.32, p. 80] (book p. 80; PDF p. 99)\n- [PPA Theorem 3.10, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.7, p. 207] (book p. 207; PDF p. 225)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- [PPA Figure 3.5, p. 180] (book p. 180; PDF p. 198)\n- [PPA Chapter 3 Concluding Remarks, p. 198] (book p. 198; PDF p. 216)\n- [PPA Fact 4.14, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- [PPA §4.5.3, p. 270] (book p. 270; PDF p. 287)\n- [PPA Table 5.13, p. 338] (book p. 338; PDF p. 355)\n- [PPA §5.4.3, p. 339] (book p. 339; PDF p. 356)\n- [PPA Table 5.18, p. 348] (book p. 348; PDF p. 365)\n- [PPA Lemma 6.4, p. 370] (book p. 370; PDF p. 386)\n- [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396)\n- [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407)\n\n## Technical Analysis / Mechanism\n\n1. **Chapter 2b/3 fidelity (`M1-F1..F11`)**:\n   - The Theorem 3.10 proof is restored to its five printed cases (`[var]` plus `[fn]`, `[app₁]`, `[app_fn]`, `[bind₂]`), ending \"This completes the proof.\". Exercise 3.7 is re-described as α-renaming sensitivity plus a static-scoping-faithful 0-CFA.\n   - Mini Project 3.2's flat finite label-indexed constructor domain is reinstated for Tables 3.5–3.7.\n   - The `E[p]`-omission oracle now uses an indirect-operator witness (`let f = fn x => x in f (fn y => y)`), simulated in both seeding orders. Example 3.23 is kept only as a baseline, because Step 2 already seeds `id_x ∈ D[C(2)]`.\n   - Banach wording and the `[derived]` antitone claim; Prop 3.13 / Prop 3.18 / Prop 3.24 attributions; Prop 3.16 restricted to the `Ω`-style witness; the open-system stub tagged `[derived]`/`[external]`; CPA cost `[external]` and \"closely related to\" polynomial k-CFA; Shape distributivity `[derived]` with Lemma 2.32 restricted to `ℓ ∈ E, F`; `n(n−1)` invalid cross-over pairs.\n2. **Chapter 4 fidelity (`M2-01..09`)**:\n   - Dual widening gives an under-approximation `⊑ gfp(f)`, and the wrong Exercise 4.9 reference is removed.\n   - The p. 270 wording \"often preferable\" replaces \"strictly improves\", with Lemma 4.45 stated as an equality.\n   - Removed or tagged: the invented `k ∈ {1,2,3}`, the Example 4.12 operand-order attribution, the `γ(⊥_M) ⊐ ⊥_L` direction, the unsound/voided-guarantee wording, the `[derived]` meet formula, the undefined `O(M)`, and the Fact 4.31 page.\n3. **Chapter 5/6 fidelity (`OA-04`/`M3-F2`, `M3-F1`/`F-FA-04`, `M3-F3..F9`, `F-FA-02`/`OA-07`, `F-FA-03`)**:\n   - The false invariant `Analysis_i ∉ Red(F_𝒮)` while `W ≠ ∅` is replaced by \"not *certified* reductive\". The replacement covers the skill, references, shard, L0 ambient file, and graph (`ppa.cyber.solver-dos-and-timeout-evasion`, `ppa.fixpoint.fixed-points` reductive note).\n   - Lemma 6.12 is restricted to Bit Vector Frameworks in the skill, references, shard (`G-U6-13`), ambient file, and graph `conditions`. Any rapid extension is tagged `[external: Kam–Ullman rapid frameworks]`.\n   - Distributivity is now required for `lfp(λg. id ⊔ g∘f) = f̄`. The `rec β.φ` positivity condition is removed from Table 5.18 and appears only as `[derived]` text (including `BKL-081`). The Table 6.1 Step 1 warning is made conditional (including `BKL-084`).\n   - Smaller fixes: `8` pops, \"do not assume `d` small\", `[external]` unification/inclusion costs, and `[derived]` Exercise 5.9/5.15 answers.\n   - The demand-driven local solver block is repaired (non-root members exit; the root iterates until a full pass makes no change) and tagged `[derived]`, with its L1 explanation in `scc-round-robin-and-advanced-solvers.md` §3.1.\n   - `MFP = MOP` is changed from \"iff\" to Lemma 2.32's implication in the graph and `ontology/cross_paradigm_matrix.md`. `BKL-093` tracks automated §7.2 parity.\n4. **Cyber provenance and `P2` (`F-CA-PR-01`, `F-CA-PR-03..05`)**:\n   - `25` symmetric cross-unit edges (plus `25` schema inverses) now connect the seven Ch 3–6 `ppa.cyber.*` nodes to their `U3a`–`U6` formal core nodes. The two misrouted `refines ppa.tes.call-tracking-effects` edges are removed, along with their `refined_by` inverses.\n   - `[external]` is removed from book-native `Shivers` at all canonical sites and from `LIFO` in `bulk LIFO free`.\n   - The `Observe` `β`-retention clause is cited at p. 339. The `[region]` side condition in the cyber skill now states both `ϱ⃗ ∈ φ` and `ϱ⃗ ∉ φ'`. A two-line `[external: CWE-362]` sequential-store guardrail is added.\n5. **Ambient discovery and altitude (`F-FA-08`, `P-FA-01`, `P-FA-04`, `P-FA-08`)**:\n   - Each of the seven ambient files carries a unique single-line `<!-- @description: ... -->` (476–610 chars, no N8, no lists), which adapters lift verbatim.\n   - The C4.3-tokeniser maximum Jaccard is `0.105` ambient–ambient, `0.270` skill–ambient, and `0.252` skill–skill over all `91` pairs.\n   - The solver ambient file is trimmed to its L0 mental model. \"SSA lowering\" is removed from the dataflow trigger. `chapter-1-five-formulations.md` now points to `ontology/cross_paradigm_matrix.md`.\n6. **Deterministic re-assembly**: `corpus/RAW_KNOWLEDGE.md` (`13,694L`) is rebuilt from the `11` shards. The rule is a 20-line header with refreshed per-shard counts, then each shard minus its two provenance comments, separated by `---`. Before use, the rule was proved byte-exact against the `EPIC-001` closure commit.\n\n## Acceptance Gates\n\n- [x] Every mandatory content-side finding of `post-reset-v1` is resolved at its listed file:line or an equivalent mirror site\n- [x] `ontology/concept_graph.json`: `0` dangling edges, `100%` inverse symmetry, `0` `depends_on` cycles, `0` book citations inside `projections`; all seven Ch 3–6 cyber nodes reach `U3a`–`U6`\n- [x] `corpus/RAW_KNOWLEDGE.md` has verbatim parity with all `11` shards\n- [x] All `91` skill/ambient description pairs score `< 0.35` Jaccard on the C4.3 tokeniser\n- [x] `validate_ppa_knowledge.py --strict-gotchas`, `issue_ctl.py validate`, and canonical-only port conformance pass after remediation\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 `post-reset-v1`: `[DISAGREE post-reset-v1]` from `P-SWE` (OA-01..04, M1-F1..F4, M2-01..02, M3-F1..F4 blocking), `P-CYBER` (F-CA-PR-01..04 blocking), and `P-ARCH` (F-FA-01 hard block; F-FA-02..11 blocking).\n- 2026-11-19 content remediation landed for all content-side items listed above. Code-side items were remediated in parallel.\n- 2026-11-19 `post-reset-v2` (Round 2): `P-ARCH` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `11` Round 1 findings); `P-CYBER` `[ALIGNED post-reset-v2]` (`0` HARD_BLOCK, `0` BLOCKING across all `7` Round 1 findings + live deployments); `P-SWE` verified `12/13` Round 1 BLOCKING findings (`OA-01..03`, `OA-05..07`, `M3-F1/F3/F4`, `M2-01..02`, `M1-F1..F4`, `11/11` mutation rejections, `20/20` regressions) and flagged one 3-line mirror echo (`OA-04R`, also noted by `P-CYBER` as `F-CA-PR2-01`) in `concept_graph.json:12852`, `ppa-cyber-vulnerability-analysis/SKILL.md:193-195`, and `callgraph-cfi-concurrency-and-scanner-dos.md:110-113` (`[DISAGREE post-reset-v2]`). Under the 2-round hard cap (no 3rd round, no self-clearance of `P-SWE`), the undisputed 3-line `OA-04R` mirror echo and 1-line `R2-P3` wording were patched immediately and verified with `0` remaining occurrences, all validators green, and live deployments re-synced.\n- 2026-11-19 Operator/Arbiter sign-off: User explicitly authorized closing the `OA-04R` post-R2 patch as final, pushing `feat/ppa-semantic-knowledge`, importing tracked issues to GitHub, syncing NotebookLM sources, committing `~/wiki`, and proceeding to non-blocking enhancements.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W8-01`; tracking follow-up: `BKL-093` (ARCH §7.2 automation)\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `RAW_SHARD_04a_galois_widening.md`, `RAW_SHARD_04b_combinators_induced.md`, `RAW_SHARD_05a_annotated_types_inference.md`, `RAW_SHARD_05b_effects_regions_behaviours.md`, `RAW_SHARD_06_algorithms_bib.md`, `corpus/RAW_KNOWLEDGE.md`\n- `ontology/concept_graph.json` (`ppa.dfa.mop-vs-mfp`, `ppa.solvers.round-robin-loop-bound`, `ppa.solvers.abstract-worklist`, `ppa.cfa.uniform-k-cfa`, `ppa.tes.region-inference-translation`, `ppa.cyber.*`), `ontology/cross_paradigm_matrix.md`, `ontology/altitude_alignment_log.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/`, `ppa-dataflow-and-slicing/`, `ppa-abstract-interpretation/`, `ppa-types-effects-and-regions/`, `ppa-fixedpoint-solvers/`, `ppa-cyber-vulnerability-analysis/`, `ppa-program-analysis/references/chapter-1-five-formulations.md`\n- `knowledge/ambient-context/` (all `7` files)\n- `issues/backlog/BKL-081.md`, `BKL-084.md`, `BKL-093.md`, `issues/export_manifest.json`\n\n## Verification Receipts\n\n- 2026-11-19 `python3 -B scripts/validate_ppa_knowledge.py --strict-gotchas`: PASS (`323/323` gotchas covered).\n- 2026-11-19 `python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .`: CONFORMANT after manifest regeneration.\n- 2026-11-19 `python3 -B scripts/issue_ctl.py validate`: PASS; `issues/export_manifest.json` regenerated.\n- 2026-11-19 Graph integrity probe: `153` nodes, `0` dangling / asymmetric / duplicate edges, `0` `depends_on` cycles, `0` `P2` violations.\n- 2026-11-19 Local solver block executed on `x ⊒ {1} ⊔ y, y ⊒ x` (terminates at `x = y = {1}`) and on `500` random powerset systems (`0` mismatches against global lfp); the previous exit condition exceeds `10,000` passes.",
    "source_path": "issues/refactors/REF-009.md",
    "state": "closed",
    "title": "Post-reset-v1 3-model audit remediation: book fidelity, cyber provenance, P2 parity, ambient discovery"
