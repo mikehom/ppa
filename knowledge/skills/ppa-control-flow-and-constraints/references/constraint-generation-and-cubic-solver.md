@@ -9,8 +9,11 @@ Self-contained `L1` formal reference for Section 3.4
 ([PPA Mini Project 3.1, p. 202] (book p. 202; PDF p. 220) to [PPA Mini Project 3.3, p. 204] (book p. 204; PDF p. 222)),
 and Set-Constraint / Lazy-Solving remarks ([PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219)
 to [PPA Chapter 3 Concluding Remarks, p. 202] (book p. 202; PDF p. 220)). Equational vs inclusion constraint
-foundations live in [chapter-1-five-formulations.md](../../ppa-program-analysis/references/chapter-1-five-formulations.md)
-and graph preliminaries in [appendix-c-graphs-dfsf-and-rpo.md](../../ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md).
+foundations live in [chapter-1-five-formulations.md](../../ppa-program-analysis/references/chapter-1-five-formulations.md),
+graph preliminaries in [appendix-c-graphs-dfsf-and-rpo.md](../../ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md),
+and the Chapter 5 type-based `U8` counterparts (`⊢_CFA`, `𝒲_CFA`, `§5.4.1` shape-conformant subtyping, `(5.2)` `ρ̃, C̃`) in
+[annotated-types-and-cfa-soundness.md](../../ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md) and
+[inference-unification-and-subtyping.md](../../ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md).
 
 ## 1. Syntactic Inclusion Constraints and Equivalence (Sections 3.4-3.4.1, Table 3.6)
 

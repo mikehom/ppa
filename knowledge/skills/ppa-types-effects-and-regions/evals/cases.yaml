@@ -1,0 +1,57 @@
+# Routing and boundary cases for ppa-types-effects-and-regions.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: ter-annotated-cfa-covariant-moore
+    prompt: 'Explain why Table 5.2 embeds {pi} union phi subeffecting into [fn] and [fun], why Type_hat[tau] uses covariant domain ordering for Proposition 5.12, and why big-step Natural Semantics Subject Reduction is vacuous on diverging loops.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['Fact 5.6', 'Proposition 5.12']
+    notes: 'Annotated type system conservative extension, covariant fibre Moore family, and Table 5.4 divergence vacuity (§§5.1-5.2).'
+  - id: ter-wcfa-stype-unification-and-theta-a
+    prompt: 'Design a type-based Control Flow Analysis reconstruction engine using free-algebra simple types SType, U_CFA unification, and closed-form constraint solving without tripping Table 5.5 missing theta_0 or undefined unconstrained annotation variables.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['SType', 'AV(C)']
+    notes: 'Free-algebra SType reconstruction W_CFA, Table 5.5 if bug, and defaulting unconstrained AVar outside AV(C) to empty (§5.3).'
+  - id: ter-subtyping-ref-invariance-and-u8
+    prompt: 'Add shape-conformant subtyping to a higher-order side-effect type system with mutable references ref_varpi, proving why reference payloads must be invariant and why contravariant subtyping breaks unconstrained Moore families.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['invariant', 'Exercise 5.9']
+    notes: 'Polarised arrow subtyping, ref_varpi payload invariance, Exercise 5.9 non-Moore witness, and U8 0-CFA correspondence (§5.4.1).'
+  - id: ter-exception-masking-and-gen-closure
+    prompt: 'Implement Hindley-Milner polymorphic exception analysis for raise and handle, ensuring uninstantiated effect variables survive masking and polymorphic generalisation blocks unsafe channel or reference allocation.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['AV(φ₂) = ∅', 'Example 5.36']
+    notes: 'Table 5.10 beta \ {s} = beta soundness, Exercise 5.14 dead-handler condition, and [gen] FV(phi) downwards closure (§5.4.2, §5.5).'
+  - id: ter-tofte-talpin-regions-observe
+    prompt: 'Translate functional closures and arithmetic into stack-allocated regions using letregion, Observe effect masking, and effect/region-polymorphic recursion, and compare trade-offs against mutable heap shape graphs.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['Observe', 'letregion']
+    notes: 'Stack-based region inference ([175, 176], [external: Tofte–Talpin]), boxed EVal values, compound schemes [place], Observe escape firewall, and §2.6 comparison (§5.4.3).'
+  - id: ter-cml-behaviours-right-distributivity
+    prompt: 'Verify channel send/receive type safety and causal action ordering in Concurrent ML using recursive behaviours and Table 5.18 without erasing synchronous branching-time deadlocks.'
+    expect_skill: ppa-types-effects-and-regions
+    must_mention: ['Table 5.18', 'right-only']
+    notes: 'CML small-step contextual SOS, directional !/? variance, invariant chan, and right-only ; over + distributivity (§5.5).'
+  - id: neg-cfa-untyped-self-application
+    prompt: 'Compute closure call targets for untyped higher-order terms including omega self-application (fn x => x x) using conditional subset constraints and a cubic worklist graph solver.'
+    expect_skill: ppa-control-flow-and-constraints
+    notes: 'Untyped higher-order terms fail occurs checks in Chapter 5 and belong to Chapter 3 0-CFA (U8 boundary).'
+  - id: neg-dfs-mutable-shape-materialisation
+    prompt: 'Prove in-place destructive pointer list reversal preserves non-cyclicity using compatible shape graphs (S, H, is), Case 3 summary-node materialisation, and destructive selector updates.'
+    expect_skill: ppa-dataflow-and-slicing
+    notes: 'Flow-sensitive destructive heap pointer updates and summary materialisation belong to Chapter 2 §2.6 Shape Analysis.'
+  - id: neg-ai-galois-widening-narrowing
+    prompt: 'Construct a Galois insertion over infinite-height integer intervals and design threshold widening and narrowing passes to bound loop indices.'
+    expect_skill: ppa-abstract-interpretation
+    notes: 'Galois connections and widening/narrowing on non-ACC numeric lattices belong to Chapter 4.'
+  - id: neg-solvers-scc-rpo-scheduling
+    prompt: 'Schedule monotone constraint evaluation over strongly connected components in reverse postorder and bound Round Robin passes via loop connectedness d(G, T).'
+    expect_skill: ppa-fixedpoint-solvers
+    notes: 'Worklist priority queues, RPO, and SCC iteration scheduling belong to Chapter 6.'
+  - id: neg-cyber-webapp-taint-audit
+    prompt: 'Audit an application for HTTP-to-SQL injection sinks, sanitizer bypasses, and exploitability prioritization mapped to CWE categories.'
+    expect_skill: ppa-cyber-vulnerability-analysis
+    notes: 'Vulnerability-first threat modelling and exploitability triage belong to ppa-cyber-vulnerability-analysis.'
+  - id: neg-router-paradigm-comparison
+    prompt: 'Compare Data Flow Analysis, Constraint-Based Analysis, Abstract Interpretation, and Type and Effect Systems on Chapter 1 examples, or state Tarski Fixed Point Theorem from Appendix A.'
+    expect_skill: ppa-program-analysis
+    notes: 'Cross-paradigm routing (Chapter 1) and foundational order/coinduction/graph appendices belong to ppa-program-analysis.'

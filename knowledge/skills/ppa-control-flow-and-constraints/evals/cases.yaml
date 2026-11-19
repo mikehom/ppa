@@ -34,6 +34,10 @@ cases:
     prompt: "Extend Hindley-Milner Algorithm W with annotated arrow types, subeffecting constraints, and let-polymorphic region and exception effects."
     expect_skill: ppa-types-effects-and-regions
     notes: "Negative U8 sibling boundary: annotated type/effect reconstruction belongs to ppa-types-effects-and-regions."
+  - id: sib-types-u8-subtyped-cfa
+    prompt: "Compare equational W_CFA free-algebra SType unification against Chapter 3 0-CFA on simply-typed FUN via Exercise 5.4 (5.2) instrumentation and contravariant §5.4.1 shape-conformant subtyping."
+    expect_skill: ppa-types-effects-and-regions
+    notes: "Reciprocal U8 sibling boundary (C4.7): Chapter 5 type-based CFA reconstruction and shape-conformant subtyping belong to ppa-types-effects-and-regions."
   - id: sib-fixedpoint-solvers-rpo-scc
     prompt: "Order a general system of monotone inequations by depth-first spanning forest reverse postorder and strong components, and prove the d(G_S, T) + 3 Round Robin iteration bound."
     expect_skill: ppa-fixedpoint-solvers

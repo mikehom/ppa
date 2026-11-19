@@ -31,7 +31,7 @@ cases:
     expect_skill: ppa-control-flow-and-constraints
     notes: "Dynamic dispatch and higher-order control flow belong to Chapter 3."
   - id: sib-cfa-kcfa-cpa-closures
-    prompt: "Eliminate closure smearing across higher-order calls `(f f)(fn y => y)` using uniform 1-CFA or Agesen's Cartesian Product Algorithm, or couple sign lattices online with Table 3.9 CFA."
+    prompt: "Eliminate closure smearing across higher-order calls `(f f)(fn y => y)` using uniform 1-CFA or [2] [external: Agesen] Cartesian Product Algorithm, or couple sign lattices online with Table 3.9 CFA."
     expect_skill: ppa-control-flow-and-constraints
     notes: "Reciprocal U4/U5 boundary (C4.7): higher-order k-CFA, CPA, and coupled CFA+DFA belong to ppa-control-flow-and-constraints."
   - id: neg-ai-widening-intervals
@@ -46,6 +46,10 @@ cases:
     prompt: "Design an annotated type and effect reconstruction algorithm with let-polymorphism and region inference for heap deallocation."
     expect_skill: ppa-types-effects-and-regions
     notes: "Type/effect reconstruction and region inference belong to Chapter 5."
+  - id: sib-types-tofte-talpin-regions
+    prompt: "Translate functional closures into stack-allocated regions using Tables 5.12-5.13, polymorphic region recursion [place], and Observe escape masking rather than mutable §2.6 heap shape graphs."
+    expect_skill: ppa-types-effects-and-regions
+    notes: "Reciprocal X1 sibling boundary (C4.7): stack-based lexical region inference ([175, 176], [external: Tofte–Talpin]) belongs to ppa-types-effects-and-regions."
   - id: neg-solvers-rpo-scc
     prompt: "Optimise our equation solver using strongly connected components, reverse postorder node scheduling, and loop-connectedness d(G, T) pass bounds."
     expect_skill: ppa-fixedpoint-solvers

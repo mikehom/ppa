@@ -127,11 +127,11 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 5: Part II Completion — Chapter 5 (Type and Effect Systems) & Part II Gate
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W5-1` (`ISS-W5-01`)**: Ch 5a (§5.1–5.3) Annotated CFA Types, Natural Semantics & $\mathcal{W}_{\text{UL}}/\mathcal{W}_{\text{CFA}}$ Inference (`RAW_SHARD_05a_annotated_types_inference.md`).
-- [ ] **`W5-2` (`ISS-W5-02`)**: Ch 5b (§5.4–5.5) Side Effects, Exceptions, Region Inference & Concurrent Behaviours, Synthesis (`ppa-types-effects-and-regions`, `ppa-types-effects-and-regions.md`), Refactoring & Gate #7 (Ch 5 3-Model Loop).
-- [ ] **`W5-3` (`ISS-W5-03`)**: Part II Cross-Paradigm Matrix (`ontology/cross_paradigm_matrix.md`), Cumulative Refactoring & Gate #8 (Part II 3-Model Loop).
+- [x] **`W5-1` (`ISS-W5-01`)**: Ch 5a (§5.1–5.3) Annotated CFA Types, Natural Semantics & $\mathcal{W}_{\text{UL}}/\mathcal{W}_{\text{CFA}}$ Inference (`RAW_SHARD_05a_annotated_types_inference.md`).
+- [x] **`W5-2` (`ISS-W5-02`)**: Ch 5b (§5.4–5.5) Side Effects, Exceptions, Region Inference & Concurrent Behaviours, Synthesis (`ppa-types-effects-and-regions`, `ppa-types-effects-and-regions.md`), Refactoring (`REF-005`) & Gate #7 (Ch 5 3-Model Loop — CLOSED `3/3 [ALIGNED gate7-v2]`).
+- [x] **`W5-3` (`ISS-W5-03`)**: Part II Cross-Paradigm Matrix (`ontology/cross_paradigm_matrix.md`), Cumulative Refactoring (`REF-006`) & Gate #8 (Part II 3-Model Loop — CLOSED `3/3 [ALIGNED gate8-v2]`; Part II complete).
 
 ## Phase 6: Part III — Chapter 6 (Algorithms), Cyber Synthesis & Part III Gate
 

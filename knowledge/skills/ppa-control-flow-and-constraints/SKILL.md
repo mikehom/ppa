@@ -27,8 +27,10 @@ and proof structures live in the self-contained `L1` references:
   [appendix-a-posets-lattices-fixed-points.md](../ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md),
   [appendix-b-induction-and-coinduction.md](../ppa-program-analysis/references/appendix-b-induction-and-coinduction.md),
   [appendix-c-graphs-dfsf-and-rpo.md](../ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md),
-  [intraprocedural-analyses-and-frameworks.md](../ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md), and
-  [interprocedural-and-correctness.md](../ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md).
+  [intraprocedural-analyses-and-frameworks.md](../ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md),
+  [interprocedural-and-correctness.md](../ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md),
+  [annotated-types-and-cfa-soundness.md](../ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md), and
+  [inference-unification-and-subtyping.md](../ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md).
 
 ## 1. Boundary Dispatch Before Building a Control Flow Analyser
 

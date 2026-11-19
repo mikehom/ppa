@@ -44,7 +44,7 @@ cases:
     expect_skill: ppa-control-flow-and-constraints
     notes: 'Higher-order closure flow and subset-constraint solving belong to ppa-control-flow-and-constraints.'
   - id: neg-types-effects-and-regions
-    prompt: 'Design an annotated Hindley-Milner type and effect inference algorithm with subeffecting, let-polymorphism, and Tofte-Talpin lexical region inference.'
+    prompt: 'Design an annotated Hindley-Milner type and effect inference algorithm with subeffecting, let-polymorphism, and stack-based lexical region inference.'
     expect_skill: ppa-types-effects-and-regions
     notes: 'Annotated type reconstruction, effects, and region inference belong to ppa-types-effects-and-regions.'
   - id: neg-cyber-taint-and-exploit-triage

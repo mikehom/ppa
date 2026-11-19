@@ -42,7 +42,7 @@ cases:
     prompt: "Which closures may be applied at each call site of this higher-order functional program?"
     expect_skill: ppa-control-flow-and-constraints
   - id: sib-cfa-cubic-and-kcfa
-    prompt: "Build the O(n^3) dual-observer constraint solver for 0-CFA and compare uniform 1-CFA against Agesen's Cartesian Product Algorithm on a polymorphic wrapper."
+    prompt: "Build the O(n^3) dual-observer constraint solver for 0-CFA and compare uniform 1-CFA against [2] [external: Agesen] Cartesian Product Algorithm on a polymorphic wrapper."
     expect_skill: ppa-control-flow-and-constraints
     notes: "Chapter 3 constraint solving (§3.4) and polyvariant k-CFA/CPA (§3.6) route directly to ppa-control-flow-and-constraints."
   - id: sib-ai-widening
@@ -55,6 +55,10 @@ cases:
   - id: sib-types-effects
     prompt: "Extend a type system with an effect annotation that records which exceptions a function may raise."
     expect_skill: ppa-types-effects-and-regions
+  - id: sib-types-regions-behaviours
+    prompt: "Implement W_CFA annotation inference with shape-conformant subtyping, insert lexical letregion allocations via Observe masking, and check Concurrent ML causal behaviours under Table 5.18."
+    expect_skill: ppa-types-effects-and-regions
+    notes: "Chapter 5 W_CFA reconstruction (§5.3), subtyping (§5.4.1), stack-based regions (§5.4.3, [175, 176], [external: Tofte–Talpin]), and CML behaviours (§5.5) route directly to ppa-types-effects-and-regions."
   - id: sib-solver-order
     prompt: "My worklist solver for a constraint system is slow; which iteration order should I use and how many passes does round robin need?"
     expect_skill: ppa-fixedpoint-solvers

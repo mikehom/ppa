@@ -336,7 +336,8 @@ the operator's effect, the operand's effect and the latent effect.
 Example 1.6: `(fn_X x => x) (fn_Y y => y) : int --{Y}--> int & {X}`
 [PPA Example 1.6, p. 25] (book p. 25; PDF p. 45). A more general language needs a subsumption rule,
 and effects are computed on the fly during type inference or by constraints solved afterwards
-(Chapter 5) [PPA §1.6.2, p. 25] (book p. 25; PDF p. 45).
+(Chapter 5: [annotated-types-and-cfa-soundness.md](../../ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md),
+[inference-unification-and-subtyping.md](../../ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md)) [PPA §1.6.2, p. 25] (book p. 25; PDF p. 45).
 
 ## 8. Solving: Chaotic Iteration (§1.7, Table 1.5)
 

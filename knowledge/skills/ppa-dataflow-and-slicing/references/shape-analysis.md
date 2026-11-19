@@ -13,7 +13,9 @@ live in [intraprocedural-analyses-and-frameworks.md](./intraprocedural-analyses-
 [interprocedural-and-correctness.md](./interprocedural-and-correctness.md); finite-height powerset/ACC lattice foundations live in
 [appendix-a-posets-lattices-fixed-points.md](../../ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md);
 and two-tier `§4.5.2` Galois shape soundness (`Mini Project 4.2`, `SH → 𝒫(SG)`) lives in
-[combinators-and-induced-operations.md](../../ppa-abstract-interpretation/references/combinators-and-induced-operations.md).
+[combinators-and-induced-operations.md](../../ppa-abstract-interpretation/references/combinators-and-induced-operations.md);
+the functional stack-of-regions alternative (`§5.4.3`, `letregion` + `Observe`, canonical `X1`) is contrasted in
+[effects-exceptions-regions-and-behaviours.md](../../ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md).
 
 ## 1. Pointer Language & Concrete Heap SOS (`§§2.6–2.6.1`)
 

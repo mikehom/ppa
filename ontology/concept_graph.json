@@ -278,6 +278,14 @@
     {
      "target_id": "ppa.ai.mundane-correctness-and-representations",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.covariant-fibre-moore",
+     "relation": "has_instance"
+    },
+    {
+     "target_id": "ppa.tes.inference-soundness-completeness",
+     "relation": "has_instance"
     }
    ],
    "artifact_refs": [
@@ -682,6 +690,10 @@
        "Under ACC, lub iteration reaches lfp(f) monotonically when f is affine; without ACC, nabla need not be monotone, commutative, associative, or absorptive and returns a reductive over-approximation lfp_nabla(f) >= lfp(f)."
       ]
      }
+    },
+    {
+     "target_id": "ppa.tes.monotone-and-unit-types",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -856,6 +868,10 @@
     {
      "target_id": "ppa.notation.index",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.inference-soundness-completeness",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -1177,6 +1193,10 @@
     {
      "target_id": "ppa.cfa.subject-reduction",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.subject-reduction",
+     "relation": "prerequisite_of"
     }
    ],
    "artifact_refs": [
@@ -1386,6 +1406,10 @@
        "Proposition A.10 characterises lfp(𝒬) = ⨅Red(𝒬) order-theoretically, whereas Appendix B presents inductive definitions as finitary inference rules (B.5) proved by rule-validity induction"
       ]
      }
+    },
+    {
+     "target_id": "ppa.tes.natural-semantics",
+     "relation": "has_instance"
     }
    ],
    "artifact_refs": [
@@ -1506,6 +1530,10 @@
        "Section 3.1.2 instantiates gfp(Q) on dynamic call acceptability |= while Proposition 3.16 proves lfp(Q) fails the Moore-family property on self-application, whereas Appendix B develops general coinduction over Appendix A.4 fixed points"
       ]
      }
+    },
+    {
+     "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -2191,6 +2219,10 @@
     {
      "target_id": "ppa.notation.index",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -2801,6 +2833,10 @@
     {
      "target_id": "ppa.ai.shape-and-cfa-galois-soundness",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -3024,6 +3060,14 @@
     {
      "target_id": "ppa.dfa.rd-constraint-formulation",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.underlying-fun-types",
+     "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.tes.monotone-and-unit-types",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -3083,6 +3127,10 @@
     {
      "target_id": "ppa.cfa.constraint-0cfa",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -3140,6 +3188,10 @@
     {
      "target_id": "ppa.cfa.constraint-0cfa",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.side-effect-analysis",
+     "relation": "refined_by"
     }
    ],
    "artifact_refs": [
@@ -3249,6 +3301,10 @@
     {
      "target_id": "ppa.ai.duality-and-transformation-guards",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.tes.region-inference-translation",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -4978,6 +5034,10 @@
     {
      "target_id": "ppa.tes.annotated-type-constructors",
      "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.side-effect-analysis",
+     "relation": "related_to"
     }
    ],
    "artifact_refs": [
@@ -5064,6 +5124,10 @@
     },
     {
      "target_id": "ppa.cfa.algebraic-data-and-imperative-stores",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.region-memory-semantics",
      "relation": "contrasts_with"
     }
    ],
@@ -5155,6 +5219,10 @@
     {
      "target_id": "ppa.ai.shape-and-cfa-galois-soundness",
      "relation": "proved_by"
+    },
+    {
+     "target_id": "ppa.tes.region-inference-translation",
+     "relation": "contrasts_with"
     }
    ],
    "artifact_refs": [
@@ -5788,6 +5856,10 @@
     {
      "target_id": "ppa.cfa.subject-reduction",
      "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.natural-semantics",
+     "relation": "contrasts_with"
     }
    ],
    "artifact_refs": [
@@ -5882,6 +5954,10 @@
     {
      "target_id": "ppa.dfa.live-correctness",
      "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.subject-reduction",
+     "relation": "contrasts_with"
     }
    ],
    "artifact_refs": [
@@ -6169,6 +6245,115 @@
     {
      "target_id": "ppa.cfa.set-constraints-and-paradigms",
      "relation": "specializes"
+    },
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U8",
+      "citations": [
+       {
+        "chapter_or_app": "Preface",
+        "section": "Preface",
+        "book_page": null,
+        "book_page_roman": "VII",
+        "pdf_page": 7,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "3",
+        "section": "3.4",
+        "book_page": 174,
+        "pdf_page": 192,
+        "table_or_fig": "Table 3.6"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.1.2",
+        "book_page": 288,
+        "pdf_page": 305,
+        "table_or_fig": "Table 5.2"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.1.2",
+        "book_page": 289,
+        "pdf_page": 306,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 359,
+        "pdf_page": 376,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Simply-typable FUN expressions under Gamma |-_UL e : tau where subexpression annotations are extracted across the full derivation tree via (5.2)"
+      ],
+      "differs": [
+       "Equational Table 5.2 without subtyping merges argument annotations bidirectionally (Example 5.5) and rejects untyped self-application, whereas Chapter 3 constraint-based 0-CFA (Table 3.6) uses directed subset inclusions over untyped FUN"
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U8",
+      "citations": [
+       {
+        "chapter_or_app": "Preface",
+        "section": "Preface",
+        "book_page": null,
+        "book_page_roman": "VII",
+        "pdf_page": 7,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "3",
+        "section": "3.4",
+        "book_page": 174,
+        "pdf_page": 192,
+        "table_or_fig": "Table 3.6"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.4.1",
+        "book_page": 324,
+        "pdf_page": 341,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Concluding Remarks",
+        "book_page": 350,
+        "pdf_page": 367,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 359,
+        "pdf_page": 376,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 361,
+        "pdf_page": 378,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Well-typed FUN programs analysed under Table 5.2 augmented with shape-conformant contravariant arrow subtyping (Exercise 5.9) and tree instrumentation (5.2) (Exercise 5.4)"
+      ],
+      "differs": [
+       "Contravariant subtyping recovers exact directional 0-CFA precision on simply-typed FUN ([71] Heintze; [external: Palsberg-O'Keefe 1995]) yet destroys unconstrained Moore-family principal types on Type_hat[tau] (Exercise 5.9)"
+      ]
+     }
     }
    ],
    "artifact_refs": [
@@ -8451,6 +8636,1674 @@
     "CWE-787"
    ],
    "altitude": "L1"
+  },
+  {
+   "id": "ppa.tes.underlying-fun-types",
+   "title": "Typed FUN Syntax, Abstraction-Site Points, and Underlying Type System (Table 5.1)",
+   "altitude": "L0",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "Intro",
+     "book_page": 283,
+     "pdf_page": 300,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1",
+     "book_page": 284,
+     "pdf_page": 301,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.1",
+     "book_page": 285,
+     "pdf_page": 302,
+     "table_or_fig": "Table 5.1"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.1",
+     "book_page": 286,
+     "pdf_page": 303,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 359,
+     "pdf_page": 376,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Adapts FUN so only fn_pi and fun_pi carry program points pi in Pnt (dropping universal expression labels l) and defines nondeterministic monomorphic underlying typing Gamma |-_UL e : tau (Table 5.1) over base types {int, bool}, arrows tau_1 -> tau_2, and rightmost-wins list environments Gamma.",
+   "conditions": [
+    "Requires well-typed input under |-_UL; untypable self-application fn_X x => x x is out of scope.",
+    "Constants c and binary operators op have base-only signatures in {int, bool} with zero arrow components.",
+    "let x = e_1 in e_2 is strictly monomorphic in Sections 5.1-5.3, admitting the same typings as (fn_pi x => e_2) e_1.",
+    "fun_pi f x => e_0 assumes distinct bound variables f != x; [external: Church-style] annotations restore determinism (Exercise 5.2)."
+   ],
+   "projections": {
+    "cs_theory": "Fixes the simply-typed skeleton whose syntax carries flow and effect properties in subsequent refinements.",
+    "swe_architecture": "Piggyback static analysis metadata onto existing compiler type ASTs rather than building a separate untyped flow front-end.",
+    "practical_debugging": "Triage underlying type errors before inspecting empty or missing flow annotations; check rightmost-wins shadowing in Gamma.",
+    "cyber": "Type-attached security qualifiers [external: Volpano-Smith-Irvine] inherit compositional checking only within boundaries respecting |-_UL."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.underlying-inference-w-ul",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#chapter-5-opening",
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#table-51--the-underlying-type-system",
+    "knowledge/skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md#1-typed-language-prerequisite-and-underlying-fun-system-section-511-table-51",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#2-procedure-1-design-an-annotated-type-system-and-prove-soundness-sections-51-52",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#what-chapter-5-is-about"
+   ],
+   "issue_refs": [
+    "BKL-075"
+   ]
+  },
+  {
+   "id": "ppa.tes.annotated-cfa-types",
+   "title": "Annotated Control Flow Types, Subeffecting, UCAI Equality, and Conservative Extension (Tables 5.2-5.3, Fact 5.6)",
+   "altitude": "L0",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.2",
+     "book_page": 287,
+     "pdf_page": 304,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.2",
+     "book_page": 288,
+     "pdf_page": 305,
+     "table_or_fig": "Table 5.2"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.2",
+     "book_page": 289,
+     "pdf_page": 306,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.2",
+     "book_page": 290,
+     "pdf_page": 307,
+     "table_or_fig": "Table 5.3"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.1.2",
+     "book_page": 291,
+     "pdf_page": 308,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 359,
+     "pdf_page": 376,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 360,
+     "pdf_page": 377,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Decorates function arrows with abstraction-point sets tau_hat_1 --phi--> tau_hat_2 modulo UCAI set axioms (Table 5.3), embeds subeffecting {pi} union phi into [fn]/[fun] (Table 5.2), and proves erasure conservative extension over |-_UL (Fact 5.6).",
+   "conditions": [
+    "Built-in {pi} union phi subeffecting is mandatory for Fact 5.6(ii); without union phi, loop (Example 5.5) has no |-_CFA derivation.",
+    "Recovering full subexpression cache C_hat(l) requires the entire inference tree (Example 5.4, Exercise 5.4 display (5.2)), never the root type alone.",
+    "Exact argument-type equality in [app] causes bidirectional smearing across closures passed to one monomorphic parameter (Example 5.5, Exercise 5.1).",
+    "Syntax-directed rules require dead conditional branches and uncalled functions to type-check."
+   ],
+   "projections": {
+    "cs_theory": "Exhibits erasure as a split surjection onto |-_UL whose coarse top section annotates every arrow with Pnt_e.",
+    "swe_architecture": "Persist an AST-node side table of resolved operator types at [app] sites because root return types discard internal call arrows.",
+    "practical_debugging": "Unexpected cross-call target merging in monomorphic code diagnoses bidirectional equational unification without subtyping.",
+    "cyber": "Without directional subtyping, passing one untrusted callback to a shared helper bidirectionally [external: taints] peer callbacks."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.underlying-fun-types",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.annotated-type-constructors",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.subject-reduction",
+     "relation": "proved_by"
+    },
+    {
+     "target_id": "ppa.tes.covariant-fibre-moore",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.simple-types-w-cfa",
+     "relation": "implemented_by"
+    },
+    {
+     "target_id": "ppa.tes.side-effect-analysis",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cfa.constraint-0cfa",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U8",
+      "citations": [
+       {
+        "chapter_or_app": "Preface",
+        "section": "Preface",
+        "book_page": null,
+        "book_page_roman": "VII",
+        "pdf_page": 7,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "3",
+        "section": "3.4",
+        "book_page": 174,
+        "pdf_page": 192,
+        "table_or_fig": "Table 3.6"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.1.2",
+        "book_page": 288,
+        "pdf_page": 305,
+        "table_or_fig": "Table 5.2"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.1.2",
+        "book_page": 289,
+        "pdf_page": 306,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 359,
+        "pdf_page": 376,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Simply-typable FUN expressions under Gamma |-_UL e : tau where subexpression annotations are extracted across the full derivation tree via (5.2)"
+      ],
+      "differs": [
+       "Equational Table 5.2 without subtyping merges argument annotations bidirectionally (Example 5.5) and rejects untyped self-application, whereas Chapter 3 constraint-based 0-CFA (Table 3.6) uses directed subset inclusions over untyped FUN"
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.cfa.intro-control-flow-analysis",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#table-52--control-flow-analysis",
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#table-53--equality-of-annotations-ucai-and-structural-equality-on-type",
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#fact-56--conservative-extension-of-cfa-over-ul",
+    "knowledge/skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md#2-annotated-types-subeffecting-cfa-and-ucai-equality-section-512-tables-52-53",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#2-procedure-1-design-an-annotated-type-system-and-prove-soundness-sections-51-52",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#what-chapter-5-is-about"
+   ],
+   "issue_refs": [
+    "BKL-075"
+   ]
+  },
+  {
+   "id": "ppa.tes.natural-semantics",
+   "title": "Environment-Free Closed Natural Semantics for FUN and Divergence Absence (Table 5.4)",
+   "altitude": "L1",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.1",
+     "book_page": 292,
+     "pdf_page": 309,
+     "table_or_fig": "Table 5.4"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.1",
+     "book_page": 293,
+     "pdf_page": 310,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.1",
+     "book_page": 294,
+     "pdf_page": 311,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Specifies big-step evaluation |- e -> v (Table 5.4) over closed expressions (FV(e) = empty) to closed values v ::= c | fn_pi x => e_0 via capture-free closed substitution e_1[x |-> e_2], unfolding fun_pi one step into fn_pi inheriting pi and modelling divergence by absence of finite derivations ((5.1), Example 5.8).",
+   "conditions": [
+    "Capture avoidance without alpha-renaming holds solely because evaluation is restricted to closed expressions so substituted values have FV = empty.",
+    "fun_pi f x => e_0 is not in Val; [fun] unfolds it to fn_pi inheriting pi, assuming f != x.",
+    "Diverging computations have no derivation tree ((5.1)), leaving big-step correctness silent on non-terminating runs (BKL-004)."
+   ],
+   "projections": {
+    "cs_theory": "Inductive big-step evaluation avoids Chapter 3 close/bind syntax at the cost of vacuity on infinite computations.",
+    "swe_architecture": "Use fuel-bounded or small-step reference interpreters alongside big-step evaluators when differential-testing loop analyses.",
+    "practical_debugging": "Never conclude a non-terminating daemon is effect-safe from big-step tests that only inspect terminating runs.",
+    "cyber": "Privilege escalations or side channels inside non-terminating server loops evade purely big-step safety theorems (BKL-004) [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.tes.subject-reduction",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.cml-concurrent-semantics",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.cfa.fun-closure-sos",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.region-memory-semantics",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#table-54--natural-semantics-for-fun",
+    "knowledge/skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md#31-closed-big-step-evaluation-table-54-and-display-51",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#2-procedure-1-design-an-annotated-type-system-and-prove-soundness-sections-51-52"
+   ],
+   "issue_refs": [
+    "BKL-004",
+    "BKL-011",
+    "BKL-075"
+   ]
+  },
+  {
+   "id": "ppa.tes.subject-reduction",
+   "title": "Subject Reduction, Closed Substitution Lemma, and Empty-Arrow Divergence Certificates (Theorem 5.9, Lemma 5.11)",
+   "altitude": "L1",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.2",
+     "book_page": 294,
+     "pdf_page": 311,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.2",
+     "book_page": 295,
+     "pdf_page": 312,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.2",
+     "book_page": 296,
+     "pdf_page": 313,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.2",
+     "book_page": 297,
+     "pdf_page": 314,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 360,
+     "pdf_page": 377,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 361,
+     "pdf_page": 378,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Proves [] |-_CFA e : tau_hat and |- e -> v imply [] |-_CFA v : tau_hat (Theorem 5.9) by derivation-tree induction via free-variable invariance (Fact 5.10) and closed substitution (Lemma 5.11), certifying pi in phi_0 on returned closures and non-termination whenever phi_0 = empty.",
+   "conditions": [
+    "Assumes operator typing compatibility ([] |-_CFA v_1 : tau^1_op and [] |-_CFA v_2 : tau^2_op imply [] |-_CFA v_1 op v_2 : tau_op) and f != x in fun_pi.",
+    "Holds vacuously on non-terminating expressions lacking |- e -> v (BKL-004), and remains valid under call-by-name Table 5.4 (Exercise 5.7).",
+    "[] |-_CFA e : tau_hat_1 --empty--> tau_hat_2 (Example 5.5, Exercise 5.5) and W_UL = (alpha_x -> alpha_0, theta) with alpha_x != alpha_0 (Exercise 5.10) certify non-termination."
+   ],
+   "projections": {
+    "cs_theory": "Preservation of typing across big-step evaluation yields both value-flow soundness and uninhabited-arrow divergence proofs.",
+    "swe_architecture": "Empty arrow annotations (--empty-->) act as static [external: NoReturn/Never] types enabling dead post-call pruning (Exercise 5.5).",
+    "practical_debugging": "If a runtime closure fn_pi escapes outside static arrow set phi_0, audit substitution commuting and operator compatibility.",
+    "cyber": "Certifies closed-world indirect-call target bounds on terminating requests while requiring small-step backups for reactive loops (BKL-004) [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "proves"
+    },
+    {
+     "target_id": "ppa.tes.natural-semantics",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.proof.induction-principles",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cfa.subject-reduction",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#theorem-59--subject-reduction-for-cfa",
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#lemma-511--closed-expression-substitution-lemma",
+    "knowledge/skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md#32-subject-reduction-theorem-59-fact-510-and-lemma-511",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#2-procedure-1-design-an-annotated-type-system-and-prove-soundness-sections-51-52"
+   ],
+   "issue_refs": [
+    "BKL-004",
+    "BKL-075"
+   ]
+  },
+  {
+   "id": "ppa.tes.covariant-fibre-moore",
+   "title": "Covariant Annotated-Type Fibres and Moore-Family Existence of Least CFA Typings (Proposition 5.12)",
+   "altitude": "L0",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.3",
+     "book_page": 297,
+     "pdf_page": 314,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.3",
+     "book_page": 298,
+     "pdf_page": 315,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.3",
+     "book_page": 299,
+     "pdf_page": 316,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.2.3",
+     "book_page": 300,
+     "pdf_page": 317,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 361,
+     "pdf_page": 378,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Orders each fibre Type_hat[tau] = {tau_hat | erase(tau_hat) = tau} covariantly in both argument and result slots so Type_hat[tau] is a complete lattice and JUDG_CFA[Gamma |-_UL e : tau] forms a Moore family closed under arbitrary meets (Proposition 5.12, Example 5.13).",
+   "conditions": [
+    "Completeness of (Ann, <=) (inf empty = Pnt) requires restricting Pnt to finite Pnt_* or enlarging Ann to P(Pnt).",
+    "Fibre order <= on Type_hat[tau] MUST be covariant in domain tau_hat_1; switching to contravariant subtyping order breaks Proposition 5.12 on fn_X x => x (Exercise 5.9)."
+   ],
+   "projections": {
+    "cs_theory": "Pointwise intersection distributes over {pi} union phi, guaranteeing a unique least annotated derivation per underlying typing.",
+    "swe_architecture": "Keep precision ordering (covariant everywhere) strictly separate in code from behavioral subtyping (contravariant in domains).",
+    "practical_debugging": "Conflating covariant precision order with subtyping passes narrow-domain callbacks into wide-domain callers.",
+    "cyber": "Inverting covariant precision order into function-argument subtyping introduces [external: CWE-843 higher-order type/taint confusion]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.moore-family",
+     "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#523-existence-of-solutions",
+    "knowledge/skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md#4-covariant-fibre-lattice-and-moore-family-solutions-section-523",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#41-contravariant-subtyping-vs-moore-family-breakdown-g-u5b-05-g-u5b-07-g-u5b-22-exercise-59",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#precision-fibre-order-vs-behavioral-subtyping"
+   ],
+   "issue_refs": [
+    "BKL-076"
+   ]
+  },
+  {
+   "id": "ppa.tes.underlying-inference-w-ul",
+   "title": "Underlying Type Reconstruction W_UL and Syntactic Unification U_UL (Tables 5.5-5.6)",
+   "altitude": "L1",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.1",
+     "book_page": 300,
+     "pdf_page": 317,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.1",
+     "book_page": 303,
+     "pdf_page": 320,
+     "table_or_fig": "Table 5.5"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.1",
+     "book_page": 304,
+     "pdf_page": 321,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.1",
+     "book_page": 305,
+     "pdf_page": 322,
+     "table_or_fig": "Table 5.6"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 361,
+     "pdf_page": 378,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Reconstructs principal underlying types over AType (with type variables alpha in TVar) via bottom-up W_UL(Gamma, e) = (tau, theta) (Table 5.5) and syntactic unification U_UL (Table 5.6) with occurs check.",
+   "conditions": [
+    "Printed Table 5.5 if-clause returns theta_4 o theta_3 o theta_2 o theta_1 omitting o theta_0 (soundness erratum fixed in Table 5.8).",
+    "U_UL(alpha, alpha) returns [alpha |-> alpha], which imperative [external: union-find] tables must short-circuit to id to prevent self-loops.",
+    "Occurs check rejects circular alpha = tau_1 -> tau_2 properly mentioning alpha."
+   ],
+   "projections": {
+    "cs_theory": "First-order syntactic unification computes most general unifiers so retroactive substitutions preserve typing across subterms.",
+    "swe_architecture": "Stage 1 of two-stage type-and-effect compilers; test retroactive environment threading on conditional guards.",
+    "practical_debugging": "Test Gamma = [b |-> 'a], if (b < 5) then 1 else 2 to catch missing o theta_0 composition bugs.",
+    "cyber": "Sound underlying type reconstruction is a prerequisite gate before trusting any attached security or region annotations [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.underlying-fun-types",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.simple-types-w-cfa",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#531-an-algorithm-for-the-underlying-type-system",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#1-underlying-type-reconstruction-wul-and-unification-uul-section-531-tables-55-56",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#3-procedure-2-implement-wcfa-reconstruction-and-two-stage-subtyping-sections-53-54"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-073"
+   ]
+  },
+  {
+   "id": "ppa.tes.simple-types-w-cfa",
+   "title": "Free-Algebra Simple Types SType, Unification U_CFA, and Constraint Generation W_CFA (Tables 5.7-5.8, Fact 5.17)",
+   "altitude": "L0",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.2",
+     "book_page": 306,
+     "pdf_page": 323,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.2",
+     "book_page": 307,
+     "pdf_page": 324,
+     "table_or_fig": "Table 5.7"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.2",
+     "book_page": 308,
+     "pdf_page": 325,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.2",
+     "book_page": 310,
+     "pdf_page": 327,
+     "table_or_fig": "Table 5.8"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.2",
+     "book_page": 311,
+     "pdf_page": 328,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 355,
+     "pdf_page": 372,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Avoids non-free UCAI unification by restricting arrows in simple types SType (tau_hat_1 --beta--> tau_hat_2) to single annotation variables beta in AVar unified by U_CFA (Table 5.7, Fact 5.17) while W_CFA (Table 5.8) collects atomic inclusion constraints beta >= {pi} in C.",
+   "conditions": [
+    "Simple substitutions map TVar -> SType and AVar -> AVar only so SType stays closed under substitution.",
+    "U_CFA(tau_hat_1, tau_hat_2) fails iff U_UL(erase(tau_hat_1), erase(tau_hat_2)) fails; repeated beta across nested arrows never triggers occurs-check failure.",
+    "Every substitution theta_i computed after a recursive W_CFA call must be applied to prior constraint sets C_j."
+   ],
+   "projections": {
+    "cs_theory": "Decouples [external: NP-complete ACUI equational unification] into unitary syntactic unification plus monotone join-semilattice inclusions.",
+    "swe_architecture": "Implement TVar and AVar via [external: Tarjan union-find] nodes coalescing {pi} [external: bitsets] in near-linear time (Mini Project 5.3).",
+    "practical_debugging": "Missing callee edges trace to forgetting theta_3(theta_2 C_1) in [app]; infinite loops trace to unguarded [beta |-> beta] self-bindings.",
+    "cyber": "Sharing one default AVar across distinct API signatures causes [external: Steensgaard-style collapse] global call-graph smearing."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "implements"
+    },
+    {
+     "target_id": "ppa.tes.underlying-inference-w-ul",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.inference-soundness-completeness",
+     "relation": "proved_by"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#532-an-algorithm-for-control-flow-analysis",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#mini-project-53--a-prototype-implementation",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#2-free-algebra-simple-types-stype-ucfa-and-wcfa-section-532-tables-57-58",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#3-procedure-2-implement-wcfa-reconstruction-and-two-stage-subtyping-sections-53-54",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#free-algebra-reconstruction-stype-wcfa-and-thetaa"
+   ],
+   "issue_refs": [
+    "BKL-077"
+   ]
+  },
+  {
+   "id": "ppa.tes.inference-soundness-completeness",
+   "title": "Syntactic Soundness/Completeness of W_CFA, Constraint Moore Families, and Closed-Form theta_A (Theorems 5.20-5.21, Lemma 5.22, Corollary 5.23)",
+   "altitude": "L1",
+   "unit": "U5a",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.3",
+     "book_page": 312,
+     "pdf_page": 329,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.3",
+     "book_page": 314,
+     "pdf_page": 331,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.4",
+     "book_page": 317,
+     "pdf_page": 334,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.4",
+     "book_page": 318,
+     "pdf_page": 335,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.3.4",
+     "book_page": 319,
+     "pdf_page": 336,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 362,
+     "pdf_page": 379,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Establishes syntactic soundness (Theorem 5.20) and completeness (Theorem 5.21) of W_CFA via ground validations theta_G = theta_A o theta_T, proves constraint solutions form a Moore family (Lemma 5.22, Corollary 5.23), and computes least theta_A(beta) = {pi | (beta >= {pi}) in C} without fixed-point iteration.",
+   "conditions": [
+    "Theorem 5.20 [app] requires extending theta_G to theta'_G covering eliminated intermediate variables.",
+    "Theorem 5.21 avoids proof normalisation only because Table 5.2 inlined {pi} union phi into [fn]/[fun] (cf. Exercise 5.13 two-step normalisation).",
+    "Printed theta_A has dom(theta_A) = AV(C) (undefined outside AV(C)); covering theta Gamma_hat and tau_hat requires defaulting unconstrained beta in X \\ AV(C) to empty."
+   ],
+   "projections": {
+    "cs_theory": "Atomic right-hand sides reduce reductive constraint solving in Red(F) to O(|C|) bucket collection.",
+    "swe_architecture": "Always totalise theta_A with empty-set defaults on unconstrained AVars before pretty-printing or code generation.",
+    "practical_debugging": "[external: KeyError]/undefined crashes on unapplied higher-order parameters (fn_X x => x 1) diagnose missing X \\ AV(C) empty-set defaulting.",
+    "cyber": "Syntactic completeness guarantees zero missed derivations relative to Table 5.2 once proof normalisation is respected."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.simple-types-w-cfa",
+     "relation": "proves"
+    },
+    {
+     "target_id": "ppa.order.moore-family",
+     "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#533-syntactic-soundness-and-completeness",
+    "corpus/shards/RAW_SHARD_05a_annotated_types_inference.md#534-existence-of-solutions",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#534-boundary-carryover-and-54-effects",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#3-syntactic-soundness-completeness-and-closed-form-thetaa-sections-533-534",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#3-procedure-2-implement-wcfa-reconstruction-and-two-stage-subtyping-sections-53-54"
+   ],
+   "issue_refs": [
+    "BKL-074",
+    "BKL-077"
+   ]
+  },
+  {
+   "id": "ppa.tes.side-effect-analysis",
+   "title": "Side Effect Analysis, Store-Passing Semantics, and Unmasked Reference Allocation (Table 5.9)",
+   "altitude": "L0",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4",
+     "book_page": 319,
+     "pdf_page": 336,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 320,
+     "pdf_page": 337,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 321,
+     "pdf_page": 338,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 322,
+     "pdf_page": 339,
+     "table_or_fig": "Table 5.9"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 323,
+     "pdf_page": 340,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 325,
+     "pdf_page": 342,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 361,
+     "pdf_page": 378,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 362,
+     "pdf_page": 379,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Extends FUN with mutable references new_pi x := e_1 in e_2, !x, x := e_0, and e_1 ; e_2 under store-passing Natural Semantics (p. 320) and types computational store effects {!pi, pi:=, new pi} in Gamma_hat |-_SE e : tau_hat & phi (Table 5.9) with latent arrow effects tau_hat_1 ->^phi tau_hat_2 and ref_varpi tau_hat.",
+   "conditions": [
+    "Assumes call-by-value evaluation so [con], [var], [fn], [fun] emit immediate effect empty (BKL-031; CBN variant in Exercise 5.12).",
+    "[new] intentionally leaves {new pi} unmasked outside lexical scope e_2 to expose heap allocation; xi := e returns assigned value v.",
+    "Surface syntax restricts !x and x := e_0 to variables while runtime SOS substitutes dynamic locations xi in Loc."
+   ],
+   "projections": {
+    "cs_theory": "Distinguishes Effect Systems (computational step summaries & phi) from Annotated Type Systems (intensional value-space properties).",
+    "swe_architecture": "Absence of pi:= in phi justifies unboxing mutable cells new_B into immutable let bindings (Example 5.26); absence of new pi certifies [external: @noalloc] paths.",
+    "practical_debugging": "Verify operator vs operand roles in [app] (analogous to BKL-026) and check CBN thunk deferral before reusing Table 5.9 on lazy IRs.",
+    "cyber": "Latent arrow effects audit dormant state-mutation authority inside callbacks before invocation [external: capability-safe effect systems]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.call-tracking-effects",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.annotated-cfa-types",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.interproc.flow-insensitive-iav",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#541-side-effect-analysis",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-59--side-effect-analysis",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#1-side-effect-analysis-and-reference-payload-invariance-section-541-table-59",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#4-procedure-3-side-effects-exception-masking-and-effect-polymorphism-sections-541-542",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#what-chapter-5-is-about"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-026",
+    "BKL-031",
+    "BKL-078"
+   ]
+  },
+  {
+   "id": "ppa.tes.shape-conformant-subtyping",
+   "title": "Shape-Conformant Polarised Subtyping and Mutable Payload Invariance (Section 5.4.1, Exercise 5.9)",
+   "altitude": "L0",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 324,
+     "pdf_page": 341,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.1",
+     "book_page": 325,
+     "pdf_page": 342,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 350,
+     "pdf_page": 367,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 351,
+     "pdf_page": 368,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 361,
+     "pdf_page": 378,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Defines shape-conformant subtyping tau_hat_1 <= tau_hat_2 (erase(tau_hat_1) = erase(tau_hat_2)) contravariant in arrow domains, covariant in arrow effects/codomains and point sets varpi, and bidirectionally invariant (tau_hat <= tau_hat' and tau_hat' <= tau_hat) in mutable ref_varpi tau_hat payloads.",
+   "conditions": [
+    "Either subeffecting or subtyping suffices for conservative extension over Table 5.1, whereas omitting both breaks it (p. 325).",
+    "ref_varpi tau_hat MUST be invariant in tau_hat because !x reads covariantly while x := e writes contravariantly.",
+    "Contravariant <= breaks Proposition 5.12 unconstrained Moore-family principal types on fn_X x => x (Exercise 5.9); p. 350 mis-cites Section 5.1 for Section 5.4."
+   ],
+   "projections": {
+    "cs_theory": "Polarised subtyping converts symmetric unification into directed [external: Horn clauses] matching 0-CFA on well-typed FUN (U8).",
+    "swe_architecture": "Factor restricted-effect checkers into Stage 1 HM shape unification followed by Stage 2 polarised constraint decomposition.",
+    "practical_debugging": "Callback effect smearing across reader/writer arguments (Example 5.27) diagnoses missing shape-conformant subtyping.",
+    "cyber": "Covariant mutable references or channels enable write-side [external: CWE-843 type and capability confusion]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.side-effect-analysis",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.covariant-fibre-moore",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.effect-design-axes-and-two-stage",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.cfa.constraint-0cfa",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U8",
+      "citations": [
+       {
+        "chapter_or_app": "Preface",
+        "section": "Preface",
+        "book_page": null,
+        "book_page_roman": "VII",
+        "pdf_page": 7,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "3",
+        "section": "3.4",
+        "book_page": 174,
+        "pdf_page": 192,
+        "table_or_fig": "Table 3.6"
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "5.4.1",
+        "book_page": 324,
+        "pdf_page": 341,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Concluding Remarks",
+        "book_page": 350,
+        "pdf_page": 367,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 359,
+        "pdf_page": 376,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "5",
+        "section": "Exercises",
+        "book_page": 361,
+        "pdf_page": 378,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Well-typed FUN programs analysed under Table 5.2 augmented with shape-conformant contravariant arrow subtyping (Exercise 5.9) and tree instrumentation (5.2) (Exercise 5.4)"
+      ],
+      "differs": [
+       "Contravariant subtyping recovers exact directional 0-CFA precision on simply-typed FUN ([71] Heintze; [external: Palsberg-O'Keefe 1995]) yet destroys unconstrained Moore-family principal types on Type_hat[tau] (Exercise 5.9)"
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.tes.exception-analysis",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#541-side-effect-analysis",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#4-polarised-subtyping-two-stage-inference-and-canonical-u8-0-cfa-bridge",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#1-side-effect-analysis-and-reference-payload-invariance-section-541-table-59",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#1-boundary-dispatch-and-five-axis-architecture-selection",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#precision-fibre-order-vs-behavioral-subtyping"
+   ],
+   "issue_refs": [
+    "BKL-076",
+    "BKL-078"
+   ]
+  },
+  {
+   "id": "ppa.tes.exception-analysis",
+   "title": "Polymorphic Exception Analysis and Effect Subtraction Masking (Table 5.10)",
+   "altitude": "L0",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 325,
+     "pdf_page": 342,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 326,
+     "pdf_page": 343,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 327,
+     "pdf_page": 344,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 328,
+     "pdf_page": 345,
+     "table_or_fig": "Table 5.10"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 329,
+     "pdf_page": 346,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 330,
+     "pdf_page": 347,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 362,
+     "pdf_page": 379,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Exercises",
+     "book_page": 363,
+     "pdf_page": 380,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Tracks uncaught exceptions raise s and handle s as e_1 in e_2 via short-circuit Natural Semantics (raise s in Val) and polymorphic schemes forall(zeta_1,...,zeta_n). tau_hat in Gamma_hat |-_ES e : sigma_hat & phi (Table 5.10) with syntactic masking phi_1 union (phi_2 \\ {s}) setting beta \\ {s} = beta.",
+   "conditions": [
+    "beta \\ {s} MUST equal beta on uninstantiated effect variables (BKL-009); simplifying beta \\ {s} to empty drops untrapped s' != s after [ins].",
+    "Dead handler effect phi_1 in [handle] can be omitted iff BOTH s notin phi_2 AND AV(phi_2) = empty (Exercise 5.14).",
+    "Generalising Table 5.10 conclusions to schemes sigma_hat requires scheme subtyping sigma_hat <= sigma_hat' (misprinted tau_hat <= tau_hat' in Exercise 5.15)."
+   ],
+   "projections": {
+    "cs_theory": "Effect-polymorphic schemes (Example 5.30) strictly dominate monomorphic subtyping on higher-order wrappers and anticipate [external: row-polymorphic effect handlers].",
+    "swe_architecture": "Avoids [external: Java-style checked-exception] monomorphic boilerplate on higher-order map/apply combinators.",
+    "practical_debugging": "False dead-catch warnings on generic wrappers trace to testing s notin phi_2 without checking AV(phi_2) = empty.",
+    "cyber": "Non-empty root exception sets expose [external: CWE-755] crash surfaces and [external: CWE-404] lock/cleanup bypass paths."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.generalisation",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#542-exception-analysis",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-510--exception-analysis",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#2-exception-analysis-let-polymorphism-and-effect-subtraction-section-542-table-510",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#4-procedure-3-side-effects-exception-masking-and-effect-polymorphism-sections-541-542",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#what-chapter-5-is-about"
+   ],
+   "issue_refs": [
+    "BKL-009",
+    "BKL-079"
+   ]
+  },
+  {
+   "id": "ppa.tes.generalisation",
+   "title": "Effect-Guarded Polymorphic Generalisation and Constraint Downwards Closure ([gen], Example 5.36)",
+   "altitude": "L1",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.2",
+     "book_page": 328,
+     "pdf_page": 345,
+     "table_or_fig": "Table 5.10"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 338,
+     "pdf_page": 355,
+     "table_or_fig": "Table 5.13"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 346,
+     "pdf_page": 363,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 347,
+     "pdf_page": 364,
+     "table_or_fig": "Table 5.17"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 352,
+     "pdf_page": 369,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Restricts polymorphic quantifier introduction [gen] (Tables 5.10, 5.13, 5.17) to variables zeta_i absent from BOTH FV(Gamma_hat) and FV(phi) (Example 5.36), strengthened under constraint-based general effects to the downwards closure of FV(Gamma_hat) union FV(phi) (p. 352).",
+   "conditions": [
+    "Omitting zeta_i notin FV(phi) generalises 'a in channel_A : 'a chan {A} & 'a chan {A} and unsafely types send 1 on ch; send true on ch (Example 5.36, BKL-009).",
+    "When effects record types (general effects) and constraints 'a chan {A} <= beta are deferred, syntactic FV(beta) misses 'a unless closed downwards through C (p. 352)."
+   ],
+   "projections": {
+    "cs_theory": "Provides a semantic effect-based generalisation of ML syntactic value restrictions [external: Wright value restriction].",
+    "swe_architecture": "Compute reachability closure backward from FV(Gamma_hat) union FV(phi) in the active constraint graph before quantifying let-schemes.",
+    "practical_debugging": "Type-unsound polymorphic mutable channels or refs indicate [gen] inspected Gamma_hat without closing through latent effect variables.",
+    "cyber": "Prevents [external: CWE-843] cross-type aliasing across polymorphic [external: IPC] channels and shared mutable cells (BKL-009)."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.exception-analysis",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.effect-design-axes-and-two-stage",
+     "relation": "part_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-517--communication-analysis-part-2",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#chapter-5-concluding-remarks",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#41-small-step-contextual-sos-tables-514-515-and-behaviour-typing-tables-516-517",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#4-procedure-3-side-effects-exception-masking-and-effect-polymorphism-sections-541-542"
+   ],
+   "issue_refs": [
+    "BKL-009",
+    "BKL-079"
+   ]
+  },
+  {
+   "id": "ppa.tes.region-memory-semantics",
+   "title": "Stack-of-Regions Memory Model and Boxed Extended-Expression Semantics (Figure 5.1, Table 5.11)",
+   "altitude": "L1",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 330,
+     "pdf_page": 347,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 331,
+     "pdf_page": 348,
+     "table_or_fig": "Figure 5.1"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 332,
+     "pdf_page": 349,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 333,
+     "pdf_page": 350,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 334,
+     "pdf_page": 351,
+     "table_or_fig": "Table 5.11"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 335,
+     "pdf_page": 352,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Replaces garbage-collected heaps with a stack of extensible boxed arrays rn in RName (Figure 5.1) over extended expressions ee in EExp (at r, fun_pi f[rho_vec] x => ee_0 at r, ee[r_vec] at r, letregion rho_vec in ee) evaluated by rho |- <ee, sigma_1> -> <v, sigma_2> (Table 5.11) with bulk deallocation sigma_2 \\\\ rn_vec.",
+   "conditions": [
+    "Every ordinary runtime value v in EVal = RName x Offset (including int and bool constants) is boxed in store sigma.",
+    "Region-polymorphic closures <rho_vec, x, ee_0, rho_0> cannot be applied by [app] until specialised into ordinary closures via [place] (ee[rn_vec] at rn).",
+    "Table 5.11 [region] prints dom(sigma) where input store dom(sigma_1) is intended; dereferencing popped rn notin dom(sigma) gets stuck."
+   ],
+   "projections": {
+    "cs_theory": "Operationalises [external: LIFO arena] discipline where stuck transitions witness premature region deallocation.",
+    "swe_architecture": "Eliminates tracing GC pauses via O(1) region-stack push/pop in [external: MLKit]-style compilers.",
+    "practical_debugging": "Stuck lookups on primitive arithmetic or conditionals trace to forgetting that constants and booleans are boxed in EVal.",
+    "cyber": "Models [external: arena/slab] bulk-free semantics where dangling region handles correspond directly to [external: CWE-416 use-after-free] faults."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.natural-semantics",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.region-inference-translation",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.shape.pointer-sos",
+     "relation": "contrasts_with"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#figure-51--the-memory-model-for-the-stack-based-implementation-of-fun",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-511--natural-semantics-for-extended-expressions",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#31-boxed-store-semantics-table-511-and-translation-rules-tables-512-513",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#5-procedure-4-region-inference-section-543-and-cml-behaviours-section-55"
+   ],
+   "issue_refs": [
+    "BKL-080"
+   ]
+  },
+  {
+   "id": "ppa.tes.region-inference-translation",
+   "title": "Stack-Based Region Inference Translation ([175, 176], [external: Tofte–Talpin]), Observe Masking, and Effect/Region Polymorphic Recursion (Tables 5.12-5.13)",
+   "altitude": "L0",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 335,
+     "pdf_page": 352,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 336,
+     "pdf_page": 353,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 337,
+     "pdf_page": 354,
+     "table_or_fig": "Table 5.12"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 338,
+     "pdf_page": 355,
+     "table_or_fig": "Table 5.13"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.4.3",
+     "book_page": 339,
+     "pdf_page": 356,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 352,
+     "pdf_page": 369,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Simultaneously infers extended types (tau_hat @ r) & phi ({put r, get r}) and translates FUN to EExp via Gamma_hat |-_RI e ~> ee : (tau_hat @ r) & phi (Tables 5.12-5.13), combining compound recursive schemes forall beta_vec, [rho_vec]. tau_hat in [fun] with lexical encapsulation letregion rho_vec in ee guarded by Observe(Gamma_hat, tau_hat, r)(phi).",
+   "conditions": [
+    "[fun] restricts polymorphic recursion to effects and regions (excluding type variables alpha_vec because full type-polymorphic recursion is undecidable); Algorithm R is syntactically sound, not complete (p. 352).",
+    "forall(), (), []. tau_hat MUST be written forall[]. tau_hat to distinguish compound [ins_2]/[place] schemes from ordinary [ins_1] schemes.",
+    "[region] requires BOTH phi' = Observe(Gamma_hat, tau_hat, r)(phi) AND that rho_vec occurs in phi and not in phi'.",
+    "[app] emits {get r_1} for the closure box; Type_RI arrow subtyping keeps r_1, r_2 invariant."
+   ],
+   "projections": {
+    "cs_theory": "Lexical effect masking (Observe) encapsulates local state analogously to rank-2 state threads [external: Launchbury-Peyton Jones runST] while trading flow-sensitive destructive updates for modular higher-order summaries.",
+    "swe_architecture": "Allows unrestricted aliasing inside each region with bulk [external: LIFO] free, contrasting with [external: affine alias-XOR-mutability (Rust lifetimes/borrowck)].",
+    "practical_debugging": "Unbounded region growth in tail-recursive accumulators traces to input/output region unification preventing inner letregion placement.",
+    "cyber": "Observe enforces a static non-escape firewall blocking [external: CWE-416 arena use-after-free] while flagging [external: CWE-400] retention hazards."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.region-memory-semantics",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.shape.shape-graphs-invariants",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.transform.constant-folding",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-512--region-inference-analysis-and-translation-part-1",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-513--region-inference-analysis-and-translation-part-2",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#3-stack-based-region-inference-and-lexical-masking-section-543-figure-51-tables-511-513",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#5-procedure-4-region-inference-section-543-and-cml-behaviours-section-55",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#restricted-vs-general-effects-and-lexical-region-masking"
+   ],
+   "issue_refs": [
+    "BKL-080"
+   ]
+  },
+  {
+   "id": "ppa.tes.cml-concurrent-semantics",
+   "title": "Concurrent ML Stream Pipelines, Evaluation Contexts, and Synchronous Rendezvous SOS (Figure 5.2, Tables 5.14-5.15)",
+   "altitude": "L1",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.5",
+     "book_page": 339,
+     "pdf_page": 356,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 340,
+     "pdf_page": 357,
+     "table_or_fig": "Figure 5.2"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 341,
+     "pdf_page": 358,
+     "table_or_fig": "Table 5.14"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 342,
+     "pdf_page": 359,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 343,
+     "pdf_page": 360,
+     "table_or_fig": "Table 5.15"
+    }
+   ],
+   "formal_summary": "Extends FUN with Concurrent ML primitives channel_pi, spawn e_0, send e_1 on e_2, receive e_0, e_1; e_2, and dynamic ch in Chan (illustrated on stream network pipe in Figure 5.2) with single-hole evaluation-context reductions (Table 5.14) and process-pool transitions CP_1, PP_1 => CP_2, PP_2 (Table 5.15).",
+   "conditions": [
+    "Evaluation-context hole [] never appears beneath a binder, preserving capture-free substitution without environments.",
+    "[comm] requires distinct processes p_1 != p_2 for synchronous send/receive rendezvous over ch.",
+    "Small-step SOS replaces big-step Natural Semantics so non-terminating concurrent server/pipeline loops (Example 5.34) execute meaningfully."
+   ],
+   "projections": {
+    "cs_theory": "Contextual small-step semantics captures reactive interleavings and [external: deadlocks] invisible to big-step evaluation.",
+    "swe_architecture": "Factor sequential redex contraction (Table 5.14) from concurrent scheduler transitions (Table 5.15) via single-hole contexts E.",
+    "practical_debugging": "Self-send [external: deadlocks] on a single process p_1 = p_2 are blocked by [comm]'s distinct-process side condition.",
+    "cyber": "Models message-passing [external: IPC] topologies where unscheduled rendezvous mismatches manifest as [external: CWE-833 deadlocks]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.natural-semantics",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.tes.communication-behaviour-analysis",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#55-behaviours-and-551-communication-analysis",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#example-534--concurrent-stream-pipeline-node-and-pipe",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-514--the-sequential-semantics",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-515--the-concurrent-semantics",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#41-small-step-contextual-sos-tables-514-515-and-behaviour-typing-tables-516-517",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#5-procedure-4-region-inference-section-543-and-cml-behaviours-section-55"
+   ],
+   "issue_refs": [
+    "BKL-011",
+    "BKL-081"
+   ]
+  },
+  {
+   "id": "ppa.tes.communication-behaviour-analysis",
+   "title": "Communication Behaviour Typing and the 22-Rule Causal Preorder (Tables 5.16-5.18)",
+   "altitude": "L0",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 344,
+     "pdf_page": 361,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 345,
+     "pdf_page": 362,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 346,
+     "pdf_page": 363,
+     "table_or_fig": "Table 5.16"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 347,
+     "pdf_page": 364,
+     "table_or_fig": "Table 5.17"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 348,
+     "pdf_page": 365,
+     "table_or_fig": "Table 5.18"
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "5.5.1",
+     "book_page": 349,
+     "pdf_page": 366,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Types Concurrent ML expressions with mutually recursive types Type_CA (tau_hat chan r) and causal behaviours Ann_CA (Lambda, ;, +, rec beta.phi, tau_hat chan r, spawn phi, r!tau_hat, r?tau_hat) in Tables 5.16-5.17 ordered by Table 5.18's 22-rule preorder phi_1 <= phi_2.",
+   "conditions": [
+    "Omits Observe-style masking so all channel allocations and communications remain globally visible (p. 349).",
+    "Sequencing ; distributes over choice + ONLY from the right ((phi_1 + phi_2); phi_3); left-distributivity is omitted to preserve [external: branching-time deadlock] distinctions.",
+    "tau_hat chan r is invariant in tau_hat, send r!tau_hat is covariant, receive r?tau_hat is contravariant, and rec beta.phi requires positive beta occurrences.",
+    "Examples 5.35 and 5.37 print unbraced C for singleton region {C} in 'a chan C and C!'a."
+   ],
+   "projections": {
+    "cs_theory": "Combines process-algebraic causal preorders with directional input/output channel subtyping [external: Session Types].",
+    "swe_architecture": "Guard recursive behaviour inclusion checks rec beta.phi_1 <= rec beta.phi_2 with coinductive [external: pair memoisation] modulo alpha-equivalence.",
+    "practical_debugging": "Applying illegal left-distributivity erases synchronous [external: deadlock] bugs; forgetting [gen] FV(phi) admits Example 5.36 type confusion.",
+    "cyber": "Causal behaviours expose lock/channel order inversions ([external: CWE-833]) and check-then-use windows ([external: CWE-367]) erased by unordered effect sets."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.cml-concurrent-semantics",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.generalisation",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.regular-expressions",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-516--communication-analysis-part-1",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-517--communication-analysis-part-2",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#table-518--ordering-on-behaviours",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#42-complete-22-rule-behaviour-preorder-table-518-and-mini-projects-51-55",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#5-procedure-4-region-inference-section-543-and-cml-behaviours-section-55",
+    "knowledge/ambient-context/ppa-types-effects-and-regions.md#what-chapter-5-is-about"
+   ],
+   "issue_refs": [
+    "BKL-009",
+    "BKL-011",
+    "BKL-081"
+   ]
+  },
+  {
+   "id": "ppa.tes.effect-design-axes-and-two-stage",
+   "title": "Restricted vs General Effects, Five Design Axes, and Two-Stage Inference Taxonomy (Concluding Remarks, Mini Projects 5.1-5.2)",
+   "altitude": "L1",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 349,
+     "pdf_page": 366,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 350,
+     "pdf_page": 367,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 351,
+     "pdf_page": 368,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 352,
+     "pdf_page": 369,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Concluding Remarks",
+     "book_page": 353,
+     "pdf_page": 370,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 353,
+     "pdf_page": 370,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 354,
+     "pdf_page": 371,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Synthesises Type and Effect Systems along five design axes (subeffecting, subtyping, let-polymorphism, polymorphic recursion, explicit vs embedded constraints), contrasting two-stage inference for restricted effects (no types in effects) against coupled downwards-closed inference for general effects, plus call-tracking (Mini Project 5.1) and pair/list constructors (Mini Project 5.2).",
+   "conditions": [
+    "Two-stage HM-then-constraint inference is sound and complete for restricted effects without polymorphic recursion, whereas Algorithm R for region polymorphic recursion is incomplete (p. 352).",
+    "Embedding types inside effects (Section 5.5) breaks two-stage decoupling because effects restrict type generalisation at [gen].",
+    "Chapter 5 systems express partial-correctness safety properties rather than liveness/totality (p. 353)."
+   ],
+   "projections": {
+    "cs_theory": "Classifies shape-conformant, atomic, and general subtyping alongside restricted vs type-carrying effect algebras.",
+    "swe_architecture": "Keep custom effect annotations free of type variables whenever an off-the-shelf HM typechecker must be decoupled from a [external: Datalog]/worklist effect solver.",
+    "practical_debugging": "Enforce explicit iteration/arity bounds on polymorphic-recursion effect solvers since complete principal inference does not exist.",
+    "cyber": "Safety-only effect types certify upper bounds on reached actions; availability/starvation guarantees require separate termination proofs [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.shape-conformant-subtyping",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.generalisation",
+     "relation": "has_part"
+    },
+    {
+     "target_id": "ppa.tes.monotone-and-unit-types",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#chapter-5-concluding-remarks",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#mini-project-51--a-call-tracking-analysis",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#mini-project-52--data-structures",
+    "knowledge/skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md#4-polarised-subtyping-two-stage-inference-and-canonical-u8-0-cfa-bridge",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#1-boundary-dispatch-and-five-axis-architecture-selection"
+   ],
+   "issue_refs": [
+    "BKL-082"
+   ]
+  },
+  {
+   "id": "ppa.tes.monotone-and-unit-types",
+   "title": "Monotone Lattice Qualifier Types (BTA, Security) and Units of Measure / Y2K (Mini Projects 5.4-5.5)",
+   "altitude": "L1",
+   "unit": "U5b",
+   "citations": [
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 355,
+     "pdf_page": 372,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 356,
+     "pdf_page": 373,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 357,
+     "pdf_page": 374,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 358,
+     "pdf_page": 375,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "5",
+     "section": "Mini Projects",
+     "book_page": 359,
+     "pdf_page": 376,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Instantiates annotated base types over complete lattices for Binding-Time Analysis (S <= D) and Security Clearance (C_1 <= ... <= C_k) (Mini Project 5.4), and over domain-specific equational algebras num^{scale BASE base} combining [external: abelian-group] scaling factors with [external: affine-origin] bases for physical units, currencies, and Y2K dates (Mini Project 5.5).",
+   "conditions": [
+    "Monotone lattice type systems require the Ascending Chain Condition (ACC) when solved iteratively without widening.",
+    "Scale multiplication/division requires [external: abelian-group] laws (meter.feet = feet.meter, scale.scale^{-1} = unit) strictly stronger than UCAI and demands BASE none on both operands.",
+    "Base addition leaves 'undefined otherwise' implicit when both operands carry non-none bases (explicitly printed on subtraction, p. 358)."
+   ],
+   "projections": {
+    "cs_theory": "Demonstrates non-idempotent [external: abelian-group unification (Kennedy units of measure)] and [external: affine-torsor] typing beyond powerset UCAI.",
+    "swe_architecture": "Encodes compile-time staging, information-flow labels, and dimensional/epoch safety as modular library signatures.",
+    "practical_debugging": "Reject point + point addition explicitly when implementing Mini Project 5.5's + rule rather than leaving non-none base pairs partial.",
+    "cyber": "Enforces [external: Denning/Volpano-Smith-Irvine] confidentiality (needing [external: implicit-flow pc] write bounds on mutable refs) and eliminates [external: CWE-682] unit/epoch bugs."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.effect-design-axes-and-two-stage",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#mini-project-54--monotone-type-systems",
+    "corpus/shards/RAW_SHARD_05b_effects_regions_behaviours.md#mini-project-55--units-of-measure-and-y2k",
+    "knowledge/skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md#42-complete-22-rule-behaviour-preorder-table-518-and-mini-projects-51-55",
+    "knowledge/skills/ppa-types-effects-and-regions/SKILL.md#6-procedure-5-monotone-qualifier-lattices-and-units-of-measure-mini-projects-51-55"
+   ],
+   "issue_refs": [
+    "BKL-030",
+    "BKL-082"
+   ]
   }
  ]
 }

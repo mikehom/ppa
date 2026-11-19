@@ -151,7 +151,8 @@ MVP∘(ℓ)    = ⨆{f_ℓ⃗(ι) | ℓ⃗ ∈ vpath∘(ℓ)}
 - **Cross-Chapter Unifications & Architecture (`[U2b:CR-b,d,e,f]`, `U5`, `Figure 3.3`)**: `Small Assumption Sets` + completely
   additive `f̂^{2A} ⊔ f̂^{2B}` are the Chapter 2 blueprint for IFDS/IDE tabulation (`[147, 155]` [external])
   [PPA Chapter 2 Concluding Remarks, p. 129] (book p. 129; PDF p. 148); `IAV(p)` previews Chapter 5's
-  statement-level Type & Effect annotations [PPA §2.5.6, p. 103] (book p. 103; PDF p. 122); structural analysis
+  statement-level Type & Effect annotations [PPA §2.5.6, p. 103] (book p. 103; PDF p. 122)
+  (see [effects-exceptions-regions-and-behaviours.md](../../ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md)); structural analysis
   (`[154, 110]`) collapses low-level CFGs into AST regions [PPA Chapter 2 Concluding Remarks, p. 131] (book p. 131; PDF p. 150).
   For canonical unification **`U5`**, bounded call strings (`§2.5.4`, `Δ = Lab^{≤k}`) unify with Uniform `k`-CFA (`§3.6.1`,
   `(Lab × Δ) → Val̂`) [PPA §3.6.1, p. 196] (book p. 196; PDF p. 214) and small assumption sets (`§2.5.5`, `Δ = D`)
