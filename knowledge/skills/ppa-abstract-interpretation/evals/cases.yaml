@@ -1,0 +1,57 @@
+# Routing and boundary cases for ppa-abstract-interpretation.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: ai-galois-adjunction-and-sign-prime
+    prompt: 'Explain why there is no Galois connection from Interval to the powerset of Sign using gamma_IS, and show how removing the non-zero subset yields the 7-element lattice Sign prime with a valid Galois insertion.'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['Example 4.25', 'Exercise 4.13', 'completely multiplicative']
+    notes: 'Adjoint existence via complete multiplicativity of gamma (Lemmas 4.22-4.23, Example 4.25, Figure 4.10, Exercise 4.13).'
+  - id: ai-widening-nonmonotonicity-and-narrowing
+    prompt: 'Implement threshold widening nabla_K and narrowing Delta_N on the Interval lattice, avoiding first-step bottom blowup, reversed operand divergence, and premature narrowing outside Red(f).'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['old ∇ new', 'Red(f)', 'BKL-002']
+    notes: 'Widening non-monotonicity, explicit reductive guard, step-1 bottom handling, and narrowing inside Red(f) (§4.2, Examples 4.15 and 4.18).'
+  - id: ai-relational-ab-combinator-reduction
+    prompt: 'Combine Sign and magnitude-difference Range abstractions into a Galois insertion for integer pairs, contrasting independent attributes and direct products against the 29-atom reduced tensor product AB.'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['Example 4.39', 'Exercise 4.18', 'Exercise 4.19']
+    notes: 'Systematic Galois combinators, insertion preservation vs failure, and 45-to-29 bit AB reduction (§4.4, Examples 4.33-4.39).'
+  - id: ai-induced-transfer-and-generalised-mf
+    prompt: 'Prove semantic soundness of Constant Propagation from concrete sets of states SS using best induced transformers alpha o f o gamma, extremal condition gamma(j) = iota, and explain why node-based SS misses branch guards.'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['Lemma 4.41', 'γ(ȷ) = ι', 'Exercise 4.20']
+    notes: 'Induced operations along alpha, generalised Monotone Frameworks (U6), and node-vs-edge collecting semantics (§§4.5.1-4.5.2).'
+  - id: ai-gamma-widening-vs-broken-narrowing
+    prompt: 'Lift a widening operator from a coarser lattice M to L via gamma(alpha(l_1) nabla_M alpha(l_2)), state when Lemma 4.45 holds, and determine whether the analogous formula defines a narrowing operator.'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['Proposition 4.44', 'Lemma 4.45', 'Exercise 4.24']
+    notes: 'Concretisation-induced widening vs failure of concretisation-induced narrowing (§4.5.3, Exercise 4.24).'
+  - id: ai-dual-guards-and-denotational-nonduality
+    prompt: 'Explain how upper closure operators order domain precision, why program-transformation enabling guards require dual Galois connections, and why Denotational Semantics is not dual to Abstract Interpretation.'
+    expect_skill: ppa-abstract-interpretation
+    must_mention: ['upper closure', 'dual Galois', 'Denotational Semantics']
+    notes: 'Upper closure operators, upward vs downward approximation polarity, and non-duality with Denotational Semantics (Chapter 4 Concluding Remarks).'
+  - id: neg-dfa-classical-slicing-and-shape
+    prompt: 'Compute Reaching Definitions, ud/du slicing chains, k-bounded interprocedural call strings, or compatible heap shape graphs with destructive updating over a finite-height Monotone Framework.'
+    expect_skill: ppa-dataflow-and-slicing
+    notes: 'U6/U7 boundary: classical ACC Monotone Frameworks, slicing, call strings, and §2.6 Shape Analysis belong to ppa-dataflow-and-slicing.'
+  - id: neg-solvers-rpo-scc-worklists
+    prompt: 'Schedule fixed-point constraint evaluation using reverse postorder priority queues, strong components, and d(G, T) + 3 round-robin iteration bounds once the domain and widening are already fixed.'
+    expect_skill: ppa-fixedpoint-solvers
+    notes: 'U7/solver boundary: worklist data structures, RPO, and strong-component iteration order belong to ppa-fixedpoint-solvers.'
+  - id: neg-cfa-closure-constraints
+    prompt: 'Generate conditional subset constraints to resolve higher-order lambda closures and dynamic call targets using 0-CFA, uniform k-CFA, or the O(n^3) graph solver.'
+    expect_skill: ppa-control-flow-and-constraints
+    notes: 'Higher-order closure flow and subset-constraint solving belong to ppa-control-flow-and-constraints.'
+  - id: neg-types-effects-and-regions
+    prompt: 'Design an annotated Hindley-Milner type and effect inference algorithm with subeffecting, let-polymorphism, and Tofte-Talpin lexical region inference.'
+    expect_skill: ppa-types-effects-and-regions
+    notes: 'Annotated type reconstruction, effects, and region inference belong to ppa-types-effects-and-regions.'
+  - id: neg-cyber-taint-and-exploit-triage
+    prompt: 'Audit an untrusted HTTP input-to-SQL-sink taint policy, sanitizer bypass surface, and CWE exploitability classification across web service handlers.'
+    expect_skill: ppa-cyber-vulnerability-analysis
+    notes: 'Threat-driven security policies and vulnerability triage belong to ppa-cyber-vulnerability-analysis.'
+  - id: neg-router-paradigm-comparison-and-appendices
+    prompt: 'Compare all four program analysis approaches side by side on Chapter 1 Reaching Definitions, or prove Tarski Fixed Point Theorem and coinduction principles from Appendices A and B.'
+    expect_skill: ppa-program-analysis
+    notes: 'Cross-approach routing (Chapter 1) and foundational order/coinduction/graph appendices (Appendices A-C) belong to ppa-program-analysis.'

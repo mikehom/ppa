@@ -48,6 +48,9 @@ and [interprocedural-and-correctness.md](../../ppa-dataflow-and-slicing/referenc
     precision loss (`fn z => 25^6` enters `Ĉ(7), Ĉ(8), Ĉ(12)` in `Example 3.31`, polluting `D̂(6) = {+}`,
     `δ̂(z) = {0}`, and `D̂(14) = D̂(15) = {0, +}` vs Figure 3.6's `{0}`)
     [PPA §3.5.2, p. 189] (book p. 189; PDF p. 207) [PPA Example 3.31, p. 189] (book p. 189; PDF p. 207).
+  - **Two-tier Galois soundness (`Mini Project 4.3`, `BKL-065`)**: Lifting `(𝒫(Val), α, γ, L)` to `γ'(Ĉ, D̂, ρ̂, δ̂) ⊨_{SV} e`
+    is established in [combinators-and-induced-operations.md](../../ppa-abstract-interpretation/references/combinators-and-induced-operations.md)
+    [PPA Mini Project 4.3, p. 275] (book p. 275; PDF p. 292).
 
 ## 2. Monovariant Poisoning and Uniform k-CFA (Sections 3.6-3.6.1, Table 3.10)
 

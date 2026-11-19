@@ -414,6 +414,7 @@ together with its chapter, section or page.
 | `⊨` | `■ ⊨ ■` is indexed only for Chapter 5 substitution satisfaction `θ_{A} ⊨ C` (p. 309); Chapter 2 uses `live ⊨ LV^=` ([PPA Lemma 2.15, p. 60]) and Chapter 3 uses CFA acceptability/constraint satisfaction `⊨` ([PPA Table 3.1, p. 146]), `⊨_{s}`, `⊨'_{s}`, `⊨_{c}`, `⊨_{d}`, `⊨_{D}`, `⊨'_{D}`, `⊨_{δ}^{ce}`, `⊨_{CPA}^{δ}`, `⊨_{me}` (through [PPA Mini Project 3.4, p. 205]). | N1-006, N2-055, U-39 |
 | `C` / `C(ℓ)` | italic `C` is a Chapter 5 annotation constraint set (p. 308); sans `\widehat{C}` is a semantic abstract cache (p. 144); unindexed sans `C(ℓ)` is a Chapter 3 syntactic cache constraint variable ([PPA §3.4, p. 173]); `C ∈ Constr` is a data constructor ([PPA Mini Project 3.2, p. 203]). | N3-035, N3-036, U-40 |
 | `r` / `r(x)` | italic `r` ranges over regions (pp. 331, 343); unindexed sans `r(x)` is a Chapter 3 syntactic environment constraint variable ([PPA §3.4, p. 173]). | N3-179, U-40 |
+| `ρ` | italic `ρ` is an environment mapping variables to locations or abstract values (pp. 86, 153, 333; `\widehat{ρ}`, p. 144) versus a Chapter 4 upper closure operator `ρ : L → L` (`ρ[L] = Fix(ρ)`, [PPA Chapter 4 Concluding Remarks, p. 270]; not indexed under closure operators). | N2-035, U-53 |
 
 ### Superscript of `l_{n}^{ϕ}` (book p. 225; PDF p. 242)
 
@@ -500,6 +501,14 @@ Each row cites the page where the book defines the symbol; the meaning restates 
 | U-43 | `F_{⋆}` | italic | monotone fixed-point operator on `\widehat{Cache}_{⋆} × \widehat{Env}_{⋆}` whose least fixed point solves `𝒞_{⋆}⟦e_{⋆}⟧` | [PPA §3.4.2, p. 176] |
 | U-44 | `\widehat{R}`, `Reach` | sans, bold | abstract reachability map `\widehat{R} ∈ Reach = Lab → 𝒫({on})` gating active bodies in `(Ĉ, ρ̂, R̂) ⊨'_{s} e` | [PPA Mini Project 3.1, p. 202] |
 | U-45 | `\widehat{S}_{∘}`, `\widehat{S}_{•}` | sans | entry and exit abstract reference stores `Lab → (Pnt → \widehat{Val})` in flow-sensitive CFA (`(Ĉ, ρ̂, \widehat{S}_{∘}, \widehat{S}_{•}) ⊨_{me} e`) | [PPA Mini Project 3.4, p. 205] |
+| U-46 | `∇_{K}`, `LB_{K}`, `UB_{K}` | roman, sans | threshold interval widening parameterised by finite constant set `K ⊆ Z` using nearest-bound helpers `LB_{K}` and `UB_{K}` | [PPA Example 4.15, p. 228] |
+| U-47 | `Δ_{N}` | roman | threshold interval narrowing parameterised by non-negative integer `N ≥ 0` | [PPA Example 4.18, p. 232] |
+| U-48 | `ϒ` | roman | descending chain truncator halting refinement inside `Red(f)` after finitely many steps | [PPA Exercise 4.11, p. 278] |
+| U-49 | `Sign′` | bold | 7-element reduced sign lattice `{⊥, -, 0, +, -0, 0+, ⊤}` (obtained by omitting `{-, +}` from `𝒫(Sign)`) restoring complete multiplicativity of `γ_{IS′}` | [PPA Figure 4.10, p. 276] |
+| U-50 | `⊗`, `AB`, `LR` | roman, bold | powerset relational tensor product (`𝒫(V_{1}) ⊗ 𝒫(V_{2})`, [PPA §4.4.1, p. 251]), 29-atom Array Bound reduced tensor `AB ⊆ Sign × Sign × Range` ([PPA Example 4.39, p. 257]), and list-pair relation domain `LR` ([PPA Mini Project 4.1, p. 274]) | [PPA Example 4.39, p. 257] |
+| U-51 | `ȷ`, `SS`, `SH` | italic, sans | abstract extremal element in `(M, F, E, ȷ, g_{·})` (`γ(ȷ) = ι`, [PPA §4.5.2, p. 264]), concrete sets-of-states reference framework `SS` ([PPA §4.5.2, p. 265]), and `(State × Heap)` reference framework `SH` ([PPA Mini Project 4.2, pp. 274–275] (book p. 274; PDF p. 291) (book p. 275; PDF p. 292)) | [PPA §4.5.2, p. 264] |
+| U-52 | `∇_{L}`, `Δ_{L}` | roman | concretisation-induced widening `γ(α(l_{1}) ∇_{M} α(l_{2}))` ([PPA Proposition 4.44, p. 268]) and failed narrowing formula `γ(α(l_{1}) Δ_{M} α(l_{2}))` ([PPA Exercise 4.24, p. 282]) | [PPA Proposition 4.44, p. 268] |
+| U-53 | `ρ[L]`, `⊑^{d}`, `Ξ` | italic, roman | fixed-point lattice `ρ[L] = Fix(ρ)` of an upper closure operator `ρ : L → L` (bare `ρ` shares `N2-035`, see `Collisions and Scope Notes`; [PPA Chapter 4 Concluding Remarks, p. 270]); dual partial order `⊑^{d}` (`⊒`) and program-transformation enabling guard `l_{ℓ} ⊑ l_{Ξ}` ([PPA Chapter 4 Concluding Remarks, p. 273]) | [PPA Chapter 4 Concluding Remarks, p. 270] |
 
 ## Index Anomalies
 

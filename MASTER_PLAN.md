@@ -120,10 +120,10 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 4: Part II — Chapter 4 (Abstract Interpretation)
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W4-1` (`ISS-W4-01`)**: Ch 4a (§4.1–4.3) Correctness Relations, Widening/Narrowing & Galois Connections (`RAW_SHARD_04a_galois_widening.md`).
-- [ ] **`W4-2` (`ISS-W4-02`)**: Ch 4b (§4.4–4.5) Galois Combinators & Induced Operations, Synthesis (`ppa-abstract-interpretation`, `ppa-abstract-interpretation.md`), Refactoring & Gate #6 (Ch 4 3-Model Loop).
+- [x] **`W4-1` (`ISS-W4-01`)**: Ch 4a (§4.1–4.3) Correctness Relations, Widening/Narrowing & Galois Connections (`RAW_SHARD_04a_galois_widening.md`).
+- [x] **`W4-2` (`ISS-W4-02`)**: Ch 4b (§4.4–4.5) Galois Combinators & Induced Operations, Synthesis (`ppa-abstract-interpretation`, `ppa-abstract-interpretation.md`), Refactoring & Gate #6 (Ch 4 3-Model Loop — CLOSED `3/3 [ALIGNED gate6-v2]`).
 
 ## Phase 5: Part II Completion — Chapter 5 (Type and Effect Systems) & Part II Gate
 

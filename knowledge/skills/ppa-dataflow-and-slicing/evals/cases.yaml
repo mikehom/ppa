@@ -38,6 +38,10 @@ cases:
     prompt: "Construct a Galois connection between trace semantics and an infinite-height Interval lattice, and design a widening/narrowing schedule to guarantee convergence."
     expect_skill: ppa-abstract-interpretation
     notes: "Infinite-height lattices and widening/narrowing belong to Chapter 4."
+  - id: sib-ai-galois-induced-ab
+    prompt: "Construct a Galois insertion `(𝒫(V), α, γ, Sign')`, calculate the best induced transfer `α ∘ f ∘ γ`, and prove `γ(ȷ) = ι` lifting for Constant Propagation over non-ACC lattices."
+    expect_skill: ppa-abstract-interpretation
+    notes: "Reciprocal U6 boundary (C4.7): Galois connections, best induced transformers, and §4.5.2 generalised Monotone Frameworks belong to ppa-abstract-interpretation."
   - id: neg-types-effects-regions
     prompt: "Design an annotated type and effect reconstruction algorithm with let-polymorphism and region inference for heap deallocation."
     expect_skill: ppa-types-effects-and-regions

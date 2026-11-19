@@ -1,6 +1,6 @@
 {
  "as_of": "2026-11-19",
- "count": 87,
+ "count": 98,
  "dry_run": true,
  "issues": [
   {
@@ -371,8 +371,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nThe total function space S → L preserves finite height, ACC and DCC only when S is finite; the monotone function space does not preserve them in general.\n\n## Source Citations & Grounding\n\n- [PPA §A.3, p. 400] (book p. 400; PDF p. 416)\n- [PPA §A.4, p. 403] (book p. 403; PDF p. 419)\n- Statements confirmed against rendered page images during Unit 0 extraction.\n\n## Technical Analysis / Mechanism\n\nAnalysis states keyed by unbounded sets (heap addresses, strings, call strings) lose ACC even when the value lattice is tiny: in the total function space ℕ → {0 ⊑ 1} over discrete set S = ℕ, the indicator functions of {0,…,n} form a non-stabilising ascending chain, so iteration from ⊥ need not terminate (G-U0-08, G-U0-09).\n\nGuardrail: L2: before claiming termination, confirm that every map-shaped domain has a finite key set or a finite partition (summary keys), or supply a widening.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.order.chain-condition-preservation`, `ppa.fixpoint.iteration`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-013\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"\\u00a7A.3 (book p. 400; PDF p. 416)\", \"\\u00a7A.4 (book p. 403; PDF p. 419)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "9eb00699531136bbb2c0595d58a3105e442bf583c05030e0d00a16e1b2ee7f39",
+   "body": "## Summary\n\nThe total function space S → L preserves finite height, ACC and DCC only when S is finite; the monotone function space does not preserve them in general.\n\n## Source Citations & Grounding\n\n- [PPA §A.3, p. 400] (book p. 400; PDF p. 416)\n- [PPA §A.4, p. 403] (book p. 403; PDF p. 419)\n- Statements confirmed against rendered page images during Unit 0 extraction.\n\n## Technical Analysis / Mechanism\n\nAnalysis states keyed by unbounded sets (heap addresses, strings, call strings) lose ACC even when the value lattice is tiny: in the total function space ℕ → {0 ⊑ 1} over discrete set S = ℕ, the indicator functions of {0,…,n} form a non-stabilising ascending chain, so iteration from ⊥ need not terminate (G-U0-08, G-U0-09).\n\nGuardrail: L2: before claiming termination, confirm that every map-shaped domain has a finite key set or a finite partition (summary keys), or supply a widening.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.widening` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.order.chain-condition-preservation`, `ppa.fixpoint.iteration`, `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-013\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"\\u00a7A.3 (book p. 400; PDF p. 416)\", \"\\u00a7A.4 (book p. 403; PDF p. 419)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "1ad417e3efe75c1c3fcaff555bb159579bc69672e9aeab9f938a151067315e29",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -402,7 +402,7 @@
     "priority": "P1",
     "status": "open",
     "title": "ACC is not inherited by function spaces over infinite index sets",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-013",
@@ -420,8 +420,8 @@
    ],
    "milestone": "W1",
    "parent_issue": "ISS-W1-01",
-   "published_body_sha256": "af01ffbbc744cbbc60c5b7ce30e9c166ce23af47d9e22ee2dc13887e426a4655",
-   "source_body": "\n## Summary\n\nThe total function space S → L preserves finite height, ACC and DCC only when S is finite; the monotone function space does not preserve them in general.\n\n## Source Citations & Grounding\n\n- [PPA §A.3, p. 400] (book p. 400; PDF p. 416)\n- [PPA §A.4, p. 403] (book p. 403; PDF p. 419)\n- Statements confirmed against rendered page images during Unit 0 extraction.\n\n## Technical Analysis / Mechanism\n\nAnalysis states keyed by unbounded sets (heap addresses, strings, call strings) lose ACC even when the value lattice is tiny: in the total function space ℕ → {0 ⊑ 1} over discrete set S = ℕ, the indicator functions of {0,…,n} form a non-stabilising ascending chain, so iteration from ⊥ need not terminate (G-U0-08, G-U0-09).\n\nGuardrail: L2: before claiming termination, confirm that every map-shaped domain has a finite key set or a finite partition (summary keys), or supply a widening.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.order.chain-condition-preservation`, `ppa.fixpoint.iteration`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "131a9aa01e007153cca9c6e51a88ecc7120d5ccec82ad8d43ce003368d1d8b4b",
+   "source_body": "\n## Summary\n\nThe total function space S → L preserves finite height, ACC and DCC only when S is finite; the monotone function space does not preserve them in general.\n\n## Source Citations & Grounding\n\n- [PPA §A.3, p. 400] (book p. 400; PDF p. 416)\n- [PPA §A.4, p. 403] (book p. 403; PDF p. 419)\n- Statements confirmed against rendered page images during Unit 0 extraction.\n\n## Technical Analysis / Mechanism\n\nAnalysis states keyed by unbounded sets (heap addresses, strings, call strings) lose ACC even when the value lattice is tiny: in the total function space ℕ → {0 ⊑ 1} over discrete set S = ℕ, the indicator functions of {0,…,n} form a non-stabilising ascending chain, so iteration from ⊥ need not terminate (G-U0-08, G-U0-09).\n\nGuardrail: L2: before claiming termination, confirm that every map-shaped domain has a finite key set or a finite partition (summary keys), or supply a widening.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.widening` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.order.chain-condition-preservation`, `ppa.fixpoint.iteration`, `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-013.md",
    "state": "open",
    "title": "ACC is not inherited by function spaces over infinite index sets"
@@ -982,8 +982,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nrPostorder is indexed at p. 375, not at its definition (p. 421); ⨆, ⨅, ⊥, ⊤ are not indexed; Σ and Λ are reused in §C.3; ς denotes both a store and the reduction operator; entries differ only by typeface.\n\n## Source Citations & Grounding\n\n- [PPA Index of Notation, p. 432] (book p. 432; PDF p. 446)\n- [PPA Index of Notation, p. 429] (book p. 429; PDF p. 443)\n- [PPA §C.3, p. 427] (book p. 427; PDF p. 442)\n- [PPA §2.5, p. 86] (book p. 86; PDF p. 105)\n- [PPA §4.3, p. 244] (book p. 244; PDF p. 261)\n- Statements confirmed against rendered page images during Unit 0 extraction (G-U0-44, G-U0-45).\n\n## Technical Analysis / Mechanism\n\nA validator rule 'every symbol is in the index' would fail on correct content; symbols copied without typeface or scope merge distinct notions (T7).\n\nGuardrail: ontology/notation_index.md stores typeface and scope and carries an addendum of unindexed core symbols; validators never require index membership.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.graphs.regular-expressions`, `ppa.graphs.dfsf`, `ppa.notation.index`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.shape.transfer-and-materialisation`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-024\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"Index of Notation (book p. 432; PDF p. 446)\", \"Index of Notation (book p. 429; PDF p. 443)\", \"\\u00a7C.3 (book p. 427; PDF p. 442)\", \"\\u00a72.5 (book p. 86; PDF p. 105)\", \"\\u00a74.3 (book p. 244; PDF p. 261)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "bb4817825d7c3d2deae930d0ad6de5c55a2718d81d09f243fa583182311f2da2",
+   "body": "## Summary\n\nrPostorder is indexed at p. 375, not at its definition (p. 421); ⨆, ⨅, ⊥, ⊤ are not indexed; Σ and Λ are reused in §C.3; ς denotes both a store and the reduction operator; entries differ only by typeface.\n\n## Source Citations & Grounding\n\n- [PPA Index of Notation, p. 432] (book p. 432; PDF p. 446)\n- [PPA Index of Notation, p. 429] (book p. 429; PDF p. 443)\n- [PPA §C.3, p. 427] (book p. 427; PDF p. 442)\n- [PPA §2.5, p. 86] (book p. 86; PDF p. 105)\n- [PPA §4.3, p. 244] (book p. 244; PDF p. 261)\n- Statements confirmed against rendered page images during Unit 0 extraction (G-U0-44, G-U0-45).\n\n## Technical Analysis / Mechanism\n\nA validator rule 'every symbol is in the index' would fail on correct content; symbols copied without typeface or scope merge distinct notions (T7).\n\nGuardrail: ontology/notation_index.md stores typeface and scope and carries an addendum of unindexed core symbols; validators never require index membership.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.adjoint-properties-and-sign-prime` during Wave 4 (`REF-004`).\n- 2026-11-19 Gate #6 (`gate6-v2`): moved Chapter 4 concept link from `ppa.ai.adjoint-properties-and-sign-prime` to `ppa.ai.galois-insertion-and-reduction` (`ς` store vs reduction operator `p. 244`) with Ch 4 `L1`/`L2` anchors (`galois-connections-and-insertions.md`, `SKILL.md`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.graphs.regular-expressions`, `ppa.graphs.dfsf`, `ppa.notation.index`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.shape.transfer-and-materialisation`, `ppa.ai.galois-insertion-and-reduction`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-024\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"Index of Notation (book p. 432; PDF p. 446)\", \"Index of Notation (book p. 429; PDF p. 443)\", \"\\u00a7C.3 (book p. 427; PDF p. 442)\", \"\\u00a72.5 (book p. 86; PDF p. 105)\", \"\\u00a74.3 (book p. 244; PDF p. 261)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "e2efdaf72274e02f792810c8be3492858ea993b26040b4d912f92a81257a4136",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -1014,7 +1014,7 @@
     "priority": "P1",
     "status": "open",
     "title": "Index of Notation is incomplete and typeface-dependent; symbols are reused across scopes",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-024",
@@ -1030,8 +1030,8 @@
    ],
    "milestone": "W1",
    "parent_issue": "ISS-W1-01",
-   "published_body_sha256": "e5136c8c9ebdcf7d50417c77a37c5036dd2aefbbbae20a2f129f1e4d95cad151",
-   "source_body": "\n## Summary\n\nrPostorder is indexed at p. 375, not at its definition (p. 421); ⨆, ⨅, ⊥, ⊤ are not indexed; Σ and Λ are reused in §C.3; ς denotes both a store and the reduction operator; entries differ only by typeface.\n\n## Source Citations & Grounding\n\n- [PPA Index of Notation, p. 432] (book p. 432; PDF p. 446)\n- [PPA Index of Notation, p. 429] (book p. 429; PDF p. 443)\n- [PPA §C.3, p. 427] (book p. 427; PDF p. 442)\n- [PPA §2.5, p. 86] (book p. 86; PDF p. 105)\n- [PPA §4.3, p. 244] (book p. 244; PDF p. 261)\n- Statements confirmed against rendered page images during Unit 0 extraction (G-U0-44, G-U0-45).\n\n## Technical Analysis / Mechanism\n\nA validator rule 'every symbol is in the index' would fail on correct content; symbols copied without typeface or scope merge distinct notions (T7).\n\nGuardrail: ontology/notation_index.md stores typeface and scope and carries an addendum of unindexed core symbols; validators never require index membership.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.graphs.regular-expressions`, `ppa.graphs.dfsf`, `ppa.notation.index`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.shape.transfer-and-materialisation`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "c447d96952baf06706506cd925867348e1f00138f344ce6af752471aa3f91948",
+   "source_body": "\n## Summary\n\nrPostorder is indexed at p. 375, not at its definition (p. 421); ⨆, ⨅, ⊥, ⊤ are not indexed; Σ and Λ are reused in §C.3; ς denotes both a store and the reduction operator; entries differ only by typeface.\n\n## Source Citations & Grounding\n\n- [PPA Index of Notation, p. 432] (book p. 432; PDF p. 446)\n- [PPA Index of Notation, p. 429] (book p. 429; PDF p. 443)\n- [PPA §C.3, p. 427] (book p. 427; PDF p. 442)\n- [PPA §2.5, p. 86] (book p. 86; PDF p. 105)\n- [PPA §4.3, p. 244] (book p. 244; PDF p. 261)\n- Statements confirmed against rendered page images during Unit 0 extraction (G-U0-44, G-U0-45).\n\n## Technical Analysis / Mechanism\n\nA validator rule 'every symbol is in the index' would fail on correct content; symbols copied without typeface or scope merge distinct notions (T7).\n\nGuardrail: ontology/notation_index.md stores typeface and scope and carries an addendum of unindexed core symbols; validators never require index membership.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 0 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.adjoint-properties-and-sign-prime` during Wave 4 (`REF-004`).\n- 2026-11-19 Gate #6 (`gate6-v2`): moved Chapter 4 concept link from `ppa.ai.adjoint-properties-and-sign-prime` to `ppa.ai.galois-insertion-and-reduction` (`ς` store vs reduction operator `p. 244`) with Ch 4 `L1`/`L2` anchors (`galois-connections-and-insertions.md`, `SKILL.md`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.graphs.regular-expressions`, `ppa.graphs.dfsf`, `ppa.notation.index`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.shape.transfer-and-materialisation`, `ppa.ai.galois-insertion-and-reduction`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_00_appendices.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-024.md",
    "state": "open",
    "title": "Index of Notation is incomplete and typeface-dependent; symbols are reused across scopes"
@@ -1336,8 +1336,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nTermination of §1.3 relies on the finite lattice over Var⋆ × Lab⋆; α and γ in §1.5 are defined over Var × Lab, and the text switches to Var⋆, Lab⋆ only for the finite-iteration remark.\n\n## Source Citations & Grounding\n\n- [PPA §1.3, p. 7] (book p. 7; PDF p. 27)\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 17] (book p. 17; PDF p. 37)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nComparing α⃗ ∘ G ∘ γ⃗ with F (Exercise 1.4) silently mixes carriers; the mix affects finiteness, not the calculation.\n\nGuardrail: L1 states the carrier with every termination claim.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.rd-equational`, `ppa.ai.adjunction-induced-analysis`, `ppa.ai.collecting-semantics`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-029\", \"parent_issue\": \"ISS-W1-02\", \"ppa_scope\": [\"\\u00a71.3 (book p. 7; PDF p. 27)\", \"\\u00a71.5 (book p. 15; PDF p. 35)\", \"\\u00a71.5 (book p. 17; PDF p. 37)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "17f8d945cd9276353f4237db796070cf24291e8719c7481e1c74be5f75e6d523",
+   "body": "## Summary\n\nTermination of §1.3 relies on the finite lattice over Var⋆ × Lab⋆; α and γ in §1.5 are defined over Var × Lab, and the text switches to Var⋆, Lab⋆ only for the finite-iteration remark.\n\n## Source Citations & Grounding\n\n- [PPA §1.3, p. 7] (book p. 7; PDF p. 27)\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 17] (book p. 17; PDF p. 37)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nComparing α⃗ ∘ G ∘ γ⃗ with F (Exercise 1.4) silently mixes carriers; the mix affects finiteness, not the calculation.\n\nGuardrail: L1 states the carrier with every termination claim.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.galois-connection` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.rd-equational`, `ppa.ai.adjunction-induced-analysis`, `ppa.ai.collecting-semantics`, `ppa.ai.galois-connection`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-029\", \"parent_issue\": \"ISS-W1-02\", \"ppa_scope\": [\"\\u00a71.3 (book p. 7; PDF p. 27)\", \"\\u00a71.5 (book p. 15; PDF p. 35)\", \"\\u00a71.5 (book p. 17; PDF p. 37)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "9b8b852a818368c49ac46569b7dcc004c84773d7a0d5871dc78c2ca1af2f4cd4",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -1367,7 +1367,7 @@
     "priority": "P2",
     "status": "open",
     "title": "Finite carriers Var⋆ × Lab⋆ (§1.3) vs infinite Var × Lab (§1.5) in the induced analysis",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-029",
@@ -1384,8 +1384,8 @@
    ],
    "milestone": "W1",
    "parent_issue": "ISS-W1-02",
-   "published_body_sha256": "2c8c0447e201c92178d08da6a6f9cc7560e7b438d4f708cf0755f03b5ba8eca9",
-   "source_body": "\n## Summary\n\nTermination of §1.3 relies on the finite lattice over Var⋆ × Lab⋆; α and γ in §1.5 are defined over Var × Lab, and the text switches to Var⋆, Lab⋆ only for the finite-iteration remark.\n\n## Source Citations & Grounding\n\n- [PPA §1.3, p. 7] (book p. 7; PDF p. 27)\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 17] (book p. 17; PDF p. 37)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nComparing α⃗ ∘ G ∘ γ⃗ with F (Exercise 1.4) silently mixes carriers; the mix affects finiteness, not the calculation.\n\nGuardrail: L1 states the carrier with every termination claim.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.rd-equational`, `ppa.ai.adjunction-induced-analysis`, `ppa.ai.collecting-semantics`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "97847b9116267c8c4bf013ec8412ece83fdcb57832c8d9728f6e98a6e4fd507e",
+   "source_body": "\n## Summary\n\nTermination of §1.3 relies on the finite lattice over Var⋆ × Lab⋆; α and γ in §1.5 are defined over Var × Lab, and the text switches to Var⋆, Lab⋆ only for the finite-iteration remark.\n\n## Source Citations & Grounding\n\n- [PPA §1.3, p. 7] (book p. 7; PDF p. 27)\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 17] (book p. 17; PDF p. 37)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nComparing α⃗ ∘ G ∘ γ⃗ with F (Exercise 1.4) silently mixes carriers; the mix affects finiteness, not the calculation.\n\nGuardrail: L1 states the carrier with every termination claim.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.galois-connection` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.rd-equational`, `ppa.ai.adjunction-induced-analysis`, `ppa.ai.collecting-semantics`, `ppa.ai.galois-connection`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-029.md",
    "state": "open",
    "title": "Finite carriers Var⋆ × Lab⋆ (§1.3) vs infinite Var × Lab (§1.5) in the induced analysis"
@@ -1558,8 +1558,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nγ(Y) = {tr | ∀x ∈ DOM(tr) : (x, SRD(tr)(x)) ∈ Y} contains the empty trace for every Y, including ∅; the final step of the induced calculation for block 4 relies on such traces without stating it.\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nInduced transfer functions therefore generate facts even from the empty abstract state (e.g. for unreachable blocks); a restatement claiming strictness is wrong.\n\nGuardrail: L1 records the non-strictness and the implicit step.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.adjunction-induced-analysis`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-033\", \"parent_issue\": \"ISS-W1-02\", \"ppa_scope\": [\"\\u00a71.5 (book p. 15; PDF p. 35)\", \"\\u00a71.5 (book p. 16; PDF p. 36)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "ece5ffa29e7037596e641ee1cbe6a68bfa03907dab728d1cefda99c783472257",
+   "body": "## Summary\n\nγ(Y) = {tr | ∀x ∈ DOM(tr) : (x, SRD(tr)(x)) ∈ Y} contains the empty trace for every Y, including ∅; the final step of the induced calculation for block 4 relies on such traces without stating it.\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nInduced transfer functions therefore generate facts even from the empty abstract state (e.g. for unreachable blocks); a restatement claiming strictness is wrong.\n\nGuardrail: L1 records the non-strictness and the implicit step.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.galois-connection` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.adjunction-induced-analysis`, `ppa.ai.galois-connection`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-033\", \"parent_issue\": \"ISS-W1-02\", \"ppa_scope\": [\"\\u00a71.5 (book p. 15; PDF p. 35)\", \"\\u00a71.5 (book p. 16; PDF p. 36)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "2909d1a0f05bbb3f5de5ef3a5337a91a7070eb87f6c4ea32de48fa8ad7691d37",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -1588,7 +1588,7 @@
     "priority": "P2",
     "status": "open",
     "title": "Induced analysis is not strict: γ(∅) contains the empty trace",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-033",
@@ -1605,8 +1605,8 @@
    ],
    "milestone": "W1",
    "parent_issue": "ISS-W1-02",
-   "published_body_sha256": "be3740e573c2349fa3ff40713ea1df43b8b966dacea504ef7fe854e1c627e9b4",
-   "source_body": "\n## Summary\n\nγ(Y) = {tr | ∀x ∈ DOM(tr) : (x, SRD(tr)(x)) ∈ Y} contains the empty trace for every Y, including ∅; the final step of the induced calculation for block 4 relies on such traces without stating it.\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nInduced transfer functions therefore generate facts even from the empty abstract state (e.g. for unreachable blocks); a restatement claiming strictness is wrong.\n\nGuardrail: L1 records the non-strictness and the implicit step.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.adjunction-induced-analysis`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "ad1fe5b19d7afe937e19898d6f7a1659865d3351ac35dbd84dec680bc68257d5",
+   "source_body": "\n## Summary\n\nγ(Y) = {tr | ∀x ∈ DOM(tr) : (x, SRD(tr)(x)) ∈ Y} contains the empty trace for every Y, including ∅; the final step of the induced calculation for block 4 relies on such traces without stating it.\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 15] (book p. 15; PDF p. 35)\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- Statements confirmed against rendered page images during Unit 1 extraction.\n\n## Technical Analysis / Mechanism\n\nInduced transfer functions therefore generate facts even from the empty abstract state (e.g. for unreachable blocks); a restatement claiming strictness is wrong.\n\nGuardrail: L1 records the non-strictness and the implicit step.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent Unit 1 extractions; candidates merged and deduplicated; statements confirmed against page images. Synced `ppa.ai.galois-connection` during Wave 4 (`REF-004`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.adjunction-induced-analysis`, `ppa.ai.galois-connection`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_01_intro.md`\n- Parent shard: ISS-W1-02\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-033.md",
    "state": "open",
    "title": "Induced analysis is not strict: γ(∅) contains the empty trace"
@@ -3888,13 +3888,17 @@
    "blocks": [
     "ISS-W4-02"
    ],
-   "body": "## Summary\n\nExtract correctness relations/representation functions, widening and narrowing operators, Galois connections and insertions.\n\n## Source Citations & Grounding\n\n- §4.1 A Mundane Approach to Correctness (book pp. 211–220; PDF pp. 228–237)\n- §4.2 Approximation of Fixed Points (book pp. 221–232; PDF pp. 238–249)\n- §4.3 Galois Connections (book pp. 233–245; PDF pp. 250–262)\n- Figures in scope: Figure 4.1 (p. 218/PDF 235), Figure 4.2 (p. 221/PDF 238), Figure 4.3 (p. 224/PDF 241), Figure 4.4 (p. 226/PDF 243), Figure 4.5 (p. 231/PDF 248), Figure 4.6 (p. 235/PDF 252), Figure 4.7 (p. 238/PDF 255), Figure 4.8 (p. 243/PDF 260), Figure 4.9 (p. 245/PDF 262)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 211–245 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 0 tables and 9 figures in book pp. 211–245 are anchored (no omissions)\n- [ ] Artifact `corpus/shards/RAW_SHARD_04a_galois_widening.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-02; blocks: ISS-W4-02\n- `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W4-02\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W3-02\"], \"id\": \"ISS-W4-01\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a74.1 A Mundane Approach to Correctness (book pp. 211\\u2013220; PDF pp. 228\\u2013237)\", \"\\u00a74.2 Approximation of Fixed Points (book pp. 221\\u2013232; PDF pp. 238\\u2013249)\", \"\\u00a74.3 Galois Connections (book pp. 233\\u2013245; PDF pp. 250\\u2013262)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "9abbcebf507bee478f229f768ec4f56f8889b22f559bb0ad12b8c1ad2279f21f",
+   "body": "## Summary\n\nExtract correctness relations/representation functions, widening and narrowing operators, Galois connections and insertions.\n\n## Source Citations & Grounding\n\n- §4.1 A Mundane Approach to Correctness (book pp. 211–220; PDF pp. 228–237)\n- §4.2 Approximation of Fixed Points (book pp. 221–232; PDF pp. 238–249)\n- §4.3 Galois Connections (book pp. 233–245; PDF pp. 250–262)\n- Figures in scope: Figure 4.1 (p. 218/PDF 235), Figure 4.2 (p. 221/PDF 238), Figure 4.3 (p. 224/PDF 241), Figure 4.4 (p. 226/PDF 243), Figure 4.5 (p. 231/PDF 248), Figure 4.6 (p. 235/PDF 252), Figure 4.7 (p. 238/PDF 255), Figure 4.8 (p. 243/PDF 260), Figure 4.9 (p. 245/PDF 262)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 211–245 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 0 tables and 9 figures in book pp. 211–245 are anchored (no omissions)\n- [x] Artifact `corpus/shards/RAW_SHARD_04a_galois_widening.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 4a extraction merged and pre-audited against rendered page images (`PDF pp. 228–263`) into `corpus/shards/RAW_SHARD_04a_galois_widening.md` (`971` lines, `24/24` `G-U4a-01..24`, `9/9` `Figures 4.1–4.9`, `10/10` displays `(4.1)–(4.10)`, `32/32` contiguous `Statements 4.1–4.32`), integrated into `ppa-abstract-interpretation/`, `BKL-001`, `BKL-002`, `BKL-067..069`, and `113`-node `ontology/concept_graph.json`. Staged for Gate #6 (`gate6-v1`).\n- 2026-11-19 Gate #6 Round 1 remediation (`gate6-v2`): converted all `44` plural page-range companion tokens in `RAW_SHARD_04a_galois_widening.md` (`971` lines) to paired singular companions (`F-OJ-603`), tagged `[external: CFG loop-cutset]` in `RAW_SHARD_04a_galois_widening.md:834` and `correctness-and-fixed-points.md:249` (`F-FJ-603`), replaced bogus `BKL-024` spacing note with `ς`/`ϕ`/`Δ` scope collisions and aligned `BKL-024` to `ppa.ai.galois-insertion-and-reduction` (`F-FJ-601`), updated `BKL-013/024/029/033/067..069` (`0` unit-4 staging refs, distinct mechanisms, complete `p. 229` and `§4.2 pp. 223, 226` citations and `L1`/`L2` anchors); full `13`-finding table recorded in `ISS-W4-02.md`.\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-02; blocks: ISS-W4-02\n- `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`\n- `issues/backlog/BKL-067.md` .. `issues/backlog/BKL-069.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Unit 4a shard corpus/shards/RAW_SHARD_04a_galois_widening.md (971L, 24/24 G-U4a-01..24, Figures 4.1-4.9, Statements 4.1-4.32) integrated into ppa-abstract-interpretation/ and 113-node ontology/concept_graph.json for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2) applied across RAW_SHARD_04a_galois_widening.md (971L, 0 plural book-pp tokens), correctness-and-fixed-points.md (260L), and BKL-013/024/029/033/067..069 for Gate #6 Round 2.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; RAW_SHARD_04a (971L, 0 plural book-pp), validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W4-02\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W3-02\"], \"id\": \"ISS-W4-01\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a74.1 A Mundane Approach to Correctness (book pp. 211\\u2013220; PDF pp. 228\\u2013237)\", \"\\u00a74.2 Approximation of Fixed Points (book pp. 221\\u2013232; PDF pp. 238\\u2013249)\", \"\\u00a74.3 Galois Connections (book pp. 233\\u2013245; PDF pp. 250\\u2013262)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "73f62aab237a14656f0cfca4c1730ab2f9eb54827045105d703cb9946779912b",
    "depends_on": [
     "ISS-W3-02"
    ],
    "frontmatter": {
-    "aligned_models": [],
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
     "altitudes": [
      "L1",
      "L2",
@@ -3922,9 +3926,9 @@
      "§4.3 Galois Connections (book pp. 233–245; PDF pp. 250–262)"
     ],
     "priority": "P0",
-    "status": "open",
+    "status": "closed",
     "title": "W4-1 Ch 4a §4.1–4.3 correctness relations, widening/narrowing, Galois connections",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "ISS-W4-01",
@@ -3934,22 +3938,22 @@
     "altitude:L3",
     "ppa",
     "priority:P0",
-    "status:open",
+    "status:closed",
     "type:shard",
     "wave-4"
    ],
    "milestone": "W4",
    "parent_issue": "EPIC-001",
-   "published_body_sha256": "7dc136cdc5065610113c404d5cb0ca9ea01e5230e3c1c173ea7ec657fc9b3f5a",
-   "source_body": "\n## Summary\n\nExtract correctness relations/representation functions, widening and narrowing operators, Galois connections and insertions.\n\n## Source Citations & Grounding\n\n- §4.1 A Mundane Approach to Correctness (book pp. 211–220; PDF pp. 228–237)\n- §4.2 Approximation of Fixed Points (book pp. 221–232; PDF pp. 238–249)\n- §4.3 Galois Connections (book pp. 233–245; PDF pp. 250–262)\n- Figures in scope: Figure 4.1 (p. 218/PDF 235), Figure 4.2 (p. 221/PDF 238), Figure 4.3 (p. 224/PDF 241), Figure 4.4 (p. 226/PDF 243), Figure 4.5 (p. 231/PDF 248), Figure 4.6 (p. 235/PDF 252), Figure 4.7 (p. 238/PDF 255), Figure 4.8 (p. 243/PDF 260), Figure 4.9 (p. 245/PDF 262)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 211–245 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 0 tables and 9 figures in book pp. 211–245 are anchored (no omissions)\n- [ ] Artifact `corpus/shards/RAW_SHARD_04a_galois_widening.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-02; blocks: ISS-W4-02\n- `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "31f806dd25c73fe4291a54b4f1dc3362124cae10efbc08d0783d3455e1952df7",
+   "source_body": "\n## Summary\n\nExtract correctness relations/representation functions, widening and narrowing operators, Galois connections and insertions.\n\n## Source Citations & Grounding\n\n- §4.1 A Mundane Approach to Correctness (book pp. 211–220; PDF pp. 228–237)\n- §4.2 Approximation of Fixed Points (book pp. 221–232; PDF pp. 238–249)\n- §4.3 Galois Connections (book pp. 233–245; PDF pp. 250–262)\n- Figures in scope: Figure 4.1 (p. 218/PDF 235), Figure 4.2 (p. 221/PDF 238), Figure 4.3 (p. 224/PDF 241), Figure 4.4 (p. 226/PDF 243), Figure 4.5 (p. 231/PDF 248), Figure 4.6 (p. 235/PDF 252), Figure 4.7 (p. 238/PDF 255), Figure 4.8 (p. 243/PDF 260), Figure 4.9 (p. 245/PDF 262)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 211–245 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 0 tables and 9 figures in book pp. 211–245 are anchored (no omissions)\n- [x] Artifact `corpus/shards/RAW_SHARD_04a_galois_widening.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 4a extraction merged and pre-audited against rendered page images (`PDF pp. 228–263`) into `corpus/shards/RAW_SHARD_04a_galois_widening.md` (`971` lines, `24/24` `G-U4a-01..24`, `9/9` `Figures 4.1–4.9`, `10/10` displays `(4.1)–(4.10)`, `32/32` contiguous `Statements 4.1–4.32`), integrated into `ppa-abstract-interpretation/`, `BKL-001`, `BKL-002`, `BKL-067..069`, and `113`-node `ontology/concept_graph.json`. Staged for Gate #6 (`gate6-v1`).\n- 2026-11-19 Gate #6 Round 1 remediation (`gate6-v2`): converted all `44` plural page-range companion tokens in `RAW_SHARD_04a_galois_widening.md` (`971` lines) to paired singular companions (`F-OJ-603`), tagged `[external: CFG loop-cutset]` in `RAW_SHARD_04a_galois_widening.md:834` and `correctness-and-fixed-points.md:249` (`F-FJ-603`), replaced bogus `BKL-024` spacing note with `ς`/`ϕ`/`Δ` scope collisions and aligned `BKL-024` to `ppa.ai.galois-insertion-and-reduction` (`F-FJ-601`), updated `BKL-013/024/029/033/067..069` (`0` unit-4 staging refs, distinct mechanisms, complete `p. 229` and `§4.2 pp. 223, 226` citations and `L1`/`L2` anchors); full `13`-finding table recorded in `ISS-W4-02.md`.\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-02; blocks: ISS-W4-02\n- `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`\n- `issues/backlog/BKL-067.md` .. `issues/backlog/BKL-069.md`\n\n## Verification Receipts\n- 2026-11-19 [in_progress] Unit 4a shard corpus/shards/RAW_SHARD_04a_galois_widening.md (971L, 24/24 G-U4a-01..24, Figures 4.1-4.9, Statements 4.1-4.32) integrated into ppa-abstract-interpretation/ and 113-node ontology/concept_graph.json for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2) applied across RAW_SHARD_04a_galois_widening.md (971L, 0 plural book-pp tokens), correctness-and-fixed-points.md (260L), and BKL-013/024/029/033/067..069 for Gate #6 Round 2.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; RAW_SHARD_04a (971L, 0 plural book-pp), validators, hygiene, and 47/47 unit tests PASS.",
    "source_path": "issues/shards/ISS-W4-01.md",
-   "state": "open",
+   "state": "closed",
    "title": "W4-1 Ch 4a §4.1–4.3 correctness relations, widening/narrowing, Galois connections"
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nThe book evaluates arithmetic over unbounded integers and states that no errors can occur (division by 0 must still produce an integer); the Interval lattice ranges over integers extended with infinities. [external] Machine arithmetic wraps modulo 2^w or is undefined on signed overflow; the book does not discuss machine arithmetic.\n\n## Source Citations & Grounding\n\n- [PPA Table 2.5, p. 55] (book p. 55; PDF p. 74)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] An Interval transfer function sound over the integers is unsound over 32/64-bit two's-complement values: [0, MAX] + [1, 1] is [1, MAX+1] mathematically but wraps negative at runtime, defeating upper-bound checks; folding that relies on signed-overflow UB can delete overflow guards.\n\nGuardrail: L2 procedures that reuse Interval/Sign analyses on machine integers must state the wrap-around model (wrapped intervals [external]) or add explicit overflow proof obligations; division by zero is a fault sink.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.dfa.while-semantics`, `ppa.ai.interval-lattice`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-001\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"Table 2.5 (book p. 55; PDF p. 74)\", \"\\u00a74.2 (book p. 221; PDF p. 238)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "b7e28a7a85d1d1686eca48e49292b2ee5bcc46fe5af71ad9b8e9f0e166f6bde0",
+   "body": "## Summary\n\nThe book evaluates arithmetic over unbounded integers and states that no errors can occur (division by 0 must still produce an integer); the Interval lattice ranges over integers extended with infinities. [external] Machine arithmetic wraps modulo 2^w or is undefined on signed overflow; the book does not discuss machine arithmetic.\n\n## Source Citations & Grounding\n\n- [PPA Table 2.5, p. 55] (book p. 55; PDF p. 74)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] An Interval transfer function sound over the integers is unsound over 32/64-bit two's-complement values: [0, MAX] + [1, 1] is [1, MAX+1] mathematically but wraps negative at runtime, defeating upper-bound checks; folding that relies on signed-overflow UB can delete overflow guards.\n\nGuardrail: L2 procedures that reuse Interval/Sign analyses on machine integers must state the wrap-around model (wrapped intervals [external]) or add explicit overflow proof obligations; division by zero is a fault sink.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 4 integration (`REF-004`) across Chapters 2 and 4; awaits Gate #6 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.while-sos`, `ppa.dfa.available-expressions`, `ppa.dfa.very-busy-expressions`, `ppa.dfa.constant-propagation`, `ppa.ai.interval-lattice`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-001\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"Table 2.5 (book p. 55; PDF p. 74)\", \"\\u00a74.2 (book p. 221; PDF p. 238)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "f30e5de1fa5f6cfc3279a2bdb1aacef4f57c95a72098cc846b64441c67d11a3e",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -3978,7 +3982,7 @@
     "priority": "P1",
     "status": "open",
     "title": "Unbounded integers and error-free expressions vs machine bit-vectors and undefined behaviour",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-001",
@@ -3995,16 +3999,16 @@
    ],
    "milestone": "W4",
    "parent_issue": "ISS-W4-01",
-   "published_body_sha256": "1370a87cf20293f5babb3c4bb0811943a2c09ba23d583705e71d45e05bbdd12f",
-   "source_body": "\n## Summary\n\nThe book evaluates arithmetic over unbounded integers and states that no errors can occur (division by 0 must still produce an integer); the Interval lattice ranges over integers extended with infinities. [external] Machine arithmetic wraps modulo 2^w or is undefined on signed overflow; the book does not discuss machine arithmetic.\n\n## Source Citations & Grounding\n\n- [PPA Table 2.5, p. 55] (book p. 55; PDF p. 74)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] An Interval transfer function sound over the integers is unsound over 32/64-bit two's-complement values: [0, MAX] + [1, 1] is [1, MAX+1] mathematically but wraps negative at runtime, defeating upper-bound checks; folding that relies on signed-overflow UB can delete overflow guards.\n\nGuardrail: L2 procedures that reuse Interval/Sign analyses on machine integers must state the wrap-around model (wrapped intervals [external]) or add explicit overflow proof obligations; division by zero is a fault sink.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.dfa.while-semantics`, `ppa.ai.interval-lattice`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "1a58692ef9019b200a9688f45535000303f13ea8c67775f881a2dc93aea7647e",
+   "source_body": "\n## Summary\n\nThe book evaluates arithmetic over unbounded integers and states that no errors can occur (division by 0 must still produce an integer); the Interval lattice ranges over integers extended with infinities. [external] Machine arithmetic wraps modulo 2^w or is undefined on signed overflow; the book does not discuss machine arithmetic.\n\n## Source Citations & Grounding\n\n- [PPA Table 2.5, p. 55] (book p. 55; PDF p. 74)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] An Interval transfer function sound over the integers is unsound over 32/64-bit two's-complement values: [0, MAX] + [1, 1] is [1, MAX+1] mathematically but wraps negative at runtime, defeating upper-bound checks; folding that relies on signed-overflow UB can delete overflow guards.\n\nGuardrail: L2 procedures that reuse Interval/Sign analyses on machine integers must state the wrap-around model (wrapped intervals [external]) or add explicit overflow proof obligations; division by zero is a fault sink.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 4 integration (`REF-004`) across Chapters 2 and 4; awaits Gate #6 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.while-sos`, `ppa.dfa.available-expressions`, `ppa.dfa.very-busy-expressions`, `ppa.dfa.constant-propagation`, `ppa.ai.interval-lattice`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-001.md",
    "state": "open",
    "title": "Unbounded integers and error-free expressions vs machine bit-vectors and undefined behaviour"
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nUpper bound operators (and hence widenings) are explicitly not required to be monotone, commutative, associative or absorptive.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 225] (book p. 225; PDF p. 242)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Chapter 6 Exercises, p. 391] (book p. 391; PDF p. 407)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nA widening operator is an upper bound operator [PPA §4.2, p. 226] (book p. 226; PDF p. 243), and upper bound operators are not required to be monotone [PPA §4.2, p. 225] (book p. 225; PDF p. 242). A summary that treats widening as monotone therefore states a property the book does not give: a larger input to ∇ need not give a larger result, and ∇ need not be commutative (the book's interval example on p. 225 gives different results for swapped arguments), so precision of the widened iteration can depend on the order in which values arrive. Exercise 6.13 asks for a worklist algorithm with widening and for proofs that it over-approximates the least solution and terminates even without the Ascending Chain Condition. Note that x ⊔ (x ∇ y) = x ∇ y, because x ∇ y ⊒ x for an upper bound operator; that wrapping is not a hazard.\n\nGuardrail: L2: never claim that a widening operator is monotone, commutative, associative or absorptive; quote the termination argument for the widened iteration, not a monotonicity argument. [external] In chaotic-iteration solvers, apply widening only at cycle cut points (e.g. targets of back edges for a depth-first spanning forest) and follow with narrowing where precision matters.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.ai.widening`, `ppa.solvers.worklist`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-002\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"\\u00a74.2 (book p. 225; PDF p. 242)\", \"\\u00a74.2 (book p. 226; PDF p. 243)\", \"Chapter 6 Exercises (book p. 391; PDF p. 407)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "e68a5978bd3d0bcdee606f09b3d1c775a675b4f59fe633472515cfc95011782b",
+   "body": "## Summary\n\nUpper bound operators (and hence widenings) are explicitly not required to be monotone, commutative, associative or absorptive.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 225] (book p. 225; PDF p. 242)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Chapter 6 Exercises, p. 391] (book p. 391; PDF p. 407)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nA widening operator is an upper bound operator [PPA §4.2, p. 226] (book p. 226; PDF p. 243), and upper bound operators are not required to be monotone [PPA §4.2, p. 225] (book p. 225; PDF p. 242). A summary that treats widening as monotone therefore states a property the book does not give: a larger input to ∇ need not give a larger result, and ∇ need not be commutative (the book's interval example on p. 225 gives different results for swapped arguments), so precision of the widened iteration can depend on the order in which values arrive. Exercise 6.13 asks for a worklist algorithm with widening and for proofs that it over-approximates the least solution and terminates even without the Ascending Chain Condition. Note that x ⊔ (x ∇ y) = x ∇ y, because x ∇ y ⊒ x for an upper bound operator; that wrapping is not a hazard.\n\nGuardrail: L2: never claim that a widening operator is monotone, commutative, associative or absorptive; quote the termination argument for the widened iteration, not a monotonicity argument. [external] In chaotic-iteration solvers, apply widening only at cycle cut points (e.g. targets of back edges for a depth-first spanning forest) and follow with narrowing where precision matters.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 4 integration (`REF-004`; `Exercise 6.13` solver linkage queued for `ISS-W6-01`); awaits Gate #6 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-002\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"\\u00a74.2 (book p. 225; PDF p. 242)\", \"\\u00a74.2 (book p. 226; PDF p. 243)\", \"Chapter 6 Exercises (book p. 391; PDF p. 407)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "4bb48053db48256315d36a7db22d8077684206451dde9809b5ca3ecb8cd57a24",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -4034,7 +4038,7 @@
     "priority": "P1",
     "status": "open",
     "title": "Widening operators are not required to be monotone: placement and precision hazards",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-002",
@@ -4051,23 +4055,201 @@
    ],
    "milestone": "W4",
    "parent_issue": "ISS-W4-01",
-   "published_body_sha256": "eaf6e83099cb8e5de68044f39d8c03bd4c272fa82822a7c3af1f2aa6f3f2c778",
-   "source_body": "\n## Summary\n\nUpper bound operators (and hence widenings) are explicitly not required to be monotone, commutative, associative or absorptive.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 225] (book p. 225; PDF p. 242)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Chapter 6 Exercises, p. 391] (book p. 391; PDF p. 407)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nA widening operator is an upper bound operator [PPA §4.2, p. 226] (book p. 226; PDF p. 243), and upper bound operators are not required to be monotone [PPA §4.2, p. 225] (book p. 225; PDF p. 242). A summary that treats widening as monotone therefore states a property the book does not give: a larger input to ∇ need not give a larger result, and ∇ need not be commutative (the book's interval example on p. 225 gives different results for swapped arguments), so precision of the widened iteration can depend on the order in which values arrive. Exercise 6.13 asks for a worklist algorithm with widening and for proofs that it over-approximates the least solution and terminates even without the Ascending Chain Condition. Note that x ⊔ (x ∇ y) = x ∇ y, because x ∇ y ⊒ x for an upper bound operator; that wrapping is not a hazard.\n\nGuardrail: L2: never claim that a widening operator is monotone, commutative, associative or absorptive; quote the termination argument for the widened iteration, not a monotonicity argument. [external] In chaotic-iteration solvers, apply widening only at cycle cut points (e.g. targets of back edges for a depth-first spanning forest) and follow with narrowing where precision matters.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.ai.widening`, `ppa.solvers.worklist`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "f4f9b7445d21a17a90bb3a975cd9b44ea95a22a1e6172827a43a8d316a83db79",
+   "source_body": "\n## Summary\n\nUpper bound operators (and hence widenings) are explicitly not required to be monotone, commutative, associative or absorptive.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 225] (book p. 225; PDF p. 242)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Chapter 6 Exercises, p. 391] (book p. 391; PDF p. 407)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nA widening operator is an upper bound operator [PPA §4.2, p. 226] (book p. 226; PDF p. 243), and upper bound operators are not required to be monotone [PPA §4.2, p. 225] (book p. 225; PDF p. 242). A summary that treats widening as monotone therefore states a property the book does not give: a larger input to ∇ need not give a larger result, and ∇ need not be commutative (the book's interval example on p. 225 gives different results for swapped arguments), so precision of the widened iteration can depend on the order in which values arrive. Exercise 6.13 asks for a worklist algorithm with widening and for proofs that it over-approximates the least solution and terminates even without the Ascending Chain Condition. Note that x ⊔ (x ∇ y) = x ∇ y, because x ∇ y ⊒ x for an upper bound operator; that wrapping is not a hazard.\n\nGuardrail: L2: never claim that a widening operator is monotone, commutative, associative or absorptive; quote the termination argument for the widened iteration, not a monotonicity argument. [external] In chaotic-iteration solvers, apply widening only at cycle cut points (e.g. targets of back edges for a depth-first spanning forest) and follow with narrowing where precision matters.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 4 integration (`REF-004`; `Exercise 6.13` solver linkage queued for `ISS-W6-01`); awaits Gate #6 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-002.md",
    "state": "open",
    "title": "Widening operators are not required to be monotone: placement and precision hazards"
   },
   {
+   "blocks": [],
+   "body": "## Summary\n\nBook p. 230 remarks that narrowing Delta is not required to be absorptive (l Delta l = l), yet instantiating l_2 <= l_1 => l_2 <= (l_1 Delta l_2) <= l_1 at l_1 = l_2 = l forces l <= l Delta l <= l, so l Delta l = l always holds.\n\n## Source Citations & Grounding\n\n- [PPA §4.2.2, p. 230] (book p. 230; PDF p. 247)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nSection 4.2.2 axiomatically requires l_2 <= l_1 => l_2 <= (l_1 Delta l_2) <= l_1 plus descending chain stabilisation, then asserts in prose (p. 230) that Delta need not be absorptive (l Delta l = l). Evaluating the contractiveness axiom at the reflexive pair l_1 = l_2 = l forces l <= (l Delta l) <= l and hence l Delta l = l by antisymmetry, which explains why ([f]_Delta^n)_n needs no reductive if-guard inside Red(f).\n\nGuardrail: Treat every contractive narrowing operator as unconditionally absorptive on diagonal inputs (l Delta l = l) and enter narrowing strictly inside Red(f) (Refs: F-U4a-07, G-U4a-14).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-07, G-U4a-14); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.narrowing-and-truncators`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-067\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"\\u00a74.2.2 (book p. 230; PDF p. 247)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "1c6b703c4a15b6121087a5523ddff2eb22b0ba313a7250086fc56b58b96d0a1f",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-067",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-01",
+    "ppa_scope": [
+     "§4.2.2 (book p. 230; PDF p. 247)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Section 4.2.2 states narrowing need not be absorptive, but contractiveness forces l Delta l = l",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-067",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-01",
+   "published_body_sha256": "b48ecb0e7786004234d8567760d9bf26019236f96eb2b338cc60fa9a21263fdd",
+   "source_body": "\n## Summary\n\nBook p. 230 remarks that narrowing Delta is not required to be absorptive (l Delta l = l), yet instantiating l_2 <= l_1 => l_2 <= (l_1 Delta l_2) <= l_1 at l_1 = l_2 = l forces l <= l Delta l <= l, so l Delta l = l always holds.\n\n## Source Citations & Grounding\n\n- [PPA §4.2.2, p. 230] (book p. 230; PDF p. 247)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nSection 4.2.2 axiomatically requires l_2 <= l_1 => l_2 <= (l_1 Delta l_2) <= l_1 plus descending chain stabilisation, then asserts in prose (p. 230) that Delta need not be absorptive (l Delta l = l). Evaluating the contractiveness axiom at the reflexive pair l_1 = l_2 = l forces l <= (l Delta l) <= l and hence l Delta l = l by antisymmetry, which explains why ([f]_Delta^n)_n needs no reductive if-guard inside Red(f).\n\nGuardrail: Treat every contractive narrowing operator as unconditionally absorptive on diagonal inputs (l Delta l = l) and enter narrowing strictly inside Red(f) (Refs: F-U4a-07, G-U4a-14).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-07, G-U4a-14); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.narrowing-and-truncators`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-067.md",
+   "state": "open",
+   "title": "Section 4.2.2 states narrowing need not be absorptive, but contractiveness forces l Delta l = l"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nExample 4.15 special-cases only int_1 = int_2 = bot; for int_1 = bot and int_2 = [z_3, z_4], inf(bot) = inf > z_3 and sup(bot) = -inf < z_4 trigger LB_K(inf, z_3) and UB_K(-inf, z_4) (giving [-inf, inf] when K = empty).\n\n## Source Citations & Grounding\n\n- [PPA Example 4.15, p. 228] (book p. 228; PDF p. 245)\n- [PPA Example 4.15, p. 229] (book p. 229; PDF p. 246)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nOn p. 229, Example 4.15's piecewise int_1 nabla_K int_2 formula filters out only the double-bottom pair int_1 = int_2 = bot before branching to [LB_K(inf(int_1), inf(int_2)), UB_K(sup(int_1), sup(int_2))]. Because Example 4.10 defines inf(bot) = inf and sup(bot) = -inf, step 1 with int_1 = bot and int_2 = [z_3, z_4] satisfies inf(bot) > z_3 and sup(bot) < z_4, immediately jumping to [-inf, inf] when K = empty.\n\nGuardrail: Enforce bot nabla_K int_2 = int_2 and int_1 nabla_K bot = int_1 short-circuits in all interval widenings (cf. Exercise 4.6(4)) (Refs: F-U4a-05, G-U4a-13).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-05, G-U4a-13); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-068\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"Example 4.15 (book p. 228; PDF p. 245)\", \"Example 4.15 (book p. 229; PDF p. 246)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "c7550a6c4a067176c0294e29f270808234bb20ee39fff6e8746eca841d22fd4a",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-068",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-01",
+    "ppa_scope": [
+     "Example 4.15 (book p. 228; PDF p. 245)",
+     "Example 4.15 (book p. 229; PDF p. 246)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Example 4.15 threshold widening nabla_K jumps bot nabla_K [z_3, z_4] to [-inf, inf] without bot short-circuit",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-068",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-01",
+   "published_body_sha256": "668e9420d5ef799e84116c8f91ec4404db156ce5cc720d3bc6a69ab8d93af3cc",
+   "source_body": "\n## Summary\n\nExample 4.15 special-cases only int_1 = int_2 = bot; for int_1 = bot and int_2 = [z_3, z_4], inf(bot) = inf > z_3 and sup(bot) = -inf < z_4 trigger LB_K(inf, z_3) and UB_K(-inf, z_4) (giving [-inf, inf] when K = empty).\n\n## Source Citations & Grounding\n\n- [PPA Example 4.15, p. 228] (book p. 228; PDF p. 245)\n- [PPA Example 4.15, p. 229] (book p. 229; PDF p. 246)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nOn p. 229, Example 4.15's piecewise int_1 nabla_K int_2 formula filters out only the double-bottom pair int_1 = int_2 = bot before branching to [LB_K(inf(int_1), inf(int_2)), UB_K(sup(int_1), sup(int_2))]. Because Example 4.10 defines inf(bot) = inf and sup(bot) = -inf, step 1 with int_1 = bot and int_2 = [z_3, z_4] satisfies inf(bot) > z_3 and sup(bot) < z_4, immediately jumping to [-inf, inf] when K = empty.\n\nGuardrail: Enforce bot nabla_K int_2 = int_2 and int_1 nabla_K bot = int_1 short-circuits in all interval widenings (cf. Exercise 4.6(4)) (Refs: F-U4a-05, G-U4a-13).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-05, G-U4a-13); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-068.md",
+   "state": "open",
+   "title": "Example 4.15 threshold widening nabla_K jumps bot nabla_K [z_3, z_4] to [-inf, inf] without bot short-circuit"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nPropositions 4.13 and 4.17 inherit f-monotonicity from §4.2 prose (pp. 223, 226) without restating it in their standalone theorem boxes (and Prop 4.17's proof omits citing it); Lemma 4.16 basis (p. 231) prints symbolic n instead of 0; Proposition 4.44(ii) (p. 268) omits n_0 >= 1 when invoking gamma o alpha o gamma = gamma.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 223] (book p. 223; PDF p. 240)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Proposition 4.13, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.16, p. 231] (book p. 231; PDF p. 248)\n- [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249)\n- [PPA Proposition 4.44, p. 268] (book p. 268; PDF p. 285)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nWithin §4.2, prose on pp. 223 and 226 assumes monotone f : L -> L globally, so standalone boxes of Propositions 4.13 and 4.17 (and 4.17's proof) omit restating f-monotonicity; dropping monotonicity breaks both inductive bounds on f_nabla^m and lfp_nabla^Delta(f). On p. 231, Lemma 4.16 leaves basis step n uninstantiated for n = 0, and on p. 268 Proposition 4.44(ii) applies gamma o alpha o gamma = gamma from n >= n_0 without pinning n_0 >= 1 when l_0 notin gamma[M].\n\nGuardrail: State f-monotonicity explicitly on standalone widening/narrowing claims, instantiate Lemma 4.16's basis at n = 0, and clamp Proposition 4.44(ii) step indices at max(n_0, 1) (Refs: F-U4a-06, F-U4a-08, F-U4b-05, G-U4a-12, G-U4a-15).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-06, F-U4a-08, F-U4b-05, G-U4a-12, G-U4a-15); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`, `ppa.ai.narrowing-and-truncators`, `ppa.ai.gamma-induced-widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`, `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`, `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-069\", \"parent_issue\": \"ISS-W4-01\", \"ppa_scope\": [\"\\u00a74.2 (book p. 223; PDF p. 240)\", \"\\u00a74.2 (book p. 226; PDF p. 243)\", \"Proposition 4.13 (book p. 227; PDF p. 244)\", \"Lemma 4.16 (book p. 231; PDF p. 248)\", \"Proposition 4.17 (book p. 232; PDF p. 249)\", \"Proposition 4.44 (book p. 268; PDF p. 285)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "3c334e5776f092e83f31bddf3a1c3d2538c5302b246286d00ca28aacf92569ce",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-069",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-01",
+    "ppa_scope": [
+     "§4.2 (book p. 223; PDF p. 240)",
+     "§4.2 (book p. 226; PDF p. 243)",
+     "Proposition 4.13 (book p. 227; PDF p. 244)",
+     "Lemma 4.16 (book p. 231; PDF p. 248)",
+     "Proposition 4.17 (book p. 232; PDF p. 249)",
+     "Proposition 4.44 (book p. 268; PDF p. 285)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Prop 4.13/4.17 boxes omit f-monotonicity; Lemma 4.16 basis prints n; Prop 4.44(ii) omits n_0 >= 1",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-069",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:edge_case",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-01",
+   "published_body_sha256": "af048231692f95ff01c5e11cb02dac578ff0a1651c00aac9e07b2f4a14ac1f2f",
+   "source_body": "\n## Summary\n\nPropositions 4.13 and 4.17 inherit f-monotonicity from §4.2 prose (pp. 223, 226) without restating it in their standalone theorem boxes (and Prop 4.17's proof omits citing it); Lemma 4.16 basis (p. 231) prints symbolic n instead of 0; Proposition 4.44(ii) (p. 268) omits n_0 >= 1 when invoking gamma o alpha o gamma = gamma.\n\n## Source Citations & Grounding\n\n- [PPA §4.2, p. 223] (book p. 223; PDF p. 240)\n- [PPA §4.2, p. 226] (book p. 226; PDF p. 243)\n- [PPA Proposition 4.13, p. 227] (book p. 227; PDF p. 244)\n- [PPA Lemma 4.16, p. 231] (book p. 231; PDF p. 248)\n- [PPA Proposition 4.17, p. 232] (book p. 232; PDF p. 249)\n- [PPA Proposition 4.44, p. 268] (book p. 268; PDF p. 285)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nWithin §4.2, prose on pp. 223 and 226 assumes monotone f : L -> L globally, so standalone boxes of Propositions 4.13 and 4.17 (and 4.17's proof) omit restating f-monotonicity; dropping monotonicity breaks both inductive bounds on f_nabla^m and lfp_nabla^Delta(f). On p. 231, Lemma 4.16 leaves basis step n uninstantiated for n = 0, and on p. 268 Proposition 4.44(ii) applies gamma o alpha o gamma = gamma from n >= n_0 without pinning n_0 >= 1 when l_0 notin gamma[M].\n\nGuardrail: State f-monotonicity explicitly on standalone widening/narrowing claims, instantiate Lemma 4.16's basis at n = 0, and clamp Proposition 4.44(ii) step indices at max(n_0, 1) (Refs: F-U4a-06, F-U4a-08, F-U4b-05, G-U4a-12, G-U4a-15).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4a-06, F-U4a-08, F-U4b-05, G-U4a-12, G-U4a-15); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.widening`, `ppa.ai.narrowing-and-truncators`, `ppa.ai.gamma-induced-widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`, `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04a_galois_widening.md`, `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-069.md",
+   "state": "open",
+   "title": "Prop 4.13/4.17 boxes omit f-monotonicity; Lemma 4.16 basis prints n; Prop 4.44(ii) omits n_0 >= 1"
+  },
+  {
    "blocks": [
     "ISS-W5-01"
    ],
-   "body": "## Summary\n\nExtract systematic Galois-connection design and induced operations; synthesize the Chapter 4 skill; refactor; Gate #6.\n\n## Source Citations & Grounding\n\n- §4.4 Systematic Design of Galois Connections (book pp. 246–257; PDF pp. 263–274)\n- §4.5 Induced Operations (book pp. 258–282; PDF pp. 275–299)\n- Figures in scope: Figure 4.10 (p. 276/PDF 293)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 246–282 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 0 tables and 1 figures in book pp. 246–282 are anchored (no omissions)\n- [ ] Artifact `knowledge/skills/ppa-abstract-interpretation/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] Artifact `knowledge/skills/ppa-abstract-interpretation/references/ppa-abstract-interpretation.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W4-01; blocks: ISS-W5-01\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/ppa-abstract-interpretation.md`\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W5-01\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W4-01\"], \"id\": \"ISS-W4-02\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a74.4 Systematic Design of Galois Connections (book pp. 246\\u2013257; PDF pp. 263\\u2013274)\", \"\\u00a74.5 Induced Operations (book pp. 258\\u2013282; PDF pp. 275\\u2013299)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "7f9864ebbc0ccd340f83248136ec37d06472a2bd305fe37c330091d5a48354b0",
+   "body": "## Summary\n\nExtract systematic Galois-connection design and induced operations; synthesize the Chapter 4 skill; refactor; Gate #6.\n\n## Source Citations & Grounding\n\n- §4.4 Systematic Design of Galois Connections (book pp. 246–257; PDF pp. 263–274)\n- §4.5 Induced Operations (book pp. 258–282; PDF pp. 275–299)\n- Figures in scope: Figure 4.10 (p. 276/PDF 293)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 246–282 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 0 tables and 1 figures in book pp. 246–282 are anchored (no omissions)\n- [x] Artifact `knowledge/skills/ppa-abstract-interpretation/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] Artifacts `knowledge/ambient-context/ppa-abstract-interpretation.md` and `references/{correctness-and-fixed-points,galois-connections-and-insertions,combinators-and-induced-operations}.md` exist and pass `scripts/validate_ppa_knowledge.py`\n- [x] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 4b extraction (`corpus/shards/RAW_SHARD_04b_combinators_induced.md`, `1,419` lines, `24/24` `G-U4b-01..24`, `Figure 4.10`, `Statements 4.33–4.45`, `5` displays `(4.11)–(4.15)`, `Mini Projects 4.1–4.3`, `Exercises 4.1–4.24`) and full Chapter 4 knowledge package (`ppa-abstract-interpretation/` `263L` `SKILL.md` / `260L`/`161L`/`169L` `L1` refs, `ppa-abstract-interpretation.md` `107L`, `16` new `ppa.ai.*` nodes in `113`-node `concept_graph.json`, `BKL-063..072` + reconciled `BKL-001/002/013/024/029/033`, `REF-004`) promoted after primary-source PNG audit for Gate #6 (`gate6-v1`).\n- 2026-11-19 Round 1 (`gate6-v1`): three-track adversarial panel returned `[DISAGREE]` across `13` findings (`P-ARCH`: `3` `BLOCKING`, `1` `PREFERENCE`; `P-CYBER`: `2` `BLOCKING`, `2` `PREFERENCE`; `P-SWE`: `3` `BLOCKING`, `2` `PREFERENCE`; zero fabricated errata). Remediated all `13/13` findings across `L1`–`L3`, `ontology/`, `issues/refactors/REF-004.md`, and `issues/backlog/` (`gate6-v2`).\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-ARCH`, `P-SWE`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240). Applied all three non-blocking Round 2 `PREFERENCE` polishes (`F-OJ-606` `U-53` `italic, roman` in `notation_index.md:511`; `F-CJ-605` `gate6-v2` move note in `BKL-024.md:47`; `F-OJ-607` `bare d_hat` in `BKL-065.md:33`).\n\n### Rebuttal & Attribution Summary (Gate #6 Round 1)\n\n| Finding ID | Track | Severity | Disposition & Action Taken | Target Artifact(s) |\n| :--- | :--- | :--- | :--- | :--- |\n| `F-FJ-601` | `P-ARCH` | `BLOCKING` | Replaced nonexistent `\"notation-index spacing\"`/`\"spacing anomaly\"` gloss under `BKL-024` with actual `ς`/`ϕ`/`Δ` scope collisions (`p. 244`, `p. 225`, `p. 230`) and moved `BKL-024` `issue_ref` from `ppa.ai.adjoint-properties-and-sign-prime` to `ppa.ai.galois-insertion-and-reduction` with Ch 4 `L1`/`L2` anchors | `galois-connections-and-insertions.md`, `SKILL.md`, `concept_graph.json`, `BKL-024.md` |\n| `F-FJ-602` | `P-ARCH` | `BLOCKING` | Updated `U-49` `Sign′` element labels to `{⊥, -, 0, +, -0, 0+, ⊤} (obtained by omitting {-, +} from 𝒫(Sign))` matching `Figure 4.10`, `Exercise 4.13`, `L1`, and `L3` | `notation_index.md` |\n| `F-FJ-603` | `P-ARCH` | `BLOCKING` | Tagged `[external: CFG loop-cutset placement]` separately from `Chapter 6 Exercise 6.13` worklist widening in `L1` (`:249`), `[external: loop-cutset placement]` in `SKILL.md:255`, and `[external: CFG loop-cutset]` in `RAW_SHARD_04a:834` | `correctness-and-fixed-points.md`, `SKILL.md`, `RAW_SHARD_04a_galois_widening.md` |\n| `F-FJ-604` | `P-ARCH` | `PREFERENCE` | Clarified `BKL-065.md:22` to `\"prints Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 instead of Table 3.9's delta_hat\"` | `BKL-065.md` |\n| `F-CJ-601` | `P-CYBER` | `BLOCKING` | Removed bare `` `ρ` `` from `U-53` symbol column in `notation_index.md` (retaining `` `ρ[L]`, `⊑^{d}`, `Ξ` `` with `N2-035` cross-ref) and synced `REF-004.md` and `altitude_alignment_log.md` | `notation_index.md`, `REF-004.md`, `altitude_alignment_log.md` |\n| `F-CJ-602` | `P-CYBER` | `BLOCKING` | Corrected `RAW_SHARD_04b` `Exercise 4.3` (`Table 3.4 [close]` `{t} ⊆ Ĉ(ℓ) ∧ ρ_0 ℛ ρ̂` with no `(Ĉ, ρ̂) ⊨ e_0`) and `Exercise 4.4` (`x ∈ dom(ρ_0)` matching `Examples 4.4, 4.7`) | `RAW_SHARD_04b_combinators_induced.md` |\n| `F-CJ-603` | `P-CYBER` | `PREFERENCE` | Aligned `U-49` `{⊥, -, 0, +, -0, 0+, ⊤}`, updated `U-51` `SH` citation to `[PPA Mini Project 4.2, pp. 274–275] (book p. 274; PDF p. 291) (book p. 275; PDF p. 292)`, and tagged `` `[external: uco(L)]` `` in `README.md:21` | `notation_index.md`, `README.md` |\n| `F-CJ-604` | `P-CYBER` | `PREFERENCE` | Eliminated verbatim `## Summary` repetition across `BKL-063..072.md` `## Technical Analysis / Mechanism` jointly with `F-OJ-602` | `BKL-063..072.md` |\n| `F-OJ-601` | `P-SWE` | `BLOCKING` | Remediated jointly with `F-CJ-601`, `F-FJ-602`, and `F-CJ-603` (`U-53` bare `ρ` removed, `U-49` `{⊥, -, 0, +, -0, 0+, ⊤}`, `REF-004` + log synced) | `notation_index.md`, `REF-004.md`, `altitude_alignment_log.md` |\n| `F-OJ-602` | `P-SWE` | `BLOCKING` | Stripped all unit-4 staging IDs (`0` across `issues/`), wrote distinct causal mechanisms in `BKL-063..072.md`, added `p. 229` to `BKL-068.md`, `§4.5.2 p. 267` to `BKL-071.md`, `§4.2 pp. 223, 226` + `04b` `L1`/`L3` anchors to `BKL-069.md`, and regenerated `issues/export_manifest.json` | `BKL-063..072.md`, `issues/export_manifest.json` |\n| `F-OJ-603` | `P-SWE` | `BLOCKING` | Converted all `44` plural page-range companion tokens in `RAW_SHARD_04a_galois_widening.md` into paired singular companions (unparenthesising `:23` heading), reaching `0` plural page-range companions across `corpus/shards/`, `knowledge/`, and `ontology/` | `RAW_SHARD_04a_galois_widening.md` |\n| `F-OJ-604` | `P-SWE` | `PREFERENCE` | Updated `RAW_SHARD_04b_combinators_induced.md:1008` to `[PPA Theorem 3.10, p. 159] (book p. 159; PDF p. 177)` and `:840-841` to `P. Cousot and R. Cousot [37, 39, 40]; P. Cousot [35]` | `RAW_SHARD_04b_combinators_induced.md` |\n| `F-OJ-605` | `P-SWE` | `PREFERENCE` | Added `L2` (`SKILL.md`) to `BKL-013.md` and `L1`/`L2` (`galois-connections-and-insertions.md`, `SKILL.md`) to `BKL-024.md`, `BKL-029.md`, and `BKL-033.md` | `BKL-013.md`, `BKL-024.md`, `BKL-029.md`, `BKL-033.md` |\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W4-01; blocks: ISS-W5-01\n- `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- `knowledge/ambient-context/ppa-abstract-interpretation.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `issues/refactors/REF-004.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`\n- `issues/backlog/BKL-063.md` .. `issues/backlog/BKL-072.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Unit 4b shard RAW_SHARD_04b_combinators_induced.md (1,419L, 24/24 G-U4b-01..24, Figure 4.10), ppa-abstract-interpretation/ (263L SKILL, 260L/161L/169L refs), ppa-abstract-interpretation.md (107L), 113-node concept_graph.json, U-46..U-53 notation, BKL-063..072 + BKL-001/002/013/024/029/033, and REF-004 staged for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2): 13/13 findings resolved; RAW_SHARD_04a (971L, 0 plural book-pp), RAW_SHARD_04b (1,422L), ppa-abstract-interpretation (264L SKILL, refs 260L/161L/169L, README), 113-node concept_graph.json, notation_index.md (U-46..U-53), BKL-063..072 (0 staging IDs, distinct mechanisms), and BKL-013/024/029/033 ready for Gate #6 Round 2.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; 3 PREFERENCE polishes applied; 113-node concept_graph.json (Rule B1 113/113), 68/68 BKL parity, validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W5-01\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W4-01\"], \"id\": \"ISS-W4-02\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a74.4 Systematic Design of Galois Connections (book pp. 246\\u2013257; PDF pp. 263\\u2013274)\", \"\\u00a74.5 Induced Operations (book pp. 258\\u2013282; PDF pp. 275\\u2013299)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "3b46aba583193c55ab0604e4f93c3c8a3b13de5d357405b0fb3006b122d08219",
    "depends_on": [
     "ISS-W4-01"
    ],
    "frontmatter": {
-    "aligned_models": [],
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
     "altitudes": [
      "L1",
      "L2",
@@ -4095,9 +4277,9 @@
      "§4.5 Induced Operations (book pp. 258–282; PDF pp. 275–299)"
     ],
     "priority": "P0",
-    "status": "open",
+    "status": "closed",
     "title": "W4-2 Ch 4b §4.4–4.5 Galois combinators, induced operations + Gate #6",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "ISS-W4-02",
@@ -4108,17 +4290,415 @@
     "gate",
     "ppa",
     "priority:P0",
-    "status:open",
+    "status:closed",
     "type:shard",
     "wave-4"
    ],
    "milestone": "W4",
    "parent_issue": "EPIC-001",
-   "published_body_sha256": "3b6ad23f3931c76bd3a7894efdd3b539c088aa7dfdeb4e6e8597f6a4b126a81f",
-   "source_body": "\n## Summary\n\nExtract systematic Galois-connection design and induced operations; synthesize the Chapter 4 skill; refactor; Gate #6.\n\n## Source Citations & Grounding\n\n- §4.4 Systematic Design of Galois Connections (book pp. 246–257; PDF pp. 263–274)\n- §4.5 Induced Operations (book pp. 258–282; PDF pp. 275–299)\n- Figures in scope: Figure 4.10 (p. 276/PDF 293)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 246–282 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 0 tables and 1 figures in book pp. 246–282 are anchored (no omissions)\n- [ ] Artifact `knowledge/skills/ppa-abstract-interpretation/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] Artifact `knowledge/skills/ppa-abstract-interpretation/references/ppa-abstract-interpretation.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W4-01; blocks: ISS-W5-01\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/ppa-abstract-interpretation.md`\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "8f6688dde24773197ee3fabddc7dc81717d81c8f61c4fcc4ae9ebf2746ca9332",
+   "source_body": "\n## Summary\n\nExtract systematic Galois-connection design and induced operations; synthesize the Chapter 4 skill; refactor; Gate #6.\n\n## Source Citations & Grounding\n\n- §4.4 Systematic Design of Galois Connections (book pp. 246–257; PDF pp. 263–274)\n- §4.5 Induced Operations (book pp. 258–282; PDF pp. 275–299)\n- Figures in scope: Figure 4.10 (p. 276/PDF 293)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 246–282 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 0 tables and 1 figures in book pp. 246–282 are anchored (no omissions)\n- [x] Artifact `knowledge/skills/ppa-abstract-interpretation/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] Artifacts `knowledge/ambient-context/ppa-abstract-interpretation.md` and `references/{correctness-and-fixed-points,galois-connections-and-insertions,combinators-and-induced-operations}.md` exist and pass `scripts/validate_ppa_knowledge.py`\n- [x] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 4b extraction (`corpus/shards/RAW_SHARD_04b_combinators_induced.md`, `1,419` lines, `24/24` `G-U4b-01..24`, `Figure 4.10`, `Statements 4.33–4.45`, `5` displays `(4.11)–(4.15)`, `Mini Projects 4.1–4.3`, `Exercises 4.1–4.24`) and full Chapter 4 knowledge package (`ppa-abstract-interpretation/` `263L` `SKILL.md` / `260L`/`161L`/`169L` `L1` refs, `ppa-abstract-interpretation.md` `107L`, `16` new `ppa.ai.*` nodes in `113`-node `concept_graph.json`, `BKL-063..072` + reconciled `BKL-001/002/013/024/029/033`, `REF-004`) promoted after primary-source PNG audit for Gate #6 (`gate6-v1`).\n- 2026-11-19 Round 1 (`gate6-v1`): three-track adversarial panel returned `[DISAGREE]` across `13` findings (`P-ARCH`: `3` `BLOCKING`, `1` `PREFERENCE`; `P-CYBER`: `2` `BLOCKING`, `2` `PREFERENCE`; `P-SWE`: `3` `BLOCKING`, `2` `PREFERENCE`; zero fabricated errata). Remediated all `13/13` findings across `L1`–`L3`, `ontology/`, `issues/refactors/REF-004.md`, and `issues/backlog/` (`gate6-v2`).\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-ARCH`, `P-SWE`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240). Applied all three non-blocking Round 2 `PREFERENCE` polishes (`F-OJ-606` `U-53` `italic, roman` in `notation_index.md:511`; `F-CJ-605` `gate6-v2` move note in `BKL-024.md:47`; `F-OJ-607` `bare d_hat` in `BKL-065.md:33`).\n\n### Rebuttal & Attribution Summary (Gate #6 Round 1)\n\n| Finding ID | Track | Severity | Disposition & Action Taken | Target Artifact(s) |\n| :--- | :--- | :--- | :--- | :--- |\n| `F-FJ-601` | `P-ARCH` | `BLOCKING` | Replaced nonexistent `\"notation-index spacing\"`/`\"spacing anomaly\"` gloss under `BKL-024` with actual `ς`/`ϕ`/`Δ` scope collisions (`p. 244`, `p. 225`, `p. 230`) and moved `BKL-024` `issue_ref` from `ppa.ai.adjoint-properties-and-sign-prime` to `ppa.ai.galois-insertion-and-reduction` with Ch 4 `L1`/`L2` anchors | `galois-connections-and-insertions.md`, `SKILL.md`, `concept_graph.json`, `BKL-024.md` |\n| `F-FJ-602` | `P-ARCH` | `BLOCKING` | Updated `U-49` `Sign′` element labels to `{⊥, -, 0, +, -0, 0+, ⊤} (obtained by omitting {-, +} from 𝒫(Sign))` matching `Figure 4.10`, `Exercise 4.13`, `L1`, and `L3` | `notation_index.md` |\n| `F-FJ-603` | `P-ARCH` | `BLOCKING` | Tagged `[external: CFG loop-cutset placement]` separately from `Chapter 6 Exercise 6.13` worklist widening in `L1` (`:249`), `[external: loop-cutset placement]` in `SKILL.md:255`, and `[external: CFG loop-cutset]` in `RAW_SHARD_04a:834` | `correctness-and-fixed-points.md`, `SKILL.md`, `RAW_SHARD_04a_galois_widening.md` |\n| `F-FJ-604` | `P-ARCH` | `PREFERENCE` | Clarified `BKL-065.md:22` to `\"prints Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 instead of Table 3.9's delta_hat\"` | `BKL-065.md` |\n| `F-CJ-601` | `P-CYBER` | `BLOCKING` | Removed bare `` `ρ` `` from `U-53` symbol column in `notation_index.md` (retaining `` `ρ[L]`, `⊑^{d}`, `Ξ` `` with `N2-035` cross-ref) and synced `REF-004.md` and `altitude_alignment_log.md` | `notation_index.md`, `REF-004.md`, `altitude_alignment_log.md` |\n| `F-CJ-602` | `P-CYBER` | `BLOCKING` | Corrected `RAW_SHARD_04b` `Exercise 4.3` (`Table 3.4 [close]` `{t} ⊆ Ĉ(ℓ) ∧ ρ_0 ℛ ρ̂` with no `(Ĉ, ρ̂) ⊨ e_0`) and `Exercise 4.4` (`x ∈ dom(ρ_0)` matching `Examples 4.4, 4.7`) | `RAW_SHARD_04b_combinators_induced.md` |\n| `F-CJ-603` | `P-CYBER` | `PREFERENCE` | Aligned `U-49` `{⊥, -, 0, +, -0, 0+, ⊤}`, updated `U-51` `SH` citation to `[PPA Mini Project 4.2, pp. 274–275] (book p. 274; PDF p. 291) (book p. 275; PDF p. 292)`, and tagged `` `[external: uco(L)]` `` in `README.md:21` | `notation_index.md`, `README.md` |\n| `F-CJ-604` | `P-CYBER` | `PREFERENCE` | Eliminated verbatim `## Summary` repetition across `BKL-063..072.md` `## Technical Analysis / Mechanism` jointly with `F-OJ-602` | `BKL-063..072.md` |\n| `F-OJ-601` | `P-SWE` | `BLOCKING` | Remediated jointly with `F-CJ-601`, `F-FJ-602`, and `F-CJ-603` (`U-53` bare `ρ` removed, `U-49` `{⊥, -, 0, +, -0, 0+, ⊤}`, `REF-004` + log synced) | `notation_index.md`, `REF-004.md`, `altitude_alignment_log.md` |\n| `F-OJ-602` | `P-SWE` | `BLOCKING` | Stripped all unit-4 staging IDs (`0` across `issues/`), wrote distinct causal mechanisms in `BKL-063..072.md`, added `p. 229` to `BKL-068.md`, `§4.5.2 p. 267` to `BKL-071.md`, `§4.2 pp. 223, 226` + `04b` `L1`/`L3` anchors to `BKL-069.md`, and regenerated `issues/export_manifest.json` | `BKL-063..072.md`, `issues/export_manifest.json` |\n| `F-OJ-603` | `P-SWE` | `BLOCKING` | Converted all `44` plural page-range companion tokens in `RAW_SHARD_04a_galois_widening.md` into paired singular companions (unparenthesising `:23` heading), reaching `0` plural page-range companions across `corpus/shards/`, `knowledge/`, and `ontology/` | `RAW_SHARD_04a_galois_widening.md` |\n| `F-OJ-604` | `P-SWE` | `PREFERENCE` | Updated `RAW_SHARD_04b_combinators_induced.md:1008` to `[PPA Theorem 3.10, p. 159] (book p. 159; PDF p. 177)` and `:840-841` to `P. Cousot and R. Cousot [37, 39, 40]; P. Cousot [35]` | `RAW_SHARD_04b_combinators_induced.md` |\n| `F-OJ-605` | `P-SWE` | `PREFERENCE` | Added `L2` (`SKILL.md`) to `BKL-013.md` and `L1`/`L2` (`galois-connections-and-insertions.md`, `SKILL.md`) to `BKL-024.md`, `BKL-029.md`, and `BKL-033.md` | `BKL-013.md`, `BKL-024.md`, `BKL-029.md`, `BKL-033.md` |\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W4-01; blocks: ISS-W5-01\n- `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- `knowledge/ambient-context/ppa-abstract-interpretation.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `issues/refactors/REF-004.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`\n- `issues/backlog/BKL-063.md` .. `issues/backlog/BKL-072.md`\n\n## Verification Receipts\n- 2026-11-19 [in_progress] Unit 4b shard RAW_SHARD_04b_combinators_induced.md (1,419L, 24/24 G-U4b-01..24, Figure 4.10), ppa-abstract-interpretation/ (263L SKILL, 260L/161L/169L refs), ppa-abstract-interpretation.md (107L), 113-node concept_graph.json, U-46..U-53 notation, BKL-063..072 + BKL-001/002/013/024/029/033, and REF-004 staged for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2): 13/13 findings resolved; RAW_SHARD_04a (971L, 0 plural book-pp), RAW_SHARD_04b (1,422L), ppa-abstract-interpretation (264L SKILL, refs 260L/161L/169L, README), 113-node concept_graph.json, notation_index.md (U-46..U-53), BKL-063..072 (0 staging IDs, distinct mechanisms), and BKL-013/024/029/033 ready for Gate #6 Round 2.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; 3 PREFERENCE polishes applied; 113-node concept_graph.json (Rule B1 113/113), 68/68 BKL parity, validators, hygiene, and 47/47 unit tests PASS.",
    "source_path": "issues/shards/ISS-W4-02.md",
-   "state": "open",
+   "state": "closed",
    "title": "W4-2 Ch 4b §4.4–4.5 Galois combinators, induced operations + Gate #6"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nOn book p. 269, the 4th line of the '=>' derivation for Display (4.15) prints g(g_{nabla_L}^n) <= g_{nabla_M}^n, applying L-widening subscript nabla_L to g : M -> M instead of nabla_M.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nInside Lemma 4.45's induction proof, abstract function g = alpha o f o gamma operates on M using iterates g_{nabla_M}^n, whereas nabla_L operates solely on L via f_{nabla_L}^n = gamma(g_{nabla_M}^n) in (4.14). Printing g(g_{nabla_L}^n) on line 4 of the '=>' derivation for (4.15) crosses carriers between L and M even though the next equality substitutes g_{nabla_M}^n and alpha o gamma <= id_M (4.9).\n\nGuardrail: Read line 4 of the '=>' derivation for (4.15) as g(g_{nabla_M}^n) <= g_{nabla_M}^n and enforce gamma(bot_M) = bot_L whenever invoking Lemma 4.45 (Refs: F-U4b-06, G-U4b-17).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-06, G-U4b-17); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.gamma-induced-widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-063\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Lemma 4.45 (book p. 269; PDF p. 286)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "aed4875f7b91acaa3ab7d86c3845f9fc54f49265d03ab3f972e620df6a9ed05d",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-063",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Lemma 4.45 (book p. 269; PDF p. 286)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Lemma 4.45 proof misprints subscript nabla_L for nabla_M in g(g_{nabla_L}^n) <= g_{nabla_M}^n",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-063",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "0582ece1efa9cc28675138ac0a36b4f278821674c33538d378644e8c15a051d5",
+   "source_body": "\n## Summary\n\nOn book p. 269, the 4th line of the '=>' derivation for Display (4.15) prints g(g_{nabla_L}^n) <= g_{nabla_M}^n, applying L-widening subscript nabla_L to g : M -> M instead of nabla_M.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 4.45, p. 269] (book p. 269; PDF p. 286)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nInside Lemma 4.45's induction proof, abstract function g = alpha o f o gamma operates on M using iterates g_{nabla_M}^n, whereas nabla_L operates solely on L via f_{nabla_L}^n = gamma(g_{nabla_M}^n) in (4.14). Printing g(g_{nabla_L}^n) on line 4 of the '=>' derivation for (4.15) crosses carriers between L and M even though the next equality substitutes g_{nabla_M}^n and alpha o gamma <= id_M (4.9).\n\nGuardrail: Read line 4 of the '=>' derivation for (4.15) as g(g_{nabla_M}^n) <= g_{nabla_M}^n and enforce gamma(bot_M) = bot_L whenever invoking Lemma 4.45 (Refs: F-U4b-06, G-U4b-17).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-06, G-U4b-17); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.gamma-induced-widening`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-063.md",
+   "state": "open",
+   "title": "Lemma 4.45 proof misprints subscript nabla_L for nabla_M in g(g_{nabla_L}^n) <= g_{nabla_M}^n"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nBook p. 271 writes 'the construction of the reduced product [39] (see Section 4.3.)' and switches from rho[L] to rho_2(L), whereas reduced product is defined in Section 4.4.2 (p. 256).\n\n## Source Citations & Grounding\n\n- [PPA Chapter 4 Concluding Remarks, p. 271] (book p. 271; PDF p. 288)\n- [PPA §4.4.2, p. 256] (book p. 256; PDF p. 273)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nPage 270 denotes the fixed-point image lattice of upper closure operator rho : L -> L with square brackets rho[L] = {rho(l) | l in L} = Fix(rho). Switching to round parentheses rho_2(L) subseteq rho_1(L) on p. 271 conflates lattice images with pointwise element application, and the parenthetical '(see Section 4.3.)' misdirects readers away from §4.4.2 (p. 256) where reduced products are formally constructed.\n\nGuardrail: Route reduced-product cross-references to §4.4.2 (p. 256) and keep square image brackets rho[L] for upper-closure lattices (Refs: F-U4b-08, G-U4b-19).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-08, G-U4b-19); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.upper-closure-operators`, `ppa.ai.reduced-and-tensor-products-ab`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-064\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Chapter 4 Concluding Remarks (book p. 271; PDF p. 288)\", \"\\u00a74.4.2 (book p. 256; PDF p. 273)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "c88d7186567d3894eee273b08ad37722d16903d32d740410d655b8cd427a48d4",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-064",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Chapter 4 Concluding Remarks (book p. 271; PDF p. 288)",
+     "§4.4.2 (book p. 256; PDF p. 273)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Concluding Remarks p. 271 mis-cites Section 4.3 instead of Section 4.4.2 for reduced product",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-064",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "ed0b259ffa02b12bc2e45481e216f94391f2cd414cc73830072c8903b58dbc41",
+   "source_body": "\n## Summary\n\nBook p. 271 writes 'the construction of the reduced product [39] (see Section 4.3.)' and switches from rho[L] to rho_2(L), whereas reduced product is defined in Section 4.4.2 (p. 256).\n\n## Source Citations & Grounding\n\n- [PPA Chapter 4 Concluding Remarks, p. 271] (book p. 271; PDF p. 288)\n- [PPA §4.4.2, p. 256] (book p. 256; PDF p. 273)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nPage 270 denotes the fixed-point image lattice of upper closure operator rho : L -> L with square brackets rho[L] = {rho(l) | l in L} = Fix(rho). Switching to round parentheses rho_2(L) subseteq rho_1(L) on p. 271 conflates lattice images with pointwise element application, and the parenthetical '(see Section 4.3.)' misdirects readers away from §4.4.2 (p. 256) where reduced products are formally constructed.\n\nGuardrail: Route reduced-product cross-references to §4.4.2 (p. 256) and keep square image brackets rho[L] for upper-closure lattices (Refs: F-U4b-08, G-U4b-19).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-08, G-U4b-19); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.upper-closure-operators`, `ppa.ai.reduced-and-tensor-products-ab`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-064.md",
+   "state": "open",
+   "title": "Concluding Remarks p. 271 mis-cites Section 4.3 instead of Section 4.4.2 for reduced product"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nMini Project 4.3 Part 1 cites Example 4.40 (sign addition g_{plus}) instead of Example 4.4 (0-CFA correctness), and Part 2 prints Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 instead of Table 3.9's delta_hat.\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 4.3, p. 275] (book p. 275; PDF p. 292)\n- [PPA Example 4.4, p. 215] (book p. 215; PDF p. 232)\n- [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nPart 1 verifies 0-CFA semantic soundness via correctness relation R_{CFA} (Example 4.4, p. 215), whereas Example 4.40 (p. 259) defines abstract sign addition g_{plus} on an unrelated numerical carrier. In Part 2, Table 3.9 (p. 188) stores abstract data environments in delta_hat in DEnv_hat = Var -> L while bare d_hat in Data_hat denotes individual data elements; printing Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 conflates environment and element types.\n\nGuardrail: Read Example 4.4 in Part 1 and Greek environment delta_hat in DEnv_hat throughout Part 2 (Refs: F-U4b-10, G-U4b-22).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-10, G-U4b-22); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.shape-and-cfa-galois-soundness`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-065\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Mini Project 4.3 (book p. 275; PDF p. 292)\", \"Table 3.9 (book p. 188; PDF p. 206)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "7bdf52d0dfd7855a3709fc63109fbcfe3854d4526b7b9780677719059b9da6e5",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-065",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Mini Project 4.3 (book p. 275; PDF p. 292)",
+     "Table 3.9 (book p. 188; PDF p. 206)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Mini Project 4.3 mis-cites Example 4.40 for Example 4.4 and prints Latin d_hat for Greek delta_hat",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-065",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "e081b83654b84a925e8a3b82c4fc33c038e6ab77988de8b3e57a8f7f0742433c",
+   "source_body": "\n## Summary\n\nMini Project 4.3 Part 1 cites Example 4.40 (sign addition g_{plus}) instead of Example 4.4 (0-CFA correctness), and Part 2 prints Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 instead of Table 3.9's delta_hat.\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 4.3, p. 275] (book p. 275; PDF p. 292)\n- [PPA Example 4.4, p. 215] (book p. 215; PDF p. 232)\n- [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nPart 1 verifies 0-CFA semantic soundness via correctness relation R_{CFA} (Example 4.4, p. 215), whereas Example 4.40 (p. 259) defines abstract sign addition g_{plus} on an unrelated numerical carrier. In Part 2, Table 3.9 (p. 188) stores abstract data environments in delta_hat in DEnv_hat = Var -> L while bare d_hat in Data_hat denotes individual data elements; printing Latin d_hat four times inside (C_hat, D_hat, rho_hat, d_hat) across Part 2 conflates environment and element types.\n\nGuardrail: Read Example 4.4 in Part 1 and Greek environment delta_hat in DEnv_hat throughout Part 2 (Refs: F-U4b-10, G-U4b-22).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-10, G-U4b-22); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.shape-and-cfa-galois-soundness`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-065.md",
+   "state": "open",
+   "title": "Mini Project 4.3 mis-cites Example 4.40 for Example 4.4 and prints Latin d_hat for Greek delta_hat"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nFor eta : V -> D, Exercise 4.14 asks to verify varsigma_eta(V') = V' cap eta[V], using concrete-subset metavariable V' instead of D' subseteq D as printed on p. 246.\n\n## Source Citations & Grounding\n\n- [PPA Exercise 4.14, p. 279] (book p. 279; PDF p. 296)\n- [PPA §4.3.2, p. 246] (book p. 246; PDF p. 263)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nGiven extraction function eta : V -> D, the lifted Galois connection (P(V), alpha_eta, gamma_eta, P(D)) reduces subsets inside the abstract classifier powerset P(D). Writing varsigma_eta(V') = V' cap eta[V] applies the abstract reduction operator to concrete-set metavariable V' subseteq V, ill-typing the intersection whenever V != D.\n\nGuardrail: Type varsigma_eta : P(D) -> P(D) on abstract subsets D' subseteq D via varsigma_eta(D') = D' cap eta[V] matching p. 246 (Refs: F-U4b-12, G-U4b-23).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-12, G-U4b-23); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.galois-insertion-and-reduction`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-066\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Exercise 4.14 (book p. 279; PDF p. 296)\", \"\\u00a74.3.2 (book p. 246; PDF p. 263)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "a1fcb14eb593173b6b2ee5ccf770c094066e9cb2b6dc091b13f7742db4c9a435",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-066",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Exercise 4.14 (book p. 279; PDF p. 296)",
+     "§4.3.2 (book p. 246; PDF p. 263)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Exercise 4.14 misprints concrete subset V' for abstract subset D' in varsigma_eta(V') = V' cap eta[V]",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-066",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "9b01d636086b9224d505dd2f3a5e1d6a60971dd30b324ba3458c3d23bc271e87",
+   "source_body": "\n## Summary\n\nFor eta : V -> D, Exercise 4.14 asks to verify varsigma_eta(V') = V' cap eta[V], using concrete-subset metavariable V' instead of D' subseteq D as printed on p. 246.\n\n## Source Citations & Grounding\n\n- [PPA Exercise 4.14, p. 279] (book p. 279; PDF p. 296)\n- [PPA §4.3.2, p. 246] (book p. 246; PDF p. 263)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nGiven extraction function eta : V -> D, the lifted Galois connection (P(V), alpha_eta, gamma_eta, P(D)) reduces subsets inside the abstract classifier powerset P(D). Writing varsigma_eta(V') = V' cap eta[V] applies the abstract reduction operator to concrete-set metavariable V' subseteq V, ill-typing the intersection whenever V != D.\n\nGuardrail: Type varsigma_eta : P(D) -> P(D) on abstract subsets D' subseteq D via varsigma_eta(D') = D' cap eta[V] matching p. 246 (Refs: F-U4b-12, G-U4b-23).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-12, G-U4b-23); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.galois-insertion-and-reduction`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-066.md",
+   "state": "open",
+   "title": "Exercise 4.14 misprints concrete subset V' for abstract subset D' in varsigma_eta(V') = V' cap eta[V]"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nMini Project 4.1 defines 'x is a suffix of y' asymmetrically (n + k = m, k >= 0, giving |LR| = 16) and five lines later glosses S as 'one list is a suffix of the other' (symmetric, giving |LR| = 20).\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 4.1, p. 274] (book p. 274; PDF p. 291)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nWhen forming LR subseteq P({H, S}) x Range, the formal condition n + k = m (k >= 0) makes S asymmetric (x is a suffix of y, forcing length(x) <= length(y)), which eliminates the four (+1 / >+1) S-combinations to leave |LR| = 16 atoms. Five lines lower, prose summarises S symmetrically ('one list is a suffix of the other'), re-enabling {S} and {H, S} at +1 and >+1 for |LR| = 20 atoms.\n\nGuardrail: Specify explicitly whether S tracks directional suffixes (16 atoms) or symmetric suffixes (20 atoms), keeping ([], []) -> ({S}, 0) in both (Refs: F-U4b-09, G-U4b-22).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-09, G-U4b-22); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.reduced-and-tensor-products-ab`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-070\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Mini Project 4.1 (book p. 274; PDF p. 291)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "29384b2f386732ddeee3f7b2c3d0b6601759860709e76d6165f32cd9a60f9350",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-070",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Mini Project 4.1 (book p. 274; PDF p. 291)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Mini Project 4.1 formal asymmetric suffix definition (16 atoms) conflicts with symmetric prose gloss (20 atoms)",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-070",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "f67c29159955e01dd35033b1c54059463a456b2be4dcb00f48727a4d739c43fc",
+   "source_body": "\n## Summary\n\nMini Project 4.1 defines 'x is a suffix of y' asymmetrically (n + k = m, k >= 0, giving |LR| = 16) and five lines later glosses S as 'one list is a suffix of the other' (symmetric, giving |LR| = 20).\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 4.1, p. 274] (book p. 274; PDF p. 291)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nWhen forming LR subseteq P({H, S}) x Range, the formal condition n + k = m (k >= 0) makes S asymmetric (x is a suffix of y, forcing length(x) <= length(y)), which eliminates the four (+1 / >+1) S-combinations to leave |LR| = 16 atoms. Five lines lower, prose summarises S symmetrically ('one list is a suffix of the other'), re-enabling {S} and {H, S} at +1 and >+1 for |LR| = 20 atoms.\n\nGuardrail: Specify explicitly whether S tracks directional suffixes (16 atoms) or symmetric suffixes (20 atoms), keeping ([], []) -> ({S}, 0) in both (Refs: F-U4b-09, G-U4b-22).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-09, G-U4b-22); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.reduced-and-tensor-products-ab`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-070.md",
+   "state": "open",
+   "title": "Mini Project 4.1 formal asymmetric suffix definition (16 atoms) conflicts with symmetric prose gloss (20 atoms)"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nAttaching transfer functions to labels forces f_ell^{SS}([b]^ell) = Sigma, propagating false-branch states into true-branches so SS strictly over-approximates collecting semantics; Constant Propagation p. 267 also leaves sigma_hat != bot tacit.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 4.43, p. 265] (book p. 265; PDF p. 282)\n- [PPA §4.5.2, p. 266] (book p. 266; PDF p. 283)\n- [PPA §4.5.2, p. 267] (book p. 267; PDF p. 284)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nNode-attached Monotone Frameworks apply transfer functions per block before branching along F, forcing f_ell^{SS}([b]^ell) = Sigma = id (Remark p. 266) so false-branch states leak into true-branch targets and SS strictly over-approximates collecting semantics. On p. 267, the Constant Propagation transfer for [x := a]^ell further assumes smash-bottom short-circuiting sigma_hat != bot tacitly before evaluating A_CP[[a]](sigma_hat).\n\nGuardrail: Attach [external] branch-guard filter transfers to flow edges (ell_1, ell_2) (Exercise 2.11) when guard refinement is required, and guard sigma_hat = bot explicitly (Refs: F-U4b-04, G-U4b-14, G-U4b-15).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-04, G-U4b-14, G-U4b-15); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.generalised-monotone-framework`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-071\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"\\u00a74.5.2 (book p. 265; PDF p. 282)\", \"\\u00a74.5.2 (book p. 266; PDF p. 283)\", \"\\u00a74.5.2 (book p. 267; PDF p. 284)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "e2190eff593dd3fb931211b53a38521794e0291e805cbefae5de39d2a0e458c0",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-071",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "§4.5.2 (book p. 265; PDF p. 282)",
+     "§4.5.2 (book p. 266; PDF p. 283)",
+     "§4.5.2 (book p. 267; PDF p. 284)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Node-attached Monotone Frameworks make concrete Sets of States SS non-optimal on branch guards",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-071",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "ccd37c3a343f6f0206d71f72f2e1218992345dde123b1c51636a54ff55700b0a",
+   "source_body": "\n## Summary\n\nAttaching transfer functions to labels forces f_ell^{SS}([b]^ell) = Sigma, propagating false-branch states into true-branches so SS strictly over-approximates collecting semantics; Constant Propagation p. 267 also leaves sigma_hat != bot tacit.\n\n## Source Citations & Grounding\n\n- [PPA Lemma 4.43, p. 265] (book p. 265; PDF p. 282)\n- [PPA §4.5.2, p. 266] (book p. 266; PDF p. 283)\n- [PPA §4.5.2, p. 267] (book p. 267; PDF p. 284)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nNode-attached Monotone Frameworks apply transfer functions per block before branching along F, forcing f_ell^{SS}([b]^ell) = Sigma = id (Remark p. 266) so false-branch states leak into true-branch targets and SS strictly over-approximates collecting semantics. On p. 267, the Constant Propagation transfer for [x := a]^ell further assumes smash-bottom short-circuiting sigma_hat != bot tacitly before evaluating A_CP[[a]](sigma_hat).\n\nGuardrail: Attach [external] branch-guard filter transfers to flow edges (ell_1, ell_2) (Exercise 2.11) when guard refinement is required, and guard sigma_hat = bot explicitly (Refs: F-U4b-04, G-U4b-14, G-U4b-15).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (F-U4b-04, G-U4b-14, G-U4b-15); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.generalised-monotone-framework`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-071.md",
+   "state": "open",
+   "title": "Node-attached Monotone Frameworks make concrete Sets of States SS non-optimal on branch guards"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nWhereas gamma(alpha(l_1) nabla_M alpha(l_2)) induces a valid widening under Proposition 4.44, gamma(alpha(l_1) Delta_M alpha(l_2)) violates (l_1 Delta_L l_2) <= l_1 whenever l_1 notin gamma[M], even on finite Galois insertions.\n\n## Source Citations & Grounding\n\n- [PPA Proposition 4.44, p. 268] (book p. 268; PDF p. 285)\n- [PPA Exercise 4.24, p. 282] (book p. 282; PDF p. 299)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nProposition 4.44 lifts widening via gamma(alpha(l_1) nabla_M alpha(l_2)) because extensiveness allows passing through the upward closure gamma(alpha(l_1)) >= l_1. By contrast, narrowing must satisfy (l_1 Delta_L l_2) <= l_1 whenever l_2 <= l_1; for any l_1 notin gamma[M], even a finite Galois insertion yields l_1 Delta_L l_1 = gamma(alpha(l_1)) > l_1, refuting contractiveness at the first reflexive pair.\n\nGuardrail: Never induce narrowing via gamma(alpha(l_1) Delta_M alpha(l_2)); use descending truncators Upsilon in L (Exercise 4.11) or clamp with l_1 glb_L (...) under explicit step caps [external] (Refs: G-U4b-18).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (G-U4b-18); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.gamma-induced-widening`, `ppa.ai.narrowing-and-truncators`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-072\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"Proposition 4.44 (book p. 268; PDF p. 285)\", \"Exercise 4.24 (book p. 282; PDF p. 299)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "f8db355b4e73a522c9584af7fc8972d34d73cb12bfcc63e5fda1df10c3428364",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-072",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "wave-4"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "Proposition 4.44 (book p. 268; PDF p. 285)",
+     "Exercise 4.24 (book p. 282; PDF p. 299)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Concretisation-induced formula gamma(alpha(l_1) Delta_M alpha(l_2)) fails narrowing contractiveness (Exercise 4.24)",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-072",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "c2220caddfb57fcf80ef13d3abbc137e621c919091f9e3c61950816f177742d4",
+   "source_body": "\n## Summary\n\nWhereas gamma(alpha(l_1) nabla_M alpha(l_2)) induces a valid widening under Proposition 4.44, gamma(alpha(l_1) Delta_M alpha(l_2)) violates (l_1 Delta_L l_2) <= l_1 whenever l_1 notin gamma[M], even on finite Galois insertions.\n\n## Source Citations & Grounding\n\n- [PPA Proposition 4.44, p. 268] (book p. 268; PDF p. 285)\n- [PPA Exercise 4.24, p. 282] (book p. 282; PDF p. 299)\n- Statements confirmed against rendered page images during Unit 4 extraction and Gate #6 audit.\n\n## Technical Analysis / Mechanism\n\nProposition 4.44 lifts widening via gamma(alpha(l_1) nabla_M alpha(l_2)) because extensiveness allows passing through the upward closure gamma(alpha(l_1)) >= l_1. By contrast, narrowing must satisfy (l_1 Delta_L l_2) <= l_1 whenever l_2 <= l_1; for any l_1 notin gamma[M], even a finite Galois insertion yields l_1 Delta_L l_1 = gamma(alpha(l_1)) > l_1, refuting contractiveness at the first reflexive pair.\n\nGuardrail: Never induce narrowing via gamma(alpha(l_1) Delta_M alpha(l_2)); use descending truncators Upsilon in L (Exercise 4.11) or clamp with l_1 glb_L (...) under explicit step caps [external] (Refs: G-U4b-18).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 4 extraction (G-U4b-18); verified against rendered PDF pages (`gate6-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.ai.gamma-induced-widening`, `ppa.ai.narrowing-and-truncators`\n- L1 anchor: `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- L2 anchor: `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_04b_combinators_induced.md`\n- Parent shard: ISS-W4-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-072.md",
+   "state": "open",
+   "title": "Concretisation-induced formula gamma(alpha(l_1) Delta_M alpha(l_2)) fails narrowing contractiveness (Exercise 4.24)"
   },
   {
    "blocks": [
@@ -5080,6 +5660,68 @@
    "source_path": "issues/refactors/REF-003.md",
    "state": "closed",
    "title": "Activate Chapter 3 router routing, reciprocal L1 links, U4/U5/U9 edges, and T7 notation audit"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nExecute the Wave 4 (`W4-2`) cumulative Chapter 4 altitude refactoring pass: activate `ppa-abstract-interpretation` in `ppa-program-analysis/SKILL.md` (`82L < 92L`) and router evals (`T5`), wire reciprocal `U6`/`U7`/`Mini Project 4.2`/`Mini Project 4.3` `L1 -> L1` cross-links and `C4.7` boundary evals across `ppa-dataflow-and-slicing` and `ppa-control-flow-and-constraints` (`T2`), verify symmetric `U6`/`U7` `corresponds_to` edges and `Rule B1` parity across all `113` `ontology/concept_graph.json` nodes (`T4`), audit unindexed Chapter 4 symbols (`U-46..U-53` and `ρ` collision note, `T7`), and reconcile pre-seeded `BKL-001`/`BKL-002`/`BKL-013`/`BKL-024`/`BKL-029`/`BKL-033` alongside `BKL-063..072` (`T6`, `C6.6`, `C6.7`).\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- [PPA §2.3.1, p. 68] (book p. 68; PDF p. 87)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- [PPA §4.5.2, p. 262] (book p. 262; PDF p. 279)\n- [PPA Mini Project 4.2, p. 274] (book p. 274; PDF p. 291)\n- [PPA Mini Project 4.3, p. 275] (book p. 275; PDF p. 292)\n\n## Technical Analysis / Mechanism\n\n1. Router activation & reciprocal `C4.7` boundaries (`T5`): updated `knowledge/skills/ppa-program-analysis/SKILL.md` (`82L < 92L`, `17L` below `99L` ceiling) marking `§§4.1–4.5` active and adding Chapter 4 under `## Sibling Reference Modules (Active)` (`correctness-and-fixed-points.md` `260L`, `galois-connections-and-insertions.md` `161L`, `combinators-and-induced-operations.md` `169L`); added `sib-ai-galois-and-combinators` to router `evals/cases.yaml`; added reciprocal `U6` case `sib-ai-galois-induced-ab` to `ppa-dataflow-and-slicing/evals/cases.yaml` (`C4.7`), holding `ppa-abstract-interpretation` (`264L` `SKILL.md`, `955`-char description) at `0.2132` max Jaccard against active siblings (`0.2605` global max `<< 0.50`).\n2. Cross-skill `L1` bidirectional links & `T3` purity (`T2`, `T3`, `DEC-PPA-008`): replaced the deferred `§4.5` pointer in `ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md` (`208L`) with canonical `U6`/`U7` links into `combinators-and-induced-operations.md` and `correctness-and-fixed-points.md`; linked `Mini Project 4.2` (`SH → 𝒫(SG)`) in `shape-analysis.md` (`161L`); linked `Mini Project 4.3` (`Table 3.9` Galois lifting) in `polyvariant-kcfa-cpa-and-dfa.md` (`153L`); and reciprocated with `shape-analysis.md` + `polyvariant-kcfa-cpa-and-dfa.md` links in `ppa-abstract-interpretation/SKILL.md` (`264L`) and `combinators-and-induced-operations.md` (`169L`). Kept `ppa-abstract-interpretation.md` standalone at `107L` (`[80, 250]`).\n3. Canonical `U6`/`U7` symmetry, `T7` notation audit & backlog parity (`T4`, `T6`, `T7`): merged `16` `ppa.ai.*` nodes into `ontology/concept_graph.json` (`97 -> 113` nodes, `22` inverse edges added, `Rule B1` `113/113`, `10/10` `Figures 4.1–4.10`, `5/5` `§§4.1–4.5`) with byte-identical symmetric `corresponds_to` `basis` objects for `U6` (`ppa.ai.generalised-monotone-framework` ↔ `ppa.ai.adjunction-induced-analysis` and `ppa.dfa.monotone-framework`) and `U7` (`ppa.ai.widening` ↔ `ppa.order.chain-conditions` and `ppa.dfa.monotone-framework`); added unindexed Chapter 4 symbols `U-46..U-53` (`∇_K`/`LB_K`/`UB_K`, `Δ_N`, `ϒ`, `Sign′`, `⊗`/`AB`/`LR`, `ȷ`/`SS`/`SH`, `∇_L`/`Δ_L`, `ρ[L]`/`⊑^d`/`Ξ`) and `ρ` collision note in `ontology/notation_index.md` without duplicating existing `N1`–`N3` / `U-32` rows; instantiated `BKL-063..072` and reconciled pre-seeded `BKL-001`, `BKL-002`, `BKL-013`, `BKL-024`, `BKL-029`, `BKL-033` (`68/68` promoted `BKL` parity).\n\n## Acceptance Gates\n\n- [x] `ppa-program-analysis/SKILL.md` remains `< 92` lines (`82L < 99L`) with zero `C3.8` inter-skill `SKILL.md` or `ambient-context` links\n- [x] `ontology/concept_graph.json` (`113` nodes) has zero asymmetric inverse edges, `113/113` `Rule B1` altitude parity, and symmetric `U6`/`U7` `corresponds_to` `basis` objects\n- [x] Reciprocal `U6`/`U7`/`Mini Project 4.2–4.3` `L1 -> L1` cross-links and `C4.7` eval boundaries resolve cleanly under `scripts/validate_ppa_knowledge.py --strict-gotchas`\n- [x] `ontology/notation_index.md` `U-46..U-53` adds unindexed Chapter 4 symbols with zero duplication of `Index of Notation` or `U-32` rows and zero `C1.10` violations\n- [x] Gate #6 adversarial panel aligns on `REF-004` Chapter 4 integration & cumulative refactoring\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 authored during `W4-2` cumulative Chapter 4 promotion and refactoring pass (`C6.9` 1-to-1 with `ontology/altitude_alignment_log.md`) — staged for Gate #6 (`gate6-v1`).\n- 2026-11-19 Gate #6 Round 1 remediation (`gate6-v2`): resolved all `13` Round 1 findings (`F-FJ-601..604`, `F-CJ-601..604`, `F-OJ-601..605`; full table in `ISS-W4-02.md`), removing bare `ρ` from `U-53`, aligning `U-49` `Sign′` to `Figure 4.10` (`{⊥, -, 0, +, -0, 0+, ⊤}`), aligning `BKL-024` to `ppa.ai.galois-insertion-and-reduction` (`ς`/`ϕ`/`Δ` scope collisions) with `L1`/`L2` anchors on `BKL-013/024/029/033`, tagging `[external: CFG loop-cutset]` cleanly, eliminating all `44` plural page-range companion tokens in `RAW_SHARD_04a`, fixing `Exercises 4.3–4.4` in `RAW_SHARD_04b`, and purging unit-4 staging IDs + summary-repeating mechanisms across `BKL-063..072`.\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-ARCH`, `P-SWE`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240). Applied Round 2 `PREFERENCE` polishes (`U-53` `italic, roman` in `notation_index.md:511`, `BKL-024.md:48`, `BKL-065.md:33`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W4-02`\n- `knowledge/skills/ppa-program-analysis/SKILL.md`\n- `knowledge/skills/ppa-program-analysis/evals/cases.yaml`\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/evals/cases.yaml`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/evals/cases.yaml`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/shape-analysis.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/ambient-context/ppa-abstract-interpretation.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `ontology/altitude_alignment_log.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`, `issues/backlog/BKL-013.md`, `issues/backlog/BKL-024.md`, `issues/backlog/BKL-029.md`, `issues/backlog/BKL-033.md`\n- `issues/backlog/BKL-063.md` .. `issues/backlog/BKL-072.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] REF-004 cumulative Chapter 4 refactor applied (82L router, reciprocal U6/U7/Mini Project 4.2-4.3 L1 links and C4.7 evals, 113/113 Rule B1 parity, U-46..U-53 + rho notation audit, 68/68 promoted BKL parity) for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2) applied across REF-004 artifacts (82L router, 107L ambient, 264L SKILL, 260L/161L/169L refs, 113-node graph, U-46..U-53 notation index, 68/68 BKL parity); awaiting Gate #6 Round 2 alignment.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; 82L router, U6/U7 symmetry, U-46..U-53 notation audit, validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L0\", \"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"REF-004\", \"parent_issue\": \"ISS-W4-02\", \"ppa_scope\": [\"\\u00a74.1\\u2013\\u00a74.5 (book pp. 211\\u2013270; PDF pp. 228\\u2013287)\", \"\\u00a71.5, \\u00a72.3, \\u00a72.6, \\u00a73.5.2 (book pp. 13\\u201317, 68\\u201374, 104\\u2013128, 186\\u2013189)\", \"Chapter 4 End Matter (book pp. 270\\u2013282; PDF pp. 287\\u2013299)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "19faba98ddbed985dfbf6d016fa7518976f8850e7320e10f26945586ad0825b8",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
+    "altitudes": [
+     "L0",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "REF-004",
+    "issue_type": "refactor",
+    "labels": [
+     "ppa",
+     "wave-4",
+     "refactor"
+    ],
+    "milestone": "W4",
+    "parent_issue": "ISS-W4-02",
+    "ppa_scope": [
+     "§4.1–§4.5 (book pp. 211–270; PDF pp. 228–287)",
+     "§1.5, §2.3, §2.6, §3.5.2 (book pp. 13–17, 68–74, 104–128, 186–189)",
+     "Chapter 4 End Matter (book pp. 270–282; PDF pp. 287–299)"
+    ],
+    "priority": "P1",
+    "status": "closed",
+    "title": "Activate Chapter 4 router routing, reciprocal U6/U7 L1 links and evals, and T7 notation audit",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "REF-004",
+   "labels": [
+    "altitude:L0",
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "ppa",
+    "priority:P1",
+    "refactor",
+    "status:closed",
+    "type:refactor",
+    "wave-4"
+   ],
+   "milestone": "W4",
+   "parent_issue": "ISS-W4-02",
+   "published_body_sha256": "b828c425ff8e7f7680c91e099434e5d0d57a0b86561ae4de0c0502d6a30090f2",
+   "source_body": "\n## Summary\n\nExecute the Wave 4 (`W4-2`) cumulative Chapter 4 altitude refactoring pass: activate `ppa-abstract-interpretation` in `ppa-program-analysis/SKILL.md` (`82L < 92L`) and router evals (`T5`), wire reciprocal `U6`/`U7`/`Mini Project 4.2`/`Mini Project 4.3` `L1 -> L1` cross-links and `C4.7` boundary evals across `ppa-dataflow-and-slicing` and `ppa-control-flow-and-constraints` (`T2`), verify symmetric `U6`/`U7` `corresponds_to` edges and `Rule B1` parity across all `113` `ontology/concept_graph.json` nodes (`T4`), audit unindexed Chapter 4 symbols (`U-46..U-53` and `ρ` collision note, `T7`), and reconcile pre-seeded `BKL-001`/`BKL-002`/`BKL-013`/`BKL-024`/`BKL-029`/`BKL-033` alongside `BKL-063..072` (`T6`, `C6.6`, `C6.7`).\n\n## Source Citations & Grounding\n\n- [PPA §1.5, p. 16] (book p. 16; PDF p. 36)\n- [PPA §2.3.1, p. 68] (book p. 68; PDF p. 87)\n- [PPA §4.2, p. 221] (book p. 221; PDF p. 238)\n- [PPA §4.5.2, p. 262] (book p. 262; PDF p. 279)\n- [PPA Mini Project 4.2, p. 274] (book p. 274; PDF p. 291)\n- [PPA Mini Project 4.3, p. 275] (book p. 275; PDF p. 292)\n\n## Technical Analysis / Mechanism\n\n1. Router activation & reciprocal `C4.7` boundaries (`T5`): updated `knowledge/skills/ppa-program-analysis/SKILL.md` (`82L < 92L`, `17L` below `99L` ceiling) marking `§§4.1–4.5` active and adding Chapter 4 under `## Sibling Reference Modules (Active)` (`correctness-and-fixed-points.md` `260L`, `galois-connections-and-insertions.md` `161L`, `combinators-and-induced-operations.md` `169L`); added `sib-ai-galois-and-combinators` to router `evals/cases.yaml`; added reciprocal `U6` case `sib-ai-galois-induced-ab` to `ppa-dataflow-and-slicing/evals/cases.yaml` (`C4.7`), holding `ppa-abstract-interpretation` (`264L` `SKILL.md`, `955`-char description) at `0.2132` max Jaccard against active siblings (`0.2605` global max `<< 0.50`).\n2. Cross-skill `L1` bidirectional links & `T3` purity (`T2`, `T3`, `DEC-PPA-008`): replaced the deferred `§4.5` pointer in `ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md` (`208L`) with canonical `U6`/`U7` links into `combinators-and-induced-operations.md` and `correctness-and-fixed-points.md`; linked `Mini Project 4.2` (`SH → 𝒫(SG)`) in `shape-analysis.md` (`161L`); linked `Mini Project 4.3` (`Table 3.9` Galois lifting) in `polyvariant-kcfa-cpa-and-dfa.md` (`153L`); and reciprocated with `shape-analysis.md` + `polyvariant-kcfa-cpa-and-dfa.md` links in `ppa-abstract-interpretation/SKILL.md` (`264L`) and `combinators-and-induced-operations.md` (`169L`). Kept `ppa-abstract-interpretation.md` standalone at `107L` (`[80, 250]`).\n3. Canonical `U6`/`U7` symmetry, `T7` notation audit & backlog parity (`T4`, `T6`, `T7`): merged `16` `ppa.ai.*` nodes into `ontology/concept_graph.json` (`97 -> 113` nodes, `22` inverse edges added, `Rule B1` `113/113`, `10/10` `Figures 4.1–4.10`, `5/5` `§§4.1–4.5`) with byte-identical symmetric `corresponds_to` `basis` objects for `U6` (`ppa.ai.generalised-monotone-framework` ↔ `ppa.ai.adjunction-induced-analysis` and `ppa.dfa.monotone-framework`) and `U7` (`ppa.ai.widening` ↔ `ppa.order.chain-conditions` and `ppa.dfa.monotone-framework`); added unindexed Chapter 4 symbols `U-46..U-53` (`∇_K`/`LB_K`/`UB_K`, `Δ_N`, `ϒ`, `Sign′`, `⊗`/`AB`/`LR`, `ȷ`/`SS`/`SH`, `∇_L`/`Δ_L`, `ρ[L]`/`⊑^d`/`Ξ`) and `ρ` collision note in `ontology/notation_index.md` without duplicating existing `N1`–`N3` / `U-32` rows; instantiated `BKL-063..072` and reconciled pre-seeded `BKL-001`, `BKL-002`, `BKL-013`, `BKL-024`, `BKL-029`, `BKL-033` (`68/68` promoted `BKL` parity).\n\n## Acceptance Gates\n\n- [x] `ppa-program-analysis/SKILL.md` remains `< 92` lines (`82L < 99L`) with zero `C3.8` inter-skill `SKILL.md` or `ambient-context` links\n- [x] `ontology/concept_graph.json` (`113` nodes) has zero asymmetric inverse edges, `113/113` `Rule B1` altitude parity, and symmetric `U6`/`U7` `corresponds_to` `basis` objects\n- [x] Reciprocal `U6`/`U7`/`Mini Project 4.2–4.3` `L1 -> L1` cross-links and `C4.7` eval boundaries resolve cleanly under `scripts/validate_ppa_knowledge.py --strict-gotchas`\n- [x] `ontology/notation_index.md` `U-46..U-53` adds unindexed Chapter 4 symbols with zero duplication of `Index of Notation` or `U-32` rows and zero `C1.10` violations\n- [x] Gate #6 adversarial panel aligns on `REF-004` Chapter 4 integration & cumulative refactoring\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 authored during `W4-2` cumulative Chapter 4 promotion and refactoring pass (`C6.9` 1-to-1 with `ontology/altitude_alignment_log.md`) — staged for Gate #6 (`gate6-v1`).\n- 2026-11-19 Gate #6 Round 1 remediation (`gate6-v2`): resolved all `13` Round 1 findings (`F-FJ-601..604`, `F-CJ-601..604`, `F-OJ-601..605`; full table in `ISS-W4-02.md`), removing bare `ρ` from `U-53`, aligning `U-49` `Sign′` to `Figure 4.10` (`{⊥, -, 0, +, -0, 0+, ⊤}`), aligning `BKL-024` to `ppa.ai.galois-insertion-and-reduction` (`ς`/`ϕ`/`Δ` scope collisions) with `L1`/`L2` anchors on `BKL-013/024/029/033`, tagging `[external: CFG loop-cutset]` cleanly, eliminating all `44` plural page-range companion tokens in `RAW_SHARD_04a`, fixing `Exercises 4.3–4.4` in `RAW_SHARD_04b`, and purging unit-4 staging IDs + summary-repeating mechanisms across `BKL-063..072`.\n- 2026-11-19 Round 2 (`gate6-v2`): unanimous `3/3 [ALIGNED gate6-v2]` across `P-ARCH`, `P-SWE`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #238, #239, #240). Applied Round 2 `PREFERENCE` polishes (`U-53` `italic, roman` in `notation_index.md:511`, `BKL-024.md:48`, `BKL-065.md:33`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W4-02`\n- `knowledge/skills/ppa-program-analysis/SKILL.md`\n- `knowledge/skills/ppa-program-analysis/evals/cases.yaml`\n- `knowledge/skills/ppa-abstract-interpretation/SKILL.md`\n- `knowledge/skills/ppa-abstract-interpretation/evals/cases.yaml`\n- `knowledge/skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md`\n- `knowledge/skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/evals/cases.yaml`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/shape-analysis.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/ambient-context/ppa-abstract-interpretation.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `ontology/altitude_alignment_log.md`\n- `issues/backlog/BKL-001.md`, `issues/backlog/BKL-002.md`, `issues/backlog/BKL-013.md`, `issues/backlog/BKL-024.md`, `issues/backlog/BKL-029.md`, `issues/backlog/BKL-033.md`\n- `issues/backlog/BKL-063.md` .. `issues/backlog/BKL-072.md`\n\n## Verification Receipts\n- 2026-11-19 [in_progress] REF-004 cumulative Chapter 4 refactor applied (82L router, reciprocal U6/U7/Mini Project 4.2-4.3 L1 links and C4.7 evals, 113/113 Rule B1 parity, U-46..U-53 + rho notation audit, 68/68 promoted BKL parity) for Gate #6 (gate6-v1).\n- 2026-11-19 [in_progress] Gate #6 Round 1 remediation (gate6-v2) applied across REF-004 artifacts (82L router, 107L ambient, 264L SKILL, 260L/161L/169L refs, 113-node graph, U-46..U-53 notation index, 68/68 BKL parity); awaiting Gate #6 Round 2 alignment.\n- 2026-11-19 [closed] Gate #6 Round 2 unanimous 3/3 [ALIGNED gate6-v2] (#238, #239, #240); 0 HARD_BLOCK, 0 BLOCKING; 82L router, U6/U7 symmetry, U-46..U-53 notation audit, validators, hygiene, and 47/47 unit tests PASS.",
+   "source_path": "issues/refactors/REF-004.md",
+   "state": "closed",
+   "title": "Activate Chapter 4 router routing, reciprocal U6/U7 L1 links and evals, and T7 notation audit"
   }
  ],
  "order": [
@@ -5153,7 +5795,17 @@
   "ISS-W4-01",
   "BKL-001",
   "BKL-002",
+  "BKL-067",
+  "BKL-068",
+  "BKL-069",
   "ISS-W4-02",
+  "BKL-063",
+  "BKL-064",
+  "BKL-065",
+  "BKL-066",
+  "BKL-070",
+  "BKL-071",
+  "BKL-072",
   "ISS-W5-01",
   "BKL-004",
   "ISS-W5-02",
@@ -5169,7 +5821,8 @@
   "ISS-W8-02",
   "REF-001",
   "REF-002",
-  "REF-003"
+  "REF-003",
+  "REF-004"
  ],
  "schema_version": 1
 }

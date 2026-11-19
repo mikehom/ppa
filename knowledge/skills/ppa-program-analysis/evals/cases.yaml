@@ -48,6 +48,10 @@ cases:
   - id: sib-ai-widening
     prompt: "My interval analysis never terminates on a loop with an unbounded counter. Design a widening operator and argue it is sound."
     expect_skill: ppa-abstract-interpretation
+  - id: sib-ai-galois-and-combinators
+    prompt: "Verify whether gamma_IS preserves arbitrary meets between Interval and Sign', reduce redundant elements with varsigma = alpha o gamma, and build the 29-atom AB relational tensor domain."
+    expect_skill: ppa-abstract-interpretation
+    notes: "Chapter 4 Galois insertions (§4.3) and domain combinators / reduced tensor products (§4.4) route directly to ppa-abstract-interpretation."
   - id: sib-types-effects
     prompt: "Extend a type system with an effect annotation that records which exceptions a function may raise."
     expect_skill: ppa-types-effects-and-regions
