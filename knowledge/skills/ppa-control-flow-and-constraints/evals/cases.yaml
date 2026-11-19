@@ -1,0 +1,52 @@
+# Routing and boundary cases for ppa-control-flow-and-constraints.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: pos-0cfa-dual-observer-cubic-solver
+    prompt: "My hand-written 0-CFA subset-constraint solver for a functional IR drops call return edges whenever the argument expression is processed on the worklist before the lambda reaches the call operator. How should conditional constraints be registered and solved in O(n^3)?"
+    expect_skill: ppa-control-flow-and-constraints
+    must_mention: ["E[p]", "Table 3.7", "O(n^3)"]
+    notes: "Tests Table 3.7 dual-observer registration (E[p_1] and E[p]) and differential (q, t) / bitset O(n^3) propagation."
+  - id: pos-coinductive-acceptability-omega-loop
+    prompt: "Why is 0-CFA acceptability defined as a greatest fixed point gfp(Q) via coinduction when our constraint solver computes a least fixed point lfp, and what goes wrong on recursive or omega self-application under an inductive definition?"
+    expect_skill: ppa-control-flow-and-constraints
+    must_mention: ["gfp", "Moore family", "Proposition 3.16"]
+    notes: "Tests §3.1.2 / §3.2.4 coinduction vs induction duality and Moore-family existence."
+  - id: pos-kcfa-vs-mcfa-vs-cpa-selection
+    prompt: "Monovariant 0-CFA smears closures across two calls to a polymorphic wrapper (f f)(fn y => y). Compare uniform 1-CFA, polynomial k-CFA / m-CFA, and the Cartesian Product Algorithm, including the lexical contour lookup and CPA empty-argument pitfall."
+    expect_skill: ppa-control-flow-and-constraints
+    must_mention: ["ce(x)", "Table 3.10", "CPA"]
+    notes: "Tests §3.6 uniform k-CFA, polynomial k-CFA / [external: m-CFA], CPA ([2] [external: Agesen]), lexical ce(x) lookup, and empty Cartesian product hazard."
+  - id: pos-coupled-cfa-dfa-online-vs-staged
+    prompt: "In Example 3.27 / 3.31 (let f = fn x => if x > 0 then fn y => y else fn z => 25 applied to 3 then 0), two-phase 0-CFA followed by complete-lattice sign analysis reports {0, +} at result label 15 instead of {0}. How do we couple a complete-lattice sign or constant domain online with CFA to prune dead branches soundly?"
+    expect_skill: ppa-control-flow-and-constraints
+    must_mention: ["Table 3.9", "ACC", "staged"]
+    notes: "Tests §3.5 online coupled CFA+DFA vs staged two-phase precision loss and ACC/branch-guard preconditions."
+  - id: pos-open-system-callback-stubs
+    prompt: "How does Chapter 3 justify analysing an open functional module with external library holes without re-analysing the module when a concrete host implementation is plugged in?"
+    expect_skill: ppa-control-flow-and-constraints
+    must_mention: ["Corollary 3.25", "open"]
+    notes: "Tests §3.4.2 p. 182 open-system fragment substitutability and BKL-008 boundary."
+  - id: sib-dataflow-first-order-call-strings-and-shape
+    prompt: "Design an embellished Monotone Framework with k-bounded call strings and small assumption sets for a first-order WHILE language with static call p(a, z) procedures, plus compatible shape graphs (S, H, is) for heap list reversal."
+    expect_skill: ppa-dataflow-and-slicing
+    notes: "Negative U4/U5 sibling boundary (C4.7): first-order WHILE static procedures and §2.6 shape graphs belong to ppa-dataflow-and-slicing."
+  - id: sib-types-effects-annotated-algorithm-w
+    prompt: "Extend Hindley-Milner Algorithm W with annotated arrow types, subeffecting constraints, and let-polymorphic region and exception effects."
+    expect_skill: ppa-types-effects-and-regions
+    notes: "Negative U8 sibling boundary: annotated type/effect reconstruction belongs to ppa-types-effects-and-regions."
+  - id: sib-fixedpoint-solvers-rpo-scc
+    prompt: "Order a general system of monotone inequations by depth-first spanning forest reverse postorder and strong components, and prove the d(G_S, T) + 3 Round Robin iteration bound."
+    expect_skill: ppa-fixedpoint-solvers
+    notes: "Negative U3 sibling boundary: Chapter 6 worklist scheduling, SCCs, and RPO bounds belong to ppa-fixedpoint-solvers."
+  - id: sib-abstract-interpretation-widening
+    prompt: "Construct a Galois insertion between collecting states and integer intervals [l, u] with widening and narrowing operators to bound loop indices."
+    expect_skill: ppa-abstract-interpretation
+    notes: "Negative sibling boundary: infinite-height lattices and Galois widenings belong to ppa-abstract-interpretation."
+  - id: sib-cyber-taint-cwe-triage
+    prompt: "Define source-to-sink taint threat rules and context-specific SQL/XSS sanitizer models to triage CWE-89 and CWE-502 exploitability."
+    expect_skill: ppa-cyber-vulnerability-analysis
+    notes: "Negative sibling boundary: security threat/sanitizer policy belongs to ppa-cyber-vulnerability-analysis."
+  - id: neg-router-four-approaches-and-appendices
+    prompt: "Compare the four main approaches to program analysis in Chapter 1 on Reaching Definitions and state Tarski's Fixed Point Theorem from Appendix A."
+    expect_skill: ppa-program-analysis
+    notes: "Negative boundary: cross-paradigm Chapter 1 overview and Appendix A-C foundations route to ppa-program-analysis."

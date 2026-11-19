@@ -113,10 +113,10 @@ Extracts, enriches, cross-references, and adversarially verifies all formal and 
 
 ## Phase 3: Part II — Chapter 3 (Constraint Based Analysis)
 
-**Status:** active
+**Status:** completed
 
-- [ ] **`W3-1` (`ISS-W3-01`)**: Ch 3a (§3.1–3.4) 0-CFA Formulations, Coinduction & $O(n^3)$ Solver (`RAW_SHARD_03a_0cfa.md`).
-- [ ] **`W3-2` (`ISS-W3-02`)**: Ch 3b (§3.5–3.6) CFA+DFA Lattices, Uniform $k$-CFA, CPA, Synthesis (`ppa-control-flow-and-constraints`, `ppa-cfa-and-constraints.md`), Refactoring & Gate #5 (Ch 3 3-Model Loop).
+- [x] **`W3-1` (`ISS-W3-01`)**: Ch 3a (§3.1–3.4) 0-CFA Formulations, Coinduction & $O(n^3)$ Solver (`RAW_SHARD_03a_0cfa.md`).
+- [x] **`W3-2` (`ISS-W3-02`)**: Ch 3b (§3.5–3.6) CFA+DFA Lattices, Uniform $k$-CFA, CPA, Synthesis (`ppa-control-flow-and-constraints`, `ppa-cfa-and-constraints.md`), Refactoring & Gate #5 (Ch 3 3-Model Loop).
 
 ## Phase 4: Part II — Chapter 4 (Abstract Interpretation)
 

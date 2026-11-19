@@ -196,15 +196,15 @@ class IssueCtlTests(unittest.TestCase):
         with scratch() as tmp:
             root = Path(tmp)
             copy_tracker(root)
-            ok = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W3-01",
+            ok = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01",
                          "in_progress", "--date", "2026-11-19")
             self.assertEqual(ok.returncode, 0, ok.stderr)
-            text = (root / "issues/shards/ISS-W3-01.md").read_text(encoding="utf-8")
+            text = (root / "issues/shards/ISS-W8-01.md").read_text(encoding="utf-8")
             self.assertIn("status: in_progress", text)
             self.assertIn("updated_at: 2026-11-19", text)
             self.assertTrue((root / "tmp" / "issues.lock").exists())
             bad = run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                          "ISS-W3-02", "closed")
+                          "ISS-W8-02", "closed")
             self.assertEqual(bad.returncode, 1)
             self.assertIn("illegal transition", bad.stderr)
 
@@ -213,16 +213,16 @@ class IssueCtlTests(unittest.TestCase):
             root = Path(tmp)
             copy_tracker(root)
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                                     "ISS-W3-01", "in_progress").returncode, 0)
-            path = root / "issues/shards/ISS-W3-01.md"
-            r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W3-01", "aligned")
+                                     "ISS-W8-01", "in_progress").returncode, 0)
+            path = root / "issues/shards/ISS-W8-01.md"
+            r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01", "aligned")
             self.assertEqual(r.returncode, 1)
             # Duplicate judge IDs must fail.
             dup = path.read_text(encoding="utf-8").replace(
                 "aligned_models: []", "aligned_models: [judge-a, judge-a, judge-a]")
             path.write_text(dup, encoding="utf-8")
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                                     "ISS-W3-01", "aligned").returncode, 1)
+                                     "ISS-W8-01", "aligned").returncode, 1)
             valid = dup.replace(
                 "aligned_models: [judge-a, judge-a, judge-a]",
                 "aligned_models: [judge-a, judge-b, judge-c]",
@@ -232,10 +232,10 @@ class IssueCtlTests(unittest.TestCase):
             ).replace("- [ ] ", "- [x] ")
             path.write_text(valid, encoding="utf-8")
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                                     "ISS-W3-01", "aligned").returncode, 0)
+                                     "ISS-W8-01", "aligned").returncode, 0)
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root), "set-status",
-                                     "ISS-W3-01", "closed").returncode, 1)
-            r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W3-01",
+                                     "ISS-W8-01", "closed").returncode, 1)
+            r = run_cli("issue_ctl.py", "--root", str(root), "set-status", "ISS-W8-01",
                         "closed", "--receipt", "tests green", "--date", "2026-11-20")
             self.assertEqual(r.returncode, 0, r.stderr)
             self.assertEqual(run_cli("issue_ctl.py", "--root", str(root),

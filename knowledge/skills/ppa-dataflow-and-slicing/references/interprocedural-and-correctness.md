@@ -148,11 +148,18 @@ MVP∘(ℓ)    = ⨆{f_ℓ⃗(ι) | ℓ⃗ ∈ vpath∘(ℓ)}
   Extending parameters to multiple `val, res, val-res` and locals (`Exercise 2.20`) must handle aliasing when
   two actual `res`/`val-res` arguments share one variable (`G-U2b-34`, `BKL-007` compares Chapter 3 `k`-CFA cost)
   [PPA Exercise 2.20, p. 139] (book p. 139; PDF p. 158).
-- **Cross-Chapter Unifications & Architecture (`[U2b:CR-b,d,e,f]`)**: `Small Assumption Sets` + completely
+- **Cross-Chapter Unifications & Architecture (`[U2b:CR-b,d,e,f]`, `U5`, `Figure 3.3`)**: `Small Assumption Sets` + completely
   additive `f̂^{2A} ⊔ f̂^{2B}` are the Chapter 2 blueprint for IFDS/IDE tabulation (`[147, 155]` [external])
   [PPA Chapter 2 Concluding Remarks, p. 129] (book p. 129; PDF p. 148); `IAV(p)` previews Chapter 5's
   statement-level Type & Effect annotations [PPA §2.5.6, p. 103] (book p. 103; PDF p. 122); structural analysis
   (`[154, 110]`) collapses low-level CFGs into AST regions [PPA Chapter 2 Concluding Remarks, p. 131] (book p. 131; PDF p. 150).
+  For canonical unification **`U5`**, bounded call strings (`§2.5.4`, `Δ = Lab^{≤k}`) unify with Uniform `k`-CFA (`§3.6.1`,
+  `(Lab × Δ) → Val̂`) [PPA §3.6.1, p. 196] (book p. 196; PDF p. 214) and small assumption sets (`§2.5.5`, `Δ = D`)
+  unify with Agesen's `CPA` (`§3.6.2`, `Δ = Term^m`) [PPA §3.6.2, p. 198] (book p. 198; PDF p. 216) in
+  [polyvariant-kcfa-cpa-and-dfa.md](../../ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md);
+  the functional subject-reduction analogue of `Figure 2.4` / `Corollary 2.17` (`Figure 3.3`, `Theorem 3.10`) lives in
+  [cfa-core-and-coinduction.md](../../ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md)
+  [PPA Figure 3.3, p. 159] (book p. 159; PDF p. 177).
 
 ## 5. Non-blocking Correctness & Interprocedural Backlog (`ARCHITECTURE.md` §6.4)
 

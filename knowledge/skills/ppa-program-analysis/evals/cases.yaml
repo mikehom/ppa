@@ -41,6 +41,10 @@ cases:
   - id: sib-cfa-call-targets
     prompt: "Which closures may be applied at each call site of this higher-order functional program?"
     expect_skill: ppa-control-flow-and-constraints
+  - id: sib-cfa-cubic-and-kcfa
+    prompt: "Build the O(n^3) dual-observer constraint solver for 0-CFA and compare uniform 1-CFA against Agesen's Cartesian Product Algorithm on a polymorphic wrapper."
+    expect_skill: ppa-control-flow-and-constraints
+    notes: "Chapter 3 constraint solving (§3.4) and polyvariant k-CFA/CPA (§3.6) route directly to ppa-control-flow-and-constraints."
   - id: sib-ai-widening
     prompt: "My interval analysis never terminates on a loop with an unbounded counter. Design a widening operator and argue it is sound."
     expect_skill: ppa-abstract-interpretation

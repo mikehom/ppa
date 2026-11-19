@@ -411,6 +411,9 @@ together with its chapter, section or page.
 | `?` | uninitialised reaching-definition label in `Var_{⋆} × (Lab_{⋆} ∪ {?})` [PPA §1.2, p. 5] (and `Lab_{⋆}^{?}`, U-35, [PPA §2.1.2, p. 43]) versus alphabet symbol in `{!, ?}` for regular-expression Reaching Definitions in Mini Project 1.1 [PPA Chapter 1 Mini Projects, p. 31] (not indexed standalone; see BKL-035). | N3-130, U-33, U-35 |
 | `𝒮` | regular-expression translation `𝒮(S)` of a `WHILE` statement in Mini Project 1.1 [PPA Chapter 1 Mini Projects, p. 30] (not indexed there) versus constraint-system generator `𝒮` in Chapter 6 (p. 367). | N3-199, U-34 |
 | `k` / `k_{x}` | italic `k` denotes bounded call-string depth ([PPA §2.5.4, p. 97]) and closure contour bound (p. 191), whereas `k_{x}` denotes the shape-node variable stripping map `ALoc → ALoc` ([PPA §2.6.3, p. 117]). | U-38 |
+| `⊨` | `■ ⊨ ■` is indexed only for Chapter 5 substitution satisfaction `θ_{A} ⊨ C` (p. 309); Chapter 2 uses `live ⊨ LV^=` ([PPA Lemma 2.15, p. 60]) and Chapter 3 uses CFA acceptability/constraint satisfaction `⊨` ([PPA Table 3.1, p. 146]), `⊨_{s}`, `⊨'_{s}`, `⊨_{c}`, `⊨_{d}`, `⊨_{D}`, `⊨'_{D}`, `⊨_{δ}^{ce}`, `⊨_{CPA}^{δ}`, `⊨_{me}` (through [PPA Mini Project 3.4, p. 205]). | N1-006, N2-055, U-39 |
+| `C` / `C(ℓ)` | italic `C` is a Chapter 5 annotation constraint set (p. 308); sans `\widehat{C}` is a semantic abstract cache (p. 144); unindexed sans `C(ℓ)` is a Chapter 3 syntactic cache constraint variable ([PPA §3.4, p. 173]); `C ∈ Constr` is a data constructor ([PPA Mini Project 3.2, p. 203]). | N3-035, N3-036, U-40 |
+| `r` / `r(x)` | italic `r` ranges over regions (pp. 331, 343); unindexed sans `r(x)` is a Chapter 3 syntactic environment constraint variable ([PPA §3.4, p. 173]). | N3-179, U-40 |
 
 ### Superscript of `l_{n}^{ϕ}` (book p. 225; PDF p. 242)
 
@@ -441,7 +444,9 @@ that drops typeface merges them.
 | DU / du, UD / ud, DOM / dom | sans `DU`, `UD`, `DOM` (N3-063, N3-235, N3-061) versus italic `du`, `ud`, `dom` (N3-064, N3-236, N3-062) |
 | Type and hats | bold `Type` (N3-226) versus bold `\widehat{Type}` (N3-232); likewise `Env`/`\widehat{Env}`, `Val`/`\widehat{Val}`, `TEnv`/`\widehat{TEnv}`, `Data`/`\widehat{Data}` |
 | P | italic `P_{⋆}` (N3-164), script `℘` (N3-165); the calligraphic powerset `𝒫` [PPA Example A.1, p. 394] is not indexed and is easily confused with `℘` |
-| Q | indexed `Q_{i}` / `𝒬_{i}` [PPA §B.2, p. 409]; unindexed sans `Q` (predicate being defined), calligraphic `𝒬` (its functional) and italic `Q′` (candidate predicate) [PPA §B.3, p. 411]; none is indexed |
+| Q | indexed `Q_{i}` / `𝒬_{i}` [PPA §B.2, p. 409]; unindexed sans `Q` (predicate being defined), calligraphic `𝒬` (its functional) and italic `Q′` (candidate predicate) [PPA §B.3, p. 411], plus Chapter 3 abstract `0-CFA` functional `𝒬` ([PPA §3.1.2, p. 150]) and syntax-directed `𝒬_{s}` ([PPA Proposition 3.18, p. 172]); none is indexed |
+| F | calligraphic `ℱ` transfer functions (`N3-077`–`N3-079`) and italic `f` (`N3-080`–`N3-091`) versus unindexed italic `F` (flow relation [PPA §2.1, p. 37]) and `F_{⋆}` (constraint-system functional [PPA §3.4.2, p. 176]) |
+| R, S | italic `R` (`N3-176`), calligraphic `ℛ` (`N3-177`), and unindexed sans `\widehat{R}` reachability ([PPA Mini Project 3.1, p. 202]); sans `S` abstract heap state (`N3-198`) vs Chapter 3 flow-sensitive reference stores `\widehat{S}_{∘}, \widehat{S}_{•}` ([PPA Mini Project 3.4, p. 205]) |
 | ρ / ϱ | italic `ρ` environments (N2-035) versus `ϱ` region variables (N2-041) |
 
 ## Unindexed Core Symbols in Book
@@ -488,6 +493,13 @@ Each row cites the page where the book defines the symbol; the meaning restates 
 | U-35 | `Lab_{⋆}^{?}`, `Var_{⋆} × Lab_{⋆}^{?}` | bold | label set extended with uninitialised sentinel `?` (`Lab_{⋆}^{?} = Lab_{⋆} ∪ {?}`, [PPA §2.1.2, p. 43]), required by `ud`/`du`/`UD`/`DU` ([PPA §2.1.5, p. 53]; BKL-036) and instrumented `Trace` ([PPA Table 2.10, p. 133]; BKL-049) | [PPA §2.1.2, p. 43] |
 | U-36 | `flow_{⋆}^{R}`, `inter-flow_{⋆}^{R}` | italic | reverse intraprocedural and interprocedural flows used for backward embellished frameworks ([PPA §2.5, p. 85]; BKL-041), distinct from intraprocedural `flow^{R}` (N3-097) | [PPA §2.5, p. 85] |
 | U-38 | `k_{x}` | italic | variable-kill shape-node remapping `ALoc → ALoc` (`k_{x}(n_{Z}) = n_{Z \setminus \{x\}}`, [PPA §2.6.3, p. 117]) | [PPA §2.6.3, p. 117] |
+| U-39 | `⊨_{s}`, `⊨'_{s}`, `⊨_{c}`, `⊨_{d}`, `⊨_{D}`, `⊨'_{D}`, `⊨_{δ}^{ce}`, `⊨_{CPA}^{δ}`, `⊨_{me}` | roman | subscripted/primed Chapter 3 CFA acceptability and constraint-satisfaction relations: syntax-directed `⊨_{s}` ([PPA Table 3.5, p. 170]) and reachability-gated `⊨'_{s}` ([PPA Mini Project 3.1, p. 202]), constraint satisfaction `⊨_{c}` ([PPA §3.4.1, p. 176]), coupled powerset `⊨_{d}` ([PPA Table 3.8, p. 184]), lattice `⊨_{D}` ([PPA Table 3.9, p. 188]) and staged `⊨'_{D}` ([PPA §3.5.2, p. 189]), uniform `k`-CFA `⊨_{δ}^{ce}` ([PPA Table 3.10, p. 192]), `CPA` `⊨_{CPA}^{δ}` ([PPA §3.6.2, p. 197]), and imperative-store `⊨_{me}` ([PPA Mini Project 3.4, p. 205]); bare `0-CFA` `⊨` ([PPA Table 3.1, p. 146]) shares glyph `⊨` with `N1-006` (see `Overloaded symbols`) | [PPA Table 3.5, p. 170] |
+| U-40 | `C(ℓ)`, `r(x)` | sans | syntactic constraint variables for label `ℓ` and variable `x` in `𝒞_{⋆}⟦e_{⋆}⟧` (distinct from semantic caches `\widehat{C}(ℓ)`, `N3-036`, and environments `\widehat{ρ}(x)`, `N2-039`) | [PPA §3.4, p. 173] |
+| U-41 | `\widehat{Val}_{⋆}`, `\widehat{Cache}_{⋆}`, `\widehat{Env}_{⋆}` | bold | finite subterm-restricted domains `𝒫(Term_{⋆})`, `Lab_{⋆} → \widehat{Val}_{⋆}`, and `Var_{⋆} → \widehat{Val}_{⋆}` bounded by `(\widehat{C}_{⋆}^{⊤}, \widehat{ρ}_{⋆}^{⊤})` | [PPA §3.3.2, p. 171] |
+| U-42 | `𝒬_{s}` | calligraphic | monotone syntax-directed `0-CFA` acceptability functional (`⊨_{s} = gfp(𝒬_{s}) = lfp(𝒬_{s})`), paired with unindexed Chapter 3 `𝒬` (`⊨ = gfp(𝒬)`, [PPA §3.1.2, p. 150]) | [PPA Proposition 3.18, p. 172] |
+| U-43 | `F_{⋆}` | italic | monotone fixed-point operator on `\widehat{Cache}_{⋆} × \widehat{Env}_{⋆}` whose least fixed point solves `𝒞_{⋆}⟦e_{⋆}⟧` | [PPA §3.4.2, p. 176] |
+| U-44 | `\widehat{R}`, `Reach` | sans, bold | abstract reachability map `\widehat{R} ∈ Reach = Lab → 𝒫({on})` gating active bodies in `(Ĉ, ρ̂, R̂) ⊨'_{s} e` | [PPA Mini Project 3.1, p. 202] |
+| U-45 | `\widehat{S}_{∘}`, `\widehat{S}_{•}` | sans | entry and exit abstract reference stores `Lab → (Pnt → \widehat{Val})` in flow-sensitive CFA (`(Ĉ, ρ̂, \widehat{S}_{∘}, \widehat{S}_{•}) ⊨_{me} e`) | [PPA Mini Project 3.4, p. 205] |
 
 ## Index Anomalies
 
@@ -524,6 +536,6 @@ Each row cites the page where the book defines the symbol; the meaning restates 
 11. Text-layer damage on book p. 429 (PDF p. 443): the text layer reads `154, 286` as
     `154 2 6`, `298, 348` as `29 34`, `298` as `29`, `308` as `30`, `98, 193` as `9 193`,
     `186` as `1 6`, `96, 97, 99, 100` as `96 , 91, 99 100`, `17, 18, 20` as `17, 1 • 20`, and
-    `δ̂, 187` as `617`. All page references in this file come from the page images.
+    `\widehat{δ}, 187` as `617`. All page references in this file come from the page images (`BKL-011`).
 12. `BExp(·)` (N3-029) is indexed at p. 39, where the text instead writes `AExp(b)` for the
     non-trivial arithmetic subexpressions of boolean expression `b` [PPA §2.1, p. 39].

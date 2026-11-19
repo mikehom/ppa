@@ -138,6 +138,10 @@
         {
           "target_id": "ppa.dfa.monotone-framework",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.moore-family-solutions",
+          "relation": "prerequisite_of"
         }
       ],
       "artifact_refs": [
@@ -181,6 +185,14 @@
         },
         {
           "target_id": "ppa.shape.shape-graphs-invariants",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-powerset-dfa",
           "relation": "prerequisite_of"
         }
       ],
@@ -250,6 +262,10 @@
         {
           "target_id": "ppa.dfa.live-correctness",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.moore-family-solutions",
+          "relation": "has_instance"
         }
       ],
       "artifact_refs": [
@@ -591,6 +607,14 @@
         {
           "target_id": "ppa.dfa.monotone-framework",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-lattice-dfa",
+          "relation": "prerequisite_of"
         }
       ],
       "artifact_refs": [
@@ -878,6 +902,54 @@
         {
           "target_id": "ppa.dfa.live-correctness",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.coinductive-well-definedness",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U9",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.1.2",
+                "book_page": 150,
+                "pdf_page": 168,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "A",
+                "section": "A.4",
+                "book_page": 402,
+                "pdf_page": 418,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "B",
+                "section": "B.3",
+                "book_page": 412,
+                "pdf_page": 428,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Positive monotone acceptability functional Q on complete predicate lattice ((Cache_hat x Env_hat x Exp) -> {true, false}, <=)"
+            ],
+            "differs": [
+              "Section 3.1.2 instantiates gfp(Q) on dynamic call acceptability |= while Proposition 3.16 proves lfp(Q) fails the Moore-family property on self-application, whereas Appendix B develops general coinduction over Appendix A.4 fixed points"
+            ]
+          }
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "prerequisite_of"
         }
       ],
       "artifact_refs": [
@@ -1022,6 +1094,10 @@
         {
           "target_id": "ppa.proof.well-founded-induction",
           "relation": "specializes"
+        },
+        {
+          "target_id": "ppa.cfa.subject-reduction",
+          "relation": "prerequisite_of"
         }
       ],
       "artifact_refs": [
@@ -1058,6 +1134,10 @@
         {
           "target_id": "ppa.order.chain-conditions",
           "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.subject-reduction",
+          "relation": "prerequisite_of"
         }
       ],
       "artifact_refs": [
@@ -1139,6 +1219,10 @@
       "related_edges": [
         {
           "target_id": "ppa.proof.functional-fixed-points",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.set-constraints-and-paradigms",
           "relation": "related_to"
         }
       ],
@@ -1299,6 +1383,50 @@
               "Proposition A.10 gives the lattice identity gfp(𝒬) = ⨆Ext(𝒬), whereas §B.3 packages witness membership Q′ ∈ Ext(𝒬) (Q′ ⊑ 𝒬(Q′) or Q′ ⊑ 𝒬(Q ⊔ Q′)) as the coinduction proof principle"
             ]
           }
+        },
+        {
+          "target_id": "ppa.cfa.coinductive-well-definedness",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U9",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.1.2",
+                "book_page": 150,
+                "pdf_page": 168,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "A",
+                "section": "A.4",
+                "book_page": 402,
+                "pdf_page": 418,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "B",
+                "section": "B.3",
+                "book_page": 412,
+                "pdf_page": 428,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Positive monotone acceptability functional Q on complete predicate lattice ((Cache_hat x Env_hat x Exp) -> {true, false}, <=)"
+            ],
+            "differs": [
+              "Section 3.1.2 instantiates gfp(Q) on dynamic call acceptability |= while Proposition 3.16 proves lfp(Q) fails the Moore-family property on self-application, whereas Appendix B develops general coinduction over Appendix A.4 fixed points"
+            ]
+          }
         }
       ],
       "artifact_refs": [
@@ -1377,6 +1505,10 @@
         {
           "target_id": "ppa.proof.inductive-definition",
           "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.coinductive-well-definedness",
+          "relation": "related_to"
         }
       ],
       "artifact_refs": [
@@ -1430,6 +1562,10 @@
         },
         {
           "target_id": "ppa.dfa.while-flow-graphs",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
           "relation": "prerequisite_of"
         }
       ],
@@ -2083,6 +2219,7 @@
         "ontology/notation_index.md"
       ],
       "issue_refs": [
+        "BKL-011",
         "BKL-024",
         "BKL-035"
       ]
@@ -2497,6 +2634,10 @@
               "Inclusions RD⃗ ⊒ F(RD⃗) admit larger reductive non-fixed-point solutions outside Fix(F), whereas every equation solution solves the inclusions and both share the same least solution"
             ]
           }
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "related_to"
         }
       ],
       "artifact_refs": [
@@ -2561,6 +2702,18 @@
         {
           "target_id": "ppa.tes.call-tracking-effects",
           "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.fun-syntax-and-dispatch",
+          "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "refined_by"
         }
       ],
       "artifact_refs": [
@@ -2783,6 +2936,10 @@
         {
           "target_id": "ppa.interproc.flow-insensitive-iav",
           "relation": "contrasts_with"
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "related_to"
         }
       ],
       "artifact_refs": [
@@ -2836,6 +2993,10 @@
         {
           "target_id": "ppa.tes.annotated-type-constructors",
           "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "related_to"
         }
       ],
       "artifact_refs": [
@@ -2886,6 +3047,10 @@
         },
         {
           "target_id": "ppa.solvers.worklist-mfp",
+          "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
           "relation": "refined_by"
         }
       ],
@@ -3553,6 +3718,10 @@
         {
           "target_id": "ppa.dfa.rd-instrumented-correctness",
           "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.fun-closure-sos",
+          "relation": "contrasts_with"
         }
       ],
       "artifact_refs": [
@@ -3637,6 +3806,10 @@
         {
           "target_id": "ppa.fixpoint.tarski",
           "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.subject-reduction",
+          "relation": "related_to"
         }
       ],
       "artifact_refs": [
@@ -3762,6 +3935,43 @@
         {
           "target_id": "ppa.shape.transfer-and-materialisation",
           "relation": "has_instance"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-lattice-dfa",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U4",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.5.2",
+                "book_page": 186,
+                "pdf_page": 204,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.3",
+                "book_page": 66,
+                "pdf_page": 85,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Complete data lattice L satisfying the Ascending Chain Condition (ACC) with monotone operator transfer family F"
+            ],
+            "differs": [
+              "Section 3.5.2 monotone structure instances (L, F, iota, f) omit Section 2.3's static flow relation F and extremal labels E because higher-order control edges and conditional branch reachability are discovered dynamically alongside C_hat"
+            ]
+          }
         }
       ],
       "artifact_refs": [
@@ -3835,6 +4045,10 @@
         },
         {
           "target_id": "ppa.ai.adjunction-induced-analysis",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-lattice-dfa",
           "relation": "related_to"
         }
       ],
@@ -3918,6 +4132,10 @@
         },
         {
           "target_id": "ppa.graphs.reverse-postorder",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
           "relation": "related_to"
         }
       ],
@@ -4085,6 +4303,10 @@
         {
           "target_id": "ppa.interproc.flow-insensitive-iav",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.fun-syntax-and-dispatch",
+          "relation": "contrasts_with"
         }
       ],
       "artifact_refs": [
@@ -4307,6 +4529,43 @@
         {
           "target_id": "ppa.interproc.assumption-sets",
           "relation": "contrasts_with"
+        },
+        {
+          "target_id": "ppa.cfa.uniform-k-cfa",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U5",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.6.1",
+                "book_page": 196,
+                "pdf_page": 214,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.5.4",
+                "book_page": 98,
+                "pdf_page": 117,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Bounded call-site suffix mementoes Delta = Lab^{<=k} pushed via left-truncation [delta, l]_k under currying ((Lab x Delta) -> Val_hat) ~= (Lab -> (Delta -> Val_hat))"
+            ],
+            "differs": [
+              "Section 2.5.4 embellishes first-order data states over static call sites, whereas Uniform k-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retains CEnv = Var -> Delta inside Val_hat = P(Term x CEnv), causing exponential worst-case complexity ([external: DEXPTIME]) for k >= 1 (BKL-007); polynomial k-CFA drops CEnv from Val_hat to P(Term x Delta) for O(n^6) at k=1 (p. 195)"
+            ]
+          }
         }
       ],
       "artifact_refs": [
@@ -4379,6 +4638,43 @@
         {
           "target_id": "ppa.tes.annotated-type-constructors",
           "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.cartesian-product-algorithm",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U5",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.6.2",
+                "book_page": 198,
+                "pdf_page": 216,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.5.5",
+                "book_page": 101,
+                "pdf_page": 120,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Context abstraction indexed by individual abstract input elements (Delta = D in small assumption sets; Delta = Term^m argument tuples in CPA)"
+            ],
+            "differs": [
+              "Section 2.5.5 tabulates relational (input, output) state pairs over static procedures (avoiding large P(D) non-monotonicity, BKL-003), whereas CPA instantiates memoised higher-order function templates per m-tuple in C_hat(l_1, delta) x ... x C_hat(l_m, delta)"
+            ]
+          }
         }
       ],
       "artifact_refs": [
@@ -4524,6 +4820,10 @@
         {
           "target_id": "ppa.shape.shape-graphs-invariants",
           "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.algebraic-data-and-imperative-stores",
+          "relation": "contrasts_with"
         }
       ],
       "artifact_refs": [
@@ -4806,6 +5106,1585 @@
       "issue_refs": [
         "BKL-035",
         "BKL-049"
+      ]
+    },
+    {
+      "id": "ppa.cfa.fun-syntax-and-dispatch",
+      "title": "FUN Labelled Syntax and the Higher-Order Dynamic Dispatch Problem (§3.1, Examples 3.1-3.2)",
+      "altitude": "L0",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.1",
+          "book_page": 141,
+          "pdf_page": 159,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1",
+          "book_page": 142,
+          "pdf_page": 160,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1",
+          "book_page": 143,
+          "pdf_page": 161,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1",
+          "book_page": 144,
+          "pdf_page": 162,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Defines higher-order language FUN separating labelled expressions e ::= t^l (Exp) from unlabelled terms t (Term: c, x, fn x => e_0, fun f x => e_0, e_1 e_2, if, non-recursive let, op) where dynamic call targets depend on runtime values, motivating CFA recovery of inter-flow_*.",
+      "conditions": [
+        "Every expression carries top-level label l in Lab while terms t in Term are unlabelled; parentheses carry no extra labels.",
+        "let x = e_1 in e_2 binds x in e_2 only (non-recursive), whereas fun f x => e_0 binds both f and x in e_0.",
+        "Distinct subexpressions normally receive distinct labels, though uniqueness is not required by syntax."
+      ],
+      "projections": {
+        "cs_theory": "Breaks Chapter 2's static CFG assumption by making control edges data-dependent on first-class abstractions.",
+        "swe_architecture": "Attach stable syntax-pointer IDs l to every AST expression node while interning unlabelled lambda terms separately.",
+        "practical_debugging": "Desugar multi-binding let blocks (BKL-051) and verify parentheses do not allocate phantom cache labels.",
+        "cyber": "Models indirect calls (callbacks, function pointers, virtual dispatch [external]) that must be resolved before taint or reachability scanning."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.intro-control-flow-analysis",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.interproc.procedure-sos-and-iflow",
+          "relation": "contrasts_with"
+        },
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.fun-closure-sos",
+          "relation": "prerequisite_of"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#31-abstract-0-cfa-analysis",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#example-31--fully-labelled-identity-self-application",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#example-32--non-terminating-recursive-program-loop",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#1-dynamic-dispatch-fun-syntax-and-abstract-0-cfa-section-31-table-31-figures-31-32",
+        "knowledge/ambient-context/ppa-cfa-and-constraints.md#1-the-central-question-and-vocabulary"
+      ],
+      "issue_refs": [
+        "BKL-051"
+      ]
+    },
+    {
+      "id": "ppa.cfa.abstract-0cfa",
+      "title": "Abstract 0-CFA Domains and Acceptability Specification (Table 3.1, Figures 3.1-3.2)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 144,
+          "pdf_page": 162,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 145,
+          "pdf_page": 163,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 146,
+          "pdf_page": 164,
+          "table_or_fig": "Table 3.1"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 148,
+          "pdf_page": 166,
+          "table_or_fig": "Figure 3.1"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 149,
+          "pdf_page": 167,
+          "table_or_fig": "Figure 3.2"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.1",
+          "book_page": 150,
+          "pdf_page": 168,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 206,
+          "pdf_page": 224,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Context- and flow-insensitive acceptability relation (C_hat, rho_hat) |= e over Val_hat = P(Term), Env_hat = Var -> Val_hat, Cache_hat = Lab -> Val_hat (Table 3.1, Figures 3.1-3.2), checking function bodies only when abstractions reach application operators C_hat(l_1).",
+      "conditions": [
+        "[fn] and [fun] omit body checks at definition sites, leaving unreachable lambda bodies unconstrained (Example 3.3).",
+        "Identically named bound variables share rho_hat(x) unless alpha-renamed apart beforehand (BKL-059).",
+        "Acceptability |= ((3.8), Exercise 3.4) is not upward-closed in <= because adding spurious closures to C_hat(l_1) triggers new [app] premises (BKL-062)."
+      ],
+      "projections": {
+        "cs_theory": "Relational implicit specification separating solution validity from fixed-point computation.",
+        "swe_architecture": "Alpha-rename bound variables to unique DefIDs so Env_hat avoids dynamic-scoping collisions across scopes.",
+        "practical_debugging": "Empty cache entries on returned-but-uncalled lambdas (C_hat_e(3) = empty in Example 3.3) are expected under Table 3.1.",
+        "cyber": "Over-approximates candidate callees C_hat(l_1) at indirect call sites to recover a conservative dynamic call graph [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.fun-syntax-and-dispatch",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.intro-control-flow-analysis",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.order.powerset-lattice",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.coinductive-well-definedness",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.syntax-directed-0cfa",
+          "relation": "approximated_by"
+        },
+        {
+          "target_id": "ppa.cfa.subject-reduction",
+          "relation": "proved_by"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-powerset-dfa",
+          "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.uniform-k-cfa",
+          "relation": "refined_by"
+        },
+        {
+          "target_id": "ppa.cfa.cartesian-product-algorithm",
+          "relation": "refined_by"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-31--abstract-control-flow-analysis-subsections-311-and-312",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#figure-31--pictorial-illustration-of-the-clauses-let-and-var",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#figure-32--pictorial-illustration-of-the-clauses-app-fn-and-var",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#exercise-34--exact-38-vs-upward-closed-39-acceptability",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#1-dynamic-dispatch-fun-syntax-and-abstract-0-cfa-section-31-table-31-figures-31-32"
+      ],
+      "issue_refs": [
+        "BKL-051",
+        "BKL-059",
+        "BKL-062"
+      ]
+    },
+    {
+      "id": "ppa.cfa.coinductive-well-definedness",
+      "title": "Coinductive Acceptability |= = gfp(Q) vs Inductive Failure |= ' = lfp(Q) (§3.1.2, §3.2.4, Proposition 3.16)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.2",
+          "book_page": 150,
+          "pdf_page": 168,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.2",
+          "book_page": 151,
+          "pdf_page": 169,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.1.2",
+          "book_page": 152,
+          "pdf_page": 170,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.4",
+          "book_page": 165,
+          "pdf_page": 183,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.4",
+          "book_page": 166,
+          "pdf_page": 184,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.4",
+          "book_page": 167,
+          "pdf_page": 185,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Because [app] inspects dynamic bodies t_0^{l_0} in C_hat(l_1) rather than subterms of e, Table 3.1 defines a monotone predicate functional Q whose greatest fixed point |= = gfp(Q) accepts cyclic recursion (Example 3.6), whereas inductive |=' = lfp(Q) yields an empty non-Moore solution set on self-application (Proposition 3.16).",
+      "conditions": [
+        "Monotonicity of Q relies on every recursive occurrence of Q in Table 3.1 having positive polarity.",
+        "gfp(Q) defines the universe of acceptable guesses while lfp(F_*) later selects the smallest guess in Cache_* x Env_*.",
+        "Under lfp(Q), single-label self-application ((fn x => x x)(fn x => x x)) admits zero acceptable analyses (violating ⨅ empty = top)."
+      ],
+      "projections": {
+        "cs_theory": "Canonical separation of coinductive relational validity (gfp) from inductive domain minimisation (lfp).",
+        "swe_architecture": "Check cyclic call-graph certificates as extensive witnesses Q in Ext(Q) (Q <= Q(Q)) rather than finite derivation trees.",
+        "practical_debugging": "Rejecting valid mutually recursive functions or event loops indicates an inductive validator bug (Proposition 3.16).",
+        "cyber": "Soundness verifiers for cyclic callback/dispatcher graphs must validate invariants coinductively [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.proof.coinduction",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U9",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.1.2",
+                "book_page": 150,
+                "pdf_page": 168,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "A",
+                "section": "A.4",
+                "book_page": 402,
+                "pdf_page": 418,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "B",
+                "section": "B.3",
+                "book_page": 412,
+                "pdf_page": 428,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Positive monotone acceptability functional Q on complete predicate lattice ((Cache_hat x Env_hat x Exp) -> {true, false}, <=)"
+            ],
+            "differs": [
+              "Section 3.1.2 instantiates gfp(Q) on dynamic call acceptability |= while Proposition 3.16 proves lfp(Q) fails the Moore-family property on self-application, whereas Appendix B develops general coinduction over Appendix A.4 fixed points"
+            ]
+          }
+        },
+        {
+          "target_id": "ppa.fixpoint.tarski",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U9",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.1.2",
+                "book_page": 150,
+                "pdf_page": 168,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "A",
+                "section": "A.4",
+                "book_page": 402,
+                "pdf_page": 418,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "B",
+                "section": "B.3",
+                "book_page": 412,
+                "pdf_page": 428,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Positive monotone acceptability functional Q on complete predicate lattice ((Cache_hat x Env_hat x Exp) -> {true, false}, <=)"
+            ],
+            "differs": [
+              "Section 3.1.2 instantiates gfp(Q) on dynamic call acceptability |= while Proposition 3.16 proves lfp(Q) fails the Moore-family property on self-application, whereas Appendix B develops general coinduction over Appendix A.4 fixed points"
+            ]
+          }
+        },
+        {
+          "target_id": "ppa.proof.inductive-vs-coinductive-reading",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.moore-family-solutions",
+          "relation": "prerequisite_of"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#312-well-definedness-of-the-analysis",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#example-36--circularity-on-loop-resolved-by-coinduction",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#324-coinduction-versus-induction",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#2-coinductive-well-definedness-gfpq-vs-lfpq-section-312-section-324",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#2-procedure-1-specify-and-lower-0-cfa-into-conditional-subset-constraints-sections-31-341"
+      ],
+      "issue_refs": [
+        "BKL-053"
+      ]
+    },
+    {
+      "id": "ppa.cfa.fun-closure-sos",
+      "title": "Explicit-Environment Closure SOS for FUN (Tables 3.2-3.3, Examples 3.7-3.8)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.1",
+          "book_page": 153,
+          "pdf_page": 171,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.1",
+          "book_page": 154,
+          "pdf_page": 172,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.1",
+          "book_page": 155,
+          "pdf_page": 173,
+          "table_or_fig": "Table 3.2"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.1",
+          "book_page": 156,
+          "pdf_page": 174,
+          "table_or_fig": "Table 3.3"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.1",
+          "book_page": 157,
+          "pdf_page": 175,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Left-to-right call-by-value small-step semantics rho |- ie_1 -> ie_2 over intermediate syntax IExp/ITerm with explicit closures close t in rho and local frames bind rho in ie (Tables 3.2-3.3), preserving AST labels intact across finite and diverging traces (Examples 3.7-3.8).",
+      "conditions": [
+        "Substitution beta-reduction is avoided because copying mutates/duplicates subterm labels.",
+        "Bodies inside fn, fun, and close remain plain source Exp/Term, keeping closure environments finite non-cyclic trees.",
+        "[bind_2], [if_2], and [if_3] all relabel the returned inner value/branch to outer label l (p. 157: outermost labels never change); [app_fun] puts [x |-> v_2] rightmost after [f |-> close ...], and [let_2] uses rho_0 = rho | FV(e_2) (BKL-051)."
+      ],
+      "projections": {
+        "cs_theory": "Small-step SOS covers diverging recursive computations (Example 3.8) where big-step natural semantics goes silent (BKL-004).",
+        "swe_architecture": "Mirrors VM closure records pairing immutable code pointers (Term, Lab) with trimmed lexical frame environments rho | FV(t) [external].",
+        "practical_debugging": "Step Example 3.7/3.8 traces as concrete operational oracles against candidate C_hat/rho_hat sets.",
+        "cyber": "Explicit closure capture rho | FV(...) bounds environment-leakage surfaces in capability/sandboxed runtimes [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.fun-syntax-and-dispatch",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.dfa.while-sos",
+          "relation": "contrasts_with"
+        },
+        {
+          "target_id": "ppa.cfa.subject-reduction",
+          "relation": "prerequisite_of"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#321-structural-operational-semantics",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-32--structural-operational-semantics-for-fun-part-1",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-33--structural-operational-semantics-for-fun-part-2",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#3-closure-sos-subject-reduction-and-moore-families-sections-321-323-tables-32-34-figure-33"
+      ],
+      "issue_refs": [
+        "BKL-011",
+        "BKL-051"
+      ]
+    },
+    {
+      "id": "ppa.cfa.subject-reduction",
+      "title": "Intermediate 0-CFA, Well-Founded Simulation R/V, and Subject Reduction (Table 3.4, Figure 3.3, Theorem 3.10, Fact 3.11)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.2",
+          "book_page": 158,
+          "pdf_page": 176,
+          "table_or_fig": "Table 3.4"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.2",
+          "book_page": 159,
+          "pdf_page": 177,
+          "table_or_fig": "Figure 3.3"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.2",
+          "book_page": 160,
+          "pdf_page": 178,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.2",
+          "book_page": 161,
+          "pdf_page": 179,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 206,
+          "pdf_page": 224,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 207,
+          "pdf_page": 225,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Extends |= to IExp via [bind] and [close] (Table 3.4) with well-founded environment/value relations rho R rho_hat and v V (rho_hat, v_hat), proving preservation under every SOS step (Theorem 3.10, Figure 3.3) via label-inclusion monotonicity (Fact 3.11).",
+      "conditions": [
+        "R requires no coinduction because captured closure environments were constructed strictly earlier.",
+        "Val_hat = P(Exp) breaks Fact 3.11 and Theorem 3.10 under [bind_2]/[if_2]/[if_3] relabelling (Exercise 3.6, BKL-052).",
+        "Fact 3.11 (erased in OCR on p. 160) suffices for [bind_2], [if_2], and [if_3] without any congruence proof gap because Tables 3.2-3.3 preserve outermost labels (p. 157); Exercise 3.7 covers remaining cases and alpha-renaming / static-scoping 0-CFA, and Exercise 3.8 shows Table 3.1 stays sound under CBN SOS (BKL-052, BKL-062)."
+      ],
+      "projections": {
+        "cs_theory": "Adapts operational subject reduction from type systems to coinductive flow relations.",
+        "swe_architecture": "Keep outer expression labels out of Val_hat elements so value transport across bind frames is invariant.",
+        "practical_debugging": "Any concrete transition rho |- ie -> ie' violating (C_hat, rho_hat) |= ie' pinpoints a broken transfer clause.",
+        "cyber": "Certifies that no runtime closure call along any execution prefix (terminating or diverging) escapes C_hat(l_1)."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "proves"
+        },
+        {
+          "target_id": "ppa.cfa.fun-closure-sos",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.proof.induction-principles",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.proof.well-founded-induction",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.dfa.live-correctness",
+          "relation": "related_to"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-34--abstract-control-flow-analysis-for-intermediate-expressions",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#figure-33--preservation-of-analysis-result",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#theorem-310--subject-reduction-semantic-correctness-of-abstract-0-cfa",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#fact-311--monotonicity-of-acceptability-under-label-cache-inclusion",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#3-closure-sos-subject-reduction-and-moore-families-sections-321-323-tables-32-34-figure-33"
+      ],
+      "issue_refs": [
+        "BKL-011",
+        "BKL-052",
+        "BKL-062"
+      ]
+    },
+    {
+      "id": "ppa.cfa.moore-family-solutions",
+      "title": "Moore Family Property and Least Acceptable 0-CFA Solutions (§3.2.3, Proposition 3.13, Lemma 3.14)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.3",
+          "book_page": 162,
+          "pdf_page": 180,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.3",
+          "book_page": 163,
+          "pdf_page": 181,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.3",
+          "book_page": 164,
+          "pdf_page": 182,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.2.3",
+          "book_page": 165,
+          "pdf_page": 183,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Equips Cache_hat x Env_hat with pointwise subset order <= and proves {rho_hat | rho R rho_hat} (Lemma 3.14) and {(C_hat, rho_hat) | (C_hat, rho_hat) |= ie} (Proposition 3.13) are Moore families closed under arbitrary meets ⨅, guaranteeing a unique least 0-CFA solution for every ie (Example 3.15).",
+      "conditions": [
+        "Arbitrary-meet preservation holds because t in C_hat(l_1) sits contravariantly on the left of => in [app] ((3.1)).",
+        "Empty index meet ⨅ empty = top = (lambda l. Term, lambda x. Term) guarantees universal existence of at least one acceptable analysis."
+      ],
+      "projections": {
+        "cs_theory": "Coinductive proof on display (3.1) lifts Moore-family closure from finite syntax to cyclic call graphs.",
+        "swe_architecture": "Pointwise intersection C_hat_1 meet C_hat_2 of any two sound 0-CFA passes is automatically a sound, tighter pass.",
+        "practical_debugging": "Use pairwise meet (Example 3.15) to differential-test independent solver implementations.",
+        "cyber": "Guarantees a canonical least-privilege call-graph over-approximation exists inside the 0-CFA abstraction [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.coinductive-well-definedness",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.order.moore-family",
+          "relation": "instance_of"
+        },
+        {
+          "target_id": "ppa.order.complete-lattice",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.syntax-directed-0cfa",
+          "relation": "prerequisite_of"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#323-existence-of-solutions",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#proposition-313--moore-family-property-of-acceptable-0-cfa-analyses",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#3-closure-sos-subject-reduction-and-moore-families-sections-321-323-tables-32-34-figure-33"
+      ],
+      "issue_refs": [
+        "BKL-053"
+      ]
+    },
+    {
+      "id": "ppa.cfa.syntax-directed-0cfa",
+      "title": "Syntax-Directed 0-CFA (|=_s) and Finite Subterm Restriction (Table 3.5, Propositions 3.18-3.19)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.3",
+          "book_page": 168,
+          "pdf_page": 186,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.3.1",
+          "book_page": 169,
+          "pdf_page": 187,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.3.1",
+          "book_page": 170,
+          "pdf_page": 188,
+          "table_or_fig": "Table 3.5"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.3.2",
+          "book_page": 171,
+          "pdf_page": 189,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.3.2",
+          "book_page": 172,
+          "pdf_page": 190,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.3.2",
+          "book_page": 173,
+          "pdf_page": 191,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 207,
+          "pdf_page": 225,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 208,
+          "pdf_page": 226,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Moves body acceptability (C_hat, rho_hat) |=_s e_0 (and {fun ...} <= rho_hat(f)) from [app] to [fn]/[fun] (Table 3.5), yielding a unique structurally inductive fixed point (lfp(Q_s) = gfp(Q_s), Exercise 3.9) that safely refines |= under finite subterm bound (C_*^top, rho_*^top) (Proposition 3.18) and forms a finite Moore family (Proposition 3.19).",
+      "conditions": [
+        "Upper bound (C_hat, rho_hat) <= (C_*^top, rho_*^top) is mandatory in Proposition 3.18 so C_hat(l_1) contains no alien lambdas outside Term_* (Exercise 3.10).",
+        "Refinement is one-way (|=_s => |=, not <=>) because Table 3.5 analyses unreachable function bodies (Exercise 3.11).",
+        "Subject reduction is inherited via |= rather than claimed directly on Exp for |=_s (though Exercise 3.12 adapts it)."
+      ],
+      "projections": {
+        "cs_theory": "Asymmetric specification refinement |=_A <= |=_B converts coinductive dynamic checks into structural induction.",
+        "swe_architecture": "Justifies interning all lambdas of e_* upfront into dense 0..|Term_*|-1 bitset indices [external].",
+        "practical_debugging": "Non-empty caches inside dead unapplied lambdas reflect |=_s conservatism, not a solver defect.",
+        "cyber": "Whole-bundle AST traversal seeds unused library closures into C_hat unless gated by reachability (Mini Project 3.1)."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "approximates"
+        },
+        {
+          "target_id": "ppa.cfa.moore-family-solutions",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "equivalent_to"
+        },
+        {
+          "target_id": "ppa.cfa.open-systems",
+          "relation": "refined_by"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#33-syntax-directed-0-cfa-analysis",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-35--syntax-directed-control-flow-analysis",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#proposition-318--soundness-of-syntax-directed-s-with-respect-to-abstract--and-displays-3435",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#proposition-319--moore-family-property-on-finite-cache--env",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md#4-syntax-directed-0-cfa-and-finite-subterm-restriction-section-33-table-35",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#2-procedure-1-specify-and-lower-0-cfa-into-conditional-subset-constraints-sections-31-341"
+      ],
+      "issue_refs": [
+        "BKL-053",
+        "BKL-055"
+      ]
+    },
+    {
+      "id": "ppa.cfa.constraint-0cfa",
+      "title": "Conditional Subset-Constraint Generation C_*[[e_*]] and Fixed-Point Equivalence (Table 3.6, Propositions 3.21-3.22)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.4",
+          "book_page": 173,
+          "pdf_page": 191,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4",
+          "book_page": 174,
+          "pdf_page": 192,
+          "table_or_fig": "Table 3.6"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4",
+          "book_page": 175,
+          "pdf_page": 193,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.1",
+          "book_page": 176,
+          "pdf_page": 194,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 177,
+          "pdf_page": 195,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 208,
+          "pdf_page": 226,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Syntax-directed translation C_*[[e_*]] (Table 3.6) emitting O(n) unconditional inclusions lhs <= rhs ((3.6)) and O(n^2) singleton-guarded conditional inclusions {t} <= C(l_1) => lhs <= rhs ((3.7)) over syntactic variables C(l), r(x), equivalent to |=_s on Cache_* x Env_* (Proposition 3.21) with least solution lfp(F_*) (Proposition 3.22; O(n^5) naive ascending-chain iteration bound).",
+      "conditions": [
+        "Constraint variables C(l) and r(x) are pure syntax interpreted via valuation (C_hat, rho_hat)[[.]].",
+        "Singleton constant guards {t} <= rhs' guarantee monotonicity of F_* on finite Cache_* x Env_*.",
+        "Grouped equational constraints C_*^=[[e_*]] (Exercise 3.13) admit fewer non-least solutions but share the exact same least solution."
+      ],
+      "projections": {
+        "cs_theory": "Exact isomorphism between syntax-directed relational validity |=_s and reductive elements Red(F_*) (F_*(x) <= x), with lfp(F_*) = ⨅ Red(F_*).",
+        "swe_architecture": "Decouples language-specific AST traversal (Table 3.6) from generic subset-constraint solving (Table 3.7).",
+        "practical_debugging": "Inspect emitted C_*[[e_*]] on Example 3.20 (8 constraints) before debugging worklist propagation.",
+        "cyber": "Compiles higher-order call resolution directly into ground Horn/Datalog inclusion rules [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.syntax-directed-0cfa",
+          "relation": "equivalent_to"
+        },
+        {
+          "target_id": "ppa.cfa.intro-control-flow-analysis",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.dfa.rd-constraint-formulation",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.tes.annotated-type-constructors",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.tes.call-tracking-effects",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.fixpoint.tarski",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
+          "relation": "implemented_by"
+        },
+        {
+          "target_id": "ppa.cfa.set-constraints-and-paradigms",
+          "relation": "specializes"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-36--constraint-based-control-flow-analysis",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#341-preservation-of-solutions",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#proposition-322--least-fixed-point-lfpf-equals-least-constraint-solution",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#exercises-31317",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md#1-syntactic-inclusion-constraints-and-equivalence-sections-34-341-table-36",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#2-procedure-1-specify-and-lower-0-cfa-into-conditional-subset-constraints-sections-31-341"
+      ],
+      "issue_refs": [
+        "BKL-054"
+      ]
+    },
+    {
+      "id": "ppa.cfa.cubic-worklist-solver",
+      "title": "Dual-Observer Graph Worklist Solver and O(n^3) Complexity (Table 3.7, Figures 3.4-3.5, Proposition 3.24, Corollary 3.25)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 178,
+          "pdf_page": 196,
+          "table_or_fig": "Table 3.7"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 179,
+          "pdf_page": 197,
+          "table_or_fig": "Figure 3.4"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 180,
+          "pdf_page": 198,
+          "table_or_fig": "Figure 3.5"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 181,
+          "pdf_page": 199,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 182,
+          "pdf_page": 200,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Propagates D[q] over Nodes = C(Lab_*) union r(Var_*) via worklist W and subscriber lists E[q] (Table 3.7, Figures 3.4-3.5), registering {t} <= p => p_1 <= p_2 in both E[p_1] and E[p] to compute the least solution of C_*[[e_*]] in O(n^3) edge traversals (Proposition 3.24), sound for |= e_* (Corollary 3.25).",
+      "conditions": [
+        "Dual registration in E[p_1] and E[p] is mandatory so flows fire regardless of whether D[p_1] or t in D[p] arrives first.",
+        "Book O(n^3) bound counts edge-traversal steps; true O(n^3) elementary time requires differential (q, t) pairs and O(1) bitset membership rather than O(n) whole-set unions (BKL-055).",
+        "Corollary 3.25 establishes |= e_* soundness, not leastness wrt |= when unreachable lambdas exist."
+      ],
+      "projections": {
+        "cs_theory": "Reduces O(n^5) iterative fixed-point work ([external: Kleene]) to cubic dynamic transitive closure ([external: Andersen / 0-CFA cubic bottleneck]).",
+        "swe_architecture": "Observer/propagator graph engine; push (q, t) deltas with bitsets for O(n^3) elementary operations [external].",
+        "practical_debugging": "Missing call returns on reordered ASTs almost always trace to omitting E[p] registration in Step 2.",
+        "cyber": "Adversarial bundles with dense dynamic dispatch trigger Theta(n^3) solver work (CWE-400 DoS) unless budgeted [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "implements"
+        },
+        {
+          "target_id": "ppa.graphs.digraph-paths",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.order.chain-conditions",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.solvers.chaotic-iteration",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.solvers.worklist-mfp",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.cfa.open-systems",
+          "relation": "prerequisite_of"
+        },
+        {
+          "target_id": "ppa.cfa.set-constraints-and-paradigms",
+          "relation": "refined_by"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#table-37--algorithm-for-solving-constraints",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#figure-34--initialisation-of-data-structures-for-example-program",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#figure-35--iteration-steps-of-example-program",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#proposition-324--termination-and-least-solution-correctness-of-table-37",
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#corollary-325--end-to-end-semantic-soundness-of-the-table-37-constraint-solver",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md#3-dual-observer-worklist-graph-solver-and-on3-complexity-section-342-table-37-figures-34-35",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#3-procedure-2-implement-the-on3-dual-observer-worklist-graph-solver-section-342-table-37"
+      ],
+      "issue_refs": [
+        "BKL-011",
+        "BKL-054",
+        "BKL-055"
+      ]
+    },
+    {
+      "id": "ppa.cfa.open-systems",
+      "title": "Open-System Fragment Substitutability and Reachability-Gated CFA (§3.4.2 p. 182, Mini Projects 3.1 & 3.3)",
+      "altitude": "L1",
+      "unit": "U3a",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.4.2",
+          "book_page": 182,
+          "pdf_page": 200,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 200,
+          "pdf_page": 218,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 202,
+          "pdf_page": 220,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 203,
+          "pdf_page": 221,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 204,
+          "pdf_page": 222,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Preserves (C_hat, rho_hat) |= e'_* without re-analysing host context e_circ whenever external replacement fragment in e'_* satisfies the acceptability clauses solved on stubbed e_* (p. 182); Mini Project 3.1 adds Reach = Lab -> P({on}) ((C_hat, rho_hat, R_hat) |='_s e) to suppress unreachable lambda bodies (with SML prototype AST in Mini Project 3.3).",
+      "conditions": [
+        "Open-system replacement requires disjoint/consistent labels and absence of accidental free/bound variable capture.",
+        "Soundness fails if unmodelled reflection, FFI, eval, or deserialization [external] violates stub clauses (BKL-008).",
+        "Mini Project 3.1 (p. 202) prose line 10 misprints |=_s for |='_s (BKL-060), and |= e_* remains slightly tighter when an unreachable [app] operator has empty C_hat(l_1)."
+      ],
+      "projections": {
+        "cs_theory": "Relational modularity of gfp acceptability allows compositional stub substitution.",
+        "swe_architecture": "Model external SDK/FFI boundaries [external] via explicit callback-invoking harness stubs and co-solve R_hat reachability.",
+        "practical_debugging": "Compare R_hat(l) = {on} against dead library functions when whole-program C_*[[e_*]] over-populates caches.",
+        "cyber": "Defines the exact closed-world vs open-world boundary (BKL-008) for indirect-call CFI and gadget reachability [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.syntax-directed-0cfa",
+          "relation": "refines"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03a_0cfa.md#342-solving-the-constraints",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#mini-project-31--reachability-analysis",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#mini-project-33--a-prototype-implementation",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md#4-end-to-end-soundness-open-systems-reachability-and-set-constraints-corollary-325-mini-projects-31-33",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#3-procedure-2-implement-the-on3-dual-observer-worklist-graph-solver-section-342-table-37"
+      ],
+      "issue_refs": [
+        "BKL-008",
+        "BKL-011",
+        "BKL-060"
+      ]
+    },
+    {
+      "id": "ppa.cfa.cfa-with-powerset-dfa",
+      "title": "Coupled Powerset Control and Data Flow Analysis |=_d (§3.5.1, Table 3.8, Figure 3.6)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.5",
+          "book_page": 182,
+          "pdf_page": 200,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.1",
+          "book_page": 183,
+          "pdf_page": 201,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.1",
+          "book_page": 184,
+          "pdf_page": 202,
+          "table_or_fig": "Table 3.8"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.1",
+          "book_page": 185,
+          "pdf_page": 203,
+          "table_or_fig": "Figure 3.6"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 208,
+          "pdf_page": 226,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Extends Val_hat to Val_d = P(Term union Data) with abstract constants d_c in Data (e.g. d_true = tt, d_false = ff) and lifted operators op_hat filtering Data elements (Table 3.8), gating [if] branches by d_true in C_hat(l_0) and d_false in C_hat(l_0) so Detection of Signs prunes dead closures online (Example 3.27, Figure 3.6; Exercise 3.14).",
+      "conditions": [
+        "Algorithmic solvability requires abstract Data to be finite.",
+        "op_hat intersects operands with Data (v_hat_i intersect Data), ignoring closures on arithmetic/boolean operators.",
+        "(C_hat, rho_hat) |=_d e does NOT imply Table 3.1 (C_hat, rho_hat) |= e because pruned dead branches remain unanalysed (BKL-056)."
+      ],
+      "projections": {
+        "cs_theory": "Simultaneous fixed point over P(Term union Data) strictly beats sequential CFA-then-DFA composition.",
+        "swe_architecture": "Tag abstract values as sum sets of lambda IDs and finite data tokens when domain is a finite powerset.",
+        "practical_debugging": "Verify op_hat strips Term elements cleanly rather than raising type errors on mixed closure/data sets.",
+        "cyber": "Eliminates infeasible feature-flag/config dispatch branches before taint propagation runs [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.order.powerset-lattice",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.cfa-with-lattice-dfa",
+          "relation": "specializes"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#351-abstract-values-as-powersets",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#table-38--abstract-values-as-powersets",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#figure-36--control-flow-and-data-flow-analysis-for-example-program",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#exercise-314--demand-driven-powerset-cfadfa-and-syntax-directed-counterpart",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#1-coupled-cfa-data-flow-powerset-vald-vs-complete-lattice-d-section-35-tables-38-39-figure-36"
+      ],
+      "issue_refs": [
+        "BKL-056"
+      ]
+    },
+    {
+      "id": "ppa.cfa.cfa-with-lattice-dfa",
+      "title": "Complete-Lattice Monotone Structures |=_D vs Staged |='_D (§3.5.2, Table 3.9, Examples 3.28-3.31)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.2",
+          "book_page": 186,
+          "pdf_page": 204,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.2",
+          "book_page": 187,
+          "pdf_page": 205,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.2",
+          "book_page": 188,
+          "pdf_page": 206,
+          "table_or_fig": "Table 3.9"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.5.2",
+          "book_page": 189,
+          "pdf_page": 207,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Splits caches/environments into (C_hat, D_hat, rho_hat, delta_hat) |=_D e over an ACC complete-lattice monotone structure instance (L, F, iota, f) (Table 3.9, Constant Propagation Example 3.29), contrasting online branch-pruning co-iteration |=_D with two-phase staged |='_D (Example 3.31).",
+      "conditions": [
+        "Complete lattice L must satisfy the Ascending Chain Condition (ACC) for finite convergence.",
+        "Testing iota_true <= D_hat(l_0) in Table 3.9 [if] is sound only when iota_true is an atom covering a single truth value; multi-valued truthiness requires D_hat(l_0) meet iota_true != bottom (BKL-056).",
+        "Binary operators in smashed/product domains (Example 3.29) must test bottom strictness before top."
+      ],
+      "projections": {
+        "cs_theory": "Incorporates Chapter 2 Monotone Frameworks into higher-order CFA without presupposing a static flow graph (U4).",
+        "swe_architecture": "Co-iterate C_hat and D_hat on one worklist when dispatch depends on constants; stage |='_D only for modular speed.",
+        "practical_debugging": "Spurious {0, +} at top-level result label 15 (alongside D_hat(6)={+} and delta_hat(z)={0}) diagnoses two-phase staging pollution (Example 3.31).",
+        "cyber": "Prevents dead debug/admin callbacks guarded by compile-time constants from polluting production call graphs [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.cfa-with-powerset-dfa",
+          "relation": "generalizes"
+        },
+        {
+          "target_id": "ppa.dfa.monotone-framework",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U4",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.5.2",
+                "book_page": 186,
+                "pdf_page": 204,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.3",
+                "book_page": 66,
+                "pdf_page": 85,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Complete data lattice L satisfying the Ascending Chain Condition (ACC) with monotone operator transfer family F"
+            ],
+            "differs": [
+              "Section 3.5.2 monotone structure instances (L, F, iota, f) omit Section 2.3's static flow relation F and extremal labels E because higher-order control edges and conditional branch reachability are discovered dynamically alongside C_hat"
+            ]
+          }
+        },
+        {
+          "target_id": "ppa.dfa.constant-propagation",
+          "relation": "related_to"
+        },
+        {
+          "target_id": "ppa.order.chain-conditions",
+          "relation": "depends_on"
+        },
+        {
+          "target_id": "ppa.cfa.algebraic-data-and-imperative-stores",
+          "relation": "refined_by"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#352-abstract-values-as-complete-lattices",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#table-39--abstract-values-as-complete-lattices",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#example-331--precision-loss-under-staged-d",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#1-coupled-cfa-data-flow-powerset-vald-vs-complete-lattice-d-section-35-tables-38-39-figure-36",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#4-cross-chapter-unifications-u4-u5-chapter-2-sections-23-25-vs-chapter-3-sections-35-36",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#4-procedure-3-couple-data-flow-domains-online-vs-staged-section-35-mini-projects-32-34"
+      ],
+      "issue_refs": [
+        "BKL-011",
+        "BKL-056"
+      ]
+    },
+    {
+      "id": "ppa.cfa.uniform-k-cfa",
+      "title": "Monovariant Poisoning and Uniform k-CFA vs Standard/Polynomial k-CFA (§§3.6-3.6.1, Table 3.10)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.6",
+          "book_page": 190,
+          "pdf_page": 208,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 191,
+          "pdf_page": 209,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 192,
+          "pdf_page": 210,
+          "table_or_fig": "Table 3.10"
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 193,
+          "pdf_page": 211,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 194,
+          "pdf_page": 212,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 195,
+          "pdf_page": 213,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.1",
+          "book_page": 196,
+          "pdf_page": 214,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 209,
+          "pdf_page": 227,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Eliminates monovariant call-site smearing (Example 3.32) by indexing Cache_hat = (Lab x Delta) -> Val_hat, Env_hat = (Var x Delta) -> Val_hat, and Val_hat = P(Term x CEnv) over k-bounded call strings Delta = Lab^{<=k} and lexical context environments ce in CEnv = Var -> Delta (Table 3.10 |=_delta^{ce}, Example 3.34), pushing outer label l via delta_0 = [delta, l]_k at [app] and looking up lexical birth contour ce(x) at [var].",
+      "conditions": [
+        "Both standard 1-CFA (Cache_hat = (Lab x CEnv) -> Val_hat, [156, 157, 158] [external: Shivers]) and Uniform 1-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retain Val_hat = P(Term x CEnv) with |Val_hat| height O(n * n^p), causing exponential worst-case complexity ([external: DEXPTIME], BKL-007); replacing CEnv with single contour Delta in Val_hat = P(Term x Delta) yields O(n^6) polynomial k-CFA (p. 195).",
+        "[var] looks up rho_hat(x, ce(x)) and [let] leaves delta unchanged; p. 191 defines total CEnv = Var -> Delta whereas Table 3.10 / Example 3.34 use finite restrictions ce | FV(...) and ce_0 = [], and Example 3.34 mis-cites Example 3.33 (BKL-057).",
+        "Direct self-recursion flushes outer callers from [delta, l]_k unless stuttering compression is used (Exercise 3.15)."
+      ],
+      "projections": {
+        "cs_theory": "Curried higher-order counterpart to Section 2.5.4 k-call strings (U5) with exponential ([external: DEXPTIME]) closure-contour blowup.",
+        "swe_architecture": "Choose polynomial k-CFA (Val_hat = P(Term x Delta), O(n^6) at k=1) or flat m-CFA (Val_hat = P(Term)) [external] for scalable module passes; reserve uniform k-CFA for curried closures.",
+        "practical_debugging": "Lost free-variable bindings in 1-CFA trace to querying current delta instead of captured lexical ce(x).",
+        "cyber": "Separates trusted vs untrusted callers through shared higher-order middleware, subject to exponential timeout caps (BKL-007) [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.interproc.call-strings",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U5",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.6.1",
+                "book_page": 196,
+                "pdf_page": 214,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.5.4",
+                "book_page": 98,
+                "pdf_page": 117,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Bounded call-site suffix mementoes Delta = Lab^{<=k} pushed via left-truncation [delta, l]_k under currying ((Lab x Delta) -> Val_hat) ~= (Lab -> (Delta -> Val_hat))"
+            ],
+            "differs": [
+              "Section 2.5.4 embellishes first-order data states over static call sites, whereas Uniform k-CFA (Cache_hat = (Lab x Delta) -> Val_hat) retains CEnv = Var -> Delta inside Val_hat = P(Term x CEnv), causing exponential worst-case complexity ([external: DEXPTIME]) for k >= 1 (BKL-007); polynomial k-CFA drops CEnv from Val_hat to P(Term x Delta) for O(n^6) at k=1 (p. 195)"
+            ]
+          }
+        },
+        {
+          "target_id": "ppa.cfa.cartesian-product-algorithm",
+          "relation": "contrasts_with"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#361-uniform-k-cfa-analysis",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#table-310--uniform-k-cfa-analysis",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#example-334--uniform-1-cfa-on-let-f--fn-x--x12-in-f3-f45-fn-y--y6789",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#exercise-315--stuttering-compressed-call-strings-1-2-2-1-1--2-1",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#2-monovariant-poisoning-and-uniform-k-cfa-sections-36-361-table-310",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#4-cross-chapter-unifications-u4-u5-chapter-2-sections-23-25-vs-chapter-3-sections-35-36",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#5-procedure-4-select-polyvariant-context-sensitivity-0-cfa-vs-uniform-k-cfa-vs-polynomial-k-cfa-vs-cpa-section-36"
+      ],
+      "issue_refs": [
+        "BKL-007",
+        "BKL-011",
+        "BKL-057",
+        "BKL-062"
+      ]
+    },
+    {
+      "id": "ppa.cfa.cartesian-product-algorithm",
+      "title": "Multi-Argument 0-CFA and Cartesian Product Algorithm ([2] [external: Agesen], §3.6.2, Exercise 3.17)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.2",
+          "book_page": 196,
+          "pdf_page": 214,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.2",
+          "book_page": 197,
+          "pdf_page": 215,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "3.6.2",
+          "book_page": 198,
+          "pdf_page": 216,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Exercises",
+          "book_page": 209,
+          "pdf_page": 227,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Analyses closed m-ary abstractions fn x_1, ..., x_m => t_b^{l_b} per concrete argument tuple delta_b = (t'_1, ..., t'_m) in C_hat(l_1, delta) x ... x C_hat(l_m, delta) with Delta = union_{m>=1} Term^m (p. 198 writes Delta = Term), memoising shared callee templates and expanding Cartesian products lazily (extended to open/recursive functions in Exercise 3.17).",
+      "conditions": [
+        "Base CPA ([2], [external: Agesen]) assumes closed non-recursive m-ary abstractions (FV = empty) so Val_hat = P(Term) needs no closure environments.",
+        "Printed [app] on p. 197 drops closing ')' before ^l and writes {delta_b} <= rho_hat(x_1) x ... x rho_hat(x_m) omitting ', delta_b'; must read rho_hat(x_1, delta_b) x ... x rho_hat(x_m, delta_b) (BKL-058).",
+        "Any empty argument set C_hat(l_j, delta) = empty collapses the Cartesian product to empty unless base-type tokens inhabit C_hat (BKL-058)."
+      ],
+      "projections": {
+        "cs_theory": "Higher-order counterpart to Section 2.5.5 small assumption sets (U5), distributing pointwise over argument tuples.",
+        "swe_architecture": "Global template pool keyed by (callee, arg_tuple) powers polymorphic type/dispatch engines and OO receiver sensitivity [external].",
+        "practical_debugging": "Missing call edges when passing primitive constants indicate empty C_hat(l_j, delta) collapsing the tuple product.",
+        "cyber": "Resolves polymorphic deserialization/factory helpers by concrete receiver/argument class tuples without call-depth decay [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.abstract-0cfa",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.cfa.uniform-k-cfa",
+          "relation": "contrasts_with"
+        },
+        {
+          "target_id": "ppa.interproc.assumption-sets",
+          "relation": "corresponds_to",
+          "basis": {
+            "unification_id": "U5",
+            "citations": [
+              {
+                "chapter_or_app": "Preface",
+                "section": "Preface",
+                "book_page": null,
+                "book_page_roman": "VII",
+                "pdf_page": 7,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "3",
+                "section": "3.6.2",
+                "book_page": 198,
+                "pdf_page": 216,
+                "table_or_fig": null
+              },
+              {
+                "chapter_or_app": "2",
+                "section": "2.5.5",
+                "book_page": 101,
+                "pdf_page": 120,
+                "table_or_fig": null
+              }
+            ],
+            "conditions": [
+              "Context abstraction indexed by individual abstract input elements (Delta = D in small assumption sets; Delta = Term^m argument tuples in CPA)"
+            ],
+            "differs": [
+              "Section 2.5.5 tabulates relational (input, output) state pairs over static procedures (avoiding large P(D) non-monotonicity, BKL-003), whereas CPA instantiates memoised higher-order function templates per m-tuple in C_hat(l_1, delta) x ... x C_hat(l_m, delta)"
+            ]
+          }
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#362-the-cartesian-product-algorithm",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#3-multi-argument-0-cfa-and-cartesian-product-algorithm-section-362",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#5-procedure-4-select-polyvariant-context-sensitivity-0-cfa-vs-uniform-k-cfa-vs-polynomial-k-cfa-vs-cpa-section-36"
+      ],
+      "issue_refs": [
+        "BKL-007",
+        "BKL-058"
+      ]
+    },
+    {
+      "id": "ppa.cfa.set-constraints-and-paradigms",
+      "title": "Set-Constraint Projection, Lazy Constraint Solving ([9] [external: Aiken et al.]), and Extensions (Concluding Remarks)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 198,
+          "pdf_page": 216,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 199,
+          "pdf_page": 217,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 200,
+          "pdf_page": 218,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 201,
+          "pdf_page": 219,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Concluding Remarks",
+          "book_page": 202,
+          "pdf_page": 220,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Situates CFA within Set-Constraint Based Analysis (S_1 <= S_2 with constructors C(...) and projections C^{-i}(S)), [9]'s ([external: Aiken et al.]) two-step lazy conditional-constraint expansion, Jagannathan-Wright [80] empirical 1-CFA vs 0-CFA trade-offs, and OO, concurrent ([external: Concurrent ML, pi-calculus]), and logic ([external: Prolog]) paradigm adaptations.",
+      "conditions": [
+        "S_1 intersect S_2 preserves monotonicity on (P(U), <=); adding complement ~S or variable-LHS guards (S_1 <= S_2) => S_3 destroys monotonicity so Tarski's Theorem fails and Banach's Contraction Theorem is needed (p. 201, BKL-059).",
+        "Lazy [9] expansion instantiates conditional rules only for reachable closures t in D[p], omitting dead lambda bodies."
+      ],
+      "projections": {
+        "cs_theory": "Connects conditional subset constraints to tree-automata/projection set constraints and Banach-style contractive semantics.",
+        "swe_architecture": "Expand [app] constraints on the fly as new call targets arrive at D[C(l_1)] rather than pre-building O(n^2) edges.",
+        "practical_debugging": "Expect 1-CFA to finish faster than 0-CFA on polymorphic codebases when pruned call graphs shrink propagation.",
+        "cyber": "Maps OO virtual-call resolution (receiver-class CPA) and message-passing channel topology onto one constraint engine [external]."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.constraint-0cfa",
+          "relation": "generalizes"
+        },
+        {
+          "target_id": "ppa.cfa.cubic-worklist-solver",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.proof.banach-contractive",
+          "relation": "related_to"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#chapter-3-concluding-remarks",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md#4-end-to-end-soundness-open-systems-reachability-and-set-constraints-corollary-325-mini-projects-31-33",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#5-data-structures-imperative-stores-ooconcurrent-paradigms-backlog-mini-projects-32-34"
+      ],
+      "issue_refs": [
+        "BKL-007",
+        "BKL-059"
+      ]
+    },
+    {
+      "id": "ppa.cfa.algebraic-data-and-imperative-stores",
+      "title": "Algebraic Data Constructors and Flow-Sensitive Imperative Reference Stores (Mini Projects 3.2 & 3.4)",
+      "altitude": "L1",
+      "unit": "U3b",
+      "citations": [
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 203,
+          "pdf_page": 221,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 204,
+          "pdf_page": 222,
+          "table_or_fig": null
+        },
+        {
+          "chapter_or_app": "3",
+          "section": "Mini Projects",
+          "book_page": 205,
+          "pdf_page": 223,
+          "table_or_fig": null
+        }
+      ],
+      "formal_summary": "Extends FUN CFA to algebraic constructors C(e_1, ..., e_n) / case e_0 of C(x_1, ..., x_n) => e_1 or x => e_2 via flat finite Val_hat = P(Term union {C(l_1, ..., l_n)}) (Mini Project 3.2) and to ML mutable references new_pi x := e_1 in e_2, !x, x := e_0, e_1 ; e_2 with me : Var -> Pnt and flow-sensitive stores S_circ, S_bullet : Lab -> (Pnt -> Val_hat) ((C_hat, rho_hat, S_circ, S_bullet) |=_{me} e, Mini Project 3.4).",
+      "conditions": [
+        "Embedding expression labels l_i inside flat C(l_1, ..., l_n) breaks Fact 3.11 and Theorem 3.10 once SOS rewrites outer labels (Mini Project 3.2, p. 203, BKL-060).",
+        "Mini Project 3.4 (pp. 204-205) leaves exact [assign] clauses unprinted as a design exercise; abstract allocation sites pi in Pnt force weak updates [external] by default, whereas sound strong updates (\"kill\", [external]) require per-program-point local stores plus abstract reference counts (p. 200 [133], BKL-061)."
+      ],
+      "projections": {
+        "cs_theory": "Couples flow-insensitive environment bindings rho_hat with flow-sensitive per-label store maps S_circ/S_bullet.",
+        "swe_architecture": "Index heap cells by allocation label pi in Pnt and propagate weak store joins across dynamic call edges.",
+        "practical_debugging": "Lost prior heap pointees after := indicate an unsound strong update ([external]) on summary site pi or missing preservation of unaffected cells.",
+        "cyber": "Tracks closures stored inside heap structs/callbacks (function-pointer fields) needed for heap-indirect call recovery, gating capability revocation ([external: strong update]) on singleton reference proofs."
+      },
+      "related_edges": [
+        {
+          "target_id": "ppa.cfa.cfa-with-lattice-dfa",
+          "relation": "refines"
+        },
+        {
+          "target_id": "ppa.shape.pointer-sos",
+          "relation": "contrasts_with"
+        }
+      ],
+      "artifact_refs": [
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#mini-project-32--data-structures",
+        "corpus/shards/RAW_SHARD_03b_kcfa_cpa.md#mini-project-34--imperative-constructs",
+        "knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md#5-data-structures-imperative-stores-ooconcurrent-paradigms-backlog-mini-projects-32-34",
+        "knowledge/skills/ppa-control-flow-and-constraints/SKILL.md#4-procedure-3-couple-data-flow-domains-online-vs-staged-section-35-mini-projects-32-34"
+      ],
+      "issue_refs": [
+        "BKL-060",
+        "BKL-061"
       ]
     }
   ]

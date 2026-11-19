@@ -30,6 +30,10 @@ cases:
     prompt: "Resolve which closures or function objects flow into each higher-order call site in a functional language so I can build the dynamic dispatch call graph."
     expect_skill: ppa-control-flow-and-constraints
     notes: "Dynamic dispatch and higher-order control flow belong to Chapter 3."
+  - id: sib-cfa-kcfa-cpa-closures
+    prompt: "Eliminate closure smearing across higher-order calls `(f f)(fn y => y)` using uniform 1-CFA or Agesen's Cartesian Product Algorithm, or couple sign lattices online with Table 3.9 CFA."
+    expect_skill: ppa-control-flow-and-constraints
+    notes: "Reciprocal U4/U5 boundary (C4.7): higher-order k-CFA, CPA, and coupled CFA+DFA belong to ppa-control-flow-and-constraints."
   - id: neg-ai-widening-intervals
     prompt: "Construct a Galois connection between trace semantics and an infinite-height Interval lattice, and design a widening/narrowing schedule to guarantee convergence."
     expect_skill: ppa-abstract-interpretation

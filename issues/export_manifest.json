@@ -1,6 +1,6 @@
 {
  "as_of": "2026-11-19",
- "count": 74,
+ "count": 87,
  "dry_run": true,
  "issues": [
   {
@@ -319,8 +319,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nGreek letters, subscripts, order symbols and operators are misrecognised; the program of Example 1.1 is missing from the text of p. 4 and Table 1.4 is fragmentary.\n\n## Source Citations & Grounding\n\n- [PPA §1.2, p. 4] (book p. 4; PDF p. 24)\n- [PPA Table 1.4, p. 24] (book p. 24; PDF p. 44)\n- [PPA Table C.1, p. 421] (book p. 421; PDF p. 436)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nSymbols copied from the text layer produce HALLUCINATED_SYMBOL and SIGNATURE_DISTORTION defects that coordinate validation cannot detect.\n\nGuardrail: Every L3 formula, rule, table and figure is confirmed against a rendered page image (pdftoppm) before admission; extractions record which pages were visually verified.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-ARCH EC-01 merged with a P-SWE note (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.meta.source-fidelity`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-011\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"\\u00a71.2 (book p. 4; PDF p. 24)\", \"Table 1.4 (book p. 24; PDF p. 44)\", \"Table C.1 (book p. 421; PDF p. 436)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "de66c259945779beb6b26405dc535a3f53877fcaae23e428eefc07fdb2a8931a",
+   "body": "## Summary\n\nGreek letters, subscripts, order symbols and operators are misrecognised; the program of Example 1.1 is missing from the text of p. 4 and Table 1.4 is fragmentary.\n\n## Source Citations & Grounding\n\n- [PPA §1.2, p. 4] (book p. 4; PDF p. 24)\n- [PPA Table 1.4, p. 24] (book p. 24; PDF p. 44)\n- [PPA Table C.1, p. 421] (book p. 421; PDF p. 436)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nSymbols copied from the text layer produce HALLUCINATED_SYMBOL and SIGNATURE_DISTORTION defects that coordinate validation cannot detect.\n\nGuardrail: Every L3 formula, rule, table and figure is confirmed against a rendered page image (pdftoppm) before admission; extractions record which pages were visually verified.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-ARCH EC-01 merged with a P-SWE note (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled across `ppa.notation.index` and Wave 3 Chapter 3 concepts (`REF-003`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.notation.index`, `ppa.cfa.fun-closure-sos`, `ppa.cfa.subject-reduction`, `ppa.cfa.cubic-worklist-solver`, `ppa.cfa.open-systems`, `ppa.cfa.cfa-with-lattice-dfa`, `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `ontology/notation_index.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-011\", \"parent_issue\": \"ISS-W1-01\", \"ppa_scope\": [\"\\u00a71.2 (book p. 4; PDF p. 24)\", \"Table 1.4 (book p. 24; PDF p. 44)\", \"Table C.1 (book p. 421; PDF p. 436)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "ab56645c6859abb67b0e3e27dabfdaa494507378bba707882ad7e7e2ba0ee155",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -348,7 +348,7 @@
     "priority": "P0",
     "status": "open",
     "title": "PDF text layer is OCR and corrupts mathematics: page-image verification is mandatory",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-011",
@@ -363,8 +363,8 @@
    ],
    "milestone": "W1",
    "parent_issue": "ISS-W1-01",
-   "published_body_sha256": "d687d5e8de01c247a974492fa1b3879c0f027bb68c3cc39598affde9422c409f",
-   "source_body": "\n## Summary\n\nGreek letters, subscripts, order symbols and operators are misrecognised; the program of Example 1.1 is missing from the text of p. 4 and Table 1.4 is fragmentary.\n\n## Source Citations & Grounding\n\n- [PPA §1.2, p. 4] (book p. 4; PDF p. 24)\n- [PPA Table 1.4, p. 24] (book p. 24; PDF p. 44)\n- [PPA Table C.1, p. 421] (book p. 421; PDF p. 436)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nSymbols copied from the text layer produce HALLUCINATED_SYMBOL and SIGNATURE_DISTORTION defects that coordinate validation cannot detect.\n\nGuardrail: Every L3 formula, rule, table and figure is confirmed against a rendered page image (pdftoppm) before admission; extractions record which pages were visually verified.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-ARCH EC-01 merged with a P-SWE note (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.meta.source-fidelity`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "c49d097e33e535f5183277d69b3bddcf2d061271d7cdb532b397c17dc17ab05b",
+   "source_body": "\n## Summary\n\nGreek letters, subscripts, order symbols and operators are misrecognised; the program of Example 1.1 is missing from the text of p. 4 and Table 1.4 is fragmentary.\n\n## Source Citations & Grounding\n\n- [PPA §1.2, p. 4] (book p. 4; PDF p. 24)\n- [PPA Table 1.4, p. 24] (book p. 24; PDF p. 44)\n- [PPA Table C.1, p. 421] (book p. 421; PDF p. 436)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nSymbols copied from the text layer produce HALLUCINATED_SYMBOL and SIGNATURE_DISTORTION defects that coordinate validation cannot detect.\n\nGuardrail: Every L3 formula, rule, table and figure is confirmed against a rendered page image (pdftoppm) before admission; extractions record which pages were visually verified.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-ARCH EC-01 merged with a P-SWE note (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled across `ppa.notation.index` and Wave 3 Chapter 3 concepts (`REF-003`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.notation.index`, `ppa.cfa.fun-closure-sos`, `ppa.cfa.subject-reduction`, `ppa.cfa.cubic-worklist-solver`, `ppa.cfa.open-systems`, `ppa.cfa.cfa-with-lattice-dfa`, `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `ontology/notation_index.md`\n- Parent shard: ISS-W1-01\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-011.md",
    "state": "open",
    "title": "PDF text layer is OCR and corrupts mathematics: page-image verification is mandatory"
@@ -2994,13 +2994,17 @@
    "blocks": [
     "ISS-W3-02"
    ],
-   "body": "## Summary\n\nExtract abstract, syntax-directed and constraint-based 0-CFA, semantic correctness, Moore-family existence of solutions, and the O(n^3) constraint solver.\n\n## Source Citations & Grounding\n\n- §3.1 Abstract 0-CFA Analysis (book pp. 141–152; PDF pp. 159–170)\n- §3.2 Theoretical Properties (book pp. 153–167; PDF pp. 171–185)\n- §3.3 Syntax Directed 0-CFA Analysis (book pp. 168–172; PDF pp. 186–190)\n- §3.4 Constraint Based 0-CFA Analysis (book pp. 173–181; PDF pp. 191–199)\n- Tables in scope: Table 3.1 (p. 146/PDF 164), Table 3.2 (p. 155/PDF 173), Table 3.3 (p. 156/PDF 174), Table 3.4 (p. 158/PDF 176), Table 3.5 (p. 170/PDF 188), Table 3.6 (p. 174/PDF 192), Table 3.7 (p. 178/PDF 196)\n- Figures in scope: Figure 3.1 (p. 148/PDF 166), Figure 3.2 (p. 149/PDF 167), Figure 3.3 (p. 159/PDF 177), Figure 3.4 (p. 179/PDF 197), Figure 3.5 (p. 180/PDF 198)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 141–181 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 7 tables and 5 figures in book pp. 141–181 are anchored (no omissions)\n- [ ] Artifact `corpus/shards/RAW_SHARD_03a_0cfa.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W2-04; blocks: ISS-W3-02\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W3-02\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W2-04\"], \"id\": \"ISS-W3-01\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a73.1 Abstract 0-CFA Analysis (book pp. 141\\u2013152; PDF pp. 159\\u2013170)\", \"\\u00a73.2 Theoretical Properties (book pp. 153\\u2013167; PDF pp. 171\\u2013185)\", \"\\u00a73.3 Syntax Directed 0-CFA Analysis (book pp. 168\\u2013172; PDF pp. 186\\u2013190)\", \"\\u00a73.4 Constraint Based 0-CFA Analysis (book pp. 173\\u2013181; PDF pp. 191\\u2013199)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "e8d1476e6a174f92b1e62dd7d1c61f560c1a65c7dc2f6b477b9a46f18e71be77",
+   "body": "## Summary\n\nExtract abstract, syntax-directed and constraint-based 0-CFA, semantic correctness, Moore-family existence of solutions, and the O(n^3) constraint solver.\n\n## Source Citations & Grounding\n\n- §3.1 Abstract 0-CFA Analysis (book pp. 141–152; PDF pp. 159–170)\n- §3.2 Theoretical Properties (book pp. 153–167; PDF pp. 171–185)\n- §3.3 Syntax Directed 0-CFA Analysis (book pp. 168–172; PDF pp. 186–190)\n- §3.4 Constraint Based 0-CFA Analysis (book pp. 173–181; PDF pp. 191–199)\n- Tables in scope: Table 3.1 (p. 146/PDF 164), Table 3.2 (p. 155/PDF 173), Table 3.3 (p. 156/PDF 174), Table 3.4 (p. 158/PDF 176), Table 3.5 (p. 170/PDF 188), Table 3.6 (p. 174/PDF 192), Table 3.7 (p. 178/PDF 196)\n- Figures in scope: Figure 3.1 (p. 148/PDF 166), Figure 3.2 (p. 149/PDF 167), Figure 3.3 (p. 159/PDF 177), Figure 3.4 (p. 179/PDF 197), Figure 3.5 (p. 180/PDF 198)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 141–181 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 7 tables and 5 figures in book pp. 141–181 are anchored (no omissions)\n- [x] Artifact `corpus/shards/RAW_SHARD_03a_0cfa.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 three-stream Chapter 3a extraction merged into `corpus/shards/RAW_SHARD_03a_0cfa.md` (`1,360` lines, `26/26` `G-U3a-01..26` gotchas, `7/7` `Tables 3.1–3.7`, `5/5` `Figures 3.1–3.5`, `25/25` `Statements 3.1–3.25`, `14` `F-U3a-01..14` findings); integrated into `ppa-control-flow-and-constraints/`, `BKL-051..055`, and `ontology/concept_graph.json` (`97` total nodes). Staged for Gate #5 (`gate5-v1`).\n- 2026-11-19 Gate #5 Round 1 remediation (`gate5-v2`): fixed `RAW_SHARD_03a_0cfa.md` (`1,372` lines) end-matter counts (`Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`), 3-candidate `Example 3.3`, `Remark.` p. 145 (`(Var ∪ Lab) → Val̂` + IRs), `IExp` branch types, `Tables 3.2–3.3` `[app_fun]`/`[if₂,₃]`/`[bind₂]` relabelling & order, real `Example 3.12`, `Mini Project 3.1` `p. 202` refs, removed fabricated `Theorem 3.10` `[app₁]` gap (`F-U3a-05`), `[external]` tags, and `BKL-051..053` + `L1` `cfa-core-and-coinduction.md` (`202` lines); full `22`-finding table recorded in `ISS-W3-02.md`.\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W2-04; blocks: ISS-W3-02\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `issues/backlog/BKL-051.md` .. `issues/backlog/BKL-055.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Unit 3a shard corpus/shards/RAW_SHARD_03a_0cfa.md (1,372L, 26/26 G-U3a-01..26, Tables 3.1-3.7, Figures 3.1-3.5), references/cfa-core-and-coinduction.md (202L), references/constraint-generation-and-cubic-solver.md (147L), and BKL-051..055 remediated under gate5-v2 for Gate #5 Round 2.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W3-02\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W2-04\"], \"id\": \"ISS-W3-01\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a73.1 Abstract 0-CFA Analysis (book pp. 141\\u2013152; PDF pp. 159\\u2013170)\", \"\\u00a73.2 Theoretical Properties (book pp. 153\\u2013167; PDF pp. 171\\u2013185)\", \"\\u00a73.3 Syntax Directed 0-CFA Analysis (book pp. 168\\u2013172; PDF pp. 186\\u2013190)\", \"\\u00a73.4 Constraint Based 0-CFA Analysis (book pp. 173\\u2013181; PDF pp. 191\\u2013199)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "6b564cfd08d2172f0ada35e4267d01dce818ec4d179cc435183699c31419ecfb",
    "depends_on": [
     "ISS-W2-04"
    ],
    "frontmatter": {
-    "aligned_models": [],
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
     "altitudes": [
      "L1",
      "L2",
@@ -3029,9 +3033,9 @@
      "§3.4 Constraint Based 0-CFA Analysis (book pp. 173–181; PDF pp. 191–199)"
     ],
     "priority": "P0",
-    "status": "open",
+    "status": "closed",
     "title": "W3-1 Ch 3a §3.1–3.4 0-CFA formulations, coinduction and cubic solver",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "ISS-W3-01",
@@ -3041,29 +3045,328 @@
     "altitude:L3",
     "ppa",
     "priority:P0",
-    "status:open",
+    "status:closed",
     "type:shard",
     "wave-3"
    ],
    "milestone": "W3",
    "parent_issue": "EPIC-001",
-   "published_body_sha256": "b9b805e32acb8c89b06282396ef3e8b426945957673b891215405ef7f3d2ba3f",
-   "source_body": "\n## Summary\n\nExtract abstract, syntax-directed and constraint-based 0-CFA, semantic correctness, Moore-family existence of solutions, and the O(n^3) constraint solver.\n\n## Source Citations & Grounding\n\n- §3.1 Abstract 0-CFA Analysis (book pp. 141–152; PDF pp. 159–170)\n- §3.2 Theoretical Properties (book pp. 153–167; PDF pp. 171–185)\n- §3.3 Syntax Directed 0-CFA Analysis (book pp. 168–172; PDF pp. 186–190)\n- §3.4 Constraint Based 0-CFA Analysis (book pp. 173–181; PDF pp. 191–199)\n- Tables in scope: Table 3.1 (p. 146/PDF 164), Table 3.2 (p. 155/PDF 173), Table 3.3 (p. 156/PDF 174), Table 3.4 (p. 158/PDF 176), Table 3.5 (p. 170/PDF 188), Table 3.6 (p. 174/PDF 192), Table 3.7 (p. 178/PDF 196)\n- Figures in scope: Figure 3.1 (p. 148/PDF 166), Figure 3.2 (p. 149/PDF 167), Figure 3.3 (p. 159/PDF 177), Figure 3.4 (p. 179/PDF 197), Figure 3.5 (p. 180/PDF 198)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 141–181 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 7 tables and 5 figures in book pp. 141–181 are anchored (no omissions)\n- [ ] Artifact `corpus/shards/RAW_SHARD_03a_0cfa.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W2-04; blocks: ISS-W3-02\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "c7f7958fcac2b0fe8f675608c6f9019835417864cf3a2a0d97ec002b421be967",
+   "source_body": "\n## Summary\n\nExtract abstract, syntax-directed and constraint-based 0-CFA, semantic correctness, Moore-family existence of solutions, and the O(n^3) constraint solver.\n\n## Source Citations & Grounding\n\n- §3.1 Abstract 0-CFA Analysis (book pp. 141–152; PDF pp. 159–170)\n- §3.2 Theoretical Properties (book pp. 153–167; PDF pp. 171–185)\n- §3.3 Syntax Directed 0-CFA Analysis (book pp. 168–172; PDF pp. 186–190)\n- §3.4 Constraint Based 0-CFA Analysis (book pp. 173–181; PDF pp. 191–199)\n- Tables in scope: Table 3.1 (p. 146/PDF 164), Table 3.2 (p. 155/PDF 173), Table 3.3 (p. 156/PDF 174), Table 3.4 (p. 158/PDF 176), Table 3.5 (p. 170/PDF 188), Table 3.6 (p. 174/PDF 192), Table 3.7 (p. 178/PDF 196)\n- Figures in scope: Figure 3.1 (p. 148/PDF 166), Figure 3.2 (p. 149/PDF 167), Figure 3.3 (p. 159/PDF 177), Figure 3.4 (p. 179/PDF 197), Figure 3.5 (p. 180/PDF 198)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 141–181 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 7 tables and 5 figures in book pp. 141–181 are anchored (no omissions)\n- [x] Artifact `corpus/shards/RAW_SHARD_03a_0cfa.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 three-stream Chapter 3a extraction merged into `corpus/shards/RAW_SHARD_03a_0cfa.md` (`1,360` lines, `26/26` `G-U3a-01..26` gotchas, `7/7` `Tables 3.1–3.7`, `5/5` `Figures 3.1–3.5`, `25/25` `Statements 3.1–3.25`, `14` `F-U3a-01..14` findings); integrated into `ppa-control-flow-and-constraints/`, `BKL-051..055`, and `ontology/concept_graph.json` (`97` total nodes). Staged for Gate #5 (`gate5-v1`).\n- 2026-11-19 Gate #5 Round 1 remediation (`gate5-v2`): fixed `RAW_SHARD_03a_0cfa.md` (`1,372` lines) end-matter counts (`Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`), 3-candidate `Example 3.3`, `Remark.` p. 145 (`(Var ∪ Lab) → Val̂` + IRs), `IExp` branch types, `Tables 3.2–3.3` `[app_fun]`/`[if₂,₃]`/`[bind₂]` relabelling & order, real `Example 3.12`, `Mini Project 3.1` `p. 202` refs, removed fabricated `Theorem 3.10` `[app₁]` gap (`F-U3a-05`), `[external]` tags, and `BKL-051..053` + `L1` `cfa-core-and-coinduction.md` (`202` lines); full `22`-finding table recorded in `ISS-W3-02.md`.\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W2-04; blocks: ISS-W3-02\n- `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `issues/backlog/BKL-051.md` .. `issues/backlog/BKL-055.md`\n\n## Verification Receipts\n- 2026-11-19 [in_progress] Unit 3a shard corpus/shards/RAW_SHARD_03a_0cfa.md (1,372L, 26/26 G-U3a-01..26, Tables 3.1-3.7, Figures 3.1-3.5), references/cfa-core-and-coinduction.md (202L), references/constraint-generation-and-cubic-solver.md (147L), and BKL-051..055 remediated under gate5-v2 for Gate #5 Round 2.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; validators, hygiene, and 47/47 unit tests PASS.",
    "source_path": "issues/shards/ISS-W3-01.md",
-   "state": "open",
+   "state": "closed",
    "title": "W3-1 Ch 3a §3.1–3.4 0-CFA formulations, coinduction and cubic solver"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nPage 142 uses semicolon multi-let sugar absent from the single-binding FUN grammar; pp. 146 and 155 have minor prose typos; Table 3.2 [app_fun] appends [x |-> v_2] rightmost after [f |-> close ...]; Table 3.3 [let_2] restricts to FV(e_2) without subtracting x.\n\n## Source Citations & Grounding\n\n- [PPA §3.1, p. 142] (book p. 142; PDF p. 160)\n- [PPA §3.1.1, p. 146] (book p. 146; PDF p. 164)\n- [PPA Table 3.2, p. 155] (book p. 155; PDF p. 173)\n- [PPA Table 3.3, p. 156] (book p. 156; PDF p. 174)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nFormal FUN grammar (`t ::= let x = e1 in e2`) permits one binding per `let`, so semicolon chains on p. 142 require nested desugaring. In Table 3.2 `[app_fun]`, `rho2 = rho1[f |-> close (fun f x => e1) in rho1]` and `(bind rho2[x |-> v2] in e1)^l` places `[x |-> v2]` rightmost (matching Example 3.8 `[f |-> ...][x |-> ...]`). In Table 3.3 `[let_2]`, `rho0 = rho | FV(e2)` omits subtracting `x`, retaining shadowed outer `x` underneath `[x |-> v]`.\n\nGuardrail: Desugar multi-binding let into nested AST nodes, keep [x |-> v_2] rightmost in [app_fun], and read [let_2] rho_0 = rho | FV(e_2) verbatim. (Refs: F-U3a-01..04, G-U3a-01, G-U3a-02, G-U3a-08, G-U3a-09, G-U3a-11).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-01, F-U3a-02, F-U3a-03, F-U3a-04, G-U3a-11); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.fun-syntax-and-dispatch`, `ppa.cfa.fun-closure-sos`, `ppa.cfa.abstract-0cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-051\", \"parent_issue\": \"ISS-W3-01\", \"ppa_scope\": [\"\\u00a73.1 (book p. 142; PDF p. 160)\", \"\\u00a73.1.1 (book p. 146; PDF p. 164)\", \"Table 3.2 (book p. 155; PDF p. 173)\", \"Table 3.3 (book p. 156; PDF p. 174)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "5718638d34a3099225b05f8a867e069919c2c6e79b4e840c93b5c55e82482433",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-051",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-01",
+    "ppa_scope": [
+     "§3.1 (book p. 142; PDF p. 160)",
+     "§3.1.1 (book p. 146; PDF p. 164)",
+     "Table 3.2 (book p. 155; PDF p. 173)",
+     "Table 3.3 (book p. 156; PDF p. 174)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Section 3.1 multi-binding let sugar, Table 3.1 prose typos, [let_2] FV(e_2), and [app_fun] binding order",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-051",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-01",
+   "published_body_sha256": "c1f7baf434eedc94e24800c00680e565790f3a4cea4af5d1b6647169014c1f27",
+   "source_body": "\n## Summary\n\nPage 142 uses semicolon multi-let sugar absent from the single-binding FUN grammar; pp. 146 and 155 have minor prose typos; Table 3.2 [app_fun] appends [x |-> v_2] rightmost after [f |-> close ...]; Table 3.3 [let_2] restricts to FV(e_2) without subtracting x.\n\n## Source Citations & Grounding\n\n- [PPA §3.1, p. 142] (book p. 142; PDF p. 160)\n- [PPA §3.1.1, p. 146] (book p. 146; PDF p. 164)\n- [PPA Table 3.2, p. 155] (book p. 155; PDF p. 173)\n- [PPA Table 3.3, p. 156] (book p. 156; PDF p. 174)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nFormal FUN grammar (`t ::= let x = e1 in e2`) permits one binding per `let`, so semicolon chains on p. 142 require nested desugaring. In Table 3.2 `[app_fun]`, `rho2 = rho1[f |-> close (fun f x => e1) in rho1]` and `(bind rho2[x |-> v2] in e1)^l` places `[x |-> v2]` rightmost (matching Example 3.8 `[f |-> ...][x |-> ...]`). In Table 3.3 `[let_2]`, `rho0 = rho | FV(e2)` omits subtracting `x`, retaining shadowed outer `x` underneath `[x |-> v]`.\n\nGuardrail: Desugar multi-binding let into nested AST nodes, keep [x |-> v_2] rightmost in [app_fun], and read [let_2] rho_0 = rho | FV(e_2) verbatim. (Refs: F-U3a-01..04, G-U3a-01, G-U3a-02, G-U3a-08, G-U3a-09, G-U3a-11).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-01, F-U3a-02, F-U3a-03, F-U3a-04, G-U3a-11); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.fun-syntax-and-dispatch`, `ppa.cfa.fun-closure-sos`, `ppa.cfa.abstract-0cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-051.md",
+   "state": "open",
+   "title": "Section 3.1 multi-binding let sugar, Table 3.1 prose typos, [let_2] FV(e_2), and [app_fun] binding order"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nFact 3.11 (p. 160) has its statement erased in ppa.pdf OCR; Tables 3.2-3.3 relabel inner results to outer l in [bind_2], [if_2], and [if_3] so outer labels never change; storing labelled Exp in Val_hat (Exercise 3.6) breaks Fact 3.11 and Theorem 3.10.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.2, p. 155] (book p. 155; PDF p. 173)\n- [PPA Table 3.3, p. 156] (book p. 156; PDF p. 174)\n- [PPA Fact 3.11, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.6, p. 206] (book p. 206; PDF p. 224)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nBecause `[bind_2]` steps `(bind rho1 in v1^{l1})^l -> v1^l` and `[if_2]`/`[if_3]` step `(if true/false^{l0} then t1^{l1} else t2^{l2})^l -> t_i^l`, every SOS transition leaves the outermost label unchanged (p. 157), so `Fact 3.11` (`(C_hat, rho_hat) |= it^{l1} and C_hat(l1) <= C_hat(l2) => (C_hat, rho_hat) |= it^{l2}`) suffices directly for Theorem 3.10 without any `[app_1]` congruence gap. However, storing labelled expressions (`Val_hat = P(Exp)`, Exercise 3.6) breaks `Fact 3.11` when outer labels change across `[bind_2]`/`[if_2,3]`.\n\nGuardrail: Transcribe Fact 3.11 from rendered PDF p. 178, keep outer-label relabelling in [bind_2]/[if_2,3], and store unlabelled Term in Val_hat. (Refs: F-U3a-05, G-U3a-10, G-U3a-12, G-U3b-26, BKL-011).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-05, G-U3a-10, G-U3a-12, G-U3b-26, BKL-011); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.subject-reduction`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-052\", \"parent_issue\": \"ISS-W3-01\", \"ppa_scope\": [\"Table 3.2 (book p. 155; PDF p. 173)\", \"Table 3.3 (book p. 156; PDF p. 174)\", \"Fact 3.11 (book p. 160; PDF p. 178)\", \"Exercise 3.6 (book p. 206; PDF p. 224)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "4717b4865fa6889a13c613ea140f281e22b44ec43bd1e88d594b835b78e51740",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-052",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-01",
+    "ppa_scope": [
+     "Table 3.2 (book p. 155; PDF p. 173)",
+     "Table 3.3 (book p. 156; PDF p. 174)",
+     "Fact 3.11 (book p. 160; PDF p. 178)",
+     "Exercise 3.6 (book p. 206; PDF p. 224)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Fact 3.11 OCR erasure, outer-label relabelling in [if_2,3]/[bind_2], and Val_hat = P(Exp) failure",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-052",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-01",
+   "published_body_sha256": "8b2a058e6a90035993005d2bb3658ef105efcb54018d181b05c580d71c02a453",
+   "source_body": "\n## Summary\n\nFact 3.11 (p. 160) has its statement erased in ppa.pdf OCR; Tables 3.2-3.3 relabel inner results to outer l in [bind_2], [if_2], and [if_3] so outer labels never change; storing labelled Exp in Val_hat (Exercise 3.6) breaks Fact 3.11 and Theorem 3.10.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.2, p. 155] (book p. 155; PDF p. 173)\n- [PPA Table 3.3, p. 156] (book p. 156; PDF p. 174)\n- [PPA Fact 3.11, p. 160] (book p. 160; PDF p. 178)\n- [PPA Exercise 3.6, p. 206] (book p. 206; PDF p. 224)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nBecause `[bind_2]` steps `(bind rho1 in v1^{l1})^l -> v1^l` and `[if_2]`/`[if_3]` step `(if true/false^{l0} then t1^{l1} else t2^{l2})^l -> t_i^l`, every SOS transition leaves the outermost label unchanged (p. 157), so `Fact 3.11` (`(C_hat, rho_hat) |= it^{l1} and C_hat(l1) <= C_hat(l2) => (C_hat, rho_hat) |= it^{l2}`) suffices directly for Theorem 3.10 without any `[app_1]` congruence gap. However, storing labelled expressions (`Val_hat = P(Exp)`, Exercise 3.6) breaks `Fact 3.11` when outer labels change across `[bind_2]`/`[if_2,3]`.\n\nGuardrail: Transcribe Fact 3.11 from rendered PDF p. 178, keep outer-label relabelling in [bind_2]/[if_2,3], and store unlabelled Term in Val_hat. (Refs: F-U3a-05, G-U3a-10, G-U3a-12, G-U3b-26, BKL-011).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-05, G-U3a-10, G-U3a-12, G-U3b-26, BKL-011); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.subject-reduction`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-052.md",
+   "state": "open",
+   "title": "Fact 3.11 OCR erasure, outer-label relabelling in [if_2,3]/[bind_2], and Val_hat = P(Exp) failure"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nExample 3.15 redefines (C'_e, rho'_e) as an acceptable over-approximation after Examples 3.3 and 3.5 used the same symbol for an unacceptable guess; Proposition 3.16 writes IExp_e over source-only Term_e and Q_1..Q_n for fixed n=4; Proposition 3.19 prints 'than' for 'that'.\n\n## Source Citations & Grounding\n\n- [PPA Example 3.3, p. 144] (book p. 144; PDF p. 162)\n- [PPA Example 3.15, p. 164] (book p. 164; PDF p. 182)\n- [PPA Proposition 3.16, p. 165] (book p. 165; PDF p. 183)\n- [PPA Proposition 3.19, p. 173] (book p. 173; PDF p. 191)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nReusing `(C'_e, rho'_e)` across Example 3.3 (unacceptable) and Example 3.15 (acceptable table alongside `(C''_e, rho''_e)`) causes bare symbol references to conflate invalid and valid witnesses. In Proposition 3.16, writing `IExp_e` where `Term_e` yields source-only expressions `Exp_e`, and writing `Q_1..Q_n` before fixed `n=4`, obscures the self-application `lfp(Q)` counterexample.\n\nGuardrail: Scope-qualify Example 3.3 vs Example 3.15 candidate names in tests and read IExp_e in Proposition 3.16 as Exp_e. (Refs: F-U3a-06, F-U3a-07, F-U3a-08, G-U3a-15, G-U3a-16).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-06, F-U3a-07, F-U3a-08, G-U3a-15, G-U3a-16); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.coinductive-well-definedness`, `ppa.cfa.moore-family-solutions`, `ppa.cfa.syntax-directed-0cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-053\", \"parent_issue\": \"ISS-W3-01\", \"ppa_scope\": [\"Example 3.3 (book p. 144; PDF p. 162)\", \"Example 3.15 (book p. 164; PDF p. 182)\", \"Proposition 3.16 (book p. 165; PDF p. 183)\", \"Proposition 3.19 (book p. 173; PDF p. 191)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "36524a9ac951347bec7c8e3881cf1134078fd8593eeeeeb69e0beb404a9fc939",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-053",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-01",
+    "ppa_scope": [
+     "Example 3.3 (book p. 144; PDF p. 162)",
+     "Example 3.15 (book p. 164; PDF p. 182)",
+     "Proposition 3.16 (book p. 165; PDF p. 183)",
+     "Proposition 3.19 (book p. 173; PDF p. 191)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Example 3.15 reuse of (C'_e, rho'_e), Proposition 3.16 IExp_e notation, and Proposition 3.19 typo",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-053",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-01",
+   "published_body_sha256": "5c42caa9b19be1397577f08584930b9baf1f4b3c0c434101d11d0c48b09d38b1",
+   "source_body": "\n## Summary\n\nExample 3.15 redefines (C'_e, rho'_e) as an acceptable over-approximation after Examples 3.3 and 3.5 used the same symbol for an unacceptable guess; Proposition 3.16 writes IExp_e over source-only Term_e and Q_1..Q_n for fixed n=4; Proposition 3.19 prints 'than' for 'that'.\n\n## Source Citations & Grounding\n\n- [PPA Example 3.3, p. 144] (book p. 144; PDF p. 162)\n- [PPA Example 3.15, p. 164] (book p. 164; PDF p. 182)\n- [PPA Proposition 3.16, p. 165] (book p. 165; PDF p. 183)\n- [PPA Proposition 3.19, p. 173] (book p. 173; PDF p. 191)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nReusing `(C'_e, rho'_e)` across Example 3.3 (unacceptable) and Example 3.15 (acceptable table alongside `(C''_e, rho''_e)`) causes bare symbol references to conflate invalid and valid witnesses. In Proposition 3.16, writing `IExp_e` where `Term_e` yields source-only expressions `Exp_e`, and writing `Q_1..Q_n` before fixed `n=4`, obscures the self-application `lfp(Q)` counterexample.\n\nGuardrail: Scope-qualify Example 3.3 vs Example 3.15 candidate names in tests and read IExp_e in Proposition 3.16 as Exp_e. (Refs: F-U3a-06, F-U3a-07, F-U3a-08, G-U3a-15, G-U3a-16).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-06, F-U3a-07, F-U3a-08, G-U3a-15, G-U3a-16); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.coinductive-well-definedness`, `ppa.cfa.moore-family-solutions`, `ppa.cfa.syntax-directed-0cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-053.md",
+   "state": "open",
+   "title": "Example 3.15 reuse of (C'_e, rho'_e), Proposition 3.16 IExp_e notation, and Proposition 3.19 typo"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nPage 176 attributes least-solution existence to Proposition 3.18 instead of Proposition 3.19, p. 177 writes Cache_* x Val_* instead of Cache_* x Env_* for the O(n^2)-height lattice, Figure 3.4 abbreviates {t} without braces, p. 180 uses single brackets, and pp. 181-182 omit subscript * on C_*[[e_*]].\n\n## Source Citations & Grounding\n\n- [PPA §3.4.2, p. 176] (book p. 176; PDF p. 194)\n- [PPA §3.4.2, p. 177] (book p. 177; PDF p. 195)\n- [PPA Figure 3.4, p. 179] (book p. 179; PDF p. 197)\n- [PPA Corollary 3.25, p. 182] (book p. 182; PDF p. 200)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nFollowing §3.4.2 verbatim breaks lattice bounds and cross-references: citing Proposition 3.18 instead of Proposition 3.19 omits the Moore-family theorem that guarantees existence of `lfp(F_*)`, while writing `Cache_* x Val_*` instead of `Cache_* x Env_*` mis-types environment updates on `rho_hat(x)`. Dropping the `_⋆` subscript on `C[[e_*]]` (pp. 181-182) conflates total-universe `C` with the finite-subterm restriction.\n\nGuardrail: Cite Proposition 3.19 + 3.21 for least-solution existence and evaluate F_* over Cache_* x Env_*. (Refs: F-U3a-09, F-U3a-10, F-U3a-11, F-U3a-12, F-U3a-13, F-U3a-14, G-U3a-21, G-U3a-22, G-U3a-23).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-09, F-U3a-10, F-U3a-11, F-U3a-12, F-U3a-13, F-U3a-14, G-U3a-21, G-U3a-22, G-U3a-23); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.constraint-0cfa`, `ppa.cfa.cubic-worklist-solver`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-054\", \"parent_issue\": \"ISS-W3-01\", \"ppa_scope\": [\"\\u00a73.4.2 (book p. 176; PDF p. 194)\", \"\\u00a73.4.2 (book p. 177; PDF p. 195)\", \"Figure 3.4 (book p. 179; PDF p. 197)\", \"Corollary 3.25 (book p. 182; PDF p. 200)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "7575af7c582b26e0f4feb6c73ceabd2e44ac6413fadb958dfdb68f374b1d9dc5",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-054",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-01",
+    "ppa_scope": [
+     "§3.4.2 (book p. 176; PDF p. 194)",
+     "§3.4.2 (book p. 177; PDF p. 195)",
+     "Figure 3.4 (book p. 179; PDF p. 197)",
+     "Corollary 3.25 (book p. 182; PDF p. 200)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Section 3.4.2 mis-cites Proposition 3.18 for 3.19, writes Cache_* x Val_*, and drops _* on C[[e_*]]",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-054",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-01",
+   "published_body_sha256": "49245237e3a12199006e6f472ab130123403fd938ebf6eb8cdeaa67ae3ee396c",
+   "source_body": "\n## Summary\n\nPage 176 attributes least-solution existence to Proposition 3.18 instead of Proposition 3.19, p. 177 writes Cache_* x Val_* instead of Cache_* x Env_* for the O(n^2)-height lattice, Figure 3.4 abbreviates {t} without braces, p. 180 uses single brackets, and pp. 181-182 omit subscript * on C_*[[e_*]].\n\n## Source Citations & Grounding\n\n- [PPA §3.4.2, p. 176] (book p. 176; PDF p. 194)\n- [PPA §3.4.2, p. 177] (book p. 177; PDF p. 195)\n- [PPA Figure 3.4, p. 179] (book p. 179; PDF p. 197)\n- [PPA Corollary 3.25, p. 182] (book p. 182; PDF p. 200)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nFollowing §3.4.2 verbatim breaks lattice bounds and cross-references: citing Proposition 3.18 instead of Proposition 3.19 omits the Moore-family theorem that guarantees existence of `lfp(F_*)`, while writing `Cache_* x Val_*` instead of `Cache_* x Env_*` mis-types environment updates on `rho_hat(x)`. Dropping the `_⋆` subscript on `C[[e_*]]` (pp. 181-182) conflates total-universe `C` with the finite-subterm restriction.\n\nGuardrail: Cite Proposition 3.19 + 3.21 for least-solution existence and evaluate F_* over Cache_* x Env_*. (Refs: F-U3a-09, F-U3a-10, F-U3a-11, F-U3a-12, F-U3a-13, F-U3a-14, G-U3a-21, G-U3a-22, G-U3a-23).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3a-09, F-U3a-10, F-U3a-11, F-U3a-12, F-U3a-13, F-U3a-14, G-U3a-21, G-U3a-22, G-U3a-23); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.constraint-0cfa`, `ppa.cfa.cubic-worklist-solver`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-054.md",
+   "state": "open",
+   "title": "Section 3.4.2 mis-cites Proposition 3.18 for 3.19, writes Cache_* x Val_*, and drops _* on C[[e_*]]"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nTable 3.7 counts O(n^3) edge traversals assuming unit-cost add(p_2, D[p_1]) (which costs O(n^4) elementary operations under naive whole-set scans), requires dual registration in E[p_1] and E[p], and computes the least solution of |=_s / C_*[[e_*]] rather than minimal |= on dead closures.\n\n## Source Citations & Grounding\n\n- [PPA §3.3, p. 168] (book p. 168; PDF p. 186)\n- [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196)\n- [PPA §3.4.2, p. 181] (book p. 181; PDF p. 199)\n- [PPA Corollary 3.25, p. 182] (book p. 182; PDF p. 200)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nA literal translation of Table 3.7 runs in `O(n^4)` scalar operations whenever `add(p_2, D[p_1])` scans entire closure sets instead of enqueueing individual `(q, t)` pairs with bitsets. Omitting conditional registration from either `E[p_1]` or `E[p]` makes the worklist order-sensitive and drops return/argument flows when `D[p_1]` arrives before `{t} <= D[p]`. Finally, Corollary 3.25 proves soundness `|=` rather than minimality because dead lambda bodies still seed `C_*(l)` under `|=_s`.\n\nGuardrail: Register conditionals in both E[p_1] and E[p], propagate differential (q, t) pairs with O(1) bitset lookups [external], and gate dead lambdas via Mini Project 3.1 R_hat or lazy [9] expansion when needed. (Refs: G-U3a-17, G-U3a-19, G-U3a-24, G-U3a-25, G-U3a-26).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (G-U3a-17, G-U3a-19, G-U3a-24, G-U3a-25, G-U3a-26); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.syntax-directed-0cfa`, `ppa.cfa.cubic-worklist-solver`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-055\", \"parent_issue\": \"ISS-W3-01\", \"ppa_scope\": [\"\\u00a73.3 (book p. 168; PDF p. 186)\", \"Table 3.7 (book p. 178; PDF p. 196)\", \"\\u00a73.4.2 (book p. 181; PDF p. 199)\", \"Corollary 3.25 (book p. 182; PDF p. 200)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "d7d0b2c5a3fd38d38b4e2812b0189aad1f2f85174d9c33a56b6d446db09b43f8",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-055",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-01",
+    "ppa_scope": [
+     "§3.3 (book p. 168; PDF p. 186)",
+     "Table 3.7 (book p. 178; PDF p. 196)",
+     "§3.4.2 (book p. 181; PDF p. 199)",
+     "Corollary 3.25 (book p. 182; PDF p. 200)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Table 3.7 O(n^3) edge traversals vs O(n^4) scalar set-union cost, dual E[p] registration, and dead lambdas",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-055",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-01",
+   "published_body_sha256": "139a2c640e53c6a6a0889acc4f5a28d902ae88b3c503ef254792df0cf742de9b",
+   "source_body": "\n## Summary\n\nTable 3.7 counts O(n^3) edge traversals assuming unit-cost add(p_2, D[p_1]) (which costs O(n^4) elementary operations under naive whole-set scans), requires dual registration in E[p_1] and E[p], and computes the least solution of |=_s / C_*[[e_*]] rather than minimal |= on dead closures.\n\n## Source Citations & Grounding\n\n- [PPA §3.3, p. 168] (book p. 168; PDF p. 186)\n- [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196)\n- [PPA §3.4.2, p. 181] (book p. 181; PDF p. 199)\n- [PPA Corollary 3.25, p. 182] (book p. 182; PDF p. 200)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nA literal translation of Table 3.7 runs in `O(n^4)` scalar operations whenever `add(p_2, D[p_1])` scans entire closure sets instead of enqueueing individual `(q, t)` pairs with bitsets. Omitting conditional registration from either `E[p_1]` or `E[p]` makes the worklist order-sensitive and drops return/argument flows when `D[p_1]` arrives before `{t} <= D[p]`. Finally, Corollary 3.25 proves soundness `|=` rather than minimality because dead lambda bodies still seed `C_*(l)` under `|=_s`.\n\nGuardrail: Register conditionals in both E[p_1] and E[p], propagate differential (q, t) pairs with O(1) bitset lookups [external], and gate dead lambdas via Mini Project 3.1 R_hat or lazy [9] expansion when needed. (Refs: G-U3a-17, G-U3a-19, G-U3a-24, G-U3a-25, G-U3a-26).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (G-U3a-17, G-U3a-19, G-U3a-24, G-U3a-25, G-U3a-26); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.syntax-directed-0cfa`, `ppa.cfa.cubic-worklist-solver`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W3-01\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-055.md",
+   "state": "open",
+   "title": "Table 3.7 O(n^3) edge traversals vs O(n^4) scalar set-union cost, dual E[p] registration, and dead lambdas"
   },
   {
    "blocks": [
     "ISS-W4-01"
    ],
-   "body": "## Summary\n\nExtract combined control/data flow lattices, uniform k-CFA and context information; synthesize the Chapter 3 skill; refactor; Gate #5.\n\n## Source Citations & Grounding\n\n- §3.5 Adding Data Flow Analysis (book pp. 182–188; PDF pp. 200–206)\n- §3.6 Adding Context Information (book pp. 189–210; PDF pp. 207–227)\n- Tables in scope: Table 3.8 (p. 184/PDF 202), Table 3.9 (p. 188/PDF 206), Table 3.10 (p. 192/PDF 210)\n- Figures in scope: Figure 3.6 (p. 185/PDF 203)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 182–210 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 3 tables and 1 figures in book pp. 182–210 are anchored (no omissions)\n- [ ] Artifact `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] Artifact `knowledge/skills/ppa-control-flow-and-constraints/references/ppa-cfa-and-constraints.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-01; blocks: ISS-W4-01\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/ppa-cfa-and-constraints.md`\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W4-01\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W3-01\"], \"id\": \"ISS-W3-02\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a73.5 Adding Data Flow Analysis (book pp. 182\\u2013188; PDF pp. 200\\u2013206)\", \"\\u00a73.6 Adding Context Information (book pp. 189\\u2013210; PDF pp. 207\\u2013227)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "0a1b5c6acd1ca01bd870e351583c3b4469d5b00d465a713f53b3f26a7e30e4d6",
+   "body": "## Summary\n\nExtract combined control/data flow lattices, uniform k-CFA and context information; synthesize the Chapter 3 skill; refactor; Gate #5.\n\n## Source Citations & Grounding\n\n- §3.5 Adding Data Flow Analysis (book pp. 182–188; PDF pp. 200–206)\n- §3.6 Adding Context Information (book pp. 189–210; PDF pp. 207–227)\n- Tables in scope: Table 3.8 (p. 184/PDF 202), Table 3.9 (p. 188/PDF 206), Table 3.10 (p. 192/PDF 210)\n- Figures in scope: Figure 3.6 (p. 185/PDF 203)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 182–210 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 3 tables and 1 figure in book pp. 182–210 are anchored (no omissions)\n- [x] Artifact `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] Artifacts `knowledge/ambient-context/ppa-cfa-and-constraints.md` and `references/{cfa-core-and-coinduction,constraint-generation-and-cubic-solver,polyvariant-kcfa-cpa-and-dfa}.md` exist and pass `scripts/validate_ppa_knowledge.py`\n- [x] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 3b extraction (`corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`, `1,106` lines, `30/30` `G-U3b-01..30`, `3/3` `Tables 3.8–3.10`, `1/1` `Figure 3.6`, `9/9` `Statements 3.26–3.34`, `Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`) and full Chapter 3 knowledge package (`ppa-control-flow-and-constraints/`, `ppa-cfa-and-constraints.md`, `16` new `ppa.cfa.*` concepts, `BKL-051..062`, `REF-003`) promoted for Gate #5 (`gate5-v1`).\n- 2026-11-19 Round 1 (`gate5-v1`): three-track adversarial panel returned `[DISAGREE]` across `22` findings (`P-SWE`: `5` `BLOCKING`, `2` `PREFERENCE`; `P-ARCH`: `5` `BLOCKING`, `3` `PREFERENCE`; `P-CYBER`: `6` `BLOCKING`, `1` `PREFERENCE`). Remediated all `22/22` findings across `L0`–`L3`, `ontology/`, and `issues/backlog/` (`gate5-v2`).\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225). Applied all three non-blocking `PREFERENCE` polishes (`F-OJ-508`/`F-CJ-508` single quotes in `BKL-058.md:3` for strict `yaml.safe_load`, `F-FJ-509`/`F-OJ-509`/`F-CJ-509` `new_π` in `SKILL.md:226` & collapsed `[external]` in `polyvariant-kcfa-cpa-and-dfa.md:133-134`).\n\n### Rebuttal & Attribution Summary (Gate #5 Round 1)\n\n| Finding ID | Track | Severity | Disposition & Action Taken | Target Artifact(s) |\n| :--- | :--- | :--- | :--- | :--- |\n| `F-OJ-501` | `P-SWE` | `BLOCKING` | Fixed `Tables 3.2–3.3` (`[app_fn]`/`[app_fun]` `[x ↦ v₂]` order, `[if₂,₃]`/`[bind₂]` relabelling to `ℓ`, `Example 3.8`, `IExp` branches), `Example 3.3` (3 guesses), `Remark.` p. 145 (`(Var ∪ Lab) → Val̂` & IRs), `Example 3.12` (on `Ex 3.7`), `Mini Project 3.1` `p. 202`, and repurposed `F-U3a-05`/`BKL-052` (no `[app₁]` gap) | `RAW_SHARD_03a_0cfa.md`, `cfa-core-and-coinduction.md`, `BKL-052.md`, `concept_graph.json` |\n| `F-OJ-502` | `P-SWE` | `BLOCKING` | Restored Uniform `k`-CFA `Val̂ = 𝒫(Term × CEnv)`, standard `k`-CFA `Cachê = (Lab × CEnv) → Val̂` (`[156, 157, 158]`), Polynomial `k`-CFA `Val̂ = 𝒫(Term × Δ)` (`O(n⁶)` at `k=1`, `p. 195`), verbatim `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, `[2]` vs `[4]`, and rewrote `BKL-057` around `CEnv` `ce \\| FV` & `Ex 3.34` mis-citation (no `ρ̂(x, δ₀)` typo) | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-057.md` |\n| `F-OJ-503` | `P-SWE` | `BLOCKING` | Fixed `§3.6.2 CPA [app]` `F-U3b-05` (`)` before `^ℓ`, `, δ_b` in `ρ̂(x_i, δ_b)`), `Mini Project 3.1` (`p. 202`, no `[let]`), `Mini Project 3.2` (`p. 203` flat `C(ℓ₁,...,ℓ_n)`), `Mini Project 3.3` (`Label of term * label`), `Mini Project 3.4` (`new_π`/`x := e₀`/`me`, unprinted `[assign]` + `p. 200` `[133]` strong-kill guard), and `Ex 3.2/3.16` | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-058/060/061/062.md` |\n| `F-OJ-504` | `P-SWE` | `BLOCKING` | Fixed `d_c ∈ Data`, `Table 3.8` `[con]` `{d_c}` / `[if]` `d_true`/`d_false`, real `Example 3.27 / Figure 3.6 / Example 3.30 (p. 187) / Example 3.31` terms (`fn y => y^4`, `fn z => 25^6`, `{0}` vs `{0, +}`), Oracle #3, and `evals/cases.yaml` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-OJ-505` | `P-SWE` | `BLOCKING` | Removed bare `⊨` from `notation_index.md` `U-39` (`N1-006` xref) and added `⊨'_{s}`, `⊨'_{D}`, `⊨_{me}`; replaced `U2 -> U5` in `RAW_SHARD_03b`; tagged `[external]` across `L0`–`L3`/graph/BKL (incl. `m-CFA`, `DEXPTIME`, `[2]`/`[9]`/`[156..158]`, `Kleene`, `weak/strong update`) | `notation_index.md`, `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `L0`–`L2`, `concept_graph.json`, `BKL-061.md` |\n| `F-OJ-506` | `P-SWE` | `PREFERENCE` | Synced bidirectional `Affected concept ids` on `BKL-051`, `BKL-053`, `BKL-062` (`56/56` `BKL` parity) and deduplicated redundant `abstract-0cfa <-> subject-reduction` edge pair | `BKL-051/053/062.md`, `concept_graph.json` |\n| `F-OJ-507` | `P-SWE` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 step `5. -> 4.` (`U-39` updated cleanly; `U-37` historical W2 note untouched) | `SKILL.md`, `notation_index.md` |\n| `F-FJ-501` | `P-ARCH` | `BLOCKING` | Restored Uniform `k`-CFA `Val̂ = 𝒫(Term × CEnv)`, `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, standard `k`-CFA `Cachê = (Lab × CEnv) → Val̂`, and Polynomial `k`-CFA `Val̂ = 𝒫(Term × Δ)` (`p. 195`) across `L0`–`L2`, Oracle #4, and `concept_graph.json` (`U5` symmetry) | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json` |\n| `F-FJ-502` | `P-ARCH` | `BLOCKING` | Aligned `Example 3.27 / Figure 3.6 / Example 3.31`, Oracle #3, `Table 3.8` (`d_c ∈ Data`, `d_true`/`d_false`), and `evals/cases.yaml` to printed book syntax and output sets | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-FJ-503` | `P-ARCH` | `BLOCKING` | Purged fabricated `p. 193` `ρ̂(x, δ₀)`, `p. 197` unbound `e₀`/`Ĉ(ℓ₀, δ)`, and `Ex 3.2`/`3.16` claims; documented genuine `F-U3b-05` (`)` before `^ℓ`, `, δ_b` on `ρ̂(x_i, δ_b)`), `Ex 3.16` `f(x)= e` / `defined in D`, and `Ex 3.17` `\"Cartesian Production\"` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `cfa-core-and-coinduction.md`, `concept_graph.json`, `BKL-057/058/062.md` |\n| `F-FJ-504` | `P-ARCH` | `BLOCKING` | Corrected `Mini Project 3.1` (`p. 202`, prose line 10 `⊨_s`), `Mini Project 3.2` (`p. 203` flat `C(ℓ₁,...,ℓ_n)`), `Mini Project 3.3` (`Label of term * label`), and `Mini Project 3.4` (`new_π`/`x := e₀`/`me`, unprinted `[assign]` + `p. 200` `[133]`) | `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `concept_graph.json`, `BKL-060/061.md` |\n| `F-FJ-505` | `P-ARCH` | `BLOCKING` | Updated `RAW_SHARD_03a_0cfa.md:11` (`Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`) and enforced `P2` `[external]` tags + `PPA` `Ext`/`Red` terms across `L0`–`L3` and `SKILL.md:3` | `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `ppa-cfa-and-constraints.md`, `SKILL.md`, `concept_graph.json` |\n| `F-FJ-506` | `P-ARCH` | `PREFERENCE` | Synced `Affected concept ids` in `BKL-051/053/062` (with `Ex 3.6` in `BKL-062`) and deduplicated redundant `subject-reduction <-> abstract-0cfa` edge pair | `BKL-051/053/062.md`, `concept_graph.json` |\n| `F-FJ-507` | `P-ARCH` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 step `5. -> 4.` cleanly (`1., 2., 3., 4.`) | `SKILL.md` |\n| `F-FJ-508` | `P-ARCH` | `PREFERENCE` | Added direct sibling `U4` link `[intraprocedural-analyses-and-frameworks.md]` in `SKILL.md` shared references | `SKILL.md` |\n| `F-CJ-501` | `P-CYBER` | `BLOCKING` | Restored `Uniform k-CFA` vs standard `k-CFA` vs `Polynomial k-CFA` (`Val̂` & `Cachê`), `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, and `U5` symmetric `basis` descriptions | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json` |\n| `F-CJ-502` | `P-CYBER` | `BLOCKING` | Removed fabricated errata in `BKL-057/058/060/061/062` & derived layers; aligned `F-U3b-05`, `Mini Projects 3.1–3.4`, and `Exercises 3.2–3.17` to verified PDFs | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-057/058/060/061/062.md` |\n| `F-CJ-503` | `P-CYBER` | `BLOCKING` | Replaced hallucinated `Example 3.27/3.31` & `Figure 3.6` program/labels/tokens across `L1`, Oracle #3, `evals/cases.yaml`, and `concept_graph.json`, plus `d_c ∈ Data` in `Table 3.8` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-CJ-504` | `P-CYBER` | `BLOCKING` | Corrected `RAW_SHARD_03a_0cfa.md` (`Tables 3.2–3.3`, `Example 3.3`, `Remark.` p. 145, `Example 3.8`, `Example 3.12`, `:11`, `p. 202`) and replaced fabricated `Theorem 3.10` `[app₁]` gap (`F-U3a-05`/`BKL-052`) with `Fact 3.11` & `[if₂,₃]`/`[bind₂]` relabelling invariant | `RAW_SHARD_03a_0cfa.md`, `cfa-core-and-coinduction.md`, `SKILL.md`, `BKL-052.md`, `concept_graph.json` |\n| `F-CJ-505` | `P-CYBER` | `BLOCKING` | Fixed `MONOTONICITY_GATE` (`S₁ ∩ S₂` is monotone on `(𝒫(U), ⊆)`; complement `¬S` & variable-LHS `(S₁ ⊆ S₂) ⇒ S₃` break Tarski's Theorem on `p. 201`) and `STRONG_UPDATE_GATE` (`(x := e₀)^ℓ`, `me : Var → Pnt`, `p. 200` `[133]` local stores + ref counts) | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `BKL-059/061.md`, `concept_graph.json` |\n| `F-CJ-506` | `P-CYBER` | `BLOCKING` | Fixed `[4] -> [2]` (`CPA`), `[159] -> [156, 157, 158]` (`k`-CFA), tagged bibliography-only author attributions `[2]/[9]/[156..158]` and all non-book terms (`DEXPTIME`, `reflection`, `FFI`, `deserialization`, `eval`, `sanitizer`, `weak/strong update`, `π-calculus`, `Kleene`, `post/pre-fixed point`) `[external]` | `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `L0`–`L2`, `concept_graph.json`, `BKL-061.md` |\n| `F-CJ-507` | `P-CYBER` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 `5. -> 4.`, updated `RAW_SHARD_03b` `U2 -> U5`, removed bare `⊨` from `U-39`, and synced `BKL-051/053/062` `Affected concept ids` | `SKILL.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `notation_index.md`, `BKL-051/053/062.md` |\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-01; blocks: ISS-W4-01\n- `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/ambient-context/ppa-cfa-and-constraints.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `issues/refactors/REF-003.md`\n- `issues/backlog/BKL-056.md` .. `issues/backlog/BKL-062.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Gate #5 Round 1 remediation (gate5-v2): 22/22 findings resolved; RAW_SHARD_03a (1,372L), RAW_SHARD_03b (1,106L), ppa-cfa-and-constraints.md (100L), ppa-control-flow-and-constraints (269L SKILL, desc=900 chars, refs 202L/147L/150L), 97-node concept_graph.json (Rule B1 97/97), notation_index.md U-39..U-45, and BKL-051..062 ready for Round 2 verification.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; 3 PREFERENCE polishes applied; validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [\"ISS-W4-01\"], \"created_at\": \"2026-11-18\", \"depends_on\": [\"ISS-W3-01\"], \"id\": \"ISS-W3-02\", \"parent_issue\": \"EPIC-001\", \"ppa_scope\": [\"\\u00a73.5 Adding Data Flow Analysis (book pp. 182\\u2013188; PDF pp. 200\\u2013206)\", \"\\u00a73.6 Adding Context Information (book pp. 189\\u2013210; PDF pp. 207\\u2013227)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "d6dbcccacb0866daf1dc52685a5ff5abc74da2eed082d8911fcecee5a3b3471c",
    "depends_on": [
     "ISS-W3-01"
    ],
    "frontmatter": {
-    "aligned_models": [],
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
     "altitudes": [
      "L1",
      "L2",
@@ -3091,9 +3394,9 @@
      "§3.6 Adding Context Information (book pp. 189–210; PDF pp. 207–227)"
     ],
     "priority": "P0",
-    "status": "open",
+    "status": "closed",
     "title": "W3-2 Ch 3b §3.5–3.6 CFA+DFA, k-CFA, CPA, synthesis + Gate #5",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "ISS-W3-02",
@@ -3104,22 +3407,22 @@
     "gate",
     "ppa",
     "priority:P0",
-    "status:open",
+    "status:closed",
     "type:shard",
     "wave-3"
    ],
    "milestone": "W3",
    "parent_issue": "EPIC-001",
-   "published_body_sha256": "4d8cf9bb292865d51ec2ebf6fd12b97cb2687f51aa87c3e1ed82608a01b24c48",
-   "source_body": "\n## Summary\n\nExtract combined control/data flow lattices, uniform k-CFA and context information; synthesize the Chapter 3 skill; refactor; Gate #5.\n\n## Source Citations & Grounding\n\n- §3.5 Adding Data Flow Analysis (book pp. 182–188; PDF pp. 200–206)\n- §3.6 Adding Context Information (book pp. 189–210; PDF pp. 207–227)\n- Tables in scope: Table 3.8 (p. 184/PDF 202), Table 3.9 (p. 188/PDF 206), Table 3.10 (p. 192/PDF 210)\n- Figures in scope: Figure 3.6 (p. 185/PDF 203)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 182–210 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [ ] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [ ] All 3 tables and 1 figures in book pp. 182–210 are anchored (no omissions)\n- [ ] Artifact `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] Artifact `knowledge/skills/ppa-control-flow-and-constraints/references/ppa-cfa-and-constraints.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [ ] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [ ] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [ ] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n_Pending._\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-01; blocks: ISS-W4-01\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/ppa-cfa-and-constraints.md`\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "0ad7428c2d0b15084338a1d31a679cf58bc77afe37945e562446e97bf4be3078",
+   "source_body": "\n## Summary\n\nExtract combined control/data flow lattices, uniform k-CFA and context information; synthesize the Chapter 3 skill; refactor; Gate #5.\n\n## Source Citations & Grounding\n\n- §3.5 Adding Data Flow Analysis (book pp. 182–188; PDF pp. 200–206)\n- §3.6 Adding Context Information (book pp. 189–210; PDF pp. 207–227)\n- Tables in scope: Table 3.8 (p. 184/PDF 202), Table 3.9 (p. 188/PDF 206), Table 3.10 (p. 192/PDF 210)\n- Figures in scope: Figure 3.6 (p. 185/PDF 203)\n- Coordinate source of truth: `corpus/pdf_page_map.json` (variable PDF offset; never assume a constant offset).\n\n## Technical Analysis / Mechanism\n\nTarget altitudes: L1, L2, L3. Altitudes per architecture/ARCHITECTURE.md §3.1: R0 always-on = 0 bytes; L0 = zero always-on bytes (router 50–99L and ambient 80–250L files loaded on match only); L1 = references (<=450L) with every side condition preserved; L2 = actionable skill procedures (250–499L) with explicit precondition checks; L3 = corpus shards and concept graph.\n\nSource slice: book pp. 182–210 (source slices regenerated as untracked working files by `scripts/extract_ppa_structure.py`, never edited).\n\n## Acceptance Gates\n\n- [x] Every section in scope cited with exact `(book_page, pdf_page)` coordinates validated against `corpus/pdf_page_map.json`\n- [x] All 3 tables and 1 figure in book pp. 182–210 are anchored (no omissions)\n- [x] Artifact `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md` exists and passes `scripts/validate_ppa_knowledge.py`\n- [x] Artifacts `knowledge/ambient-context/ppa-cfa-and-constraints.md` and `references/{cfa-core-and-coinduction,constraint-generation-and-cubic-solver,polyvariant-kcfa-cpa-and-dfa}.md` exist and pass `scripts/validate_ppa_knowledge.py`\n- [x] 3-model adversarial panel records `[ALIGNED <v>]` from all three judges (2-round cap; residual disagreement escalated)\n- [x] `python3 -B scripts/check_portability_hygiene.py .` exits 0\n- [x] `python3 -B scripts/issue_ctl.py validate` exits 0\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 Chapter 3b extraction (`corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`, `1,106` lines, `30/30` `G-U3b-01..30`, `3/3` `Tables 3.8–3.10`, `1/1` `Figure 3.6`, `9/9` `Statements 3.26–3.34`, `Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`) and full Chapter 3 knowledge package (`ppa-control-flow-and-constraints/`, `ppa-cfa-and-constraints.md`, `16` new `ppa.cfa.*` concepts, `BKL-051..062`, `REF-003`) promoted for Gate #5 (`gate5-v1`).\n- 2026-11-19 Round 1 (`gate5-v1`): three-track adversarial panel returned `[DISAGREE]` across `22` findings (`P-SWE`: `5` `BLOCKING`, `2` `PREFERENCE`; `P-ARCH`: `5` `BLOCKING`, `3` `PREFERENCE`; `P-CYBER`: `6` `BLOCKING`, `1` `PREFERENCE`). Remediated all `22/22` findings across `L0`–`L3`, `ontology/`, and `issues/backlog/` (`gate5-v2`).\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225). Applied all three non-blocking `PREFERENCE` polishes (`F-OJ-508`/`F-CJ-508` single quotes in `BKL-058.md:3` for strict `yaml.safe_load`, `F-FJ-509`/`F-OJ-509`/`F-CJ-509` `new_π` in `SKILL.md:226` & collapsed `[external]` in `polyvariant-kcfa-cpa-and-dfa.md:133-134`).\n\n### Rebuttal & Attribution Summary (Gate #5 Round 1)\n\n| Finding ID | Track | Severity | Disposition & Action Taken | Target Artifact(s) |\n| :--- | :--- | :--- | :--- | :--- |\n| `F-OJ-501` | `P-SWE` | `BLOCKING` | Fixed `Tables 3.2–3.3` (`[app_fn]`/`[app_fun]` `[x ↦ v₂]` order, `[if₂,₃]`/`[bind₂]` relabelling to `ℓ`, `Example 3.8`, `IExp` branches), `Example 3.3` (3 guesses), `Remark.` p. 145 (`(Var ∪ Lab) → Val̂` & IRs), `Example 3.12` (on `Ex 3.7`), `Mini Project 3.1` `p. 202`, and repurposed `F-U3a-05`/`BKL-052` (no `[app₁]` gap) | `RAW_SHARD_03a_0cfa.md`, `cfa-core-and-coinduction.md`, `BKL-052.md`, `concept_graph.json` |\n| `F-OJ-502` | `P-SWE` | `BLOCKING` | Restored Uniform `k`-CFA `Val̂ = 𝒫(Term × CEnv)`, standard `k`-CFA `Cachê = (Lab × CEnv) → Val̂` (`[156, 157, 158]`), Polynomial `k`-CFA `Val̂ = 𝒫(Term × Δ)` (`O(n⁶)` at `k=1`, `p. 195`), verbatim `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, `[2]` vs `[4]`, and rewrote `BKL-057` around `CEnv` `ce \\| FV` & `Ex 3.34` mis-citation (no `ρ̂(x, δ₀)` typo) | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-057.md` |\n| `F-OJ-503` | `P-SWE` | `BLOCKING` | Fixed `§3.6.2 CPA [app]` `F-U3b-05` (`)` before `^ℓ`, `, δ_b` in `ρ̂(x_i, δ_b)`), `Mini Project 3.1` (`p. 202`, no `[let]`), `Mini Project 3.2` (`p. 203` flat `C(ℓ₁,...,ℓ_n)`), `Mini Project 3.3` (`Label of term * label`), `Mini Project 3.4` (`new_π`/`x := e₀`/`me`, unprinted `[assign]` + `p. 200` `[133]` strong-kill guard), and `Ex 3.2/3.16` | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-058/060/061/062.md` |\n| `F-OJ-504` | `P-SWE` | `BLOCKING` | Fixed `d_c ∈ Data`, `Table 3.8` `[con]` `{d_c}` / `[if]` `d_true`/`d_false`, real `Example 3.27 / Figure 3.6 / Example 3.30 (p. 187) / Example 3.31` terms (`fn y => y^4`, `fn z => 25^6`, `{0}` vs `{0, +}`), Oracle #3, and `evals/cases.yaml` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-OJ-505` | `P-SWE` | `BLOCKING` | Removed bare `⊨` from `notation_index.md` `U-39` (`N1-006` xref) and added `⊨'_{s}`, `⊨'_{D}`, `⊨_{me}`; replaced `U2 -> U5` in `RAW_SHARD_03b`; tagged `[external]` across `L0`–`L3`/graph/BKL (incl. `m-CFA`, `DEXPTIME`, `[2]`/`[9]`/`[156..158]`, `Kleene`, `weak/strong update`) | `notation_index.md`, `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `L0`–`L2`, `concept_graph.json`, `BKL-061.md` |\n| `F-OJ-506` | `P-SWE` | `PREFERENCE` | Synced bidirectional `Affected concept ids` on `BKL-051`, `BKL-053`, `BKL-062` (`56/56` `BKL` parity) and deduplicated redundant `abstract-0cfa <-> subject-reduction` edge pair | `BKL-051/053/062.md`, `concept_graph.json` |\n| `F-OJ-507` | `P-SWE` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 step `5. -> 4.` (`U-39` updated cleanly; `U-37` historical W2 note untouched) | `SKILL.md`, `notation_index.md` |\n| `F-FJ-501` | `P-ARCH` | `BLOCKING` | Restored Uniform `k`-CFA `Val̂ = 𝒫(Term × CEnv)`, `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, standard `k`-CFA `Cachê = (Lab × CEnv) → Val̂`, and Polynomial `k`-CFA `Val̂ = 𝒫(Term × Δ)` (`p. 195`) across `L0`–`L2`, Oracle #4, and `concept_graph.json` (`U5` symmetry) | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json` |\n| `F-FJ-502` | `P-ARCH` | `BLOCKING` | Aligned `Example 3.27 / Figure 3.6 / Example 3.31`, Oracle #3, `Table 3.8` (`d_c ∈ Data`, `d_true`/`d_false`), and `evals/cases.yaml` to printed book syntax and output sets | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-FJ-503` | `P-ARCH` | `BLOCKING` | Purged fabricated `p. 193` `ρ̂(x, δ₀)`, `p. 197` unbound `e₀`/`Ĉ(ℓ₀, δ)`, and `Ex 3.2`/`3.16` claims; documented genuine `F-U3b-05` (`)` before `^ℓ`, `, δ_b` on `ρ̂(x_i, δ_b)`), `Ex 3.16` `f(x)= e` / `defined in D`, and `Ex 3.17` `\"Cartesian Production\"` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `cfa-core-and-coinduction.md`, `concept_graph.json`, `BKL-057/058/062.md` |\n| `F-FJ-504` | `P-ARCH` | `BLOCKING` | Corrected `Mini Project 3.1` (`p. 202`, prose line 10 `⊨_s`), `Mini Project 3.2` (`p. 203` flat `C(ℓ₁,...,ℓ_n)`), `Mini Project 3.3` (`Label of term * label`), and `Mini Project 3.4` (`new_π`/`x := e₀`/`me`, unprinted `[assign]` + `p. 200` `[133]`) | `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `concept_graph.json`, `BKL-060/061.md` |\n| `F-FJ-505` | `P-ARCH` | `BLOCKING` | Updated `RAW_SHARD_03a_0cfa.md:11` (`Mini Projects 3.1–3.4`, `Exercises 3.1–3.17`) and enforced `P2` `[external]` tags + `PPA` `Ext`/`Red` terms across `L0`–`L3` and `SKILL.md:3` | `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `ppa-cfa-and-constraints.md`, `SKILL.md`, `concept_graph.json` |\n| `F-FJ-506` | `P-ARCH` | `PREFERENCE` | Synced `Affected concept ids` in `BKL-051/053/062` (with `Ex 3.6` in `BKL-062`) and deduplicated redundant `subject-reduction <-> abstract-0cfa` edge pair | `BKL-051/053/062.md`, `concept_graph.json` |\n| `F-FJ-507` | `P-ARCH` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 step `5. -> 4.` cleanly (`1., 2., 3., 4.`) | `SKILL.md` |\n| `F-FJ-508` | `P-ARCH` | `PREFERENCE` | Added direct sibling `U4` link `[intraprocedural-analyses-and-frameworks.md]` in `SKILL.md` shared references | `SKILL.md` |\n| `F-CJ-501` | `P-CYBER` | `BLOCKING` | Restored `Uniform k-CFA` vs standard `k-CFA` vs `Polynomial k-CFA` (`Val̂` & `Cachê`), `Table 3.10` `⊨_δ^{ce}`, `Example 3.34` `{(fn y => y^6, ce₀)}`, and `U5` symmetric `basis` descriptions | `ppa-cfa-and-constraints.md`, `SKILL.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json` |\n| `F-CJ-502` | `P-CYBER` | `BLOCKING` | Removed fabricated errata in `BKL-057/058/060/061/062` & derived layers; aligned `F-U3b-05`, `Mini Projects 3.1–3.4`, and `Exercises 3.2–3.17` to verified PDFs | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `concept_graph.json`, `BKL-057/058/060/061/062.md` |\n| `F-CJ-503` | `P-CYBER` | `BLOCKING` | Replaced hallucinated `Example 3.27/3.31` & `Figure 3.6` program/labels/tokens across `L1`, Oracle #3, `evals/cases.yaml`, and `concept_graph.json`, plus `d_c ∈ Data` in `Table 3.8` | `polyvariant-kcfa-cpa-and-dfa.md`, `SKILL.md`, `evals/cases.yaml`, `concept_graph.json` |\n| `F-CJ-504` | `P-CYBER` | `BLOCKING` | Corrected `RAW_SHARD_03a_0cfa.md` (`Tables 3.2–3.3`, `Example 3.3`, `Remark.` p. 145, `Example 3.8`, `Example 3.12`, `:11`, `p. 202`) and replaced fabricated `Theorem 3.10` `[app₁]` gap (`F-U3a-05`/`BKL-052`) with `Fact 3.11` & `[if₂,₃]`/`[bind₂]` relabelling invariant | `RAW_SHARD_03a_0cfa.md`, `cfa-core-and-coinduction.md`, `SKILL.md`, `BKL-052.md`, `concept_graph.json` |\n| `F-CJ-505` | `P-CYBER` | `BLOCKING` | Fixed `MONOTONICITY_GATE` (`S₁ ∩ S₂` is monotone on `(𝒫(U), ⊆)`; complement `¬S` & variable-LHS `(S₁ ⊆ S₂) ⇒ S₃` break Tarski's Theorem on `p. 201`) and `STRONG_UPDATE_GATE` (`(x := e₀)^ℓ`, `me : Var → Pnt`, `p. 200` `[133]` local stores + ref counts) | `SKILL.md`, `constraint-generation-and-cubic-solver.md`, `polyvariant-kcfa-cpa-and-dfa.md`, `BKL-059/061.md`, `concept_graph.json` |\n| `F-CJ-506` | `P-CYBER` | `BLOCKING` | Fixed `[4] -> [2]` (`CPA`), `[159] -> [156, 157, 158]` (`k`-CFA), tagged bibliography-only author attributions `[2]/[9]/[156..158]` and all non-book terms (`DEXPTIME`, `reflection`, `FFI`, `deserialization`, `eval`, `sanitizer`, `weak/strong update`, `π-calculus`, `Kleene`, `post/pre-fixed point`) `[external]` | `RAW_SHARD_03a_0cfa.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `L0`–`L2`, `concept_graph.json`, `BKL-061.md` |\n| `F-CJ-507` | `P-CYBER` | `PREFERENCE` | Renumbered `SKILL.md` Procedure 2 `5. -> 4.`, updated `RAW_SHARD_03b` `U2 -> U5`, removed bare `⊨` from `U-39`, and synced `BKL-051/053/062` `Affected concept ids` | `SKILL.md`, `RAW_SHARD_03b_kcfa_cpa.md`, `notation_index.md`, `BKL-051/053/062.md` |\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent: EPIC-001; depends on: ISS-W3-01; blocks: ISS-W4-01\n- `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/ambient-context/ppa-cfa-and-constraints.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `issues/refactors/REF-003.md`\n- `issues/backlog/BKL-056.md` .. `issues/backlog/BKL-062.md`\n\n## Verification Receipts\n- 2026-11-19 [in_progress] Gate #5 Round 1 remediation (gate5-v2): 22/22 findings resolved; RAW_SHARD_03a (1,372L), RAW_SHARD_03b (1,106L), ppa-cfa-and-constraints.md (100L), ppa-control-flow-and-constraints (269L SKILL, desc=900 chars, refs 202L/147L/150L), 97-node concept_graph.json (Rule B1 97/97), notation_index.md U-39..U-45, and BKL-051..062 ready for Round 2 verification.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; 3 PREFERENCE polishes applied; validators, hygiene, and 47/47 unit tests PASS.",
    "source_path": "issues/shards/ISS-W3-02.md",
-   "state": "open",
+   "state": "closed",
    "title": "W3-2 Ch 3b §3.5–3.6 CFA+DFA, k-CFA, CPA, synthesis + Gate #5"
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nUniform k-CFA has exponential worst-case complexity for positive k; the book separately discusses a polynomial variant and the Cartesian Product Algorithm.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA §3.6, p. 195] (book p. 195; PDF p. 213)\n- [PPA §3.6, p. 196] (book p. 196; PDF p. 214)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nThe book relates the interprocedural analysis of §2.5 (call strings) and uniform k-CFA: their abstract caches \"have the same overall functionality\" and \"the two analyses are variations over a theme\" [PPA §3.6, p. 196] (book p. 196; PDF p. 214). The book does not compare their costs. [external] In practice the cost of call-string context differs between first-order data flow and higher-order control flow analysis; summaries that present k-CFA as a cheap refinement smooth away the exponential worst-case bound the book states for uniform k-CFA with k > 0.\n\nGuardrail: L1 comparison entry must carry the bound with its parameters; L2 chooses the context abstraction per language paradigm.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed merged with P-ARCH EC-12 (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.cfa.uniform-k-cfa`, `ppa.cfa.cartesian-product-algorithm`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-007\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Table 3.10 (book p. 192; PDF p. 210)\", \"\\u00a73.6 (book p. 195; PDF p. 213)\", \"\\u00a73.6 (book p. 196; PDF p. 214)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "dcc2a31a2bddd4c23d69b61b527e925101c75753f789b8711a4aa61c4b1bc4ed",
+   "body": "## Summary\n\nUniform k-CFA has exponential worst-case complexity for positive k; the book separately discusses a polynomial variant and the Cartesian Product Algorithm.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA §3.6, p. 195] (book p. 195; PDF p. 213)\n- [PPA §3.6, p. 196] (book p. 196; PDF p. 214)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nThe book relates the interprocedural analysis of §2.5 (call strings) and uniform k-CFA: their abstract caches \"have the same overall functionality\" and \"the two analyses are variations over a theme\" [PPA §3.6, p. 196] (book p. 196; PDF p. 214). The book does not compare their costs. [external] In practice the cost of call-string context differs between first-order data flow and higher-order control flow analysis; summaries that present k-CFA as a cheap refinement smooth away the exponential worst-case bound the book states for uniform k-CFA with k > 0.\n\nGuardrail: L1 comparison entry must carry the bound with its parameters; L2 chooses the context abstraction per language paradigm.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed merged with P-ARCH EC-12 (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 3 integration (`REF-003`); awaits Gate #5 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.uniform-k-cfa`, `ppa.cfa.cartesian-product-algorithm`, `ppa.interproc.call-strings`, `ppa.cfa.set-constraints-and-paradigms`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-007\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Table 3.10 (book p. 192; PDF p. 210)\", \"\\u00a73.6 (book p. 195; PDF p. 213)\", \"\\u00a73.6 (book p. 196; PDF p. 214)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "2d070e735147f7a49974e10e89096bdc639d548b2cbaca064b8be775366ce32f",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -3149,7 +3452,7 @@
     "priority": "P2",
     "status": "open",
     "title": "Cost of context: uniform k-CFA is exponential for k > 0; polynomial and CPA variants differ",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-007",
@@ -3166,11 +3469,420 @@
    ],
    "milestone": "W3",
    "parent_issue": "ISS-W3-02",
-   "published_body_sha256": "623e2fb16ab3ed4ccdf1dcc2023cbb0ae519f5cfac1f504be94dfbc1c1fb8001",
-   "source_body": "\n## Summary\n\nUniform k-CFA has exponential worst-case complexity for positive k; the book separately discusses a polynomial variant and the Cartesian Product Algorithm.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA §3.6, p. 195] (book p. 195; PDF p. 213)\n- [PPA §3.6, p. 196] (book p. 196; PDF p. 214)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nThe book relates the interprocedural analysis of §2.5 (call strings) and uniform k-CFA: their abstract caches \"have the same overall functionality\" and \"the two analyses are variations over a theme\" [PPA §3.6, p. 196] (book p. 196; PDF p. 214). The book does not compare their costs. [external] In practice the cost of call-string context differs between first-order data flow and higher-order control flow analysis; summaries that present k-CFA as a cheap refinement smooth away the exponential worst-case bound the book states for uniform k-CFA with k > 0.\n\nGuardrail: L1 comparison entry must carry the bound with its parameters; L2 chooses the context abstraction per language paradigm.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed merged with P-ARCH EC-12 (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.cfa.uniform-k-cfa`, `ppa.cfa.cartesian-product-algorithm`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "caff1ad716d570fe02a72c168b0dae016713c457e704fe28f4036e330f1dcbbc",
+   "source_body": "\n## Summary\n\nUniform k-CFA has exponential worst-case complexity for positive k; the book separately discusses a polynomial variant and the Cartesian Product Algorithm.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA §3.6, p. 195] (book p. 195; PDF p. 213)\n- [PPA §3.6, p. 196] (book p. 196; PDF p. 214)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\nThe book relates the interprocedural analysis of §2.5 (call strings) and uniform k-CFA: their abstract caches \"have the same overall functionality\" and \"the two analyses are variations over a theme\" [PPA §3.6, p. 196] (book p. 196; PDF p. 214). The book does not compare their costs. [external] In practice the cost of call-string context differs between first-order data flow and higher-order control flow analysis; summaries that present k-CFA as a cheap refinement smooth away the exponential worst-case bound the book states for uniform k-CFA with k > 0.\n\nGuardrail: L1 comparison entry must carry the bound with its parameters; L2 chooses the context abstraction per language paradigm.\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed merged with P-ARCH EC-12 (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 3 integration (`REF-003`); awaits Gate #5 adversarial panel review.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.uniform-k-cfa`, `ppa.cfa.cartesian-product-algorithm`, `ppa.interproc.call-strings`, `ppa.cfa.set-constraints-and-paradigms`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-007.md",
    "state": "open",
    "title": "Cost of context: uniform k-CFA is exponential for k > 0; polynomial and CPA variants differ"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nValid solutions of coupled |=_d (Table 3.8) and |=_D (Table 3.9) prune dead branches and therefore need not satisfy Table 3.1 |=; testing iota_true <= D_hat(l_0) in Table 3.9 is unsound if iota_true covers multiple concrete truthy values; Example 3.29 f_+ requires strict bottom checks before top.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.8, p. 184] (book p. 184; PDF p. 202)\n- [PPA Example 3.29, p. 186] (book p. 186; PDF p. 204)\n- [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)\n- [PPA §3.5.2, p. 189] (book p. 189; PDF p. 207)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nDead-branch pruning in `|=_d` (Table 3.8) and `|=_D` (Table 3.9) suppresses unreachable `then`/`else` clauses, so coupled solutions need not satisfy plain Table 3.1 `|=`. Under Table 3.9, checking `iota_true <= D_hat(l_0)` silently skips the `then` branch whenever `iota_true` abstracts multiple concrete truthy values (e.g., `iota_true = top_Z` vs constant `1`). In Example 3.29, `f_+` must check bottom `bot` strictly before `top` to preserve error-free/dead-branch strictness.\n\nGuardrail: Enforce Data finiteness / L ACC, test non-disjointness D_hat(l_0) meet iota_true != bottom when truthy values are non-singleton, and keep binary operators bottom-strict. (Refs: F-U3b-01, F-U3b-02, G-U3b-01, G-U3b-02, G-U3b-03, G-U3b-04, G-U3b-05, G-U3b-06, G-U3b-07, G-U3b-08, G-U3b-09).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-01, F-U3b-02, G-U3b-01, G-U3b-02, G-U3b-03, G-U3b-04, G-U3b-05, G-U3b-06, G-U3b-07, G-U3b-08, G-U3b-09); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.cfa-with-powerset-dfa`, `ppa.cfa.cfa-with-lattice-dfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-056\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Table 3.8 (book p. 184; PDF p. 202)\", \"Example 3.29 (book p. 186; PDF p. 204)\", \"Table 3.9 (book p. 188; PDF p. 206)\", \"\\u00a73.5.2 (book p. 189; PDF p. 207)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "e21ef906c6f6e0bc3cc258be3a3b61228ab9cc6681a9f05a9821402b45c4e985",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-056",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "Table 3.8 (book p. 184; PDF p. 202)",
+     "Example 3.29 (book p. 186; PDF p. 204)",
+     "Table 3.9 (book p. 188; PDF p. 206)",
+     "§3.5.2 (book p. 189; PDF p. 207)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Section 3.5 coupled CFA+DFA non-projection to Table 3.1, non-singleton iota_true guard, and strict bottom f_+",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-056",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:edge_case",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "65d995206b57bdc9062b119c3ffd3ac11f1e321693df134cdccae7d47f5f07c5",
+   "source_body": "\n## Summary\n\nValid solutions of coupled |=_d (Table 3.8) and |=_D (Table 3.9) prune dead branches and therefore need not satisfy Table 3.1 |=; testing iota_true <= D_hat(l_0) in Table 3.9 is unsound if iota_true covers multiple concrete truthy values; Example 3.29 f_+ requires strict bottom checks before top.\n\n## Source Citations & Grounding\n\n- [PPA Table 3.8, p. 184] (book p. 184; PDF p. 202)\n- [PPA Example 3.29, p. 186] (book p. 186; PDF p. 204)\n- [PPA Table 3.9, p. 188] (book p. 188; PDF p. 206)\n- [PPA §3.5.2, p. 189] (book p. 189; PDF p. 207)\n- Statements confirmed against rendered page images during Unit 3 extraction.\n\n## Technical Analysis / Mechanism\n\nDead-branch pruning in `|=_d` (Table 3.8) and `|=_D` (Table 3.9) suppresses unreachable `then`/`else` clauses, so coupled solutions need not satisfy plain Table 3.1 `|=`. Under Table 3.9, checking `iota_true <= D_hat(l_0)` silently skips the `then` branch whenever `iota_true` abstracts multiple concrete truthy values (e.g., `iota_true = top_Z` vs constant `1`). In Example 3.29, `f_+` must check bottom `bot` strictly before `top` to preserve error-free/dead-branch strictness.\n\nGuardrail: Enforce Data finiteness / L ACC, test non-disjointness D_hat(l_0) meet iota_true != bottom when truthy values are non-singleton, and keep binary operators bottom-strict. (Refs: F-U3b-01, F-U3b-02, G-U3b-01, G-U3b-02, G-U3b-03, G-U3b-04, G-U3b-05, G-U3b-06, G-U3b-07, G-U3b-08, G-U3b-09).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-01, F-U3b-02, G-U3b-01, G-U3b-02, G-U3b-03, G-U3b-04, G-U3b-05, G-U3b-06, G-U3b-07, G-U3b-08, G-U3b-09); confirmed against rendered page images.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.cfa-with-powerset-dfa`, `ppa.cfa.cfa-with-lattice-dfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-056.md",
+   "state": "open",
+   "title": "Section 3.5 coupled CFA+DFA non-projection to Table 3.1, non-singleton iota_true guard, and strict bottom f_+"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nPage 191 defines CEnv = Var -> Delta as total functions whereas Table 3.10 restricts ce_0 = ce | FV(...) and Example 3.34 writes ce_0 = []; Example 3.34 mis-cites \"Example 3.33\" while analysing Example 3.32's uncloned term and prints \"only records\".\n\n## Source Citations & Grounding\n\n- [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209)\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA Example 3.34, p. 194] (book p. 194; PDF p. 212)\n- [PPA Exercise 3.15, p. 208] (book p. 208; PDF p. 226)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nTotal `CEnv = Var -> Delta` makes `Val_hat = P(Term x CEnv)` infinite/unbounded over all `Var` unless restricted to finite partial maps `Var ->_fin Delta` over `ce | FV(e)` (`ce_0 = []` for closed terms as in Example 3.34). Note also that §3.6.1 p. 193 prose matches Table 3.10 `[var]` cleanly (`rho_hat(x, ce(x))`), while Example 3.34 mis-cites Example 3.33 (`C'_id(8, Lambda) = C'_id(9, Lambda) = {(fn y => y^6, ce_0)}`).\n\nGuardrail: Represent CEnv via finite FV-restricted maps (ce | FV(...)), query lexical rho_hat(x, ce(x)), push outer label l only at [app] (unchanged at [let]), and compress stuttering on recursion (Exercise 3.15). (Refs: F-U3b-03, F-U3b-04, G-U3b-11..16, G-U3b-29, BKL-007).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-03, F-U3b-04, G-U3b-11, G-U3b-12, G-U3b-13, G-U3b-14, G-U3b-29); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-057\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"\\u00a73.6.1 (book p. 191; PDF p. 209)\", \"Table 3.10 (book p. 192; PDF p. 210)\", \"Example 3.34 (book p. 194; PDF p. 212)\", \"Exercise 3.15 (book p. 208; PDF p. 226)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "0a5a1b0a1095adad7dfad7c2ed92899add9be6e71e664f5faffb41bb1d5d44db",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-057",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "§3.6.1 (book p. 191; PDF p. 209)",
+     "Table 3.10 (book p. 192; PDF p. 210)",
+     "Example 3.34 (book p. 194; PDF p. 212)",
+     "Exercise 3.15 (book p. 208; PDF p. 226)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Section 3.6.1 total CEnv = Var -> Delta vs finite partial ce | FV and Example 3.34 mis-citation of Example 3.33",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-057",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "d266e66f717d37c33e83fbceff5cc60679b97485de79ca5fe8c9b818675cf495",
+   "source_body": "\n## Summary\n\nPage 191 defines CEnv = Var -> Delta as total functions whereas Table 3.10 restricts ce_0 = ce | FV(...) and Example 3.34 writes ce_0 = []; Example 3.34 mis-cites \"Example 3.33\" while analysing Example 3.32's uncloned term and prints \"only records\".\n\n## Source Citations & Grounding\n\n- [PPA §3.6.1, p. 191] (book p. 191; PDF p. 209)\n- [PPA Table 3.10, p. 192] (book p. 192; PDF p. 210)\n- [PPA Example 3.34, p. 194] (book p. 194; PDF p. 212)\n- [PPA Exercise 3.15, p. 208] (book p. 208; PDF p. 226)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nTotal `CEnv = Var -> Delta` makes `Val_hat = P(Term x CEnv)` infinite/unbounded over all `Var` unless restricted to finite partial maps `Var ->_fin Delta` over `ce | FV(e)` (`ce_0 = []` for closed terms as in Example 3.34). Note also that §3.6.1 p. 193 prose matches Table 3.10 `[var]` cleanly (`rho_hat(x, ce(x))`), while Example 3.34 mis-cites Example 3.33 (`C'_id(8, Lambda) = C'_id(9, Lambda) = {(fn y => y^6, ce_0)}`).\n\nGuardrail: Represent CEnv via finite FV-restricted maps (ce | FV(...)), query lexical rho_hat(x, ce(x)), push outer label l only at [app] (unchanged at [let]), and compress stuttering on recursion (Exercise 3.15). (Refs: F-U3b-03, F-U3b-04, G-U3b-11..16, G-U3b-29, BKL-007).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-03, F-U3b-04, G-U3b-11, G-U3b-12, G-U3b-13, G-U3b-14, G-U3b-29); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-057.md",
+   "state": "open",
+   "title": "Section 3.6.1 total CEnv = Var -> Delta vs finite partial ce | FV and Example 3.34 mis-citation of Example 3.33"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nOn p. 197, printed CPA [app] omits a closing parenthesis \")\" before ^l and writes {delta_b} <= rho_hat(x_1) x ... x rho_hat(x_m) omitting \", delta_b\"; p. 198 writes Delta = Term; any empty argument C_hat(l_j, delta) = empty collapses the Cartesian product to empty.\n\n## Source Citations & Grounding\n\n- [PPA §3.6.2, p. 196] (book p. 196; PDF p. 214)\n- [PPA §3.6.2, p. 197] (book p. 197; PDF p. 215)\n- [PPA §3.6.2, p. 198] (book p. 198; PDF p. 216)\n- [PPA Exercise 3.17, p. 209] (book p. 209; PDF p. 227)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn §3.6.2 `CPA`, `Env_hat = (Var x Delta) -> Val_hat` takes two arguments `(x_i, delta_b)` as shown in `[var]` (`rho_hat(x, delta)`), so p. 197's `{delta_b} <= rho_hat(x_1) x ... x rho_hat(x_m)` omits `, delta_b` and drops `)` before `^l` in `(t_0^{l_0}(t_1^{l_1}, ..., t_m^{l_m})^l` (the body `t_b^{l_b}` and `C_hat(l_b, delta_b) <= C_hat(l, delta)` are printed cleanly). Separately, if any argument `j` evaluates solely to a base constant with empty `C_hat(l_j, delta) = empty`, the Cartesian product becomes empty and skips the call body.\n\nGuardrail: Bind {delta_b} <= rho_hat(x_1, delta_b) x ... x rho_hat(x_m, delta_b), read p. 198 Delta as union_{m>=1} Term^m, and populate base-type tokens in C_hat(l_j, delta) so non-function arguments do not empty the product. (Refs: F-U3b-05, F-U3b-06, G-U3b-17..20, BKL-007).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-05, F-U3b-06, G-U3b-17, G-U3b-18, G-U3b-19, G-U3b-20); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.cartesian-product-algorithm`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-058\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"\\u00a73.6.2 (book p. 196; PDF p. 214)\", \"\\u00a73.6.2 (book p. 197; PDF p. 215)\", \"\\u00a73.6.2 (book p. 198; PDF p. 216)\", \"Exercise 3.17 (book p. 209; PDF p. 227)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "dc48cca423235ce9c490f7b958820b7efe2f03d56da350b63379ec9e0fc46015",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-058",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "§3.6.2 (book p. 196; PDF p. 214)",
+     "§3.6.2 (book p. 197; PDF p. 215)",
+     "§3.6.2 (book p. 198; PDF p. 216)",
+     "Exercise 3.17 (book p. 209; PDF p. 227)"
+    ],
+    "priority": "P1",
+    "status": "open",
+    "title": "Section 3.6.2 CPA [app] missing ')' / ', delta_b' in rho_hat(x_i, delta_b) and empty-product vacuity",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-058",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P1",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "34185eec9f2eb3fa53a8d26d09ff1f10b1ff3944d94164f5856ce52e9cac495b",
+   "source_body": "\n## Summary\n\nOn p. 197, printed CPA [app] omits a closing parenthesis \")\" before ^l and writes {delta_b} <= rho_hat(x_1) x ... x rho_hat(x_m) omitting \", delta_b\"; p. 198 writes Delta = Term; any empty argument C_hat(l_j, delta) = empty collapses the Cartesian product to empty.\n\n## Source Citations & Grounding\n\n- [PPA §3.6.2, p. 196] (book p. 196; PDF p. 214)\n- [PPA §3.6.2, p. 197] (book p. 197; PDF p. 215)\n- [PPA §3.6.2, p. 198] (book p. 198; PDF p. 216)\n- [PPA Exercise 3.17, p. 209] (book p. 209; PDF p. 227)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn §3.6.2 `CPA`, `Env_hat = (Var x Delta) -> Val_hat` takes two arguments `(x_i, delta_b)` as shown in `[var]` (`rho_hat(x, delta)`), so p. 197's `{delta_b} <= rho_hat(x_1) x ... x rho_hat(x_m)` omits `, delta_b` and drops `)` before `^l` in `(t_0^{l_0}(t_1^{l_1}, ..., t_m^{l_m})^l` (the body `t_b^{l_b}` and `C_hat(l_b, delta_b) <= C_hat(l, delta)` are printed cleanly). Separately, if any argument `j` evaluates solely to a base constant with empty `C_hat(l_j, delta) = empty`, the Cartesian product becomes empty and skips the call body.\n\nGuardrail: Bind {delta_b} <= rho_hat(x_1, delta_b) x ... x rho_hat(x_m, delta_b), read p. 198 Delta as union_{m>=1} Term^m, and populate base-type tokens in C_hat(l_j, delta) so non-function arguments do not empty the product. (Refs: F-U3b-05, F-U3b-06, G-U3b-17..20, BKL-007).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-05, F-U3b-06, G-U3b-17, G-U3b-18, G-U3b-19, G-U3b-20); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.cartesian-product-algorithm`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-058.md",
+   "state": "open",
+   "title": "Section 3.6.2 CPA [app] missing ')' / ', delta_b' in rho_hat(x_i, delta_b) and empty-product vacuity"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nEnv_hat = Var -> Val_hat collapses shadowed bindings like dynamic scoping unless alpha-renamed; in Set Constraints (p. 201), S_1 intersect S_2 preserves monotonicity whereas complement ~S and variable-LHS guards (S_1 <= S_2) => S_3 break Tarski's Theorem; lazy solving ([9]) omits dead lambdas included by Table 3.6.\n\n## Source Citations & Grounding\n\n- [PPA Chapter 3 Concluding Remarks, p. 199] (book p. 199; PDF p. 217)\n- [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219)\n- [PPA Chapter 3 Concluding Remarks, p. 202] (book p. 202; PDF p. 220)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nBecause `0-CFA` `Env_hat = Var -> Val_hat` keys variables by raw name, two distinct functions or nested `let` blocks declaring `x` merge values unless `alpha`-renamed to unique identifiers. In Set-Constraint Based Analysis (p. 201), union `∪`, intersection `∩`, constructors `C(...)`, and projections `C^{-i}(S)` are monotone on `(P(U), <=)`, whereas explicit complement `¬S` (anti-monotone) and variable-LHS conditional guards `(S1 <= S2) => S3` violate monotonicity so Tarski's Fixed Point Theorem fails and Banach's Contraction Theorem is needed. Separately, `[9]`'s (`[external: Aiken et al.]`) lazy expansion skips unreachable closures eagerly seeded by `Table 3.6`.\n\nGuardrail: Alpha-rename distinct variable bindings before 0-CFA, exclude ¬S / variable-LHS guards from monotone Tarski solvers, and distinguish lazy [9] reachability from whole-AST Table 3.6. (Refs: G-U3a-03, G-U3b-22, G-U3b-23, G-U3b-24).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (G-U3a-03, G-U3b-22, G-U3b-23, G-U3b-24); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.abstract-0cfa`, `ppa.cfa.set-constraints-and-paradigms`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-059\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Concluding Remarks (book p. 199; PDF p. 217)\", \"Concluding Remarks (book p. 201; PDF p. 219)\", \"Concluding Remarks (book p. 202; PDF p. 220)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "067554d194b03e5fb395ab9c33dafcec9ea920dbcd94c4a60e31a45d18a9bc22",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-059",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "Concluding Remarks (book p. 199; PDF p. 217)",
+     "Concluding Remarks (book p. 201; PDF p. 219)",
+     "Concluding Remarks (book p. 202; PDF p. 220)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Pure 0-CFA dynamic-scoping name collapse, set-constraint complement ¬S non-monotonicity, and lazy [9] dead bodies",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-059",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:edge_case",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "f57715c58ee913b4d95e67bdea4dc9ab91400a7c2e379b8bfdc0a77437364397",
+   "source_body": "\n## Summary\n\nEnv_hat = Var -> Val_hat collapses shadowed bindings like dynamic scoping unless alpha-renamed; in Set Constraints (p. 201), S_1 intersect S_2 preserves monotonicity whereas complement ~S and variable-LHS guards (S_1 <= S_2) => S_3 break Tarski's Theorem; lazy solving ([9]) omits dead lambdas included by Table 3.6.\n\n## Source Citations & Grounding\n\n- [PPA Chapter 3 Concluding Remarks, p. 199] (book p. 199; PDF p. 217)\n- [PPA Chapter 3 Concluding Remarks, p. 201] (book p. 201; PDF p. 219)\n- [PPA Chapter 3 Concluding Remarks, p. 202] (book p. 202; PDF p. 220)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nBecause `0-CFA` `Env_hat = Var -> Val_hat` keys variables by raw name, two distinct functions or nested `let` blocks declaring `x` merge values unless `alpha`-renamed to unique identifiers. In Set-Constraint Based Analysis (p. 201), union `∪`, intersection `∩`, constructors `C(...)`, and projections `C^{-i}(S)` are monotone on `(P(U), <=)`, whereas explicit complement `¬S` (anti-monotone) and variable-LHS conditional guards `(S1 <= S2) => S3` violate monotonicity so Tarski's Fixed Point Theorem fails and Banach's Contraction Theorem is needed. Separately, `[9]`'s (`[external: Aiken et al.]`) lazy expansion skips unreachable closures eagerly seeded by `Table 3.6`.\n\nGuardrail: Alpha-rename distinct variable bindings before 0-CFA, exclude ¬S / variable-LHS guards from monotone Tarski solvers, and distinguish lazy [9] reachability from whole-AST Table 3.6. (Refs: G-U3a-03, G-U3b-22, G-U3b-23, G-U3b-24).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (G-U3a-03, G-U3b-22, G-U3b-23, G-U3b-24); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.abstract-0cfa`, `ppa.cfa.set-constraints-and-paradigms`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-059.md",
+   "state": "open",
+   "title": "Pure 0-CFA dynamic-scoping name collapse, set-constraint complement ¬S non-monotonicity, and lazy [9] dead bodies"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nMini Project 3.1 prose line 10 (p. 202) prints (C_hat, rho_hat, R_hat) |=_s t_0^{l_0} missing prime ' from |='_s; Mini Project 3.2 (p. 203) stores flat constructor labels C(l_1, ..., l_n) in Val_hat, breaking Fact 3.11 and Theorem 3.10 during SOS label rewriting.\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 3.1, p. 202] (book p. 202; PDF p. 220)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn `Mini Project 3.1` (p. 202), dropping the prime on `|='_s` in prose conflates reachability-gated evaluation with unconditional `Table 3.5`. In `Mini Project 3.2` (p. 203), `Val_hat = P(Term union {C(l_1, ..., l_n) | C in Constr, l_i in Lab})` embeds expression labels `l_i` inside abstract values (`case e_0 of C(x_1, ..., x_n) => e_1 or x => e_2`), which breaks `Fact 3.11` and `Theorem 3.10` when small-step SOS rewrites outer labels unless inner values drop labels or track canonical constructor sites.\n\nGuardrail: Use |='_s throughout Mini Project 3.1 (p. 202) and isolate or strip expression labels from Val_hat constructor payloads in Mini Project 3.2 (p. 203). (Refs: F-U3b-08, F-U3b-09, G-U3b-25, G-U3b-26).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-08, F-U3b-09, G-U3b-25, G-U3b-26); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.open-systems`, `ppa.cfa.algebraic-data-and-imperative-stores`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-060\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Mini Project 3.1 (book p. 202; PDF p. 220)\", \"Mini Project 3.2 (book p. 203; PDF p. 221)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "0f2451811b49eed715410c236d95c7497ccdd7edda74160af311ce69f5986a9b",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-060",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "Mini Project 3.1 (book p. 202; PDF p. 220)",
+     "Mini Project 3.2 (book p. 203; PDF p. 221)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Mini Project 3.1 (p. 202) |=_s prose typo for |='_s and Mini Project 3.2 (p. 203) constructor-label Fact 3.11 hazard",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-060",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "be401b335dba3301fb46719ddc1e1e7b24aadd35db224bd6b1e1c73b55e772a1",
+   "source_body": "\n## Summary\n\nMini Project 3.1 prose line 10 (p. 202) prints (C_hat, rho_hat, R_hat) |=_s t_0^{l_0} missing prime ' from |='_s; Mini Project 3.2 (p. 203) stores flat constructor labels C(l_1, ..., l_n) in Val_hat, breaking Fact 3.11 and Theorem 3.10 during SOS label rewriting.\n\n## Source Citations & Grounding\n\n- [PPA Mini Project 3.1, p. 202] (book p. 202; PDF p. 220)\n- [PPA Mini Project 3.2, p. 203] (book p. 203; PDF p. 221)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn `Mini Project 3.1` (p. 202), dropping the prime on `|='_s` in prose conflates reachability-gated evaluation with unconditional `Table 3.5`. In `Mini Project 3.2` (p. 203), `Val_hat = P(Term union {C(l_1, ..., l_n) | C in Constr, l_i in Lab})` embeds expression labels `l_i` inside abstract values (`case e_0 of C(x_1, ..., x_n) => e_1 or x => e_2`), which breaks `Fact 3.11` and `Theorem 3.10` when small-step SOS rewrites outer labels unless inner values drop labels or track canonical constructor sites.\n\nGuardrail: Use |='_s throughout Mini Project 3.1 (p. 202) and isolate or strip expression labels from Val_hat constructor payloads in Mini Project 3.2 (p. 203). (Refs: F-U3b-08, F-U3b-09, G-U3b-25, G-U3b-26).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-08, F-U3b-09, G-U3b-25, G-U3b-26); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.open-systems`, `ppa.cfa.algebraic-data-and-imperative-stores`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-060.md",
+   "state": "open",
+   "title": "Mini Project 3.1 (p. 202) |=_s prose typo for |='_s and Mini Project 3.2 (p. 203) constructor-label Fact 3.11 hazard"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nMini Project 3.4 specifies flow-sensitive stores S_circ, S_bullet : Lab -> (Pnt -> Val_hat) with (C_hat, rho_hat, S_circ, S_bullet) |=_{me} e (me : Var -> Pnt) leaving exact clauses as an exercise; allocation sites pi in Pnt require weak updates [external] unless p. 200 [133] local-store and reference-count guards prove uniqueness.\n\n## Source Citations & Grounding\n\n- [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218)\n- [PPA Mini Project 3.4, p. 204] (book p. 204; PDF p. 222)\n- [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn `Mini Project 3.4` (`(new_pi x := e_1 in e_2)^l | (! x)^l | (x := e_0)^l | (e_1 ; e_2)^l`, pp. 204-205), multiple dynamic `new_pi` allocations share one summary token `pi in Pnt`, and `Table 3.1`-style `|=_{me}` must thread stores `S_circ`/`S_bullet` conservatively across all `Pnt` cells via weak updates (`[external: weak update]`). Performing destructive strong updates (`\"kill\"`, `[external: strong update]`) without **both** per-program-point local stores and singleton abstract reference counts (`p. 200` `[133]`) silently drops aliased heap pointees.\n\nGuardrail: Formulate |=_{me} with weak-update ([external: weak update]) store joins preserving unaffected p' in Pnt, and gate strong updates ([external: strong update]) strictly on local stores + singleton reference counts (p. 200 [133]). (Refs: F-U3b-09, G-U3b-27, G-U3b-30).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-09, G-U3b-27, G-U3b-30); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.algebraic-data-and-imperative-stores`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-061\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Concluding Remarks (book p. 200; PDF p. 218)\", \"Mini Project 3.4 (book p. 204; PDF p. 222)\", \"Mini Project 3.4 (book p. 205; PDF p. 223)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "18e1b48228e873df7ce9890094017475ee8cce24eb5af9851794d7e4d300cac9",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-061",
+    "issue_type": "edge_case",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "Concluding Remarks (book p. 200; PDF p. 218)",
+     "Mini Project 3.4 (book p. 204; PDF p. 222)",
+     "Mini Project 3.4 (book p. 205; PDF p. 223)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Mini Project 3.4 (pp. 204-205) unprinted [assign] clauses and p. 200 [133] singleton kill guard",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-061",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:edge_case",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "758e8d312a76f6f616acc968800300d5f962adf0d871efa0d3772e0bf03de5d1",
+   "source_body": "\n## Summary\n\nMini Project 3.4 specifies flow-sensitive stores S_circ, S_bullet : Lab -> (Pnt -> Val_hat) with (C_hat, rho_hat, S_circ, S_bullet) |=_{me} e (me : Var -> Pnt) leaving exact clauses as an exercise; allocation sites pi in Pnt require weak updates [external] unless p. 200 [133] local-store and reference-count guards prove uniqueness.\n\n## Source Citations & Grounding\n\n- [PPA Chapter 3 Concluding Remarks, p. 200] (book p. 200; PDF p. 218)\n- [PPA Mini Project 3.4, p. 204] (book p. 204; PDF p. 222)\n- [PPA Mini Project 3.4, p. 205] (book p. 205; PDF p. 223)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nIn `Mini Project 3.4` (`(new_pi x := e_1 in e_2)^l | (! x)^l | (x := e_0)^l | (e_1 ; e_2)^l`, pp. 204-205), multiple dynamic `new_pi` allocations share one summary token `pi in Pnt`, and `Table 3.1`-style `|=_{me}` must thread stores `S_circ`/`S_bullet` conservatively across all `Pnt` cells via weak updates (`[external: weak update]`). Performing destructive strong updates (`\"kill\"`, `[external: strong update]`) without **both** per-program-point local stores and singleton abstract reference counts (`p. 200` `[133]`) silently drops aliased heap pointees.\n\nGuardrail: Formulate |=_{me} with weak-update ([external: weak update]) store joins preserving unaffected p' in Pnt, and gate strong updates ([external: strong update]) strictly on local stores + singleton reference counts (p. 200 [133]). (Refs: F-U3b-09, G-U3b-27, G-U3b-30).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-09, G-U3b-27, G-U3b-30); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.algebraic-data-and-imperative-stores`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-061.md",
+   "state": "open",
+   "title": "Mini Project 3.4 (pp. 204-205) unprinted [assign] clauses and p. 200 [133] singleton kill guard"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nExercise 3.4 proves declarative |= ((3.8)) is not upward-closed in <= unlike (3.9); Exercise 3.3 prints \"cannot produced\", Exercise 3.5 writes in rho_hat(f), Exercise 3.7 prints \"semantics allow\", Exercise 3.16 prints unspaced \"f(x)= e\" and \"defined in D\" (omitting *), Exercise 3.17 prints \"Cartesian Production Algorithm\", and OCR drops (3.8)-(3.9).\n\n## Source Citations & Grounding\n\n- [PPA Exercise 3.3, p. 206] (book p. 206; PDF p. 224)\n- [PPA Exercise 3.4, p. 206] (book p. 206; PDF p. 224)\n- [PPA Exercise 3.16, p. 208] (book p. 208; PDF p. 226)\n- [PPA Exercise 3.17, p. 209] (book p. 209; PDF p. 227)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nTreating Exercise 3.4's declarative relation `(3.8)` (`(C_hat, rho_hat) |= e`) as upward-closed under `<=` is false because adding closures to `C_hat(l_1)` triggers previously inactive `[app]` body obligations (`(3.8) => (3.9)` strictly). On pp. 206-209, typographical defects (`\"cannot produced\"` in Ex 3.3, `in rho_hat(f)` in Ex 3.5, `\"semantics allow\"` in Ex 3.7, unspaced `f(x)= e` and `\"defined in D\"` dropping `_*` on `define D_* in e_*` in Ex 3.16, and `\"Cartesian Production Algorithm\"` in Ex 3.17) plus OCR erasure of displays `(3.8)-(3.9)` confuse automated formula matchers.\n\nGuardrail: Distinguish exact |= ((3.8)) from upward-closed supersets ((3.9)), read \"defined in D\" in Ex 3.16 as D_*, and transcribe displays (3.8)-(3.9) from PDF page 224. (Refs: F-U3b-10, F-U3b-11, G-U3b-28, G-U3b-30, BKL-011).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-10, F-U3b-11, G-U3b-28, G-U3b-30, BKL-011); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.abstract-0cfa`, `ppa.cfa.subject-reduction`, `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"BKL-062\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"Exercise 3.3 (book p. 206; PDF p. 224)\", \"Exercise 3.4 (book p. 206; PDF p. 224)\", \"Exercise 3.16 (book p. 208; PDF p. 226)\", \"Exercise 3.17 (book p. 209; PDF p. 227)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "447e84406ebf95d41fa83f18e8f15ff0c351397af8707307e581c25f95cf6e79",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [],
+    "altitudes": [
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "BKL-062",
+    "issue_type": "contradiction",
+    "labels": [
+     "ppa",
+     "backlog",
+     "non-blocking",
+     "unit-3"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "Exercise 3.3 (book p. 206; PDF p. 224)",
+     "Exercise 3.4 (book p. 206; PDF p. 224)",
+     "Exercise 3.16 (book p. 208; PDF p. 226)",
+     "Exercise 3.17 (book p. 209; PDF p. 227)"
+    ],
+    "priority": "P2",
+    "status": "open",
+    "title": "Exercise 3.3-3.7/3.16-3.17 source typos, non-upward-closure of (3.8), and OCR display erasures",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "BKL-062",
+   "labels": [
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "backlog",
+    "non-blocking",
+    "ppa",
+    "priority:P2",
+    "status:open",
+    "type:contradiction",
+    "unit-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "40829585e79b955640a25db9e1ea18b33b6292c7bfcb6aee543bfe668e468448",
+   "source_body": "\n## Summary\n\nExercise 3.4 proves declarative |= ((3.8)) is not upward-closed in <= unlike (3.9); Exercise 3.3 prints \"cannot produced\", Exercise 3.5 writes in rho_hat(f), Exercise 3.7 prints \"semantics allow\", Exercise 3.16 prints unspaced \"f(x)= e\" and \"defined in D\" (omitting *), Exercise 3.17 prints \"Cartesian Production Algorithm\", and OCR drops (3.8)-(3.9).\n\n## Source Citations & Grounding\n\n- [PPA Exercise 3.3, p. 206] (book p. 206; PDF p. 224)\n- [PPA Exercise 3.4, p. 206] (book p. 206; PDF p. 224)\n- [PPA Exercise 3.16, p. 208] (book p. 208; PDF p. 226)\n- [PPA Exercise 3.17, p. 209] (book p. 209; PDF p. 227)\n- Statements confirmed against rendered page images during Unit 3 extraction and Gate #5 audit.\n\n## Technical Analysis / Mechanism\n\nTreating Exercise 3.4's declarative relation `(3.8)` (`(C_hat, rho_hat) |= e`) as upward-closed under `<=` is false because adding closures to `C_hat(l_1)` triggers previously inactive `[app]` body obligations (`(3.8) => (3.9)` strictly). On pp. 206-209, typographical defects (`\"cannot produced\"` in Ex 3.3, `in rho_hat(f)` in Ex 3.5, `\"semantics allow\"` in Ex 3.7, unspaced `f(x)= e` and `\"defined in D\"` dropping `_*` on `define D_* in e_*` in Ex 3.16, and `\"Cartesian Production Algorithm\"` in Ex 3.17) plus OCR erasure of displays `(3.8)-(3.9)` confuse automated formula matchers.\n\nGuardrail: Distinguish exact |= ((3.8)) from upward-closed supersets ((3.9)), read \"defined in D\" in Ex 3.16 as D_*, and transcribe displays (3.8)-(3.9) from PDF page 224. (Refs: F-U3b-10, F-U3b-11, G-U3b-28, G-U3b-30, BKL-011).\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 seeded from Unit 3 extractions (F-U3b-10, F-U3b-11, G-U3b-28, G-U3b-30, BKL-011); verified against rendered PDF pages (`gate5-v2`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.cfa.abstract-0cfa`, `ppa.cfa.subject-reduction`, `ppa.cfa.uniform-k-cfa`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03b_kcfa_cpa.md`\n- Parent shard: ISS-W3-02\n\n## Verification Receipts\n\n_Pending._",
+   "source_path": "issues/backlog/BKL-062.md",
+   "state": "open",
+   "title": "Exercise 3.3-3.7/3.16-3.17 source typos, non-upward-closure of (3.8), and OCR display erasures"
   },
   {
    "blocks": [
@@ -3950,8 +4662,8 @@
   },
   {
    "blocks": [],
-   "body": "## Summary\n\nThe analyses assume a finite, statically known program (blocks, labels, terms) with control transfer only through explicit constructs; §3.4 discusses open systems.\n\n## Source Citations & Grounding\n\n- [PPA §2.1, p. 36] (book p. 36; PDF p. 55)\n- [PPA §3.4, p. 182] (book p. 182; PDF p. 200)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] Reflection, eval, deserialization, FFI and signal handlers move control outside the static flow relation, so a 'sound' result is sound only relative to the closed world (the term \"closed world\" is an inference; the book does not use it).\n\nGuardrail: L2 (cyber): state the closed-world boundary in every report; model unknown code with the open-system technique of §3.4, and with conservative top summaries [external].\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.dfa.flow-graph`, `ppa.cfa.open-systems`\n- Parent shard: ISS-W6-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-008\", \"parent_issue\": \"ISS-W6-02\", \"ppa_scope\": [\"\\u00a72.1 (book p. 36; PDF p. 55)\", \"\\u00a73.4 (book p. 182; PDF p. 200)\"], \"updated_at\": \"2026-11-18\"} -->\n",
-   "body_sha256": "b094fdf6a33662651827455baf5eb14f5cba4fbb24f2c0bdf7d3ac4d31bcf689",
+   "body": "## Summary\n\nThe analyses assume a finite, statically known program (blocks, labels, terms) with control transfer only through explicit constructs; §3.4 discusses open systems.\n\n## Source Citations & Grounding\n\n- [PPA §2.1, p. 36] (book p. 36; PDF p. 55)\n- [PPA §3.4, p. 182] (book p. 182; PDF p. 200)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] Reflection, eval, deserialization, FFI and signal handlers move control outside the static flow relation, so a 'sound' result is sound only relative to the closed world (the term \"closed world\" is an inference; the book does not use it).\n\nGuardrail: L2 (cyber): state the closed-world boundary in every report; model unknown code with the open-system technique of §3.4, and with conservative top summaries [external].\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 3 integration (`REF-003`); full cross-book cyber linkage completes in Wave 6 (`ISS-W6-02`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.while-flow-graphs`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.interproc.flow-insensitive-iav`, `ppa.cfa.open-systems`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W6-02\n\n## Verification Receipts\n\n_Pending._\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [], \"altitudes\": [\"L1\", \"L2\"], \"blocks\": [], \"created_at\": \"2026-11-18\", \"depends_on\": [], \"id\": \"BKL-008\", \"parent_issue\": \"ISS-W6-02\", \"ppa_scope\": [\"\\u00a72.1 (book p. 36; PDF p. 55)\", \"\\u00a73.4 (book p. 182; PDF p. 200)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "1302ac5493c7ab014d83852f8414de31a34086753b0c4f11bcb4ad0e2ad97638",
    "depends_on": [],
    "frontmatter": {
     "aligned_models": [],
@@ -3979,7 +4691,7 @@
     "priority": "P1",
     "status": "open",
     "title": "Closed-world syntax vs reflection, dynamic loading, foreign calls and asynchronous interrupts",
-    "updated_at": "2026-11-18"
+    "updated_at": "2026-11-19"
    },
    "github_issue_number": null,
    "id": "BKL-008",
@@ -3995,8 +4707,8 @@
    ],
    "milestone": "W6",
    "parent_issue": "ISS-W6-02",
-   "published_body_sha256": "4b5a13f9bbdb5a3ce89703114f7b723a4c13f0b074d4b2ff0f91d61bfc2fada9",
-   "source_body": "\n## Summary\n\nThe analyses assume a finite, statically known program (blocks, labels, terms) with control transfer only through explicit constructs; §3.4 discusses open systems.\n\n## Source Citations & Grounding\n\n- [PPA §2.1, p. 36] (book p. 36; PDF p. 55)\n- [PPA §3.4, p. 182] (book p. 182; PDF p. 200)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] Reflection, eval, deserialization, FFI and signal handlers move control outside the static flow relation, so a 'sound' result is sound only relative to the closed world (the term \"closed world\" is an inference; the book does not use it).\n\nGuardrail: L2 (cyber): state the closed-world boundary in every report; model unknown code with the open-system technique of §3.4, and with conservative top summaries [external].\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [ ] Proposed concept ids exist in `ontology/concept_graph.json` once Unit extraction lands (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). No judge rounds yet.\n\n## Cross-Referenced Concepts & Artifacts\n\n- Proposed concept ids: `ppa.dfa.flow-graph`, `ppa.cfa.open-systems`\n- Parent shard: ISS-W6-02\n\n## Verification Receipts\n\n_Pending._",
+   "published_body_sha256": "c2bab616886771ad26a06a82ac524aac854006d8600e5132b65447f0dd5d45ea",
+   "source_body": "\n## Summary\n\nThe analyses assume a finite, statically known program (blocks, labels, terms) with control transfer only through explicit constructs; §3.4 discusses open systems.\n\n## Source Citations & Grounding\n\n- [PPA §2.1, p. 36] (book p. 36; PDF p. 55)\n- [PPA §3.4, p. 182] (book p. 182; PDF p. 200)\n- Coordinates validated against `corpus/pdf_page_map.json`; formulas must be confirmed against the rendered page image (see BKL-011).\n\n## Technical Analysis / Mechanism\n\n[external] Reflection, eval, deserialization, FFI and signal handlers move control outside the static flow relation, so a 'sound' result is sound only relative to the closed world (the term \"closed world\" is an inference; the book does not use it).\n\nGuardrail: L2 (cyber): state the closed-world boundary in every report; model unknown code with the open-system technique of §3.4, and with conservative top summaries [external].\n\n## Acceptance Gates\n\n- [ ] Affected artifacts carry a one-line pointer to this item (non-blocking rule, `architecture/ARCHITECTURE.md` §6.4)\n- [ ] Resolution is cited, or recorded as \"accepted as documented tension\"\n- [x] Affected concept ids exist in `ontology/concept_graph.json` (conformance check C6.6)\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-18 seeded from three independent calibration perspectives (P-SWE, P-ARCH, P-CYBER); deduplicated. Origin: P-CYBER seed (untracked calibration notes; see `ontology/altitude_alignment_log.md`). Reconciled during Wave 3 integration (`REF-003`); full cross-book cyber linkage completes in Wave 6 (`ISS-W6-02`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Affected concept ids: `ppa.dfa.while-flow-graphs`, `ppa.interproc.procedure-sos-and-iflow`, `ppa.interproc.flow-insensitive-iav`, `ppa.cfa.open-systems`\n- L1 anchor: `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- L2 anchor: `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- L3 anchor: `corpus/shards/RAW_SHARD_03a_0cfa.md`\n- Parent shard: ISS-W6-02\n\n## Verification Receipts\n\n_Pending._",
    "source_path": "issues/backlog/BKL-008.md",
    "state": "open",
    "title": "Closed-world syntax vs reflection, dynamic loading, foreign calls and asynchronous interrupts"
@@ -4306,6 +5018,68 @@
    "source_path": "issues/refactors/REF-002.md",
    "state": "closed",
    "title": "Part I holistic U6 unification parity, graph inverse symmetry, T7 notation scoping, and C6.6/C6.7 backlog reconciliation"
+  },
+  {
+   "blocks": [],
+   "body": "## Summary\n\nExecute the Wave 3 (`W3-2`) cumulative Chapter 3 altitude refactoring pass: activate `ppa-control-flow-and-constraints` across `ppa-program-analysis/SKILL.md` (`81L < 90L`) and router evals (`T5`), wire reciprocal `L1 -> L1` cross-links (`U4`, `U5`, `Table 3.7`, `Figure 3.3`) between `ppa-dataflow-and-slicing` and `ppa-control-flow-and-constraints` (`T2`), verify symmetric `U4`/`U5`/`U9` `corresponds_to` edges and `Rule B1` parity across all `97` `ontology/concept_graph.json` nodes (`T4`), audit unindexed Chapter 3 symbols (`U-39..U-45`, `T7`), and reconcile `BKL-007/008/011` alongside `BKL-051..062` (`T6`, `C6.6`, `C6.7`).\n\n## Source Citations & Grounding\n\n- [PPA §3.1.2, p. 150] (book p. 150; PDF p. 168)\n- [PPA Figure 3.3, p. 159] (book p. 159; PDF p. 177)\n- [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196)\n- [PPA §3.5.2, p. 186] (book p. 186; PDF p. 204)\n- [PPA §3.6.1, p. 196] (book p. 196; PDF p. 214)\n- [PPA §3.6.2, p. 198] (book p. 198; PDF p. 216)\n\n## Technical Analysis / Mechanism\n\n1. Router activation & reciprocal `C4.7` boundaries (`T5`): updated `knowledge/skills/ppa-program-analysis/SKILL.md` (`81L` in `[50, 99)`) marking `§§3.1–3.6` active and adding Chapter 3 `## Sibling Reference Modules (Active)` links (`cfa-core-and-coinduction.md` `202L`, `constraint-generation-and-cubic-solver.md` `147L`, `polyvariant-kcfa-cpa-and-dfa.md` `150L`), added `sib-cfa-cubic-and-kcfa` to router `evals/cases.yaml`, and added `sib-cfa-kcfa-cpa-closures` (`expect_skill: ppa-control-flow-and-constraints`) to `ppa-dataflow-and-slicing/evals/cases.yaml` (`C4.7`).\n2. Cross-skill `L1` bidirectional links & `T3` budget check (`T2`, `T3`, `DEC-PPA-008`): wired reciprocal `L1 -> L1` pointers in `ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md` (`208L`, `U4` + `Table 3.7`) and `interprocedural-and-correctness.md` (`171L`, `U5` + `Figure 3.3`), pairing with `ppa-control-flow-and-constraints/references/*.md` (`202L/147L/150L <= 450L`) links back to Chapters 1–2 and Appendices A–C without duplicating foundation proofs or rules; also linked `intraprocedural-analyses-and-frameworks.md` (`U4`) alongside `interprocedural-and-correctness.md` (`U5`) in `ppa-control-flow-and-constraints/SKILL.md`. Confirmed `ppa-control-flow-and-constraints/SKILL.md` (`269L`, `900`-char description, `ppa-cfa-and-constraints.md` `100L`) separates procedural workflows/preconditions from full `L1` definitions.\n3. Canonical `U4`/`U5`/`U9` symmetry, `T7` notation audit & backlog parity (`T4`, `T6`, `T7`): merged `16` `ppa.cfa.*` concepts into `ontology/concept_graph.json` (`81 -> 97` nodes, symmetric `U4`/`U5`/`U9` `corresponds_to` edges with matching `Val̂ = 𝒫(Term × CEnv)` `U5` descriptions, deduplicated redundant `abstract-0cfa <-> subject-reduction` edge pair, `Rule B1` `97/97` exact parity), established symmetric `U4` (`cfa-with-lattice-dfa` ↔ `monotone-framework`), `U5` (`uniform-k-cfa` ↔ `call-strings`, `cartesian-product-algorithm` ↔ `assumption-sets`), and `U9` (`coinductive-well-definedness` ↔ `coinduction`, `tarski`) `corresponds_to` edges; added genuinely unindexed Chapter 3 entries `U-39..U-45` (`⊨_s`/`⊨'_s`/`⊨_c`/`⊨_d`/`⊨_D`/`⊨'_D`/`⊨_δ^{ce}`/`⊨_{CPA}^δ`/`⊨_{me}` on `U-39` with bare `⊨` mapped cleanly via `N1-006`/`Overloaded symbols`, `C(ℓ)`/`r(x)`, `Val̂_⋆`/`Cachê_⋆`/`Env̂_⋆`, `𝒬_s`, `F_⋆`, `R̂`/`Reach`, `Ŝ_∘`/`Ŝ_•`) in `ontology/notation_index.md` without duplicating indexed `ce`, `CEnv`, `𝒞_⋆`, or `Term_⋆`; and reconciled `BKL-007`, `BKL-008`, `BKL-011` + `BKL-051..062` (`C6.6`, `C6.7`, `56/56` bidirectional parity).\n\n## Acceptance Gates\n\n- [x] `ppa-program-analysis/SKILL.md` remains `< 90` lines (`81L < 99L`) with zero `C3.8` inter-skill `SKILL.md` or `ambient-context` links\n- [x] `ontology/concept_graph.json` (`97` nodes) has zero asymmetric inverse edges, `97/97` `Rule B1` altitude parity, and symmetric `U4`/`U5`/`U9` `corresponds_to` `basis` objects\n- [x] Reciprocal `U4`/`U5` `L1 -> L1` cross-links and `C4.7` eval boundaries resolve cleanly under `scripts/validate_ppa_knowledge.py --strict-gotchas`\n- [x] `ontology/notation_index.md` `U-39..U-45` adds unindexed Chapter 3 symbols with zero duplication of `Index of Notation` rows and zero `C1.10` violations\n- [x] Gate #5 adversarial panel aligns on `REF-003` Chapter 3 integration & cumulative refactoring\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 authored during `W3-2` cumulative Chapter 3 promotion and refactoring pass (`C6.9` 1-to-1 with `ontology/altitude_alignment_log.md`) — staged for Gate #5 (`gate5-v1`).\n- 2026-11-19 Gate #5 Round 1 remediation (`gate5-v2`): resolved all `22` Round 1 findings (`F-OJ-501..507`, `F-FJ-501..508`, `F-CJ-501..507`; full 1-to-1 rebuttal table recorded in `ISS-W3-02.md`), restoring exact `Uniform k-CFA` vs `k-CFA` vs `Polynomial k-CFA` domains and `U5` symmetry, removing bare `⊨` duplication in `U-39`, deduplicating `abstract-0cfa <-> subject-reduction`, linking `U4` in `SKILL.md`, enforcing `P2` `[external]` attribution and exact `[2]`/`[9]`/`[156..158]` citations, and verifying `56/56` `BKL` symmetry.\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225). Applied non-blocking `PREFERENCE` polishes (`BKL-058.md:3`, `SKILL.md:226`, `polyvariant-kcfa-cpa-and-dfa.md:133-134`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W3-02`\n- `knowledge/skills/ppa-program-analysis/SKILL.md`\n- `knowledge/skills/ppa-program-analysis/evals/cases.yaml`\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/evals/cases.yaml`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/evals/cases.yaml`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md`\n- `knowledge/ambient-context/ppa-cfa-and-constraints.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `ontology/altitude_alignment_log.md`\n- `issues/backlog/BKL-007.md`, `issues/backlog/BKL-008.md`, `issues/backlog/BKL-011.md`\n- `issues/backlog/BKL-051.md` .. `issues/backlog/BKL-062.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Gate #5 Round 1 remediation (`gate5-v2`) applied across `REF-003` artifacts (`81L` router, `100L` ambient, `269L` SKILL / `900`-char desc, `202L`/`147L`/`150L` refs, `97`-node graph, `U-39..U-45` notation index, `56/56` `BKL` parity); awaiting Gate #5 Round 2 alignment.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; 97/97 Rule B1 parity, validators, hygiene, and 47/47 unit tests PASS.\n\n<!-- ppa-issue-metadata: {\"aligned_models\": [\"P-SWE\", \"P-ARCH\", \"P-CYBER\"], \"altitudes\": [\"L0\", \"L1\", \"L2\", \"L3\"], \"blocks\": [], \"created_at\": \"2026-11-19\", \"depends_on\": [], \"id\": \"REF-003\", \"parent_issue\": \"ISS-W3-02\", \"ppa_scope\": [\"\\u00a73.1\\u2013\\u00a73.6 (book pp. 141\\u2013198; PDF pp. 159\\u2013216)\", \"\\u00a72.3, \\u00a72.5 (book pp. 65\\u2013103; PDF pp. 84\\u2013122)\", \"Chapter 3 End Matter (book pp. 198\\u2013209; PDF pp. 216\\u2013227)\"], \"updated_at\": \"2026-11-19\"} -->\n",
+   "body_sha256": "73e7ca521bb446af13d62061659a9eebe7109a97ff46217686801c9cd1011dc5",
+   "depends_on": [],
+   "frontmatter": {
+    "aligned_models": [
+     "P-SWE",
+     "P-ARCH",
+     "P-CYBER"
+    ],
+    "altitudes": [
+     "L0",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "blocks": [],
+    "created_at": "2026-11-19",
+    "depends_on": [],
+    "github_issue_number": null,
+    "id": "REF-003",
+    "issue_type": "refactor",
+    "labels": [
+     "ppa",
+     "wave-3",
+     "refactor"
+    ],
+    "milestone": "W3",
+    "parent_issue": "ISS-W3-02",
+    "ppa_scope": [
+     "§3.1–§3.6 (book pp. 141–198; PDF pp. 159–216)",
+     "§2.3, §2.5 (book pp. 65–103; PDF pp. 84–122)",
+     "Chapter 3 End Matter (book pp. 198–209; PDF pp. 216–227)"
+    ],
+    "priority": "P1",
+    "status": "closed",
+    "title": "Activate Chapter 3 router routing, reciprocal L1 links, U4/U5/U9 edges, and T7 notation audit",
+    "updated_at": "2026-11-19"
+   },
+   "github_issue_number": null,
+   "id": "REF-003",
+   "labels": [
+    "altitude:L0",
+    "altitude:L1",
+    "altitude:L2",
+    "altitude:L3",
+    "ppa",
+    "priority:P1",
+    "refactor",
+    "status:closed",
+    "type:refactor",
+    "wave-3"
+   ],
+   "milestone": "W3",
+   "parent_issue": "ISS-W3-02",
+   "published_body_sha256": "fecf0fe11e993d99a731c89d92dd074cad37a9a344b801098347069627bbc882",
+   "source_body": "\n## Summary\n\nExecute the Wave 3 (`W3-2`) cumulative Chapter 3 altitude refactoring pass: activate `ppa-control-flow-and-constraints` across `ppa-program-analysis/SKILL.md` (`81L < 90L`) and router evals (`T5`), wire reciprocal `L1 -> L1` cross-links (`U4`, `U5`, `Table 3.7`, `Figure 3.3`) between `ppa-dataflow-and-slicing` and `ppa-control-flow-and-constraints` (`T2`), verify symmetric `U4`/`U5`/`U9` `corresponds_to` edges and `Rule B1` parity across all `97` `ontology/concept_graph.json` nodes (`T4`), audit unindexed Chapter 3 symbols (`U-39..U-45`, `T7`), and reconcile `BKL-007/008/011` alongside `BKL-051..062` (`T6`, `C6.6`, `C6.7`).\n\n## Source Citations & Grounding\n\n- [PPA §3.1.2, p. 150] (book p. 150; PDF p. 168)\n- [PPA Figure 3.3, p. 159] (book p. 159; PDF p. 177)\n- [PPA Table 3.7, p. 178] (book p. 178; PDF p. 196)\n- [PPA §3.5.2, p. 186] (book p. 186; PDF p. 204)\n- [PPA §3.6.1, p. 196] (book p. 196; PDF p. 214)\n- [PPA §3.6.2, p. 198] (book p. 198; PDF p. 216)\n\n## Technical Analysis / Mechanism\n\n1. Router activation & reciprocal `C4.7` boundaries (`T5`): updated `knowledge/skills/ppa-program-analysis/SKILL.md` (`81L` in `[50, 99)`) marking `§§3.1–3.6` active and adding Chapter 3 `## Sibling Reference Modules (Active)` links (`cfa-core-and-coinduction.md` `202L`, `constraint-generation-and-cubic-solver.md` `147L`, `polyvariant-kcfa-cpa-and-dfa.md` `150L`), added `sib-cfa-cubic-and-kcfa` to router `evals/cases.yaml`, and added `sib-cfa-kcfa-cpa-closures` (`expect_skill: ppa-control-flow-and-constraints`) to `ppa-dataflow-and-slicing/evals/cases.yaml` (`C4.7`).\n2. Cross-skill `L1` bidirectional links & `T3` budget check (`T2`, `T3`, `DEC-PPA-008`): wired reciprocal `L1 -> L1` pointers in `ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md` (`208L`, `U4` + `Table 3.7`) and `interprocedural-and-correctness.md` (`171L`, `U5` + `Figure 3.3`), pairing with `ppa-control-flow-and-constraints/references/*.md` (`202L/147L/150L <= 450L`) links back to Chapters 1–2 and Appendices A–C without duplicating foundation proofs or rules; also linked `intraprocedural-analyses-and-frameworks.md` (`U4`) alongside `interprocedural-and-correctness.md` (`U5`) in `ppa-control-flow-and-constraints/SKILL.md`. Confirmed `ppa-control-flow-and-constraints/SKILL.md` (`269L`, `900`-char description, `ppa-cfa-and-constraints.md` `100L`) separates procedural workflows/preconditions from full `L1` definitions.\n3. Canonical `U4`/`U5`/`U9` symmetry, `T7` notation audit & backlog parity (`T4`, `T6`, `T7`): merged `16` `ppa.cfa.*` concepts into `ontology/concept_graph.json` (`81 -> 97` nodes, symmetric `U4`/`U5`/`U9` `corresponds_to` edges with matching `Val̂ = 𝒫(Term × CEnv)` `U5` descriptions, deduplicated redundant `abstract-0cfa <-> subject-reduction` edge pair, `Rule B1` `97/97` exact parity), established symmetric `U4` (`cfa-with-lattice-dfa` ↔ `monotone-framework`), `U5` (`uniform-k-cfa` ↔ `call-strings`, `cartesian-product-algorithm` ↔ `assumption-sets`), and `U9` (`coinductive-well-definedness` ↔ `coinduction`, `tarski`) `corresponds_to` edges; added genuinely unindexed Chapter 3 entries `U-39..U-45` (`⊨_s`/`⊨'_s`/`⊨_c`/`⊨_d`/`⊨_D`/`⊨'_D`/`⊨_δ^{ce}`/`⊨_{CPA}^δ`/`⊨_{me}` on `U-39` with bare `⊨` mapped cleanly via `N1-006`/`Overloaded symbols`, `C(ℓ)`/`r(x)`, `Val̂_⋆`/`Cachê_⋆`/`Env̂_⋆`, `𝒬_s`, `F_⋆`, `R̂`/`Reach`, `Ŝ_∘`/`Ŝ_•`) in `ontology/notation_index.md` without duplicating indexed `ce`, `CEnv`, `𝒞_⋆`, or `Term_⋆`; and reconciled `BKL-007`, `BKL-008`, `BKL-011` + `BKL-051..062` (`C6.6`, `C6.7`, `56/56` bidirectional parity).\n\n## Acceptance Gates\n\n- [x] `ppa-program-analysis/SKILL.md` remains `< 90` lines (`81L < 99L`) with zero `C3.8` inter-skill `SKILL.md` or `ambient-context` links\n- [x] `ontology/concept_graph.json` (`97` nodes) has zero asymmetric inverse edges, `97/97` `Rule B1` altitude parity, and symmetric `U4`/`U5`/`U9` `corresponds_to` `basis` objects\n- [x] Reciprocal `U4`/`U5` `L1 -> L1` cross-links and `C4.7` eval boundaries resolve cleanly under `scripts/validate_ppa_knowledge.py --strict-gotchas`\n- [x] `ontology/notation_index.md` `U-39..U-45` adds unindexed Chapter 3 symbols with zero duplication of `Index of Notation` rows and zero `C1.10` violations\n- [x] Gate #5 adversarial panel aligns on `REF-003` Chapter 3 integration & cumulative refactoring\n\n## 3-Model Adversarial Alignment & Rebuttal Log\n\n- 2026-11-19 authored during `W3-2` cumulative Chapter 3 promotion and refactoring pass (`C6.9` 1-to-1 with `ontology/altitude_alignment_log.md`) — staged for Gate #5 (`gate5-v1`).\n- 2026-11-19 Gate #5 Round 1 remediation (`gate5-v2`): resolved all `22` Round 1 findings (`F-OJ-501..507`, `F-FJ-501..508`, `F-CJ-501..507`; full 1-to-1 rebuttal table recorded in `ISS-W3-02.md`), restoring exact `Uniform k-CFA` vs `k-CFA` vs `Polynomial k-CFA` domains and `U5` symmetry, removing bare `⊨` duplication in `U-39`, deduplicating `abstract-0cfa <-> subject-reduction`, linking `U4` in `SKILL.md`, enforcing `P2` `[external]` attribution and exact `[2]`/`[9]`/`[156..158]` citations, and verifying `56/56` `BKL` symmetry.\n- 2026-11-19 Round 2 (`gate5-v2`): unanimous `3/3 [ALIGNED gate5-v2]` across `P-SWE`, `P-ARCH`, and `P-CYBER` (`0` `HARD_BLOCK`, `0` `BLOCKING`; #223–#225). Applied non-blocking `PREFERENCE` polishes (`BKL-058.md:3`, `SKILL.md:226`, `polyvariant-kcfa-cpa-and-dfa.md:133-134`).\n\n## Cross-Referenced Concepts & Artifacts\n\n- Parent shard: `ISS-W3-02`\n- `knowledge/skills/ppa-program-analysis/SKILL.md`\n- `knowledge/skills/ppa-program-analysis/evals/cases.yaml`\n- `knowledge/skills/ppa-control-flow-and-constraints/SKILL.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/evals/cases.yaml`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`\n- `knowledge/skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/evals/cases.yaml`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md`\n- `knowledge/skills/ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md`\n- `knowledge/ambient-context/ppa-cfa-and-constraints.md`\n- `ontology/concept_graph.json`\n- `ontology/notation_index.md`\n- `ontology/altitude_alignment_log.md`\n- `issues/backlog/BKL-007.md`, `issues/backlog/BKL-008.md`, `issues/backlog/BKL-011.md`\n- `issues/backlog/BKL-051.md` .. `issues/backlog/BKL-062.md`\n\n## Verification Receipts\n\n- 2026-11-19 [in_progress] Gate #5 Round 1 remediation (`gate5-v2`) applied across `REF-003` artifacts (`81L` router, `100L` ambient, `269L` SKILL / `900`-char desc, `202L`/`147L`/`150L` refs, `97`-node graph, `U-39..U-45` notation index, `56/56` `BKL` parity); awaiting Gate #5 Round 2 alignment.\n- 2026-11-19 [closed] Gate #5 Round 2 unanimous 3/3 [ALIGNED gate5-v2] (#223-#225); 0 HARD_BLOCK, 0 BLOCKING; 97/97 Rule B1 parity, validators, hygiene, and 47/47 unit tests PASS.",
+   "source_path": "issues/refactors/REF-003.md",
+   "state": "closed",
+   "title": "Activate Chapter 3 router routing, reciprocal L1 links, U4/U5/U9 edges, and T7 notation audit"
   }
  ],
  "order": [
@@ -4362,8 +5136,20 @@
   "ISS-W2-03",
   "ISS-W2-04",
   "ISS-W3-01",
+  "BKL-051",
+  "BKL-052",
+  "BKL-053",
+  "BKL-054",
+  "BKL-055",
   "ISS-W3-02",
   "BKL-007",
+  "BKL-056",
+  "BKL-057",
+  "BKL-058",
+  "BKL-059",
+  "BKL-060",
+  "BKL-061",
+  "BKL-062",
   "ISS-W4-01",
   "BKL-001",
   "BKL-002",
@@ -4382,7 +5168,8 @@
   "ISS-W8-01",
   "ISS-W8-02",
   "REF-001",
-  "REF-002"
+  "REF-002",
+  "REF-003"
  ],
  "schema_version": 1
 }
