@@ -247,6 +247,9 @@ Once `f_∇^m ∈ Red(f)` is found (`f(f_∇^m) ⊑ f_∇^m`), descending `[exte
   [PPA Exercise 4.7, p. 277] (book p. 277; PDF p. 294).
 - **Key difference**: Without `ACC`, `∇` sacrifices exactness (`lfp(f) ⊑ lfp_∇(f)`) and monotonicity (`BKL-002`), making
   iteration order (`Chapter 6 Exercise 6.13` worklist widening in [scc-round-robin-and-advanced-solvers.md](../../ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md) [PPA Exercise 6.13, p. 391] (book p. 391; PDF p. 407)) and `[external: CFG loop-cutset placement]` affect precision rather than mere runtime.
+- **Localised `ACC` for delayed widening `[derived]`**: an operator that joins with `⊔` while below a fixed `l'` and
+  extrapolates otherwise (`Exercises 4.6, 4.9`) remains a widening when `↓l'` satisfies `ACC` (on `Interval`, when
+  `int'` is bounded, as `Exercise 4.9` assumes) [PPA Exercise 4.9, p. 278] (book p. 278; PDF p. 295).
 
 ## 7. Verified Source Errata and Implicit Hypotheses (Sections 4.1-4.2 and Exercises 4.1-4.12)
 

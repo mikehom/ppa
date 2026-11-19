@@ -6,6 +6,10 @@
 # @decision DEC-PPA-009: Ownership of port files is derived from the previous
 #   port manifest only; operator pointer stubs on always-on surfaces are detected
 #   on disk so a recompilation can never re-baseline adapter-written bytes.
+# @decision DEC-PPA-011: The manifest file name is a parameter (default
+#   port_manifest.json), so several targets can share one project root, each
+#   owning only what its own manifest lists; a bounded block merged into an
+#   operator file is recorded by digest so later edits inside it are detectable.
 """Shared deterministic compilation helpers for PPA reference harness adapters."""
 from __future__ import annotations
 
@@ -37,6 +41,9 @@ STUB_MARKERS = (STUB_START, "# PPA On-Demand Knowledge Index")
 KNOWLEDGE_BLOCK_START = "<!-- PPA_KNOWLEDGE_START -->"
 KNOWLEDGE_BLOCK_END = "<!-- PPA_KNOWLEDGE_END -->"
 OWNED_LIST_KEYS = ("extra_units", "index_files", "manifest_files", "notebooklm_bundle")
+DEFAULT_MANIFEST_NAME = "port_manifest.json"
+MANIFEST_NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*\.json$")
+RESERVED_JSON_NAMES = ("wiki_config.json", "served_units.json", "bundle_manifest.json")
 AMBIENT_DESC_RE = re.compile(r"<!--\s*@description:\s*(.*?)\s*-->", re.S)
 
 SKIP_NAMES = {
@@ -315,23 +322,33 @@ def is_safe_rel(rel: str) -> bool:
     return ".." not in rel.split("/")
 
 
-def load_prior_manifest(port_root: Path) -> dict[str, object] | None:
-    """Return the previous port_manifest.json as a dict, or None when absent/unreadable."""
-    manifest_path = port_root / "port_manifest.json"
+def validate_manifest_name(name: str) -> str:
+    """Return name when it is a plain ``*.json`` basename usable as a port manifest."""
+    if (not MANIFEST_NAME_RE.match(name) or name in RESERVED_JSON_NAMES
+            or name.startswith("conformance_report")):
+        raise AdapterError(
+            f"--manifest-name {name!r} must be a .json basename without path separators "
+            "that does not name another port or report file")
+    return name
+
+
+def load_prior_manifest(port_root: Path, manifest_name: str = DEFAULT_MANIFEST_NAME) -> dict[str, object] | None:
+    """Return the previous manifest of that name as a dict, or None when absent/unreadable."""
+    manifest_path = port_root / manifest_name
     if manifest_path.is_symlink() or not manifest_path.is_file():
         return None
     try:
         doc = json.loads(read_utf8_strict(manifest_path))
     except (json.JSONDecodeError, AdapterError) as exc:
         logging.getLogger("ppa_adapters").warning(
-            "ignoring unreadable previous port_manifest.json (treated as foreign): %s", exc)
+            "ignoring unreadable previous %s (treated as foreign): %s", manifest_name, exc)
         return None
     return doc if isinstance(doc, dict) else None
 
 
-def manifest_listed_paths(manifest: dict[str, object]) -> set[str]:
-    """File-backed port outputs a manifest declares (mappings and owned-list keys)."""
-    listed: set[str] = {"port_manifest.json"}
+def manifest_listed_paths(manifest: dict[str, object], manifest_name: str = DEFAULT_MANIFEST_NAME) -> set[str]:
+    """File-backed port outputs a manifest declares (mappings, owned-list keys, the manifest itself)."""
+    listed: set[str] = {manifest_name}
     mappings = manifest.get("mappings")
     for m in mappings if isinstance(mappings, list) else []:
         ports = m.get("port") if isinstance(m, dict) else None
@@ -342,9 +359,11 @@ def manifest_listed_paths(manifest: dict[str, object]) -> set[str]:
     return {p for p in listed if not p.startswith("ppa:")}
 
 
-def manifest_owned_paths(port_root: Path, manifest: dict[str, object]) -> set[str]:
+def manifest_owned_paths(
+    port_root: Path, manifest: dict[str, object], manifest_name: str = DEFAULT_MANIFEST_NAME
+) -> set[str]:
     """Port-relative paths owned by a manifest: its listed outputs plus the corpus_root tree."""
-    owned = {p for p in manifest_listed_paths(manifest) if is_safe_rel(p)}
+    owned = {p for p in manifest_listed_paths(manifest, manifest_name) if is_safe_rel(p)}
     corpus_rel = str(manifest.get("corpus_root") or "").strip("/")
     if corpus_rel and is_safe_rel(corpus_rel) and (port_root / corpus_rel).is_dir():
         for dirpath, dirnames, filenames in os.walk(port_root / corpus_rel, followlinks=False):
@@ -353,6 +372,23 @@ def manifest_owned_paths(port_root: Path, manifest: dict[str, object]) -> set[st
             for name in sorted(filenames) + linked_dirs:
                 owned.add((here / name).relative_to(port_root).as_posix())
     return owned
+
+
+def bounded_block_record(text: str) -> dict[str, object] | None:
+    """Line count and SHA-256 of the single bounded PPA block in text (markers included).
+
+    The digest covers the LF-joined lines from the start marker through the end
+    marker, each followed by one LF. None when the block is absent, repeated, or
+    unbalanced.
+    """
+    lines = normalize_lf(text).split("\n")
+    starts = [i for i, ln in enumerate(lines) if ln.strip() == KNOWLEDGE_BLOCK_START]
+    ends = [i for i, ln in enumerate(lines) if ln.strip() == KNOWLEDGE_BLOCK_END]
+    if len(starts) != 1 or len(ends) != 1 or starts[0] > ends[0]:
+        return None
+    block = lines[starts[0]:ends[0] + 1]
+    digest = hashlib.sha256(("\n".join(block) + "\n").encode("utf-8")).hexdigest()
+    return {"lines": len(block), "sha256": digest}
 
 
 def emitted_discovery_names(manifest: dict[str, object]) -> set[str]:
@@ -491,6 +527,9 @@ def base_arg_parser(description: str) -> argparse.ArgumentParser:
                     help="isolated user-scope home directory for '~/' surface checks")
     ap.add_argument("--force", action="store_true",
                     help="overwrite pre-existing files that no previous port manifest owns")
+    ap.add_argument("--manifest-name", default=DEFAULT_MANIFEST_NAME,
+                    help="manifest basename inside --port-root; give each target its own name "
+                         f"when several ports share one root (default: {DEFAULT_MANIFEST_NAME})")
     return ap
 
 

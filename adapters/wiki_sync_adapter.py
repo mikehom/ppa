@@ -7,6 +7,9 @@
 # @decision DEC-PPA-009: The wiki root index and log belong to the operator: the
 #   adapter owns only PPA-namespaced pages and maintains one bounded block inside
 #   pages/index.md and pages/log.md, preserving every other line byte for byte.
+# @decision DEC-PPA-011: Each bounded block is recorded in the manifest
+#   (bounded_blocks: line count and SHA-256), so an edit inside the block is
+#   detectable while every line outside it stays the operator's.
 """Compile canonical PPA knowledge into a Knowledge Wiki + NotebookLM layout."""
 from __future__ import annotations
 
@@ -307,8 +310,13 @@ def merge_bounded_block(existing: bytes | None, block_lines: list[str], preamble
     return merged.encode("utf-8"), user_content
 
 
-def _merge_root_page(plan: port_plan.PortPlan, rel: str, block_lines: list[str], preamble: list[str]) -> None:
-    """Plan pages/index.md or pages/log.md: owned when adapter-generated, merged otherwise."""
+def _merge_root_page(
+    plan: port_plan.PortPlan, rel: str, block_lines: list[str], preamble: list[str]
+) -> dict[str, object]:
+    """Plan pages/index.md or pages/log.md (owned when adapter-generated, merged otherwise).
+
+    Returns the bounded-block record (line count and SHA-256) of the planned page.
+    """
     dest = plan.port_root / rel
     if dest.is_symlink():
         raise common.AdapterError(f"refusing to merge into symlink: {rel}")
@@ -316,9 +324,16 @@ def _merge_root_page(plan: port_plan.PortPlan, rel: str, block_lines: list[str],
     data, user_content = merge_bounded_block(existing, block_lines, preamble)
     generated = not user_content and (existing is None or plan.owns(rel))
     plan.add_bytes(rel, data, role="index" if generated else "merged")
+    record = common.bounded_block_record(data.decode("utf-8"))
+    if record is None:
+        raise common.AdapterError(f"{rel}: merged page does not carry exactly one bounded PPA block")
+    return record
 
 
-def _merge_root_index_and_log(plan: port_plan.PortPlan, rev: str, entry_pages: list[str], sync_line: str) -> None:
+def _merge_root_index_and_log(
+    plan: port_plan.PortPlan, rev: str, entry_pages: list[str], sync_line: str
+) -> dict[str, object]:
+    """Plan both root pages; return their bounded-block records keyed by port path."""
     skills = sorted(p for p in entry_pages if not Path(p).name.startswith("ppa-ambient-"))
     index_block = [
         "## PPA Knowledge (Principles of Program Analysis)",
@@ -330,8 +345,11 @@ def _merge_root_index_and_log(plan: port_plan.PortPlan, rev: str, entry_pages: l
         "- [Chronological log](log.md)",
     ]
     index_block.extend(f"- [{Path(p).stem}]({p.removeprefix('pages/')})" for p in skills)
-    _merge_root_page(plan, "pages/index.md", index_block, INDEX_PREAMBLE)
-    _merge_root_page(plan, "pages/log.md", [sync_line + " See the [sync log for PPA](ppa_log.md)."], LOG_PREAMBLE)
+    log_block = [sync_line + " See the [sync log for PPA](ppa_log.md)."]
+    return {
+        "pages/index.md": _merge_root_page(plan, "pages/index.md", index_block, INDEX_PREAMBLE),
+        "pages/log.md": _merge_root_page(plan, "pages/log.md", log_block, LOG_PREAMBLE),
+    }
 
 
 def _is_ppa_config_source(entry: object, prior_bundle: set[str], bundle_rel: str) -> bool:
@@ -394,6 +412,7 @@ def compile_port(
     dev_nofiles: bool = False,
     bundle_dir: str = DEFAULT_BUNDLE_DIR,
     force: bool = False,
+    manifest_name: str = common.DEFAULT_MANIFEST_NAME,
 ) -> dict[str, object]:
     """Compile canonical core into Knowledge Wiki pages/ + NotebookLM bundle."""
     repo_root = repo_root.resolve()
@@ -402,7 +421,7 @@ def compile_port(
     if bundle_abs == port_root:
         raise common.AdapterError("--bundle-dir must name a subdirectory of the port root")
     bundle_rel = bundle_abs.relative_to(port_root).as_posix()
-    plan = port_plan.PortPlan(port_root, TARGET, force=force)
+    plan = port_plan.PortPlan(port_root, TARGET, force=force, manifest_name=manifest_name)
     uhome = common.resolve_user_home(port_root, user_home)
     surfaces = common.snapshot_always_on_surfaces(port_root, TARGET, extra_surfaces, uhome)
     pre_existing = common.scan_preexisting_discovery(port_root, TARGET, prior=plan.prior)
@@ -416,8 +435,9 @@ def compile_port(
     shard_pages, bundle_paths = _emit_shards_and_bundle(out, repo_root, bundle_rel)
     node_idx_pages, src_idx_pages, sync_line = _emit_ppa_indexes(
         out, rev, entry_pages, node_cards, ref_pages, shard_pages)
+    bounded_blocks: dict[str, object] = {}
     if out.served is None:
-        _merge_root_index_and_log(plan, rev, entry_pages, sync_line)
+        bounded_blocks = _merge_root_index_and_log(plan, rev, entry_pages, sync_line)
     else:
         serialized = {k: common.split_lines_n2(v) for k, v in out.served.items()}
         plan.add("served_units.json",
@@ -434,6 +454,7 @@ def compile_port(
     manifest: dict[str, object] = {
         "adapter_options": {"bundle_dir": bundle_rel, "dev_nofiles": dev_nofiles},
         "always_on_surfaces": surfaces,
+        "bounded_blocks": bounded_blocks,
         "canonical_revision": rev,
         "concept_cards": card_of,
         "corpus_root": "core/corpus",
@@ -465,6 +486,7 @@ def _cli(argv: list[str]) -> int:
         dev_nofiles=args.dev_nofiles,
         bundle_dir=args.bundle_dir,
         force=args.force,
+        manifest_name=args.manifest_name,
     )
     return 0
 

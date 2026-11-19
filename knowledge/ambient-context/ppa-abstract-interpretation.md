@@ -96,13 +96,13 @@ annotated type/effect/region systems in `ppa-types-effects-and-regions`; RPO/SCC
 
 ## Where to Go Next
 
-When the optional `skills/` channel is installed, Chapter 4 procedures and formal specifications live relative to the
-knowledge root:
+When the optional skill channel is installed, Chapter 4 procedures and formal specifications live in these skills
+(named portably, independent of install layout):
 
-- Actionable domain-design, widening/narrowing & soundness workflows: skills/ppa-abstract-interpretation/SKILL.md
+- Actionable domain-design, widening/narrowing & soundness workflows: skill `ppa-abstract-interpretation`
 - Mundane correctness (`§4.1`), `Interval`, widening `∇`, and narrowing `Δ` (`§4.2`):
-  skills/ppa-abstract-interpretation/references/correctness-and-fixed-points.md
+  skill `ppa-abstract-interpretation`, reference `correctness-and-fixed-points.md`
 - Galois connections, adjoints, Galois insertions, `ς`, upper closure operators (`[external: uco(L)]`), and duality (`§4.3`, `Concluding Remarks`):
-  skills/ppa-abstract-interpretation/references/galois-connections-and-insertions.md
+  skill `ppa-abstract-interpretation`, reference `galois-connections-and-insertions.md`
 - Domain combinators, `AB` (`§4.4`), induced operations, generalised Monotone Frameworks (`§4.5`), and Mini Projects:
-  skills/ppa-abstract-interpretation/references/combinators-and-induced-operations.md
+  skill `ppa-abstract-interpretation`, reference `combinators-and-induced-operations.md`

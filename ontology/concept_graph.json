@@ -12995,6 +12995,7 @@
     }
    ],
    "artifact_refs": [
+    "knowledge/skills/ppa-cyber-vulnerability-analysis/references/taint-sanitization-and-information-flow.md#1-safe-approximation-direction-may-taint-vs-must-sanitization-polarity-chapters-12",
     "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#6-false-negative-vs-false-positive-root-cause-triage-matrix",
     "knowledge/skills/ppa-cyber-vulnerability-analysis/SKILL.md#7-golden-security-oracles"
    ],

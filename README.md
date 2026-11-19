@@ -51,9 +51,9 @@ Normative architectural rules live in [architecture/ARCHITECTURE.md](architectur
 
 ## 4. Quickstart: Compiling Target Harness Ports
 
-All compilers use only the Python 3 standard library, preserve LF normalisation, create zero symlinks, leave always-on instruction surfaces untouched, and write `<port_root>/port_manifest.json`.
+All compilers use only the Python 3 standard library, preserve LF normalisation, create zero symlinks, leave always-on instruction surfaces untouched, and write `<port_root>/port_manifest.json` (`--manifest-name <name>.json` gives each target its own manifest when several ports share one root).
 
-**Write protection.** Every compiler plans all of its outputs first and aborts before writing a single byte when an output path already exists and is not listed as an output of the previous `port_manifest.json` in that port root. Recompiling the same target into the same root therefore needs no option, while a file the operator created is never overwritten. Pass `--force` to overwrite such files deliberately; a discovery name overwritten this way stays recorded in `pre_existing_discovery` and fails `C4.8`.
+**Write protection.** Every compiler plans all of its outputs first and aborts before writing a single byte when an output path already exists and is not listed as an output of the previous `port_manifest.json` in that port root. Recompiling the same target into the same root therefore needs no option, while a file the operator created is never overwritten. Pass `--force` to overwrite such files deliberately; a discovery name overwritten this way stays recorded in `pre_existing_discovery` and fails `C4.8`. A recompilation also removes the files its previous manifest listed and the new build no longer emits; operator files, merged files, and symbolic links are never removed ([PORTING_GUIDE.md](architecture/PORTING_GUIDE.md) §2.2).
 
 ### 4.1 Pre-Port Canonical Validation
 
@@ -64,7 +64,7 @@ python3 -B scripts/issue_ctl.py --root . validate
 python3 -B scripts/verify_port_conformance.py --canonical-only --repo-root .
 ```
 
-The canonical-only run evaluates the 44 checks that need no port and reports the other 11 as `N/A` (`44/44 evaluated checks PASS, 11 port-only N/A`); the validator lists every Tier A rule it does not perform as `NOT_IMPLEMENTED`, with or without `--certify`.
+The canonical-only run evaluates the 44 checks that need no port and reports the other 11 as `N/A` (`44/44 evaluated checks PASS, 11 port-only N/A`); the validator also runs the [ARCHITECTURE.md](architecture/ARCHITECTURE.md) §7.1 anchor-parity and §7.2 signature-parity checks in every mode and prints no `NOT_IMPLEMENTED` line.
 
 ### 4.2 Target 1 — Claude Code (`.claude/`)
 
@@ -122,7 +122,7 @@ python3 -B scripts/verify_port_conformance.py \
   --manifest <port_root>/port_manifest.json
 ```
 
-Optional inputs: `--user-home <dir>` (scope for `~/` surfaces; also `PPA_USER_HOME` or `<port_root>/.user_home`, and the same scope must be given to the compiler), `--port-second <dir>` (a second build for `C5.7`; required when the target has no reference compiler), `--denylist <file>` (`C5.5`). The summary line prints exact counts, for example `55/55 evaluated checks PASS` or `53/55 evaluated checks PASS; 2 failed: ...`; every manifest key and verifier input is specified in [CONFORMANCE_SPEC.md](architecture/CONFORMANCE_SPEC.md) §2.
+Optional inputs: `--user-home <dir>` (scope for `~/` surfaces; also `PPA_USER_HOME` or `<port_root>/.user_home`, and the same scope must be given to the compiler), `--port-second <dir>` (a second build for `C5.7`; required when the target has no reference compiler), `--denylist <file>` (`C5.5`), `--manifest <name>.json` (certify the port compiled under that manifest name in a shared root; the report is then `conformance_report<x>.json` for `port_manifest<x>.json`), `--report-out <file>`. The summary line prints exact counts, for example `55/55 evaluated checks PASS` or `53/55 evaluated checks PASS; 2 failed: ...`; every manifest key and verifier input is specified in [CONFORMANCE_SPEC.md](architecture/CONFORMANCE_SPEC.md) §2.
 
 | Exit Code | Verdict | Meaning |
 | :--- | :--- | :--- |

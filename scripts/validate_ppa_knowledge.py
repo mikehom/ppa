@@ -3,8 +3,11 @@
 # @decision DEC-PPA-005: Tier-A deterministic knowledge validator implementing
 #   core-applicable checks of architecture/CONFORMANCE_SPEC.md (N1-N3, N8, C1.3,
 #   C1.4, C1.9-C1.11, C3.1-C3.12, C4.1-C4.2, C6.1-C6.3, C6.8) and the discrete
-#   conditions structure of ARCHITECTURE 7.1; Tier A rules it does not perform
-#   are printed as NOT_IMPLEMENTED in every mode, never as PASS.
+#   conditions structure of ARCHITECTURE 7.1; a Tier A rule it does not perform
+#   is printed as NOT_IMPLEMENTED in every mode, never as PASS.
+# @decision DEC-PPA-011: ARCHITECTURE 7.1 L1 anchor parity and 7.2 signature
+#   parity run as Tier A checks in every mode (scripts/ppa_arch_gates.py); a
+#   check with nothing to examine is SKIP, and a missing inventory is FAIL.
 """Tier-A validator for the PPA semantic knowledge canonical core.
 
 Usage:
@@ -22,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import issue_ctl  # noqa: E402  pylint: disable=wrong-import-position
+import ppa_arch_gates as arch_gates  # noqa: E402  pylint: disable=wrong-import-position
 import ppa_artifact_rules as rules  # noqa: E402  pylint: disable=wrong-import-position
 import ppa_conformance_parity as parity  # noqa: E402  pylint: disable=wrong-import-position
 
@@ -55,17 +59,13 @@ CHAPTER_REGION = {
 }
 TABLE_COUNTS = {"1": 6, "2": 10, "3": 10, "5": 18, "6": 6, "C": 1}
 FIGURE_COUNTS = {"1": 3, "2": 23, "3": 6, "4": 10, "5": 2, "6": 6, "A": 3, "C": 3}
-NOT_IMPLEMENTED_TIER_A = {
-    "arch_7_1_l1_anchor_parity": [
-        "ARCH-7.1 Tier A, anchor clause: every artifact section links to the node's L1 anchor and "
-        "that anchor carries a conditions list with as many entries. L1 anchors carry no "
-        "machine-delimited conditions list, so this clause stays Tier B (reviewer) until one exists.",
-    ],
-    "arch_7_2_signature_parity": [
-        "ARCH-7.2 Tier A: automated signature, quantifier, and numeric-bound parity against "
-        "ontology/notation_index.md and the cited L3 anchors (tracked in BKL-093).",
-    ],
-}
+NOT_IMPLEMENTED_TIER_A: dict[str, list[str]] = {}  # Tier A rules without a script (none at present)
+ARCH_GATES = (
+    ("arch_7_1_l1_anchor_parity", arch_gates.check_arch_7_1_l1_anchor_parity,
+     "no concept node lists conditions"),
+    ("arch_7_2_signature_parity", arch_gates.check_arch_7_2_signature_parity,
+     "no statement above L3 cites a numbered item"),
+)
 CONFORMANCE_GATES_HINT = (
     "full C1-C6 gates are evaluated by --certify or scripts/verify_port_conformance.py"
 )
@@ -81,6 +81,10 @@ class Report:
     def add(self, name: str, errors: list[str], skipped: str | None = None) -> None:
         status = "SKIP" if skipped else ("FAIL" if errors else "PASS")
         self.results.append((name, status, errors or ([skipped] if skipped else [])))
+
+    def add_examined(self, name: str, errors: list[str], examined: int, empty: str) -> None:
+        """Record a check that is SKIP, never PASS, when it had nothing to examine."""
+        self.add(name, errors[:40], skipped=None if (errors or examined) else empty)
 
     def add_warn(self, name: str, warnings: list[str], strict: bool = False) -> None:
         if not warnings:
@@ -396,11 +400,7 @@ def check_inline_citations(root: Path, pm: PageMap) -> list[str]:
 # Graph, links, fragments, reachability, artifact_refs, issues
 # --------------------------------------------------------------------------
 
-def github_slug(heading: str) -> str:
-    s = re.sub(r"`([^`]*)`", r"\1", heading.strip())
-    s = re.sub(r"[*_~]", "", s).lower()
-    s = re.sub(r"[^\w\s-]", "", s, flags=re.UNICODE)
-    return re.sub(r"\s", "-", s.strip())
+github_slug = arch_gates.github_slug
 
 
 def headings_of_text(text: str) -> set[str]:
@@ -579,7 +579,8 @@ def run_graph_checks(root: Path, report: Report, pm: PageMap | None) -> None:
         report.add("schema", schema_errs)
         report.add("graph", [], skipped="ontology/concept_graph.json not yet created")
         report.add("artifact_refs", [], skipped="no concept graph")
-        report.add("arch_7_1_conditions_parity", [], skipped="no concept graph")
+        for name in ("arch_7_1_conditions_parity",) + tuple(gate[0] for gate in ARCH_GATES):
+            report.add(name, [], skipped="no concept graph")
         report.add("concept_citations", [], skipped="no concept graph")
         return
     graph, err = load_json(graph_path)
@@ -593,6 +594,8 @@ def run_graph_checks(root: Path, report: Report, pm: PageMap | None) -> None:
     report.add("artifact_refs", check_artifact_refs(root, concepts))
     parity_errs, _ = parity.graph_conditions_errors(concepts)
     report.add("arch_7_1_conditions_parity", parity_errs + parity.conditions_home_errors(concepts))
+    for name, gate, empty in ARCH_GATES:
+        report.add_examined(name, *gate(root, graph), empty)
     if pm is None:
         report.add("concept_citations", [], skipped="no page map")
         return

@@ -137,7 +137,8 @@ atomic inclusions `β ⊇ {π}`** [PPA Table 5.8, p. 310] (book p. 310; PDF p. 3
 Note: in `if` line 2 above, `θ₃ = 𝒰_CFA(θ₂(θ₁ τ̂₀), bool)`; `Examples 5.18–5.19` trace `𝒲_CFA` (`Example 5.19`
 reverses `[β' ↦ β]` orientation up to renaming, `F-U5a-06`, `G-U5a-22`)
 [PPA Example 5.18, p. 311] (book p. 311; PDF p. 328) [PPA Example 5.19, p. 311] (book p. 311; PDF p. 328).
-Every `θ_i` computed *after* a recursive call returning `C_j` MUST be applied to `C_j` (`G-U5a-18`).
+- **Substitution threading (`G-U5a-18`)**: every `θ_i` computed *after* a recursive call returning `C_j` MUST be
+  applied to `C_j` [PPA Table 5.8, p. 310] (book p. 310; PDF p. 327).
 
 ## 3. Syntactic Soundness, Completeness, and Closed-Form theta_A (Sections 5.3.3-5.3.4)
 

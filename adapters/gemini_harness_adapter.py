@@ -60,6 +60,7 @@ def compile_port(
     skills_dir: str = "skills-local",
     memory_dir: str = "memory/topics",
     force: bool = False,
+    manifest_name: str = common.DEFAULT_MANIFEST_NAME,
 ) -> dict[str, object]:
     """Compile canonical core into Gemini CLI skills-local/ and memory/topics/."""
     repo_root = repo_root.resolve()
@@ -69,7 +70,7 @@ def compile_port(
     rel_skills = skills_abs.relative_to(port_root)
     rel_memory = memory_abs.relative_to(port_root)
 
-    plan = port_plan.PortPlan(port_root, TARGET, force=force)
+    plan = port_plan.PortPlan(port_root, TARGET, force=force, manifest_name=manifest_name)
     uhome = common.resolve_user_home(port_root, user_home)
     surfaces = common.snapshot_always_on_surfaces(port_root, TARGET, extra_surfaces, uhome)
     pre_existing = common.scan_preexisting_discovery(
@@ -135,6 +136,7 @@ def _cli(argv: list[str]) -> int:
         skills_dir=args.skills_dir,
         memory_dir=args.memory_dir,
         force=args.force,
+        manifest_name=args.manifest_name,
     )
     return 0
 

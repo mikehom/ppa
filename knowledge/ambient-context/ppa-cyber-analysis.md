@@ -75,12 +75,12 @@ to the chapter skills:
 
 ## Where to Go Next
 
-When the `skills/` channel is installed, formal security references and workflows live under
-`ppa-cyber-vulnerability-analysis`:
+When the skill channel is installed, formal security references and workflows live in skill
+`ppa-cyber-vulnerability-analysis` (named portably, independent of install layout):
 
 - Taint polarity, context-sensitive sanitizers & security types:
-  `skills/ppa-cyber-vulnerability-analysis/references/taint-sanitization-and-information-flow.md`
+  skill `ppa-cyber-vulnerability-analysis`, reference `taint-sanitization-and-information-flow.md`
 - Heap shape strong updates, lexical regions & numeric bounds:
-  `skills/ppa-cyber-vulnerability-analysis/references/memory-heap-and-numeric-bounds-safety.md`
+  skill `ppa-cyber-vulnerability-analysis`, reference `memory-heap-and-numeric-bounds-safety.md`
 - Open-world call graphs, exception/concurrent protocols & solver DoS resilience:
-  `skills/ppa-cyber-vulnerability-analysis/references/callgraph-cfi-concurrency-and-scanner-dos.md`
+  skill `ppa-cyber-vulnerability-analysis`, reference `callgraph-cfi-concurrency-and-scanner-dos.md`

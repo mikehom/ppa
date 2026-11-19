@@ -5,10 +5,16 @@
 #   and only then written, so a foreign file is never overwritten unless the
 #   operator passes --force; targets without an on-demand ambient channel get
 #   the orientation files as router-linked references (ARCHITECTURE 4.4).
+# @decision DEC-PPA-011: Ownership is read from the manifest of the given name
+#   only, and a recompilation unlinks the regular files that manifest listed
+#   and the new plan no longer emits; shared operator files, paths another
+#   manifest in the root lists, symlinks, and anything outside the port root
+#   are never removed.
 """Plan-then-commit write protection and shared mapping steps for the adapters."""
 from __future__ import annotations
 
 import json
+import logging
 import re
 from pathlib import Path
 
@@ -22,6 +28,7 @@ ROLE_KEYS = {
     "merged": "merged_files",
 }
 FALLBACK_HEADING = "## Orientation Guides (R1 Fallback)"
+SHARED_NEVER_PRUNED = frozenset({"wiki_config.json", "pages/index.md", "pages/log.md", "AGENTS.md"})
 AMBIENT_REF_LINK_RE = re.compile(
     r"(?<!!)\[([^\]]*)\]\(\.\./skills/(ppa-[a-z0-9-]+/references/[^)\s]+)\)"
 )
@@ -30,17 +37,22 @@ AMBIENT_REF_LINK_RE = re.compile(
 class PortPlan:
     """In-memory set of port outputs, committed only after the collision guard passes."""
 
-    def __init__(self, port_root: Path, target: str, force: bool = False) -> None:
+    def __init__(
+        self, port_root: Path, target: str, force: bool = False,
+        manifest_name: str = common.DEFAULT_MANIFEST_NAME,
+    ) -> None:
         self.port_root = port_root
         self.target = target
         self.force = force
-        loaded = common.load_prior_manifest(port_root)
+        self.manifest_name = common.validate_manifest_name(manifest_name)
+        loaded = common.load_prior_manifest(port_root, self.manifest_name)
         # A manifest written for another target confers no ownership and no history.
         self.prior = loaded if (loaded is not None and loaded.get("target") == target) else None
         self._prior_owned: set[str] = (
-            common.manifest_owned_paths(port_root, self.prior) if self.prior else set()
+            common.manifest_owned_paths(port_root, self.prior, self.manifest_name) if self.prior else set()
         )
         self._outputs: dict[str, tuple[str, bytes]] = {}
+        self.pruned: list[str] = []
 
     def owns(self, rel: str) -> bool:
         """True when the previous manifest in this port root lists rel as its output."""
@@ -95,16 +107,67 @@ class PortPlan:
                 foreign.append(rel)
         return foreign, fatal
 
+    def _claimed_by_other_manifests(self) -> set[str]:
+        """Paths listed by any other port manifest in the root (another target's outputs)."""
+        claimed: set[str] = set()
+        for path in sorted(self.port_root.glob("*.json")) if self.port_root.is_dir() else []:
+            if path.name == self.manifest_name or path.is_symlink():
+                continue
+            try:
+                doc = json.loads(common.read_utf8_strict(path))
+            except (json.JSONDecodeError, common.AdapterError) as exc:
+                logging.getLogger("ppa_adapters").debug("%s is not a port manifest: %s", path.name, exc)
+                continue
+            if isinstance(doc, dict) and isinstance(doc.get("mappings"), list):
+                claimed |= common.manifest_listed_paths(doc, path.name)
+        return claimed
+
+    def stale_paths(self) -> list[str]:
+        """Paths the previous manifest listed that this plan no longer emits.
+
+        Never stale: shared operator files (merged files of either build,
+        SHARED_NEVER_PRUNED), the manifest itself, and any path that another
+        manifest in the same root lists.
+        """
+        if not self.prior:
+            return []
+        listed = {p for p in common.manifest_listed_paths(self.prior, self.manifest_name)
+                  if common.is_safe_rel(p)}
+        merged = self.prior.get("merged_files")
+        keep = set(self._outputs) | SHARED_NEVER_PRUNED | {self.manifest_name}
+        keep |= {str(p) for p in (merged if isinstance(merged, list) else [])}
+        return sorted(listed - keep - self._claimed_by_other_manifests())
+
+    def _prune_stale(self, stale: list[str]) -> None:
+        """Unlink stale regular files inside the port root, then their emptied directories."""
+        root = self.port_root.resolve()
+        log = logging.getLogger("ppa_adapters")
+        for rel in stale:
+            dest = self.port_root / rel
+            parents = [self.port_root.joinpath(*rel.split("/")[:i]) for i in range(1, rel.count("/") + 1)]
+            if dest.is_symlink() or any(p.is_symlink() for p in parents) or root not in dest.resolve().parents:
+                log.warning("stale output %s is a symlink or leaves the port root; left in place", rel)
+                continue
+            if not dest.is_file():
+                continue
+            dest.unlink()
+            self.pruned.append(rel)
+            for parent in reversed(parents):
+                if any(parent.iterdir()):
+                    break
+                parent.rmdir()
+
     def commit(self, manifest: dict[str, object]) -> Path:
-        """Record ownership lists in the manifest, run the guard, then write everything."""
+        """Record ownership lists, run the guard, write everything, then prune stale outputs."""
         for role, key in ROLE_KEYS.items():
             listed = set(self.paths(role))
             if role == "manifest":
-                listed.add("port_manifest.json")
+                listed.add(self.manifest_name)
             if listed or role != "bundle":
                 manifest[key] = sorted(listed)
+        stale = self.stale_paths()
         self.add(
-            "port_manifest.json",
+            self.manifest_name,
             json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n",
             role="manifest",
         )
@@ -122,7 +185,8 @@ class PortPlan:
             dest = self.port_root / rel
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(data)
-        return self.port_root / "port_manifest.json"
+        self._prune_stale(stale)
+        return self.port_root / self.manifest_name
 
 
 def plan_ontology_and_corpus(

@@ -565,15 +565,17 @@ class ValidatorTests(unittest.TestCase):
     def test_repository_passes(self):
         proc = run_cli("validate_ppa_knowledge.py")
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        for check_name in ("schema", "artifact_refs", "links", "issues", "inline_citations"):
+        for check_name in ("schema", "artifact_refs", "links", "issues", "inline_citations",
+                           "arch_7_1_l1_anchor_parity", "arch_7_2_signature_parity"):
             self.assertIn(f"[PASS] {check_name}", proc.stdout)
-        self.assertIn("[NOT_IMPLEMENTED] arch_7_2_signature_parity", proc.stdout)
+        self.assertNotIn("NOT_IMPLEMENTED", proc.stdout)
 
     def test_schema_inverses_and_corresponds_to_basis(self):
         schema = json.loads((ROOT / "ontology/concept_graph.schema.json").read_text())
         self.assertEqual(vpk.check_schema_file(schema), [])
         g = sample_graph()
-        self.assertFalse(self.check(g).failed)
+        # A root without notation index and L3 shards fails signature parity, and nothing else.
+        self.assertEqual(set(self.failures(self.check(g))), {"arch_7_2_signature_parity"})
         del g["concepts"][0]["related_edges"][0]["basis"]
         fails = self.failures(self.check(g))
         self.assertTrue(any("corresponds_to requires basis" in e for e in fails["graph"]), fails)

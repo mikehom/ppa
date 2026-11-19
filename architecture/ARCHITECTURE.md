@@ -331,14 +331,20 @@ Tier B and is reported as not implemented, never as passed.
   Lemma 2.32 (a distributive framework, and `path∘(ℓ) ≠ ∅` for every label of `E` and `F`); stating
   that iteration terminates without the Ascending Chain Condition or a widening operator; describing
   an answer as "the values" where the source insists on "among the values".
-- **Tier A.** Each node lists its side conditions as discrete `conditions` entries; every artifact
-  section in `artifact_refs` links to the node's `L1` anchor, and that anchor carries a conditions
-  list with as many entries. Whether each entry preserves the source's wording is Tier B.
-  *In force:* the discrete-entry clause (`arch_7_1_conditions_parity` in
+- **Tier A.** Each node lists its side conditions as discrete `conditions` entries; the node's
+  `artifact_refs` name at least one `L1` anchor
+  (`knowledge/skills/<skill>/references/<file>.md#<heading>`), and every such anchor carries at
+  least as many discrete entries as the node lists conditions. Whether each entry preserves the
+  source's wording, and whether an `L0` or `L2` section that restates the node points its reader at
+  that anchor, is Tier B: the graph's `artifact_refs`, not an in-text link, is the checked pairing.
+  *In force, in every validator mode:* the discrete-entry clause (`arch_7_1_conditions_parity` in
   `scripts/validate_ppa_knowledge.py`: every entry non-empty and unique, every `corresponds_to`
-  basis complete, every node with conditions anchored in a skill artifact) and, for compiled concept
-  cards, exact entry-count parity (`CONFORMANCE_SPEC.md` `C1.8`). *Not in force:* the anchor clause;
-  `L1` anchors carry no delimited conditions list, so the validator prints it as `NOT_IMPLEMENTED`.
+  basis complete, every node with conditions anchored in a skill artifact); the anchor clause
+  (`arch_7_1_l1_anchor_parity`, `scripts/ppa_arch_gates.py`: an anchor's section runs from its
+  heading to the next heading of the same or a higher level, its discrete entries are the list
+  items, numbered items, and table data rows outside code fences, and a node with conditions and
+  no resolving `L1` anchor fails); and, for compiled concept cards, exact entry-count parity
+  (`CONFORMANCE_SPEC.md` `C1.8`).
 - **Tier B.** Reviewer reads the `L3` entry and the restatement side by side and names the lost clause.
 
 ### 7.2 `SIGNATURE_DISTORTION`
@@ -351,10 +357,25 @@ Tier B and is reported as not implemented, never as passed.
   or parameters. Lemma 6.12 bounds the Round Robin Algorithm by `d(G_S, T) + 3` iterations only for
   instances of a Bit Vector Framework iterated in the reverse postorder of a depth-first spanning
   forest `T`: one initial pass, `d + 1` propagating passes, and one pass that detects stability.
-- **Tier A.** Every signature and numeric bound above `L3` is compared with the entry in
-  `ontology/notation_index.md` or the cited `L3` anchor; literal mismatch fails.
-  *Not in force:* no script performs this comparison; the validator prints it as `NOT_IMPLEMENTED`
-  in every mode, certification included, and the rule is covered by Tier B review until it is built.
+- **Tier A.** A statement above `L3` that cites a numbered item is compared with the cited `L3`
+  anchor and with a closed list of signature rules, and `ontology/notation_index.md` is the
+  signature inventory; literal mismatch fails.
+  *In force, in every validator mode* (`arch_7_2_signature_parity`, `scripts/ppa_arch_gates.py`),
+  over `ontology/concept_graph.json` (`formal_summary`, `conditions`),
+  `ontology/cross_paradigm_matrix.md`, `knowledge/ambient-context/`, and every `SKILL.md` and
+  reference: (a) the notation index parses, every row carries a symbol and an index page, and the
+  rows for `∇`, `lfp`, `gfp`, `MFP`, `MOP`, and `Red` state their signature; (b) a biconditional
+  (`iff`, `if and only if`, `⇔`) attributed to a Lemma, Theorem, Proposition, Corollary, or Fact
+  fails when the cited `L3` anchor states an `if ... then` implication and no equivalence; (c) the
+  named rules fail a biconditional over Lemma 2.32, the Lemma 6.12 bound applied to fast
+  distributive frameworks without an `[external ...]` or `[derived]` tag, a strict gain attributed
+  to Lemma 4.45, strict under-approximation or non-membership in `Red` attributed to Lemma 6.4
+  (reductiveness "only upon `W = empty`" must be qualified as certified or proved), positivity of
+  `rec β.φ` attributed to Table 5.18 without `[derived]`, dual widening said to approximate `gfp`
+  from above, and the Exercise 6.14 closure claimed for a fast function without distributivity. A
+  missing notation index or missing `L3` shards is a failure; a core in which no statement cites a
+  numbered item is reported as skipped, never as passed. A signature that no rule names (arity,
+  component order, operand order, a bound not listed above) remains Tier B.
 - **Tier B.** Reviewer re-derives direction and parameter meaning from the rendered page image.
 
 ### 7.3 `SILENT_GOTCHA_TRUNCATION`

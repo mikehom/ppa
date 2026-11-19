@@ -70,6 +70,11 @@ extract((W.c, W.p)):
 For RHS grammar `t ::= x | ⊥ | c | t₁ ⊔ t₂ | t₁ ⊓ t₂ | if t₁ ≠ ⊥ then t₂ | if c ⊑ t₁ then t₂` [PPA Mini Project 6.2, p. 388] (book p. 388; PDF p. 404):
 - **Monotonicity**: Guards `t₁ ≠ ⊥` and `c ⊑ t₁` (with *constant* `c`, implicit `else ⊥`) are upward-closed in `ψ`, so once true during monotone iteration they remain permanently true.
 - **Dynamic Graph Hazard (`G-U6-20`) `[derived]`**: Simplifying `x ⊒ if c ⊑ x₂ then x₁` in-place to `x ⊒ x₁` (or lazily activating edge `x₁ → x` only when `c ⊑ Analysis[x₂]` holds) dynamically inserts cross-node edges into `G_𝒮`, which can **merge distinct SCCs** and invalidate static `rPostorder` / `srPostorder` tables unless orderings are dynamically maintained (or run under order-insensitive deduplicated queues).
+- **Implicit `else ⊥` (`F-U6-02`, `G-U6-05`)**: one-armed `if … then t₂` terms take value `⊥_L` when the guard
+  is false; monotonicity and equivalence with Chapter 3 conditional constraints require it
+  [PPA Table 3.6, p. 174] (book p. 174; PDF p. 192) [PPA Example 6.2, p. 367] (book p. 367; PDF p. 383).
+- **Lazy Activation Bookkeeping `[derived]` (`G-U6-05`)**: when a guard turns true, insert `x ⊒ t₂` into `W` and
+  register it in `infl[x']` for every `x' ∈ FV(t₂)`; otherwise later growth of `t₂` is never propagated.
 
 ### 2.2 Worklist Solver with Widening `∇` (`Exercise 6.13`, `U7`, `G-U6-22`)
 
@@ -90,6 +95,8 @@ if Analysis[x] ⋣ new then
 Monotone `f : L → L` is **fast** iff `f ∘ f ⊑ f ⊔ id` (every idempotent `f ∘ f = f`, including every Bit Vector transfer `f(Y) = (Y ∩ A) ∪ B`, is fast) [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407), [PPA Exercise 6.14, p. 392] (book p. 392; PDF p. 408):
 - Writing `f^⟨n⟩ = (f ⊔ id)^n`, if `f^⟨i_f⟩ = f^⟨i_f + 1⟩`, the **fastness closure** `f̄ = f^⟨i_f⟩` is well-defined (`f^⟨j⟩ = f̄` for all `j ≥ i_f`), idempotent, fast, and satisfies `f̄ ⊒ f ⊔ id` (with **`f̄ = f ⊔ id`** whenever `f` is fast and distributive!).
 - For distributive `f` and simple-loop functional `F(g) = id ⊔ (g ∘ f)`, `F^{n+1}(⊥) = (f ⊔ id)^n = ⨆_{j=0}^n f^j`, hence **`lfp(F) = f̄`** — solving simple reducible loops in closed form without fixed-point iteration (`G-U6-23`).
+- **Source Typo (`F-U6-09`)**: `p. 391` prints *"the the fastness closure"* (duplicated word); the definition is
+  unaffected [PPA Exercise 6.14, p. 391] (book p. 391; PDF p. 407).
 
 ---
 

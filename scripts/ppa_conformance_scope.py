@@ -4,6 +4,9 @@
 #   never over the whole port root, so a port installed in a real project root
 #   is judged on its own files; checks that need a compiled port report N/A in
 #   canonical-only mode instead of a self-comparison PASS.
+# @decision DEC-PPA-011: The manifest file name is part of the context, so a
+#   port that shares its root with other targets is certified from its own
+#   manifest and reports next to it under a name derived from that manifest.
 """Check records, canonical-only scoping, and manifest-owned port file resolution."""
 from __future__ import annotations
 
@@ -17,6 +20,7 @@ PORT_ONLY_CHECKS = frozenset({
 })
 NA_REASON = "port-only check (requires compiled target port)"
 PASSING_STATUSES = frozenset({"PASS", "N/A"})
+DEFAULT_REPORT_NAME = "conformance_report.json"
 
 
 @dataclass
@@ -64,6 +68,7 @@ class ConformanceContext:
     merged_files: list[str] = field(default_factory=list)
     symlink_errors: list[str] = field(default_factory=list)
     path_errors: list[str] = field(default_factory=list)
+    manifest_name: str = common.DEFAULT_MANIFEST_NAME
 
 
 def make_check(
@@ -99,22 +104,38 @@ def _symlinked_component(port_root: Path, rel: str) -> str | None:
     return None
 
 
+def report_name_for(manifest_name: str) -> str:
+    """Default report basename: ``port_manifest<x>.json`` -> ``conformance_report<x>.json``."""
+    if manifest_name == common.DEFAULT_MANIFEST_NAME:
+        return DEFAULT_REPORT_NAME
+    stem = manifest_name[:-len(".json")] if manifest_name.endswith(".json") else manifest_name
+    suffix = stem[len("port_manifest"):] if stem.startswith("port_manifest") else f"_{stem}"
+    return f"conformance_report{suffix}.json"
+
+
+def resolve_manifest_path(port_root: Path, manifest: Path | None) -> Path:
+    """A bare file name is read from the port root; any other value is a path."""
+    if manifest is None:
+        return port_root / common.DEFAULT_MANIFEST_NAME
+    return port_root / manifest.name if manifest.name == str(manifest) else manifest.resolve()
+
+
 def resolve_owned_files(
-    port_root: Path, manifest: dict[str, object]
+    port_root: Path, manifest: dict[str, object], manifest_name: str = common.DEFAULT_MANIFEST_NAME
 ) -> tuple[list[Path], list[str], list[str]]:
     """Return (owned regular files, symlink findings, unsafe-path findings).
 
     Owned paths are the manifest's mapping targets, extra_units, index_files,
-    manifest_files, notebooklm_bundle, port_manifest.json, and every file under
-    corpus_root. Anything else in the port root is foreign and is not read.
+    manifest_files, notebooklm_bundle, the manifest file itself, and every file
+    under corpus_root. Anything else in the port root is foreign and is not read.
     """
     files: list[Path] = []
     symlinks: list[str] = []
     unsafe: list[str] = []
-    listed = common.manifest_listed_paths(manifest)
+    listed = common.manifest_listed_paths(manifest, manifest_name)
     for rel in sorted(p for p in listed if not common.is_safe_rel(p)):
-        unsafe.append(f"port_manifest.json:0 ({rel!r} is not a relative path inside the port root)")
-    for rel in sorted(common.manifest_owned_paths(port_root, manifest)):
+        unsafe.append(f"{manifest_name}:0 ({rel!r} is not a relative path inside the port root)")
+    for rel in sorted(common.manifest_owned_paths(port_root, manifest, manifest_name)):
         link = _symlinked_component(port_root, rel)
         if link is not None:
             symlinks.append(f"{rel}:0 (symlink at {link})")

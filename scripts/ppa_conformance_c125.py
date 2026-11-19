@@ -3,6 +3,9 @@
 # @decision DEC-PPA-009: Deterministic evaluators for CONFORMANCE_SPEC.md gates
 #   C5 (hygiene & build determinism) and C1 (concept, citation & inventory
 #   parity), scoped to the files the port manifest owns.
+# @decision DEC-PPA-011: C1.8 ranks exact line conservation, unapproved lines,
+#   and bounded-block integrity as separate failure codes; C5.7 rebuilds under
+#   the port's own manifest name and names both causes of a rebuild difference.
 """Gate evaluators C5 and C1 for scripts/verify_port_conformance.py."""
 from __future__ import annotations
 
@@ -208,11 +211,13 @@ def _check_c5_model_conditionals(ctx: ConformanceContext) -> tuple[list[str], in
     return errs, len(candidates)
 
 
-def _tree_digests(root: Path, with_merged: bool = False) -> tuple[dict[str, str], set[str]]:
+def _tree_digests(
+    root: Path, with_merged: bool = False, manifest_name: str = common.DEFAULT_MANIFEST_NAME
+) -> tuple[dict[str, str], set[str]]:
     """Digests of the files a port root's own manifest owns, plus its merged-file set."""
-    doc, err = vpk.load_json(root / "port_manifest.json")
+    doc, err = vpk.load_json(root / manifest_name)
     manifest = doc if (not err and isinstance(doc, dict)) else {}
-    files, _, _ = resolve_owned_files(root, manifest)
+    files, _, _ = resolve_owned_files(root, manifest, manifest_name)
     merged = set(merged_paths(manifest))
     if with_merged:
         files = files + [root / rel for rel in sorted(merged) if (root / rel).is_file()]
@@ -241,23 +246,25 @@ def _rebuild_and_compare(ctx: ConformanceContext, mod) -> CheckOutcome:
     try:
         r_a, r_b, u_h = tmp_dir / "a", tmp_dir / "b", tmp_dir / "uhome"
         u_h.mkdir(parents=True, exist_ok=True)
-        rev = str(ctx.manifest.get("canonical_revision", "rev"))
+        rev, name = str(ctx.manifest.get("canonical_revision", "rev")), ctx.manifest_name
+        kwargs.update(canonical_revision=rev, user_home=str(u_h), manifest_name=name)
         try:
-            mod.compile_port(ctx.core_root, r_a, canonical_revision=rev, user_home=str(u_h), **kwargs)
-            mod.compile_port(ctx.core_root, r_b, canonical_revision=rev, user_home=str(u_h), **kwargs)
+            mod.compile_port(ctx.core_root, r_a, **kwargs)
+            mod.compile_port(ctx.core_root, r_b, **kwargs)
         except common.AdapterError as exc:
             return make_check("C5.7", len(ctx.port_files), [f"port_manifest.json:0 reference rebuild failed: {exc}"],
                               "C5_NONDETERMINISTIC_BUILD")
-        d_a, merged_a = _tree_digests(r_a, with_merged=True)
-        d_b, _ = _tree_digests(r_b, with_merged=True)
+        d_a, merged_a = _tree_digests(r_a, True, name)
+        d_b, _ = _tree_digests(r_b, True, name)
         errs = _digest_diff(d_a, d_b, set(), "two reference builds differ")
-        d_a_owned, _ = _tree_digests(r_a)
+        d_a_owned, _ = _tree_digests(r_a, False, name)
         d_port = {
             p.relative_to(ctx.port_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in list_port_files(ctx)
         }
-        skip = {"port_manifest.json"} | merged_a | set(ctx.merged_files)
-        errs += _digest_diff(d_a_owned, d_port, skip, "port differs from a fresh reference build")
+        skip = {name} | merged_a | set(ctx.merged_files)
+        errs += _digest_diff(d_a_owned, d_port, skip,
+                             "port differs from clean rebuild (post-build edit or nondeterministic adapter)")
         return make_check("C5.7", max(len(d_a), len(d_port)), errs, "C5_NONDETERMINISTIC_BUILD")
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
@@ -271,7 +278,7 @@ def _check_c5_7_determinism(ctx: ConformanceContext) -> CheckOutcome:
             p.relative_to(ctx.port_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in list_port_files(ctx)
         }
-        d2, merged2 = _tree_digests(ctx.port_second)
+        d2, merged2 = _tree_digests(ctx.port_second, False, ctx.manifest_name)
         errs = _digest_diff(d1, d2, set(ctx.merged_files) | merged2, "the two builds differ")
         return make_check("C5.7", max(len(d1), len(d2)), errs, "C5_NONDETERMINISTIC_BUILD")
     target = str(ctx.manifest.get("target", ""))
@@ -431,14 +438,15 @@ def _read_port_units(
 
 def _check_c1_8_transforming(
     ctx: ConformanceContext, mappings: list[dict], served: dict[str, str]
-) -> tuple[list[str], list[str], int]:
-    """C1.8 on transforming mappings: (multiset findings, lost-line findings, mappings examined)."""
+) -> tuple[list[str], list[str], list[str], int]:
+    """C1.8 on transforming mappings: (multiset, lost-line, injected-line findings, mappings examined)."""
     known_ids = {
         str(n.get("id")) for n in (ctx.core_graph or {}).get("concepts", [])
         if isinstance(n, dict) and n.get("id")
     }
     multiset_errs: list[str] = []
     loss_errs: list[str] = []
+    inject_errs: list[str] = []
     examined = 0
     for m in mappings:
         kind = str(m.get("kind", ""))
@@ -465,8 +473,11 @@ def _check_c1_8_transforming(
             p_id.update(uid)
         if c_n8 != p_n8 or c_id != p_id:
             multiset_errs.append(f"{c_rel}:1")
-        loss_errs.extend(parity.containment_errors(c_rel, c_txt, texts))
-    return multiset_errs, loss_errs, examined
+        lost, injected = parity.transforming_errors(
+            c_rel, c_txt, texts, parity.scaffold_allowlist(ctx.core_root, c_rel, c_txt))
+        loss_errs.extend(lost)
+        inject_errs.extend(injected)
+    return multiset_errs, loss_errs, inject_errs, examined
 
 
 def _check_c1_8_cards(ctx: ConformanceContext, served: dict[str, str]) -> tuple[list[str], int]:
@@ -495,19 +506,22 @@ def _check_c1_8_cards(ctx: ConformanceContext, served: dict[str, str]) -> tuple[
 
 
 def _check_c1_8(ctx: ConformanceContext, mappings: list[dict]) -> CheckOutcome:
-    """C1.8: citation multisets, body-line containment, and discrete-conditions parity."""
+    """C1.8: citation multisets, exact line conservation, bounded blocks, conditions parity."""
     graph_nodes = (ctx.port_graph or {}).get("concepts", [])
     graph_errs, n_graph = parity.graph_conditions_errors(graph_nodes if isinstance(graph_nodes, list) else [])
     if ctx.canonical_only:
         return make_check("C1.8", n_graph, graph_errs, "C1_CONDITIONS_PARITY")
     served = _load_served_units(ctx)
-    multiset_errs, loss_errs, n_trans = _check_c1_8_transforming(ctx, mappings, served)
+    multiset_errs, loss_errs, inject_errs, n_trans = _check_c1_8_transforming(ctx, mappings, served)
     card_errs, n_cards = _check_c1_8_cards(ctx, served)
-    examined = n_trans + n_cards + n_graph
-    if multiset_errs:
-        return make_check("C1.8", examined, multiset_errs + loss_errs + card_errs, "C1_CITATION_MULTISET")
-    if loss_errs:
-        return make_check("C1.8", examined, loss_errs + card_errs, "C1_TRANSFORM_CONTENT_LOSS")
+    block_errs, n_blocks = parity.bounded_block_errors(ctx.port_root, ctx.manifest, common.bounded_block_record)
+    examined = n_trans + n_cards + n_graph + n_blocks
+    ranked = [("C1_CITATION_MULTISET", multiset_errs), ("C1_TRANSFORM_CONTENT_LOSS", loss_errs),
+              ("C1_TRANSFORM_UNAPPROVED_LINE", inject_errs), ("C1_BOUNDED_BLOCK_TAMPERED", block_errs)]
+    for idx, (code, errs) in enumerate(ranked):
+        if errs:
+            later = [e for _, more in ranked[idx + 1:] for e in more]
+            return make_check("C1.8", examined, errs + later + card_errs, code)
     return make_check("C1.8", examined, card_errs + graph_errs, "C1_CONDITIONS_PARITY")
 
 

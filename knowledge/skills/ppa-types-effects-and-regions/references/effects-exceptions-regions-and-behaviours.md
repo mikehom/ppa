@@ -191,6 +191,15 @@ Table 5.15:  [seq]   CP, PP[p : E[e₁]] ⇒ CP, PP[p : E[e₂]]                
              [comm]  CP, PP[p₁ : E₁[send v on ch]][p₂ : E₂[receive ch]] ⇒ CP, PP[p₁ : E₁[()]][p₂ : E₂[v]]  (p₁ ≠ p₂)
 ```
 
+- **Capture-free contexts**: the hole of `E` never occurs in the scope of a bound variable, so `E[e]` needs no
+  capture-avoiding substitution or environment [PPA §5.5.1, p. 342] (book p. 342; PDF p. 359).
+- **Synchronous rendezvous**: `[comm]` fires only between distinct processes `p₁ ≠ p₂`
+  [PPA Table 5.15, p. 343] (book p. 343; PDF p. 360).
+- **Small-step, not big-step**: `Tables 5.14–5.15` replace the big-step Natural Semantics of `§§5.1–5.4` with
+  one-step reductions lifted through evaluation contexts rather than inference rules
+  [PPA §5.5.1, p. 341] (book p. 341; PDF p. 358); `[derived]` this gives meaning to the never-returning `h d`
+  server loop of `Example 5.34` [PPA Example 5.34, p. 340] (book p. 340; PDF p. 357).
+
 Over mutually recursive `τ̂ ∈ Type_CA ::= α | bool | int | unit | τ̂₁ →^φ τ̂₂ | τ̂ chan r` and
 `φ ∈ Ann_CA ::= β | Λ | φ₁; φ₂ | φ₁ + φ₂ | rec β.φ | τ̂ chan r | spawn φ | r!τ̂ | r?τ̂` (`r ∈ Reg_CA ::= {π} | ϱ | r₁∪r₂ | ∅`),
 `Tables 5.16–5.17` (`Γ̂ ⊢_CA e : σ̂ & φ`, **zero `Observe` masking**, `G-U5b-18`; `Examples 5.35, 5.37` print bare `C`
@@ -205,12 +214,12 @@ for `{C}`, `F-U5b-08`, `G-U5b-21`) specify [PPA Table 5.16, p. 346] (book p. 346
 [sub]        τ̂ ≤ τ̂' ∧ φ ⊑ φ';   [gen] ζ₁,...,ζ_n ∉ FV(Γ̂) ∪ FV(φ);   [ins] dom(θ) ⊆ {ζ₁,...,ζ_n}
 ```
 
-- **`Example 5.36` & downwards closure (`G-U5b-11`, `G-U5b-12`, `BKL-009`)**: `channel_A : 'a chan {A} & 'a chan {A}`
+- **`Example 5.36` `[gen]` guard (`G-U5b-11`, `BKL-009`)**: `channel_A : 'a chan {A} & 'a chan {A}`
   keeps `'a ∈ FV(φ)`, blocking `[gen]` (`let ch = channel_A in (send 1 on ch; send true on ch)` is rejected —
-  semantic `[external: Wright value restriction]`). Because behaviours contain types (*general effects*, `p. 352`),
-  two-stage inference fails and `[gen]` must exclude the **downwards closure** of `FV(Γ̂) ∪ FV(φ)` wrt constraints
-  [PPA Example 5.36, p. 346] (book p. 346; PDF p. 363)
-  [PPA Chapter 5 Concluding Remarks, p. 352] (book p. 352; PDF p. 369).
+  semantic `[external: Wright value restriction]`) [PPA Example 5.36, p. 346] (book p. 346; PDF p. 363).
+- **Downwards closure under general effects (`G-U5b-12`)**: because behaviours contain types (*general effects*,
+  `p. 352`), two-stage inference fails and `[gen]` must exclude the **downwards closure** of `FV(Γ̂) ∪ FV(φ)` wrt
+  constraints [PPA Chapter 5 Concluding Remarks, p. 352] (book p. 352; PDF p. 369).
 
 ### 4.2 Complete 22-Rule Behaviour Preorder (Table 5.18) and Mini Projects 5.1-5.5
 

@@ -93,9 +93,9 @@ Pure `0-CFA` is **flow-insensitive**, **branch-insensitive**, and **context-inse
 ## 6. Where to Go Next
 
 - Step-by-step implementation, solver, and context-selection procedures (`L2`):
-  `skills/ppa-control-flow-and-constraints/SKILL.md`
+  skill `ppa-control-flow-and-constraints`
 - Formal rules, side conditions, and `U4`/`U5`/`U9` tables (`L1`):
-  `skills/ppa-control-flow-and-constraints/references/cfa-core-and-coinduction.md`,
-  `skills/ppa-control-flow-and-constraints/references/constraint-generation-and-cubic-solver.md`, and
-  `skills/ppa-control-flow-and-constraints/references/polyvariant-kcfa-cpa-and-dfa.md`
+  skill `ppa-control-flow-and-constraints`, reference `cfa-core-and-coinduction.md`,
+  skill `ppa-control-flow-and-constraints`, reference `constraint-generation-and-cubic-solver.md`, and
+  skill `ppa-control-flow-and-constraints`, reference `polyvariant-kcfa-cpa-and-dfa.md`
 - Concept graph (`L3`): query `ppa.cfa.*` in `ontology/concept_graph.json`.

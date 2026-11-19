@@ -26,11 +26,12 @@ def compile_port(
     extra_surfaces: list[str] | None = None,
     user_home: str | None = None,
     force: bool = False,
+    manifest_name: str = common.DEFAULT_MANIFEST_NAME,
 ) -> dict[str, object]:
     """Compile canonical core into <port_root>/.claude/ and emit port_manifest.json."""
     repo_root = repo_root.resolve()
     port_root = port_root.resolve()
-    plan = port_plan.PortPlan(port_root, TARGET, force=force)
+    plan = port_plan.PortPlan(port_root, TARGET, force=force, manifest_name=manifest_name)
     uhome = common.resolve_user_home(port_root, user_home)
     surfaces = common.snapshot_always_on_surfaces(port_root, TARGET, extra_surfaces, uhome)
     pre_existing = common.scan_preexisting_discovery(port_root, TARGET, prior=plan.prior)
@@ -64,6 +65,7 @@ def _cli(argv: list[str]) -> int:
         extra_surfaces=args.always_on_surfaces,
         user_home=args.user_home,
         force=args.force,
+        manifest_name=args.manifest_name,
     )
     return 0
 

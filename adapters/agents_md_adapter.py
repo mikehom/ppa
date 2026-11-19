@@ -82,11 +82,12 @@ def compile_port(
     user_home: str | None = None,
     emit_dev_stub: bool = False,
     force: bool = False,
+    manifest_name: str = common.DEFAULT_MANIFEST_NAME,
 ) -> dict[str, object]:
     """Compile canonical core into <port_root>/.agents/ and emit port_manifest.json."""
     repo_root = repo_root.resolve()
     port_root = port_root.resolve()
-    plan = port_plan.PortPlan(port_root, TARGET, force=force)
+    plan = port_plan.PortPlan(port_root, TARGET, force=force, manifest_name=manifest_name)
     uhome = common.resolve_user_home(port_root, user_home)
     stub, baseline = _resolve_dev_stub(plan, emit_dev_stub)
     surfaces = common.snapshot_always_on_surfaces(
@@ -126,6 +127,7 @@ def _cli(argv: list[str]) -> int:
         user_home=args.user_home,
         emit_dev_stub=args.emit_dev_stub,
         force=args.force,
+        manifest_name=args.manifest_name,
     )
     return 0
 

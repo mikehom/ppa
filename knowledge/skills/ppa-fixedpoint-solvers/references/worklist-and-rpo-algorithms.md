@@ -132,9 +132,14 @@ On `Example 6.1`, `Figure 6.4` / `Example 6.10` converges in Pass 1 and halts af
 
 ### 5.2 Bit-Vector Loop-Connectedness Bound (`Lemma 6.12`, `[92]`) and Scope Preconditions (`G-U6-13..15`)
 
-**`Lemma 6.12`** [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396): *Under the preconditions below, `Table 6.4` halts after at most **`d(G_𝒮, T) + 3`** iterations (`1` Step 1 init + `≤ d + 1` propagation sweeps + `1` final quiescence sweep, `G-U6-14`) and performs **`O((d(G_𝒮, T) + 1) · N)`** assignments (`Example 6.13`: `d = 1 ⇒ ≤ 4` vs `3` actual; note `p. 380` mis-cites `Example 2.8` instead of `Example 2.30` for `O(b²)`, `G-U6-14`)* [PPA Example 6.13, p. 381] (book p. 381; PDF p. 397).
+**`Lemma 6.12`** [PPA Lemma 6.12, p. 380] (book p. 380; PDF p. 396): *Under the preconditions below, `Table 6.4` halts after at most **`d(G_𝒮, T) + 3`** iterations (`1` Step 1 init + `≤ d + 1` propagation sweeps + `1` final quiescence sweep, `G-U6-14`) and performs **`O((d(G_𝒮, T) + 1) · N)`** assignments (`Example 6.13`: `d = 1 ⇒ ≤ 4` vs `3` actual)* [PPA Example 6.13, p. 381] (book p. 381; PDF p. 397).
 
 **Mandatory Side Conditions (`G-U6-13`, `G-U6-15` — Never Quote Unconditionally)**:
 1. **Bit Vector Framework Transfers Only**: `L = 𝒫(D)` (`D` finite, `⊑ ∈ {⊆, ⊇}`) and every RHS has single-variable form `t_i = (x_{j_i} ∩ Y_i^1) ∪ Y_i^2`; `Lemma 6.12` is stated only for this class. Does **not** hold for Constant Propagation, `0-CFA`, or intervals! Any extension to fast distributive (`f ∘ f ⊑ f ⊔ id`) non-Bit-Vector frameworks is `[external: Kam–Ullman rapid frameworks]` `[derived]`, not a book result.
 2. **Exact `rPostorder` of DFSF `T`**: constraints `1..N` are ordered by `rPostorder` from `Table C.1` over a valid handle `H_𝒮`, where `d(G_𝒮, T)` counts maximal back edges on any cycle-free path (`U10`).
 3. **Reducibility vs Irreducibility (`G-U6-15`)**: on `WHILE` programs `d(G_𝒮, T)` is independent of `T` and equals loop nesting depth `d` (`d ≤ 3` Fortran Folk Theorem `[98]`, `O((d + 1) · b)`), whereas on irreducible/`[external: obfuscated]` graphs `d(G_𝒮, T)` depends on `T` and can reach `Θ(N)` [PPA §6.2.1, p. 380] (book p. 380; PDF p. 396), [PPA §6.2.1, p. 381] (book p. 381; PDF p. 397).
+4. **Iteration Accounting (`G-U6-14`)**: the count includes Step 1 initialisation as iteration `1` plus `n - 1`
+   Step 2 `while`-sweeps, so the bound is `d + 3`, not `d + 2` (`Figure 6.4`: `3` iterations = `2` sweeps)
+   [PPA Figure 6.4, p. 379] (book p. 379; PDF p. 395).
+- **Source Erratum (`G-U6-14`, `F-U6-06`)**: `p. 380` cites `Example 2.8` (Very Busy Expressions) for the `O(b²)`
+  Reaching Definitions bound; the intended reference is `Example 2.30` [PPA §6.2.1, p. 380] (book p. 380; PDF p. 396).

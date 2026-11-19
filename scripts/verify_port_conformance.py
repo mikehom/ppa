@@ -6,11 +6,14 @@
 # @decision DEC-PPA-009: Every NON_CONFORMANT verdict names a failing check: the
 #   manifest preconditions are explicit check records, port-only checks are N/A
 #   (not PASS) without a port, and structural obstacles become report entries.
+# @decision DEC-PPA-011: --manifest names the manifest to certify (a bare name
+#   is read from the port root), so each of several ports sharing one root is
+#   certified on its own files and writes its own report.
 """Certify a PPA target harness port (or canonical core) against CONFORMANCE_SPEC.md.
 
 Usage:
     python3 -B scripts/verify_port_conformance.py --core . --port <port_root>
-        [--manifest <port_root>/port_manifest.json] [--report <out.json>]
+        [--manifest <name inside port_root | path>] [--report-out <out.json>]
         [--port-second <second build>] [--user-home <dir>]
     python3 -B scripts/verify_port_conformance.py --core . --canonical-only
 """
@@ -48,6 +51,8 @@ from ppa_conformance_c6 import (  # noqa: E402
 from ppa_conformance_scope import (  # noqa: E402
     PASSING_STATUSES,
     merged_paths,
+    report_name_for,
+    resolve_manifest_path,
     resolve_owned_files,
 )
 import validate_ppa_knowledge as vpk  # noqa: E402
@@ -156,7 +161,8 @@ def _summarize(gates: dict[str, dict[str, object]], manifest_checks: list[dict[s
 
 
 def _structural_failure_report(
-    port_root: Path, report_out: Path | None, code: str, locations: list[str], write_default: bool = True
+    port_root: Path, report_out: Path | None, code: str, locations: list[str],
+    default_name: str | None = "conformance_report.json",
 ) -> tuple[dict[str, object], int]:
     """NON_CONFORMANT report for an obstacle that prevents gate evaluation."""
     gates = {
@@ -187,7 +193,7 @@ def _structural_failure_report(
         "target": "unknown",
         "verdict": "NON_CONFORMANT",
     }
-    dest = report_out or ((port_root / "conformance_report.json") if write_default else None)
+    dest = report_out or ((port_root / default_name) if default_name else None)
     if dest is not None and (port_root.is_dir() or report_out is not None):
         common.write_utf8_lf(dest, json.dumps(report, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
     return report, 1
@@ -239,12 +245,12 @@ def build_context(
     if canonical_only:
         manifest = _synthetic_canonical_manifest(core_root)
     else:
-        mpath = manifest_path.resolve() if manifest_path else (eff_port / "port_manifest.json")
+        mpath = resolve_manifest_path(eff_port, manifest_path)
         loaded, merr = vpk.load_json(mpath) if mpath.is_file() else (None, "missing")
         if merr or not isinstance(loaded, dict):
-            raise StructuralFailure("MANIFEST_MISSING", ["port_manifest.json:0"])
+            raise StructuralFailure("MANIFEST_MISSING", [f"{mpath.name}:0"])
         manifest = loaded
-        port_files, symlink_errs, path_errs = resolve_owned_files(eff_port, manifest)
+        port_files, symlink_errs, path_errs = resolve_owned_files(eff_port, manifest, mpath.name)
     dev_ids, dev_stub, devs_legal = _parse_deviations(manifest.get("deviations", []))
     if "DEV-NOFILES" in dev_ids and not canonical_only and _dev_nofiles_has_ondisk_trees(eff_port, port_files):
         devs_legal = False
@@ -271,6 +277,7 @@ def build_context(
         merged_files=[] if canonical_only else merged_paths(manifest),
         symlink_errors=symlink_errs,
         path_errors=path_errs,
+        manifest_name=common.DEFAULT_MANIFEST_NAME if canonical_only else mpath.name,
     )
     return ctx, devs_legal
 
@@ -312,13 +319,14 @@ def certify(
 ) -> tuple[dict[str, object], int]:
     """Run all 6 conformance gates in §5 order and return (report_dict, exit_code)."""
     eff_port = core_root.resolve() if (canonical_only or not port_root) else port_root.resolve()
+    report_name = None if canonical_only else report_name_for(resolve_manifest_path(eff_port, manifest_path).name)
     try:
         ctx, devs_legal = build_context(
             core_root, port_root, manifest_path, canonical_only, user_home,
             denylist_path, port_second, external_export, scratch_base)
     except StructuralFailure as failure:
         return _structural_failure_report(
-            eff_port, report_path, failure.code, failure.locations, write_default=not canonical_only)
+            eff_port, report_path, failure.code, failure.locations, default_name=report_name)
     manifest = ctx.manifest
     manifest_checks = [] if canonical_only else _manifest_checks(manifest, devs_legal)
     gates_out, gates_ok = _run_gates(ctx)
@@ -338,7 +346,7 @@ def certify(
         "summary": _summarize(gates_out, manifest_checks),
         "verdict": verdict,
     }
-    out_file = report_path or (None if canonical_only else eff_port / "conformance_report.json")
+    out_file = report_path or (eff_port / report_name if report_name else None)
     if out_file is not None:
         common.write_utf8_lf(out_file, json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     return report, code
@@ -377,9 +385,11 @@ def _build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--port", "--port-root", dest="port", default=None,
                     help="compiled port root directory")
     ap.add_argument("--manifest", default=None,
-                    help="explicit path to port_manifest.json")
-    ap.add_argument("--report", default=None,
-                    help="explicit output path for conformance_report.json")
+                    help="manifest to certify: a file name inside --port (default: port_manifest.json) "
+                         "or a path; use the adapter's --manifest-name when ports share one root")
+    ap.add_argument("--report", "--report-out", dest="report", default=None,
+                    help="report output path (default: <port>/conformance_report.json, or "
+                         "conformance_report<x>.json next to a manifest named port_manifest<x>.json)")
     ap.add_argument("--canonical-only", action="store_true",
                     help="run preflight conformance checks on the canonical core alone")
     ap.add_argument("--user-home", default=None,

@@ -335,7 +335,7 @@ class StubAndScopeTests(_FixtureCase):
 
 
 class HonestReportingTests(_FixtureCase):
-    """N/A for port-only checks, vacuous failures, explicit manifest codes, NOT_IMPLEMENTED."""
+    """N/A for port-only checks, vacuous failures, explicit manifest codes, no unperformed Tier A rule."""
 
     def test_canonical_only_reports_44_evaluated_and_11_not_applicable(self) -> None:
         rep, code = vpc.certify(core_root=self.core, canonical_only=True, scratch_base=self.box / "scratch")
@@ -398,20 +398,22 @@ class HonestReportingTests(_FixtureCase):
         _, rep, _ = self.verify(ports[0], "--port-second", str(ports[1]))
         self.assertEqual(_check(rep, "C5.7")["status"], "PASS")
 
-    def test_validator_reports_not_implemented_in_both_modes(self) -> None:
+    def test_validator_runs_every_tier_a_rule_in_both_modes(self) -> None:
         for flags in ((), ("--certify",)):
             with self.subTest(flags=flags):
                 cmd = [sys.executable, "-B", str(SCRIPTS / "validate_ppa_knowledge.py"),
                        "--root", str(self.core), *flags]
                 proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
                 self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-                self.assertIn("[NOT_IMPLEMENTED] arch_7_2_signature_parity", proc.stdout)
-                self.assertIn("[PASS] arch_7_1_conditions_parity", proc.stdout)
+                for name in ("arch_7_1_conditions_parity", "arch_7_1_l1_anchor_parity",
+                             "arch_7_2_signature_parity"):
+                    self.assertIn(f"[PASS] {name}", proc.stdout)
+                self.assertNotIn("NOT_IMPLEMENTED", proc.stdout)
                 self.assertNotIn("deferred_conformance_gates", proc.stdout)
-                self.assertRegex(proc.stdout, r"validate_ppa_knowledge PASS \(\d+ NOT_IMPLEMENTED: ")
+                self.assertTrue(proc.stdout.rstrip().endswith("validate_ppa_knowledge PASS"), proc.stdout)
         self.assertIn("[PASS] conformance_gates_canonical", proc.stdout)
         report = vpk.validate(self.core, certify=True)
-        self.assertIn("arch_7_2_signature_parity", report.not_implemented)
+        self.assertEqual(report.not_implemented, [])
 
 
 class LiveWikiCardTests(unittest.TestCase):

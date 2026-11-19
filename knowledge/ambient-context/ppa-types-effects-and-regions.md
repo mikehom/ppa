@@ -124,14 +124,14 @@ policies to `ppa-cyber-vulnerability-analysis`.
 
 ## Where to Go Next
 
-When the optional `skills/` channel is installed, Chapter 5 procedures and formal specifications live relative to
-the knowledge root:
+When the optional skill channel is installed, Chapter 5 procedures and formal specifications live in these skills
+(named portably, independent of install layout):
 
-- Actionable reconstruction, subtyping, region, and behaviour workflows: skills/ppa-types-effects-and-regions/SKILL.md
+- Actionable reconstruction, subtyping, region, and behaviour workflows: skill `ppa-types-effects-and-regions`
 - Annotated `⊢_UL`/`⊢_CFA`, `UCAI`, Natural Semantics, covariant Moore families (`§§5.1–5.2`):
-  skills/ppa-types-effects-and-regions/references/annotated-types-and-cfa-soundness.md
+  skill `ppa-types-effects-and-regions`, reference `annotated-types-and-cfa-soundness.md`
 - `𝒲_UL`/`𝒲_CFA`, `SType` unification, `θ_A`, polarised subtyping `≤`, canonical `U8` (`§§5.3–5.4`):
-  skills/ppa-types-effects-and-regions/references/inference-unification-and-subtyping.md
+  skill `ppa-types-effects-and-regions`, reference `inference-unification-and-subtyping.md`
 - Side effects, exceptions, stack-based regions (`[175, 176]`, `[external: Tofte–Talpin]`), CML behaviours, `Mini Projects 5.1–5.5` (`§§5.4.1–5.5`):
-  skills/ppa-types-effects-and-regions/references/effects-exceptions-regions-and-behaviours.md
-- Cross-approach master router and Chapter 1 / Appendices A–C: skills/ppa-program-analysis/SKILL.md
+  skill `ppa-types-effects-and-regions`, reference `effects-exceptions-regions-and-behaviours.md`
+- Cross-approach master router and Chapter 1 / Appendices A–C: skill `ppa-program-analysis`

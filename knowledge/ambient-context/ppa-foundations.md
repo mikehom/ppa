@@ -174,18 +174,18 @@ external to the book and should be labelled `[external]`.
 
 ## Where to Go Next
 
-This ambient file is self-contained as an orientation channel. When the optional `skills/` channel
-is also installed, formal details live at plain paths relative to the knowledge root:
+This ambient file is self-contained as an orientation channel. When the optional skill channel
+is also installed, formal details live in these skills (named portably, independent of install layout):
 
-- Router (which approach or skill fits a task): skills/ppa-program-analysis/SKILL.md
+- Router (which approach or skill fits a task): skill `ppa-program-analysis`
 - Chapter 1 formulations side by side, Tables 1.1 to 1.6, source errata:
-  skills/ppa-program-analysis/references/chapter-1-five-formulations.md
+  skill `ppa-program-analysis`, reference `chapter-1-five-formulations.md`
 - Partial orders, complete lattices, fixed points:
-  skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md
+  skill `ppa-program-analysis`, reference `appendix-a-posets-lattices-fixed-points.md`
 - Induction and coinduction:
-  skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md
+  skill `ppa-program-analysis`, reference `appendix-b-induction-and-coinduction.md`
 - Directed graphs, depth-first spanning forests, reverse postorder, loop connectedness:
-  skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md
+  skill `ppa-program-analysis`, reference `appendix-c-graphs-dfsf-and-rpo.md`
 - Specialised skills, one per approach or concern: ppa-dataflow-and-slicing,
   ppa-control-flow-and-constraints, ppa-abstract-interpretation, ppa-types-effects-and-regions,
   ppa-fixedpoint-solvers, ppa-cyber-vulnerability-analysis.

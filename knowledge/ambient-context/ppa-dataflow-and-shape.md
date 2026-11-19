@@ -110,14 +110,14 @@ and adversarial `[external: taint/sanitizer]` security policies to `ppa-cyber-vu
 
 ## Where to Go Next
 
-When the optional `skills/` channel is installed, Chapter 2 procedures and formal specifications live relative to
-the knowledge root:
+When the optional skill channel is installed, Chapter 2 procedures and formal specifications live in these skills
+(named portably, independent of install layout):
 
-- Actionable design & verification workflows: skills/ppa-dataflow-and-slicing/SKILL.md
+- Actionable design & verification workflows: skill `ppa-dataflow-and-slicing`
 - Classical DFA (`AE, RD, VB, LV`), `ud`/`du` chains, Monotone Frameworks, `MFP`/`MOP`:
-  skills/ppa-dataflow-and-slicing/references/intraprocedural-analyses-and-frameworks.md
+  skill `ppa-dataflow-and-slicing`, reference `intraprocedural-analyses-and-frameworks.md`
 - Operational correctness (`§2.2`, `Mini Project 2.2`) & interprocedural context (`§2.5`):
-  skills/ppa-dataflow-and-slicing/references/interprocedural-and-correctness.md
+  skill `ppa-dataflow-and-slicing`, reference `interprocedural-and-correctness.md`
 - Heap pointer semantics, compatible shape graphs, materialisation (`§2.6`):
-  skills/ppa-dataflow-and-slicing/references/shape-analysis.md
-- Cross-approach master router and Chapter 1 / Appendices A–C: skills/ppa-program-analysis/SKILL.md
+  skill `ppa-dataflow-and-slicing`, reference `shape-analysis.md`
+- Cross-approach master router and Chapter 1 / Appendices A–C: skill `ppa-program-analysis`

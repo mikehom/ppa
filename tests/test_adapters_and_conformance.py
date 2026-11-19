@@ -32,6 +32,7 @@ for _p in (str(STAGED_SCRIPTS), str(BASE_SCRIPTS), str(SUITE_ROOT)):
 
 import check_portability_hygiene as hygiene  # noqa: E402
 import issue_ctl  # noqa: E402
+import ppa_arch_gates as arch_gates  # noqa: E402
 import validate_ppa_knowledge as vpk  # noqa: E402
 import verify_port_conformance as vpc  # noqa: E402
 
@@ -123,7 +124,7 @@ def _build_synthetic_concepts(pm_doc: dict) -> list[dict]:
             "altitude": "L1",
             "artifact_refs": [
                 "corpus/shards/RAW_SHARD_01_test.md",
-                "knowledge/skills/ppa-dataflow-and-slicing/references/dfa-core.md",
+                "knowledge/skills/ppa-dataflow-and-slicing/references/dfa-core.md#dfa-core",
             ],
             "citations": dfa_cites,
             "formal_summary": "Monotone framework instance over complete lattice L with ACC (BKL-001).",
@@ -208,7 +209,8 @@ def _write_fixture_skills(core: Path) -> None:
     )
     (dfa_dir / "references" / "dfa-core.md").write_text(
         "# DFA Core\n\nMonotone frameworks (`ppa.dfa.core`) require ACC [PPA §2.3, p. 66] "
-        "(book p. 66; PDF p. 85) and Lemma [PPA Lemma 2.32, p. 80] (G-U1-01, BKL-001).\n",
+        "(book p. 66; PDF p. 85) and Lemma [PPA Lemma 2.32, p. 80] (G-U1-01, BKL-001).\n\n"
+        "- Side condition: reaching definitions run forward with MUST-NOT polarity.\n",
         encoding="utf-8",
     )
 
@@ -302,7 +304,8 @@ def _build_complete_core(core: Path) -> None:
     for arch_md in (REPO_ROOT / "architecture").glob("*.md"):
         shutil.copyfile(arch_md, core / "architecture" / arch_md.name)
     shutil.copyfile(SUITE_ROOT / "README.md", core / "README.md")
-    for sfile in ("check_portability_hygiene.py", "issue_ctl.py", "validate_ppa_knowledge.py", "ppa_artifact_rules.py"):
+    for sfile in ("check_portability_hygiene.py", "issue_ctl.py", "validate_ppa_knowledge.py",
+                  "ppa_artifact_rules.py", "ppa_arch_gates.py"):
         shutil.copyfile(BASE_SCRIPTS / sfile, core / "scripts" / sfile)
     for w7_sfile in ("verify_port_conformance.py", "ppa_conformance_c125.py", "ppa_conformance_c34.py",
                      "ppa_conformance_c6.py", "ppa_conformance_c4.py", "ppa_conformance_scope.py",
@@ -320,10 +323,12 @@ def _build_complete_core(core: Path) -> None:
     (core / "ontology" / "concept_graph.json").write_text(
         json.dumps(graph_doc, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
+    cite = "[PPA Index of Notation, p. 429] (book p. 429; PDF p. 443)"
+    rows = [f"| {rid} | `{sym}` | italic | {meaning} | 1 | {cite} |"
+            for rid, (sym, meaning) in sorted(arch_gates.KEY_SIGNATURES.items())]
     (core / "ontology" / "notation_index.md").write_text(
-        "# Notation Index\n\n- `⊑`: partial order [PPA §A.1, p. 393] (book p. 393; PDF p. 409).\n",
-        encoding="utf-8",
-    )
+        "# Notation Index\n\n| id | symbol | typeface | meaning | book pages | index page |\n"
+        "| :--- | :--- | :--- | :--- | :--- | :--- |\n" + "\n".join(rows) + "\n", encoding="utf-8")
     (core / "ontology" / "altitude_alignment_log.md").write_text(
         "# Altitude Alignment Log\n\n## Refactor movements\n\n"
         "| Refactor ID | Item | Issue |\n| :--- | :--- | :--- |\n"

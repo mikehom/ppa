@@ -106,11 +106,11 @@ and 185-entry Bibliography across book pages 439–452 / PDF pages 452–465 (of
 
 ## Where to Go Next
 
-When the optional `skills/` channel is installed, Chapter 6 procedures and references live at:
+When the optional skill channel is installed, Chapter 6 procedures and references live in (layout-independent):
 
-- Actionable solver workflows & debugging playbooks: skills/ppa-fixedpoint-solvers/SKILL.md
+- Actionable solver workflows & debugging playbooks: skill `ppa-fixedpoint-solvers`
 - Worklist ADTs, RPO `(W.c, W.p)`, Round Robin `Lemma 6.12`:
-  skills/ppa-fixedpoint-solvers/references/worklist-and-rpo-algorithms.md
+  skill `ppa-fixedpoint-solvers`, reference `worklist-and-rpo-algorithms.md`
 - SCC condensation (`Table 6.6`), widening (`Ex 6.13`), fastness closure (`Ex 6.14`), local &
   elimination solvers:
-  skills/ppa-fixedpoint-solvers/references/scc-round-robin-and-advanced-solvers.md
+  skill `ppa-fixedpoint-solvers`, reference `scc-round-robin-and-advanced-solvers.md`

@@ -70,6 +70,8 @@ approximation in general, or needs one of the references below.
 - [appendix-c-graphs-dfsf-and-rpo.md](references/appendix-c-graphs-dfsf-and-rpo.md): directed graphs, regular path
   sets, depth-first spanning forests, reverse postorder, loop connectedness and reducibility
   (Appendix C).
+- [software-architecture-patterns.md](references/software-architecture-patterns.md): `[external]` analyser design
+  patterns (domain interface, solver template, adapters, composites) mapped to the book's formal objects.
 
 ## Sibling Reference Modules (Active)
 

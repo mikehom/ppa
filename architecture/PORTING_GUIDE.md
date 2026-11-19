@@ -35,8 +35,10 @@ Record the verified canonical revision identifier (`canonical_revision`, commit 
 and halt immediately if any of these checks exits non-zero; a canonical core that fails core validation
 cannot produce a `CONFORMANT` port. The canonical-only verifier run evaluates the 44 checks that need
 no port and reports the 11 port-only checks as `N/A` (`CONFORMANCE_SPEC.md` §5 item 6); its clean
-summary is `44/44 evaluated checks PASS, 11 port-only N/A`. The validator prints every Tier A rule it
-does not perform as `NOT_IMPLEMENTED` in both its default and `--certify` modes.
+summary is `44/44 evaluated checks PASS, 11 port-only N/A`. The validator runs the `ARCHITECTURE.md`
+§7.1 anchor check and §7.2 signature check (`arch_7_1_l1_anchor_parity`, `arch_7_2_signature_parity`)
+in both its default and `--certify` modes; a Tier A rule it did not perform would be printed as
+`NOT_IMPLEMENTED`, and none is.
 
 Before creating or modifying any target directory:
 
@@ -130,11 +132,11 @@ port-relative path.
    `C1.8` conservation. The verifier reads the served units from `<port_root>/served_units.json`
    (`CONFORMANCE_SPEC.md` §2.3); a port that owns on-disk pages or skill files cannot declare it.
 
-### 2.2 Write Protection and File Ownership (`--force`)
+### 2.2 Write Protection and File Ownership (`--force`, `--manifest-name`)
 
 1. Every reference adapter plans all outputs in memory and checks them before the first write. An
-   output path that already exists and is not an output of the previous `port_manifest.json` in the
-   same port root (its `mappings` targets, `extra_units`, `index_files`, `manifest_files`,
+   output path that already exists and is not an output of the previous manifest in the same port
+   root (`port_manifest.json`, or the name given by `--manifest-name`; its `mappings` targets, `extra_units`, `index_files`, `manifest_files`,
    `notebooklm_bundle`, and the tree under `corpus_root`) is a foreign file: the adapter exits with
    status 1 and writes nothing. Recompiling the same target into the same root needs no option.
 2. `--force` overwrites foreign files. A discovery name that existed before installation is recorded
@@ -145,8 +147,30 @@ port-relative path.
 4. Merged files are never foreign and never overwritten whole: `wiki_config.json` (non-PPA keys kept),
    `pages/index.md` and `pages/log.md` of a wiki (§3.5), and a surface receiving a declared
    `DEV-STUB`. They are listed in `merged_files`.
-5. Files of an earlier build that the current build no longer emits are left in place; they are
-   outside the manifest and outside certification (`CONFORMANCE_SPEC.md` §2.2).
+5. **Stale outputs are pruned.** After a successful write, the adapter unlinks every regular file
+   that the previous manifest of the same name and target listed (`mappings` targets, `extra_units`,
+   `index_files`, `manifest_files`, `notebooklm_bundle`) and the current build no longer emits, then
+   removes the directories this leaves empty. Never removed: the `merged_files` of either build,
+   `wiki_config.json`, `pages/index.md`, `pages/log.md`, `AGENTS.md`, the manifest itself, a path that
+   another manifest in the same root lists, a path that is or passes through a symbolic link, a path
+   outside the port root, and any file the previous manifest did not list (an operator's file next to
+   a pruned one stays).
+6. **Several targets in one root.** `--manifest-name <name>.json` (a plain file name, default
+   `port_manifest.json`) selects the manifest an adapter reads for ownership and writes on commit.
+   Give each target its own name and ports with disjoint trees coexist, each recompiled and pruned
+   from its own manifest only:
+
+   ```bash
+   python3 -B adapters/claude_code_adapter.py --repo-root . --port-root <root> --manifest-name port_manifest_claude.json
+   python3 -B adapters/agents_md_adapter.py --repo-root . --port-root <root> --manifest-name port_manifest_codex.json
+   python3 -B scripts/verify_port_conformance.py --core . --port <root> --manifest port_manifest_claude.json
+   python3 -B scripts/verify_port_conformance.py --core . --port <root> --manifest port_manifest_codex.json
+   ```
+
+   Each certification reads only its manifest's owned files and writes `conformance_report_claude.json`
+   or `conformance_report_codex.json` beside it (`CONFORMANCE_SPEC.md` §2.2). Compiling a second
+   target under a manifest name another target already uses is refused: that manifest confers no
+   ownership on it, so the existing manifest file is a foreign file.
 
 ---
 
@@ -303,7 +327,10 @@ the operator's own pages.
    `<!-- PPA_KNOWLEDGE_START -->` and `<!-- PPA_KNOWLEDGE_END -->` (links to `pages/ppa_index.md`,
    `pages/ppa_log.md`, and the skill pages in the index; one synchronisation line in the log) and
    leaves every byte outside the block as it was. When a file does not exist the adapter creates it
-   with a one-line heading and the block. Unbalanced or repeated markers abort the run.
+   with a one-line heading and the block. Unbalanced or repeated markers abort the run. The manifest
+   records each block under `bounded_blocks` (line count and SHA-256, `CONFORMANCE_SPEC.md` §2.1):
+   a line added, removed, or changed inside the block fails `C1.8` with `C1_BOUNDED_BLOCK_TAMPERED`,
+   an edit outside the block never changes the verdict, and recompiling restores the block.
 5. **Configuration**: `wiki_config.json` is merged: keys other than `ppa` are preserved, and `ppa`
    records `canonical_revision`, `index` (`pages/ppa_index.md`), `log`, `index_pages`,
    `concept_pages`, `source_pages`, `notebooklm_bundle`, and `bundle_manifest`. Every recorded path
@@ -362,7 +389,8 @@ No reference adapter exists for this target; the port is certified from its own 
 
 ## 4. Deterministic `port_manifest.json` Compilation (`C1`, `C2`, `C5.7`)
 
-Every port MUST emit `<port_root>/port_manifest.json` conforming to `CONFORMANCE_SPEC.md` §2:
+Every port MUST emit `<port_root>/port_manifest.json` (or `<port_root>/<name>.json` when compiled
+with `--manifest-name`, §2.2) conforming to `CONFORMANCE_SPEC.md` §2:
 
 1. **Deterministic serialization (`C5.7`)**: Walk canonical source directories in sorted ASCII order,
    normalize line endings to LF (`N5`), sort JSON keys (`N7`), and exclude wall-clock timestamps,
@@ -456,7 +484,8 @@ the failed checks).
 | `CONFORMANT_WITH_DEVIATIONS` (`2`) | None (`DEV-STUB` / `DEV-NOFILES` only) | Verify every recorded deviation in `conformance_report.json` is operator-approved |
 | `NON_CONFORMANT` (`1`) | `C5_*` (`C5_HARNESS_TERM_IN_CORE`, `C5_ABSOLUTE_PATH`, `C5_HOST_OR_CONTACT`) | Remove leaked paths/tokens from canonical source or adapter config; rebuild |
 | `NON_CONFORMANT` (`1`) | `C5_SYMLINK_FORBIDDEN`, `C5_OWNED_PATH_INVALID` | Replace the symbolic link at the reported owned path with a regular file by recompiling; keep manifest paths relative and inside the port root |
-| `NON_CONFORMANT` (`1`) | `C1_*` (`C1_PACKAGE_INCOMPLETE`, `C1_CITATION_MULTISET`, `C1_TRANSFORM_CONTENT_LOSS`, `C1_CONDITIONS_PARITY`, `C1_GOTCHA_DROPPED`) | Restore missing package files, citations, body lines, condition entries, or ledger pointers in the adapter template |
+| `NON_CONFORMANT` (`1`) | `C1_*` (`C1_PACKAGE_INCOMPLETE`, `C1_CITATION_MULTISET`, `C1_TRANSFORM_CONTENT_LOSS`, `C1_CONDITIONS_PARITY`, `C1_GOTCHA_DROPPED`) | Restore missing package files, citations, body lines, headings, condition entries, or ledger pointers in the adapter template |
+| `NON_CONFORMANT` (`1`) | `C1_TRANSFORM_UNAPPROVED_LINE`, `C1_BOUNDED_BLOCK_TAMPERED` | Recompile: a transforming unit carries a line outside the canonical file and the scaffolding allowlist (`CONFORMANCE_SPEC.md` §3.2), or a bounded block was edited after the build |
 | `NON_CONFORMANT` (`1`) | `C2_*` (`C2_SURFACE_MODIFIED`, `C2_UNDECLARED_DEVIATION`, `C2_INSTALLED_ALWAYS_ON`, `C2_NONZERO_TAX`) | Revert modified `always_on_surfaces`; declare or remove a pointer stub; move `R1` to `R2` or set `alwaysApply: false` |
 | `NON_CONFORMANT` (`1`) | `C3_*`, `C4_*`, `C6_*` | Fix broken rewritten links, unlinked ambient files (`C3_ORPHAN_FILE`), exceeded budgets (`T1` refactor upstream), name collisions, or manifest order |
 | `NON_CONFORMANT` (`1`) | `MANIFEST_MISSING`, `MANIFEST_SPEC_VERSION`, `MANIFEST_DEVIATION_ILLEGAL` | Supply `port_manifest.json` with `spec_version` `"1"` and only the deviations of §2.1 |
