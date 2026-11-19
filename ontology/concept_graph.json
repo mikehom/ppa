@@ -1,0 +1,2938 @@
+{
+ "schema_version": 1,
+ "description": "PPA L0-L3 concept graph. 'altitude' is the concept's home altitude (architecture/ARCHITECTURE.md §3): L0 = routing/orientation discriminators; L1 = stated with all side conditions in an L1 reference; L2 = actionable procedures; L3 = formal detail consulted via corpus shards or ontology indices. Units 0-1: Appendices A-C, Index of Notation, and Chapter 1. Terms marked [external] are outside the book.",
+ "concepts": [
+  {
+   "id": "ppa.order.partial-order",
+   "title": "Partial ordering and partially ordered set",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 393,
+     "pdf_page": 409,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "A partial ordering ⊑ on L is reflexive, transitive and anti-symmetric; (L, ⊑) is a partially ordered set. l₁ ⊏ l₂ means l₁ ⊑ l₂ ∧ l₁ ≠ l₂.",
+   "projections": {
+    "cs_theory": "Base structure for every property space in the book; ⊑ reads 'is more precise than'.",
+    "swe_architecture": "Any merge-able analysis state needs an explicit, documented order before transfer functions are written.",
+    "practical_debugging": "If two states compare both ways but differ, anti-symmetry is violated: the encoding is not canonical.",
+    "cyber": "Security labels and taint states [external] must form a partial order whose direction (may vs must) is stated up front."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chains",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lub-glb",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.lub-glb",
+   "title": "Upper and lower bounds, least upper bound (join) and greatest lower bound (meet)",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 393,
+     "pdf_page": 409,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For Y ⊆ L, ⨆Y is an upper bound below every upper bound and ⨅Y a lower bound above every lower bound; they need not exist and are unique when they exist. l₁ ⊔ l₂ = ⨆{l₁, l₂}, l₁ ⊓ l₂ = ⨅{l₁, l₂}.",
+   "projections": {
+    "cs_theory": "Join combines information at control-flow merges; existence is not automatic in an arbitrary poset.",
+    "swe_architecture": "A merge operator must be the least upper bound, not just some upper bound, or precision is silently lost.",
+    "practical_debugging": "Merges that are not idempotent, commutative and associative indicate the join is not a lub.",
+    "cyber": "Choosing ∪ vs ∩ as the join encodes may vs must semantics; the wrong choice yields false security."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.partial-order",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.complete-lattice",
+   "title": "Complete lattice",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 393,
+     "pdf_page": 409,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 394,
+     "pdf_page": 410,
+     "table_or_fig": "Figure A.1"
+    }
+   ],
+   "formal_summary": "A partially ordered set in which all subsets have least upper bounds and greatest lower bounds; ⊥ = ⨆∅ = ⨅L and ⊤ = ⨅∅ = ⨆L.",
+   "projections": {
+    "cs_theory": "Guarantees that lfp and gfp of monotone maps exist (Proposition A.10).",
+    "swe_architecture": "Property spaces are designed as complete lattices so least solutions exist regardless of program shape.",
+    "practical_debugging": "A missing ⊤ or ⊥ (e.g. no value for 'unknown') breaks completeness and makes the solver's start state ill-defined.",
+    "cyber": "Security lattices need explicit top and bottom elements; partial label sets without bounds cannot be solved soundly."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.lub-glb",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.powerset-lattice",
+     "relation": "has_instance"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lattice-constructions",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.moore-family",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lemma-a2",
+     "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.order.lemma-a8",
+     "relation": "refined_by"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.powerset-lattice",
+   "title": "Powerset lattices (𝒫(S), ⊆) and (𝒫(S), ⊇)",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 394,
+     "pdf_page": 410,
+     "table_or_fig": "Figure A.1"
+    }
+   ],
+   "formal_summary": "(𝒫(S), ⊆) has ⨆ = ⋃, ⨅ = ⋂, ⊥ = ∅, ⊤ = S; (𝒫(S), ⊇) is its dual with ⨆ = ⋂, ⨅ = ⋃, ⊥ = S, ⊤ = ∅ (Example A.1). Both are complete lattices.",
+   "projections": {
+    "cs_theory": "The two classical property spaces of bit-vector analyses; duality swaps may and must.",
+    "swe_architecture": "Bit-vector implementations realise these lattices directly; the order direction chooses union or intersection at merges.",
+    "practical_debugging": "A must-analysis initialised with ∅ instead of S converges to a wrong, too-small result.",
+    "cyber": "Taint (may, ⊆) and sanitizer dominance (must, ⊇) [external] use the two dual powerset lattices."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.affine-powerset-maps",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.lemma-a2",
+   "title": "Lemma A.2: complete lattice from one-sided bounds",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 394,
+     "pdf_page": 410,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For a partially ordered set the following are equivalent: (i) it is a complete lattice; (ii) every subset has a least upper bound; (iii) every subset has a greatest lower bound.",
+   "projections": {
+    "cs_theory": "Completeness can be checked on joins alone; meets are then definable by (A.1).",
+    "swe_architecture": "A lattice library only needs a correct arbitrary join; meet can be derived.",
+    "practical_debugging": "If arbitrary joins exist but meets are hand-written inconsistently, derive meet from join to remove the mismatch.",
+    "cyber": "Label lattices defined by a join table alone are complete when every subset has a join."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "refines"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.moore-family",
+   "title": "Moore family",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 395,
+     "pdf_page": 411,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Y ⊆ L (L a complete lattice) is a Moore family iff ∀Y′ ⊆ Y : ⨅Y′ ∈ Y; it contains ⨅Y and ⨅∅ = ⊤, so it is never empty (Example A.3).",
+   "projections": {
+    "cs_theory": "Closure under arbitrary meets is what makes least acceptable analysis results exist (used in Chapter 3).",
+    "swe_architecture": "A set of acceptable solutions closed under meet has a unique best element that a solver can target.",
+    "practical_debugging": "If the set of valid results is empty or not closed under ⊓, there is no least solution to report.",
+    "cyber": "A policy family must contain ⊤ and be meet-closed for a least-privilege [external] solution to exist."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.function-properties",
+   "title": "Properties of functions between partially ordered sets",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 395,
+     "pdf_page": 411,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 396,
+     "pdf_page": 412,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "f : L₁ → L₂ may be surjective, injective, monotone (l ⊑ l′ ⇒ f(l) ⊑ f(l′)), additive (preserves binary ⊔; also called distributive), multiplicative, completely additive or multiplicative (preserves ⨆/⨅ of all Y when defined), affine (preserves ⨆ of non-empty Y) or strict (f(⊥) = ⊥). Completely additive iff affine and strict.",
+   "projections": {
+    "cs_theory": "Monotonicity is the precondition of Proposition A.10; additivity governs precision (MFP vs MOP in Chapter 2).",
+    "swe_architecture": "Transfer functions should be written in a form whose monotonicity is evident (e.g. gen/kill).",
+    "practical_debugging": "Order-dependent results or oscillation in a solver point to a non-monotone transfer function.",
+    "cyber": "Non-monotone constructs (e.g. negation inside recursive rules, declassification [external]) break least-fixed-point reasoning."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.partial-order",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.affine-powerset-maps",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.isomorphism",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lemma-a4",
+     "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.order.lemma-a9",
+     "relation": "refined_by"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-014",
+    "BKL-022"
+   ]
+  },
+  {
+   "id": "ppa.order.lemma-a4",
+   "title": "Lemma A.4: complete multiplicativity on a finite domain",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 396,
+     "pdf_page": 412,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For complete lattices L and M with M finite, γ : M → L is completely multiplicative iff (i) γ is monotone, (ii) γ(⊤) = ⊤, and (iii) γ(m₁ ⊓ m₂) = γ(m₁) ⊓ γ(m₂) whenever m₁ and m₂ are incomparable.",
+   "projections": {
+    "cs_theory": "Reduces an infinitary preservation property to finitely many checks when M is finite.",
+    "swe_architecture": "A finite abstract domain's concretisation can be validated by checking ⊤ and incomparable pairs only.",
+    "practical_debugging": "The finiteness of M is essential; the shortcut is unsound for infinite domains.",
+    "cyber": "Finite label domains can have their meaning maps verified exhaustively with this lemma."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "refines"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.affine-powerset-maps",
+   "title": "Lemma A.5: affine and completely additive maps between powersets",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 396,
+     "pdf_page": 412,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "f : (𝒫(D), ⊆) → (𝒫(E), ⊆) is affine iff f(Y) = ⋃{φ(d) | d ∈ Y} ∪ φ_∅ for some φ : D → 𝒫(E) and φ_∅ ∈ 𝒫(E); it is completely additive iff additionally φ_∅ = ∅.",
+   "projections": {
+    "cs_theory": "Characterises the transfer functions of bit-vector frameworks by pointwise generators.",
+    "swe_architecture": "Per-element generator tables give a compact, verifiable encoding of transfer functions.",
+    "practical_debugging": "A transfer function that cannot be written in this form is not affine; expect precision loss at merges.",
+    "cyber": "Taint propagation rules [external] expressed as per-source generator sets are affine by construction."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.powerset-lattice",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "specializes"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.isomorphism",
+   "title": "Isomorphism of partially ordered sets",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.1",
+     "book_page": 397,
+     "pdf_page": 413,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "θ : L₁ → L₂ is an isomorphism if it is monotone and has a (necessarily unique) monotone inverse θ⁻¹ with θ ∘ θ⁻¹ = id₂ and θ⁻¹ ∘ θ = id₁.",
+   "projections": {
+    "cs_theory": "Isomorphic property spaces support identical analyses.",
+    "swe_architecture": "Changing representation (e.g. bit vector vs sorted set) is safe when it is an order isomorphism.",
+    "practical_debugging": "A representation change that is a bijection but not monotone both ways silently changes results.",
+    "cyber": "Label encodings may be swapped only through order isomorphisms."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.lattice-constructions",
+   "title": "Constructions of complete lattices: cartesian product, total and monotone function spaces",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.2",
+     "book_page": 397,
+     "pdf_page": 413,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "A",
+     "section": "A.2",
+     "book_page": 398,
+     "pdf_page": 414,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "L₁ × L₂ ordered componentwise; S → L₁ (total functions, pointwise order); L₁ → L₂ (monotone functions, pointwise order). Each is a complete lattice when its components are, with joins, meets, ⊥ and ⊤ computed componentwise or pointwise.",
+   "projections": {
+    "cs_theory": "Compound property spaces inherit completeness from their parts.",
+    "swe_architecture": "Analysis states such as 'map from variables to abstract values' are total function spaces; per-component code reuse follows.",
+    "practical_debugging": "Pointwise joins that are not computed per key indicate a broken map-lattice implementation.",
+    "cyber": "Per-variable or per-object security state is a function space over a label lattice."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.smash-product",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.order.chain-condition-preservation",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.smash-product",
+   "title": "Smash product",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.2",
+     "book_page": 398,
+     "pdf_page": 414,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "The variant of the cartesian product restricted to pairs (l₁, l₂) with l₁ = ⊥₁ ⇔ l₂ = ⊥₂.",
+   "projections": {
+    "cs_theory": "Identifies all pairs containing a bottom component with (⊥, ⊥).",
+    "swe_architecture": "Useful when a bottom component means the whole state is unreachable.",
+    "practical_debugging": "Using a plain product where a smash product is intended keeps meaningless half-bottom states alive.",
+    "cyber": "Collapsing unreachable-branch states avoids reporting findings on dead paths."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.lattice-constructions",
+     "relation": "specializes"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.chains",
+   "title": "Chains, ascending and descending chains, eventual stabilisation",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 399,
+     "pdf_page": 415,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Y ⊆ L is a chain if any two elements are comparable. A sequence (lₙ)ₙ is ascending if n ≤ m ⇒ lₙ ⊑ lₘ, descending if n ≤ m ⇒ lₙ ⊒ lₘ, and eventually stabilises iff ∃n₀ : ∀n ≥ n₀ : lₙ = l_{n₀}.",
+   "projections": {
+    "cs_theory": "Fixed-point iteration from ⊥ produces an ascending chain.",
+    "swe_architecture": "Solver termination arguments are statements about chains of states per program point.",
+    "practical_debugging": "A per-point value that keeps growing without stabilising is an ascending chain that does not stabilise.",
+    "cyber": "Unbounded growth in analyser state is a resource-exhaustion risk."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.partial-order",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.chain-conditions",
+   "title": "Finite height, Ascending and Descending Chain Conditions",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 399,
+     "pdf_page": 415,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 400,
+     "pdf_page": 416,
+     "table_or_fig": "Figure A.2"
+    }
+   ],
+   "formal_summary": "L has finite height iff all chains are finite; ACC iff every ascending chain eventually stabilises; DCC iff every descending chain does. Lemma A.6: finite height ⇔ ACC ∧ DCC. Example A.7: ACC (or DCC) alone does not imply finite height.",
+   "projections": {
+    "cs_theory": "ACC is the termination condition for iteration from ⊥; finite height is strictly stronger.",
+    "swe_architecture": "Choose finite-height or ACC domains, or provide widening (Chapter 4), before promising termination.",
+    "practical_debugging": "Non-termination of a worklist solver indicates an infinite ascending chain in the domain; check ACC first.",
+    "cyber": "Analysers over domains without ACC can be driven into non-termination by crafted inputs."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chains",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.fixpoint.iteration",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.chain-condition-preservation",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lemma-a8",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.order.lemma-a9",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.proof.well-founded-induction",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.chain-condition-preservation",
+   "title": "Preservation of chain conditions by constructions",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 400,
+     "pdf_page": 416,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Finite height, ACC and DCC are preserved by L₁ × L₂; the total function space S → L preserves them only when S is finite; the monotone function space does not preserve them in general.",
+   "projections": {
+    "cs_theory": "Termination of compound domains depends on the finiteness of their index sets.",
+    "swe_architecture": "Maps keyed by an unbounded key set (heap addresses, call strings) lose ACC even if the value lattice has it.",
+    "practical_debugging": "Termination that holds on small tests but fails at scale often comes from an unbounded map domain.",
+    "cyber": "Attacker-controlled key growth (e.g. dynamic object creation) can defeat ACC of map-based states."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.lattice-constructions",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-013"
+   ]
+  },
+  {
+   "id": "ppa.order.lemma-a8",
+   "title": "Lemma A.8: ACC complete lattices from ⊥ and binary joins",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 401,
+     "pdf_page": 417,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "A partially ordered set is a complete lattice satisfying ACC iff it has a least element, binary least upper bounds, and satisfies ACC.",
+   "projections": {
+    "cs_theory": "Under ACC, completeness reduces to ⊥ plus binary joins.",
+    "swe_architecture": "A domain implementation with bottom, binary join and ACC needs no infinitary join operation.",
+    "practical_debugging": "Missing bottom is the usual reason such a domain fails to be a complete lattice.",
+    "cyber": "Finite label sets with bottom and pairwise join are complete lattices."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "refines"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ]
+  },
+  {
+   "id": "ppa.order.lemma-a9",
+   "title": "Lemma A.9: additive iff affine under ACC",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.3",
+     "book_page": 401,
+     "pdf_page": 417,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For a complete lattice satisfying ACC and total f : L → L: f is additive iff f is affine; in both cases f is monotone.",
+   "projections": {
+    "cs_theory": "Under ACC on a complete lattice with total f : L → L, binary join preservation (additivity) suffices for preservation of all non-empty joins (affinity).",
+    "swe_architecture": "Checking pairwise distributivity of a transfer function is enough when the domain has ACC.",
+    "practical_debugging": "Without ACC, a function preserving binary joins may still fail on infinite joins.",
+    "cyber": "Under ACC, distributive (additive) security transfer functions preserve non-empty joins so merge-over-paths and fixed-point results align [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "refines"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-022"
+   ]
+  },
+  {
+   "id": "ppa.fixpoint.fixed-points",
+   "title": "Fixed points, reductive and extensive sets, lfp and gfp",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.4",
+     "book_page": 402,
+     "pdf_page": 418,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For monotone f on a complete lattice: Fix(f) = {l | f(l) = l}, Red(f) = {l | f(l) ⊑ l}, Ext(f) = {l | f(l) ⊒ l}, lfp(f) = ⨅Fix(f), gfp(f) = ⨆Fix(f).",
+   "projections": {
+    "cs_theory": "Analysis results are characterised as least (sometimes greatest) fixed points.",
+    "swe_architecture": "A candidate solution can be validated by one application of f: it is a fixed point, or at least reductive.",
+    "practical_debugging": "If f(l) ⋢ l for a reported result l, l is not reductive (l ∉ Red(f)) and is unsound for a least-fixed-point specification.",
+    "cyber": "Least fixed points model least privilege [external]; greatest fixed points give optimistic (coinductive) acceptance."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.iteration",
+     "relation": "approximated_by"
+    },
+    {
+     "target_id": "ppa.order.complete-lattice",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.function-properties",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "proved_by"
+    },
+    {
+     "target_id": "ppa.graphs.dominators",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.notation.index",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-016"
+   ]
+  },
+  {
+   "id": "ppa.fixpoint.tarski",
+   "title": "Proposition A.10: Tarski's Fixed Point Theorem",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.4",
+     "book_page": 402,
+     "pdf_page": 418,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For a complete lattice L and monotone f : L → L: lfp(f) = ⨅Red(f) ∈ Fix(f) and gfp(f) = ⨆Ext(f) ∈ Fix(f); they are the least and greatest fixed points.",
+   "projections": {
+    "cs_theory": "Existence of least and greatest solutions for every monotone equation system over a complete lattice.",
+    "swe_architecture": "Equation-based analyses are well defined once domain completeness and transfer monotonicity are checked.",
+    "practical_debugging": "Both preconditions (complete lattice, monotone f) must be checked; existence says nothing about computability.",
+    "cyber": "Policy or type checkers defined by recursive monotone rules have well-defined least and greatest readings."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.fixpoint.iteration",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.proof.functional-fixed-points",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "proves"
+    },
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U9",
+      "citations": [
+       {
+        "chapter_or_app": "A",
+        "section": "A.4",
+        "book_page": 402,
+        "pdf_page": 418,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "B",
+        "section": "B.3",
+        "book_page": 411,
+        "pdf_page": 427,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone predicate functional 𝒬 on complete lattice (D → {true, false}, ⊑); rule form (B.5) agrees with Q = lfp(𝒬) when each rule makes finitely many recursive calls to Q"
+      ],
+      "differs": [
+       "Proposition A.10 characterises lfp(𝒬) = ⨅Red(𝒬) order-theoretically, whereas Appendix B presents inductive definitions as finitary inference rules (B.5) proved by rule-validity induction"
+      ]
+     }
+    },
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U9",
+      "citations": [
+       {
+        "chapter_or_app": "A",
+        "section": "A.4",
+        "book_page": 402,
+        "pdf_page": 418,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "B",
+        "section": "B.3",
+        "book_page": 412,
+        "pdf_page": 428,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone predicate functional 𝒬 on complete lattice (D → {true, false}, ⊑) with coinductive specification Q = gfp(𝒬)"
+      ],
+      "differs": [
+       "Proposition A.10 gives the lattice identity gfp(𝒬) = ⨆Ext(𝒬), whereas §B.3 packages witness membership Q′ ∈ Ext(𝒬) (Q′ ⊑ 𝒬(Q′) or Q′ ⊑ 𝒬(Q ⊔ Q′)) as the coinduction proof principle"
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-014"
+   ]
+  },
+  {
+   "id": "ppa.fixpoint.iteration",
+   "title": "Iteration towards fixed points and its bounds",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.4",
+     "book_page": 403,
+     "pdf_page": 419,
+     "table_or_fig": "Figure A.3"
+    }
+   ],
+   "formal_summary": "For monotone f : L → L on a complete lattice L, in general ⊥ ⊑ fⁿ(⊥) ⊑ ⨆ₙ fⁿ(⊥) ⊑ lfp(f) ⊑ gfp(f) ⊑ ⨅ₙ fⁿ(⊤) ⊑ fⁿ(⊤) ⊑ ⊤ and each ⊑ can be strict. Under ACC, ∃n : fⁿ(⊥) = fⁿ⁺¹(⊥) = lfp(f); under DCC, ∃n : fⁿ(⊤) = fⁿ⁺¹(⊤) = gfp(f).",
+   "projections": {
+    "cs_theory": "Ascending iteration fⁿ(⊥) is guaranteed to stabilise at lfp(f) in finitely many steps under ACC, while continuity guarantees limit equality ⨆ₙ fⁿ(⊥) = lfp(f) (Kleene-style iteration [external]).",
+    "swe_architecture": "Start iteration at ⊥ for least solutions and stop at the first repeat; ACC is a sufficient condition for finite-step convergence to lfp(f).",
+    "practical_debugging": "A solver that 'converges' without ACC may stop below lfp (the limit need not be a fixed point).",
+    "cyber": "Starting from ⊤ computes a greatest fixed point: a different, optimistic answer."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "approximates"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.chaotic-iteration",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.fixpoint.transfinite-iteration",
+     "relation": "specializes"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-013",
+    "BKL-021"
+   ]
+  },
+  {
+   "id": "ppa.fixpoint.transfinite-iteration",
+   "title": "Transfinite iteration",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "A",
+     "section": "A.4",
+     "book_page": 404,
+     "pdf_page": 420,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "f^{↑κ} = f(⨆_{κ′<κ} f^{↑κ′}) for ordinals κ; for natural n, f^{↑n} = fⁿ⁺¹(⊥) (note the index offset); lfp(f) = f^{↑κ} for a cardinal κ greater than the cardinality of L.",
+   "projections": {
+    "cs_theory": "Without ACC or continuity, lfp is reached only after transfinitely many steps.",
+    "swe_architecture": "Explains why finite iteration is not a general algorithm on infinite-height domains.",
+    "practical_debugging": "Mind the index offset between f^{↑n} and fⁿ(⊥) when quoting iteration counts.",
+    "cyber": "Termination guarantees cannot be recovered from transfinite constructions; use widening."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.iteration",
+     "relation": "generalizes"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-a-posets-lattices-fixed-points.md"
+   ],
+   "issue_refs": [
+    "BKL-021"
+   ]
+  },
+  {
+   "id": "ppa.proof.induction-principles",
+   "title": "Induction principles: mathematical, structural, on inference trees, course of values",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.1",
+     "book_page": 405,
+     "pdf_page": 421,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "B",
+     "section": "B.1",
+     "book_page": 406,
+     "pdf_page": 422,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "B",
+     "section": "B.1",
+     "book_page": 407,
+     "pdf_page": 423,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Mathematical induction (Q(0), Q(n) ⇒ Q(n+1)); structural induction over d ::= Base | Con₁(d) | Con₂(d, d); induction on the shape of inference trees d →^▽ n; course of values induction ((∀m < n : Q(m)) ⇒ Q(n)).",
+   "projections": {
+    "cs_theory": "The proof principles behind the book's semantic correctness results.",
+    "swe_architecture": "Recursive processing of syntax trees mirrors structural induction; each constructor needs a case.",
+    "practical_debugging": "A recursive function missing a constructor case is a structural-induction proof with a missing case.",
+    "cyber": "Proofs that a sanitizer [external] is applied on every derivation are inductions on derivations."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.mini-project-rd-correctness",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.proof.well-founded-induction",
+     "relation": "specializes"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ]
+  },
+  {
+   "id": "ppa.proof.well-founded-induction",
+   "title": "Well-founded ordering and well-founded induction",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.1",
+     "book_page": 407,
+     "pdf_page": 423,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "⪯ on D is well-founded if there is no infinite strictly decreasing sequence d₁ ≻ d₂ ≻ ⋯ (this amounts to the Descending Chain Condition); principle: from ∀d : (∀d′ ≺ d : Q(d′)) ⇒ Q(d) conclude ∀d : Q(d).",
+   "projections": {
+    "cs_theory": "Generalises course of values induction; termination proofs use well-founded measures.",
+    "swe_architecture": "Recursive algorithms terminate when each call decreases a well-founded measure.",
+    "practical_debugging": "Look for an infinite descending sequence of the measure to explain non-termination.",
+    "cyber": "Recursion over attacker-controlled structures needs a well-founded measure to bound work."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.induction-principles",
+     "relation": "generalizes"
+    },
+    {
+     "target_id": "ppa.order.chain-conditions",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ]
+  },
+  {
+   "id": "ppa.proof.functional-fixed-points",
+   "title": "Predicates as fixed points of monotone functionals",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.2",
+     "book_page": 409,
+     "pdf_page": 425,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "B",
+     "section": "B.2",
+     "book_page": 410,
+     "pdf_page": 426,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Recursive predicate definitions Qᵢ = 𝒬ᵢ(Qᵢ) (equations (B.1)–(B.3)) have monotone functionals 𝒬ᵢ on (ℕ → {true, false}, ⊑); lfp(𝒬ᵢ) and gfp(𝒬ᵢ) exist (Proposition A.10) and may differ, e.g. lfp(𝒬₃) = ⊥ while gfp(𝒬₃) = ⊤.",
+   "projections": {
+    "cs_theory": "Induction corresponds to lfp and coinduction to gfp of the same functional.",
+    "swe_architecture": "Recursive definitions in code have two possible meanings; specify which one is intended.",
+    "practical_debugging": "A self-referential rule that 'proves itself' holds under gfp but not under lfp: check which reading the checker uses.",
+    "cyber": "Circular trust (A trusts B trusts A) is accepted under gfp and rejected under lfp."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.proof.banach-contractive",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ],
+   "issue_refs": [
+    "BKL-020"
+   ]
+  },
+  {
+   "id": "ppa.proof.banach-contractive",
+   "title": "Contractive functionals and unique fixed points",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.2",
+     "book_page": 410,
+     "pdf_page": 426,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "lfp(𝒬₀) = gfp(𝒬₀) relates to Banach's Fixed Point Theorem: 𝒬₀ is contractive because 𝒬₀(Q)(n) only calls Q on arguments smaller than n; 𝒬₁, 𝒬₂, 𝒬₃ are not.",
+   "projections": {
+    "cs_theory": "When every recursive reference strictly decreases along a well-founded order (such as (ℕ, <) for 𝒬₀), least and greatest fixed points coincide.",
+    "swe_architecture": "Recursion that always strictly descends along a well-founded measure makes the inductive/coinductive choice coincide.",
+    "practical_debugging": "If lfp and gfp differ, some rule refers to an argument that does not strictly decrease in a well-founded order: find it.",
+    "cyber": "Well-founded policy rules have a unique meaning; circular ones do not."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.functional-fixed-points",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ],
+   "issue_refs": [
+    "BKL-015"
+   ]
+  },
+  {
+   "id": "ppa.proof.inductive-definition",
+   "title": "Inductive definition and proof by induction",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 411,
+     "pdf_page": 427,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 412,
+     "pdf_page": 428,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For a monotone functional 𝒬, the inductive definition is Q = lfp(𝒬) (B.4), written as a rule system (B.5); when each rule has finitely many calls to Q both coincide with ⨆ₖ 𝒬ᵏ(⊥). Monotonicity of 𝒬 is assumed (a clause such as Q(Con₁(d)) iff ¬Q(d) is not acceptable).",
+   "projections": {
+    "cs_theory": "Semantics and derivation systems are inductive: only what can be derived holds.",
+    "swe_architecture": "Rule systems with finitary premises can be evaluated bottom-up to their least model.",
+    "practical_debugging": "A negated recursive premise breaks monotonicity; the rule system then has no lfp guarantee.",
+    "cyber": "Least-privilege authorisation [external] is an inductive definition: grant only what is derivable."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.proof.functional-fixed-points",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.proof.induction-principles",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.proof.inductive-vs-coinductive-reading",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U9",
+      "citations": [
+       {
+        "chapter_or_app": "A",
+        "section": "A.4",
+        "book_page": 402,
+        "pdf_page": 418,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "B",
+        "section": "B.3",
+        "book_page": 411,
+        "pdf_page": 427,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone predicate functional 𝒬 on complete lattice (D → {true, false}, ⊑); rule form (B.5) agrees with Q = lfp(𝒬) when each rule makes finitely many recursive calls to Q"
+      ],
+      "differs": [
+       "Proposition A.10 characterises lfp(𝒬) = ⨅Red(𝒬) order-theoretically, whereas Appendix B presents inductive definitions as finitary inference rules (B.5) proved by rule-validity induction"
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ],
+   "issue_refs": [
+    "BKL-014"
+   ]
+  },
+  {
+   "id": "ppa.proof.coinduction",
+   "title": "Coinductive definition and proof by coinduction",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 412,
+     "pdf_page": 428,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Q = gfp(𝒬); proof rule Q′ ⊑ 𝒬(Q′) ⟹ Q′ ⊑ Q (from gfp(𝒬) = ⨆Ext(𝒬)); derived rule Q′ ⊑ 𝒬(Q ⊔ Q′) ⟹ Q′ ⊑ Q.",
+   "projections": {
+    "cs_theory": "Coinduction proves membership in greatest fixed points, e.g. acceptability in Chapter 3.",
+    "swe_architecture": "Checkers for cyclic structures (recursive types, infinite behaviours) assume consistency until violated.",
+    "practical_debugging": "If a coinductive check accepts too much, look for trivial self-justifying rules.",
+    "cyber": "Coinductive acceptance is optimistic; it must not be used where least privilege [external] is required."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "contrasts_with"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.proof.coinduction-mutual-relations",
+     "relation": "has_instance"
+    },
+    {
+     "target_id": "ppa.proof.inductive-vs-coinductive-reading",
+     "relation": "has_instance"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U9",
+      "citations": [
+       {
+        "chapter_or_app": "A",
+        "section": "A.4",
+        "book_page": 402,
+        "pdf_page": 418,
+        "table_or_fig": null
+       },
+       {
+        "chapter_or_app": "B",
+        "section": "B.3",
+        "book_page": 412,
+        "pdf_page": 428,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Monotone predicate functional 𝒬 on complete lattice (D → {true, false}, ⊑) with coinductive specification Q = gfp(𝒬)"
+      ],
+      "differs": [
+       "Proposition A.10 gives the lattice identity gfp(𝒬) = ⨆Ext(𝒬), whereas §B.3 packages witness membership Q′ ∈ Ext(𝒬) (Q′ ⊑ 𝒬(Q′) or Q′ ⊑ 𝒬(Q ⊔ Q′)) as the coinduction proof principle"
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ],
+   "issue_refs": [
+    "BKL-015"
+   ]
+  },
+  {
+   "id": "ppa.proof.coinduction-mutual-relations",
+   "title": "Example B.1: coinduction for mutually defined relations",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 413,
+     "pdf_page": 429,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For (R₁, R₂) = gfp(ℛ) with monotone ℛ = (ℛ₁, ℛ₂): from R₁′ ⊑ ℛ₁(R₁′, R₂′) and R₂′ ⊑ ℛ₂(R₁′, R₂′) conclude R₁′ ⊑ R₁ and R₂′ ⊑ R₂ (with a work-saving variant using R ⊔ R′).",
+   "projections": {
+    "cs_theory": "Coinduction extends componentwise to systems of relations.",
+    "swe_architecture": "Mutually recursive checks can share one coinductive hypothesis set.",
+    "practical_debugging": "When mutual coinductive checks disagree, verify both components of the candidate relation are extensive ((R₁′, R₂′) ∈ Ext(ℛ), i.e. Rᵢ′ ⊑ ℛᵢ(R₁′, R₂′)).",
+    "cyber": "Bisimulation-style [external] equivalence checks are mutual coinductive relations."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "instance_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ]
+  },
+  {
+   "id": "ppa.proof.inductive-vs-coinductive-reading",
+   "title": "Example B.2: inductive vs coinductive reading of a grammar",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 414,
+     "pdf_page": 430,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "B",
+     "section": "B.3",
+     "book_page": 415,
+     "pdf_page": 431,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For S → 0 | 1 | 0S | 1S over {0,1,2}^∞: inductively S = {0,1}⁺; coinductively S = {0,1}⁺ ∪ {0,1}^ω. Adding S → S leaves the inductive reading unchanged but makes the coinductive reading all of {0,1,2}^∞.",
+   "projections": {
+    "cs_theory": "Rule sets equivalent under induction can differ under coinduction.",
+    "swe_architecture": "Adding an innocuous-looking identity rule can change the meaning of a coinductive specification.",
+    "practical_debugging": "A coinductive checker that suddenly accepts everything probably gained a trivial self-rule.",
+    "cyber": "Self-referential policy rules (x allowed if x allowed) open everything under gfp."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.proof.coinduction",
+     "relation": "instance_of"
+    },
+    {
+     "target_id": "ppa.proof.inductive-definition",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-b-induction-and-coinduction.md"
+   ],
+   "issue_refs": [
+    "BKL-015"
+   ]
+  },
+  {
+   "id": "ppa.graphs.digraph-paths",
+   "title": "Directed graphs, paths and cycles",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 417,
+     "pdf_page": 432,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 418,
+     "pdf_page": 433,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "G = (N, A) with N finite and A ⊆ N × N; paths as edge or node sequences (the trivial path has length 0); paths•(n, n′) and cycles(n) = {p ∈ paths•(n, n) | p ≠ [n]}; flow graphs (Example C.1) and FUN constraint graphs (Example C.2) are digraphs.",
+   "projections": {
+    "cs_theory": "Common substrate for flow graphs (Chapter 2) and constraint graphs (Chapter 3).",
+    "swe_architecture": "Represent CFGs and constraint graphs with the same graph abstraction to reuse algorithms.",
+    "practical_debugging": "The model excludes parallel edges and infinite node sets; real CFGs with multi-edges need normalisation.",
+    "cyber": "Control-flow and data-dependence graphs are the substrate of path-based vulnerability queries."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dag-topological-sort",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.handles-roots",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.strong-components",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-023"
+   ]
+  },
+  {
+   "id": "ppa.graphs.dag-topological-sort",
+   "title": "Acyclic graphs, DAGs and topological sorts",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 418,
+     "pdf_page": 433,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "G is acyclic iff cycles(n) = ∅ for all n (a DAG); a topological sort orders nodes with n before n′ for every edge (n, n′); a digraph has a topological sort iff it is acyclic. A multiple-entry cycle has two distinct nodes entered from outside the cycle.",
+   "projections": {
+    "cs_theory": "Acyclic graphs admit one-pass propagation in topological order.",
+    "swe_architecture": "Dependency and build graphs are processed in topological order; cycles need special handling.",
+    "practical_debugging": "A topological sort failure is a cycle detector.",
+    "cyber": "Multiple-entry cycles are a hallmark of irreducible, possibly obfuscated [external] control flow."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.digraph-paths",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.reverse-postorder",
+     "relation": "implemented_by"
+    },
+    {
+     "target_id": "ppa.graphs.forests-trees",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.strong-components",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ]
+  },
+  {
+   "id": "ppa.graphs.strong-components",
+   "title": "Strong components and the reduced graph",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 418,
+     "pdf_page": 433,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 419,
+     "pdf_page": 434,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "𝒮𝒞 = {(n, n′) | paths exist both ways} is an equivalence relation (Fact C.3); its classes are the strong components; the reduced graph has one node per component and no self-loops, and is a DAG (Lemma C.5). Example C.4: outermost loops of WHILE programs form strong components.",
+   "projections": {
+    "cs_theory": "Strong components isolate the cyclic parts of a constraint system (used in Section 6.3).",
+    "swe_architecture": "Solve components in topological order of the reduced graph; iterate only inside components.",
+    "practical_debugging": "Slow convergence localised to one component points to a long cycle inside it.",
+    "cyber": "Component-wise solving bounds analyser work on adversarial inputs [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dag-topological-sort",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.digraph-paths",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ]
+  },
+  {
+   "id": "ppa.graphs.handles-roots",
+   "title": "Handles, roots and dummy roots",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 419,
+     "pdf_page": 434,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 420,
+     "pdf_page": 435,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "H ⊆ N is a handle if every node is reachable from some h ∈ H; r is a root iff {r} is a handle; a dummy root r ∉ N with edges to H makes any handle rooted; minimal handles exist since N is finite and are singletons iff the graph is rooted. init(S) is a root of the forward flow graph; final(S) is a handle of the backward flow graph (Example C.6).",
+   "projections": {
+    "cs_theory": "Iteration starts from a handle; backward analyses start from final labels.",
+    "swe_architecture": "Add a synthetic entry node when a graph has several entry points.",
+    "practical_debugging": "Nodes unreachable from the handle receive no information: check the handle covers all entries.",
+    "cyber": "Missing entry points (callbacks, handlers) leave code unanalysed."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.digraph-paths",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.dominators",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.forests-trees",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-017"
+   ]
+  },
+  {
+   "id": "ppa.graphs.forests-trees",
+   "title": "Forests, trees, parents, ancestors and ordered forests",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 420,
+     "pdf_page": 435,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "A forest is a DAG whose nodes have in-degree at most 1; a tree is a forest with a root; parent/child, ancestor/descendant (reflexive transitive closures), proper variants; ordered forests linearly order the children of each node.",
+   "projections": {
+    "cs_theory": "Spanning forests underlie edge classification and reverse postorder.",
+    "swe_architecture": "DFS trees are the data structure behind loop detection.",
+    "practical_debugging": "Ancestor tests decide back edges; get the reflexive closure right for self-loops.",
+    "cyber": "Tree-shaped call or ownership structures make dominance checks cheap."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dag-topological-sort",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.handles-roots",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.dfsf",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-020"
+   ]
+  },
+  {
+   "id": "ppa.graphs.dominators",
+   "title": "Dominators",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 420,
+     "pdf_page": 435,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.1",
+     "book_page": 421,
+     "pdf_page": 436,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "n′ dominates n if every path from H to n contains n′; Dom(n) is the greatest solution of Dom(n) = {n} if n ∈ H, Dom(n) = {n} ∪ ⋂{Dom(n′) | (n′, n) ∈ A} otherwise; proper and direct dominance defined from it.",
+   "projections": {
+    "cs_theory": "A greatest-fixed-point graph problem; the least solution of the same equation is wrong on cyclic graphs.",
+    "swe_architecture": "Dominator computation is a must-analysis over the flow graph.",
+    "practical_debugging": "Too-small dominator sets usually mean the equation was solved from ⊥ instead of ⊤.",
+    "cyber": "A security check dominates a sink iff every path to the sink passes it."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.handles-roots",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.reducibility",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-016",
+    "BKL-017"
+   ]
+  },
+  {
+   "id": "ppa.graphs.dfsf",
+   "title": "Depth-first spanning forest (Table C.1)",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 421,
+     "pdf_page": 436,
+     "table_or_fig": "Table C.1"
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 422,
+     "pdf_page": 437,
+     "table_or_fig": "Figure C.1"
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 423,
+     "pdf_page": 438,
+     "table_or_fig": "Figure C.2"
+    }
+   ],
+   "formal_summary": "Table C.1 builds a depth-first spanning forest T = (N, A_T) from a graph with handle H and numbers nodes in reverse postorder (i counts down from k); the DFSF is not unique because the choice of node is unspecified. The table writes 'choose a node h in H' where an unvisited h is intended.",
+   "projections": {
+    "cs_theory": "Source of the reverse-postorder numbering used by iteration strategies.",
+    "swe_architecture": "DFS from all handle nodes, numbering on exit, yields the iteration order for forward analyses.",
+    "practical_debugging": "Re-running DFS from an already visited handle node corrupts the numbering; choose only unvisited nodes.",
+    "cyber": "Different DFS choices give different forests; results relying on a particular forest are fragile."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.forests-trees",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.edge-classification",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.reverse-postorder",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.notation.index",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-017",
+    "BKL-019",
+    "BKL-024"
+   ]
+  },
+  {
+   "id": "ppa.graphs.edge-classification",
+   "title": "Tree, forward, back and cross edges",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 422,
+     "pdf_page": 437,
+     "table_or_fig": "Figure C.1"
+    }
+   ],
+   "formal_summary": "Relative to a spanning forest: tree edges; forward edges (to a proper descendant); back edges (descendant to ancestor, including self-loops); cross edges (unrelated nodes), which Table C.1 makes go from later-visited (lower rPostorder) to earlier-visited (higher rPostorder) nodes. Example C.8: WHILE flow graphs have no forward edges.",
+   "projections": {
+    "cs_theory": "Back edges close cycles; they are where iteration must repeat.",
+    "swe_architecture": "Loop headers are back-edge targets; that is where widening belongs.",
+    "practical_debugging": "Back edges depend on the chosen forest unless the graph is reducible.",
+    "cyber": "Widening at back-edge targets keeps analyses of obfuscated code [external] terminating."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dfsf",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.loop-connectedness",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.reducibility",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.graphs.reverse-postorder",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-018"
+   ]
+  },
+  {
+   "id": "ppa.graphs.reverse-postorder",
+   "title": "Reverse postorder and its properties",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 423,
+     "pdf_page": 438,
+     "table_or_fig": "Figure C.2"
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 424,
+     "pdf_page": 439,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 426,
+     "pdf_page": 441,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Lemma C.9: (n, n′) is a back edge iff rPostorder[n] ≥ rPostorder[n′] (self-loop iff equal). Corollary C.10: every cycle contains a back edge. Corollary C.11: rPostorder topologically sorts tree, forward and cross edges. Corollary C.14: on reducible graphs every cycle-free path from the handle increases in rPostorder. Preorder and breadth-first order do not sort cross edges.",
+   "projections": {
+    "cs_theory": "Reverse postorder is the iteration order behind the bounds of Section 6.2.",
+    "swe_architecture": "For Bit Vector Frameworks relative to DFSF T, visiting nodes in reverse postorder propagates forward information in one pass per back edge (at most d(G_S, T) + 3 iterations by Lemma 6.12); general monotone frameworks are not bounded by d(G_S, T) alone.",
+    "practical_debugging": "Iterating in arbitrary order costs extra passes; switch to reverse postorder first.",
+    "cyber": "Order choice changes analyser cost on adversarial graphs [external], not least-fixed-point results."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dfsf",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.edge-classification",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.dag-topological-sort",
+     "relation": "implements"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ]
+  },
+  {
+   "id": "ppa.graphs.loop-connectedness",
+   "title": "Loop connectedness d(G, T)",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 424,
+     "pdf_page": 439,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "d(G, T) (written d(G) when T is clear) is the largest number of back edges on any cycle-free path of G, relative to a DFSF T produced by Table C.1; for Figure C.1, d(G) = 1.",
+   "projections": {
+    "cs_theory": "With DFSF T and reverse postorder from Table C.1, d(G_S, T) + 3 bounds Round Robin iterations for Bit Vector Framework instances (Lemma 6.12); general monotone frameworks are not bounded by d(G_S, T) alone.",
+    "swe_architecture": "For Bit Vector Frameworks scheduled in reverse postorder relative to DFSF T, deeply nested loops cost at most d(G_S, T) + 3 passes; non-bit-vector monotone domains depend on lattice height or widening.",
+    "practical_debugging": "Quote iteration bounds with d(G, T), the Bit Vector Framework hypothesis, and the counting convention; T matters for irreducible graphs.",
+    "cyber": "On Bit Vector Framework analyses using reverse postorder, crafted deep loop nesting increases passes linearly in d(G_S, T) [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.edge-classification",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.reducibility",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-018"
+   ]
+  },
+  {
+   "id": "ppa.graphs.reducibility",
+   "title": "Dominator-back edges and reducible graphs",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 424,
+     "pdf_page": 439,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 425,
+     "pdf_page": 440,
+     "table_or_fig": "Figure C.3"
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.2",
+     "book_page": 426,
+     "pdf_page": 441,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "(n₁, n₂) is a dominator-back edge if n₂ dominates n₁; G is reducible iff removing them leaves an acyclic graph that still has handle H. Lemma C.12: in a reducible graph, back edges are exactly the dominator-back edges. Figure C.3 is the simplest irreducible graph. Example C.13: flow graphs of uniquely labelled WHILE statements are reducible and d(G) equals the maximum loop nesting depth.",
+   "projections": {
+    "cs_theory": "Reducibility makes back edges and d(G) independent of the spanning forest.",
+    "swe_architecture": "Structured languages produce reducible graphs; goto-heavy or compiled code may not.",
+    "practical_debugging": "On irreducible graphs, loop headers are ill-defined; use DFSF back edges or strong components instead.",
+    "cyber": "Obfuscators [external] deliberately create irreducible multiple-entry cycles."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.dominators",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.edge-classification",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.loop-connectedness",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-018"
+   ]
+  },
+  {
+   "id": "ppa.graphs.regular-expressions",
+   "title": "Regular expressions and their languages",
+   "altitude": "L1",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.3",
+     "book_page": 426,
+     "pdf_page": 441,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "C",
+     "section": "C.3",
+     "book_page": 427,
+     "pdf_page": 442,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Over a finite non-empty alphabet Σ: atomic Λ, ∅, a ∈ Σ; compound (R₁ + R₂), (R₁ · R₂), (R₁)*; ℒ⟦·⟧ maps them to languages (union, concatenation, iteration ⋃ₖ Lᵏ); R₁ = R₂ iff ℒ⟦R₁⟧ = ℒ⟦R₂⟧.",
+   "projections": {
+    "cs_theory": "Path sets of graphs can be described by regular expressions (used in Mini Project 1.1).",
+    "swe_architecture": "Path-expression summaries [external] compress sets of paths for repeated queries.",
+    "practical_debugging": "Distinguish Λ (empty string) from ∅ (empty language); OCR and hand transcription confuse them.",
+    "cyber": "Regular path queries describe allowed and forbidden call sequences."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.regex-homomorphism",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.intro.mini-project-rd-correctness",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.notation.index",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ],
+   "issue_refs": [
+    "BKL-024"
+   ]
+  },
+  {
+   "id": "ppa.graphs.regex-homomorphism",
+   "title": "Homomorphisms on regular expressions",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "C",
+     "section": "C.3",
+     "book_page": 427,
+     "pdf_page": 442,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "h : Σ₁ → Σ₂* extends to words, languages and regular expressions (h(∅) = ∅, h(Λ) = Λ, h(R₁ + R₂) = h(R₁) + h(R₂), h(R₁ · R₂) = h(R₁) · h(R₂), h(R*) = h(R)*), and ℒ(h(R)) = h(ℒ(R)).",
+   "projections": {
+    "cs_theory": "Relabelling path expressions commutes with taking languages.",
+    "swe_architecture": "Abstracting events by a homomorphism preserves regular structure.",
+    "practical_debugging": "Erasing symbols (h(a) = Λ) can merge distinct behaviours; check the mapping before comparing languages.",
+    "cyber": "Projecting traces onto security-relevant events preserves regularity of the policy language."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.regular-expressions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.intro.mini-project-rd-correctness",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "knowledge/skills/ppa-program-analysis/references/appendix-c-graphs-dfsf-and-rpo.md"
+   ]
+  },
+  {
+   "id": "ppa.notation.index",
+   "title": "Index of Notation and symbol-scope disambiguation",
+   "altitude": "L3",
+   "unit": "U0",
+   "citations": [
+    {
+     "chapter_or_app": "Notation",
+     "section": null,
+     "book_page": 429,
+     "pdf_page": 443,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Notation",
+     "section": null,
+     "book_page": 430,
+     "pdf_page": 444,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Notation",
+     "section": null,
+     "book_page": 431,
+     "pdf_page": 445,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "Notation",
+     "section": null,
+     "book_page": 432,
+     "pdf_page": 446,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Three-part Index of Notation (pp. 429–432: special symbols, Greek letters, Latin/script identifiers) plus unindexed core symbols and typeface/scope collisions (such as italic vs sans Q, Σ state vs alphabet, ς store vs reduction, and ? uninitialised label vs alphabet symbol).",
+   "projections": {
+    "cs_theory": "Typeface (italic, sans-serif, bold, calligraphic) and chapter scope disambiguate overloaded formal symbols across the six chapters and appendices.",
+    "swe_architecture": "Centralise symbol-to-type/scope tables in ontology/notation_index.md rather than assuming global 1-to-1 symbol uniqueness.",
+    "practical_debugging": "Before treating two formulas with the same glyph as related, check ontology/notation_index.md for typeface or chapter-scope collisions (see BKL-024, BKL-035).",
+    "cyber": "Ambiguous symbol transcription (e.g. conflating ⊆ with ⊇ or ? sentinel labels with alphabet symbols) silently inverts soundness checks [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.regular-expressions",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.graphs.dfsf",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.fixpoint.fixed-points",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_00_appendices.md",
+    "ontology/notation_index.md"
+   ],
+   "issue_refs": [
+    "BKL-024",
+    "BKL-035"
+   ]
+  },
+  {
+   "id": "ppa.intro.safe-approximation",
+   "title": "Safe approximation",
+   "altitude": "L0",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 1,
+     "pdf_page": 21,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 2,
+     "pdf_page": 22,
+     "table_or_fig": "Figure 1.1"
+    }
+   ],
+   "formal_summary": "Program analysis statically predicts safe and computable approximations to the set of values or behaviours arising at run time; since questions such as termination are undecidable, answers are approximate, erring on the safe side: the values are 'among' those predicted (Figure 1.1).",
+   "projections": {
+    "cs_theory": "Undecidability forces approximation; safety is containment of the true answer.",
+    "swe_architecture": "Every analysis result is an over-approximation contract; clients must tolerate spurious entries.",
+    "practical_debugging": "Distinguish imprecision (extra facts, still safe) from unsoundness (missing facts).",
+    "cyber": "Sound bug-absence claims require over-approximation; exploit witnesses are under-approximations [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.semantics-based",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/ambient-context/ppa-foundations.md",
+    "knowledge/skills/ppa-program-analysis/SKILL.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-030"
+   ]
+  },
+  {
+   "id": "ppa.intro.semantics-based",
+   "title": "Semantics based (not semantics directed) analysis",
+   "altitude": "L0",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 3,
+     "pdf_page": 23,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "Concluding Remarks",
+     "book_page": 29,
+     "pdf_page": 49,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "The book advocates semantics-based analysis, whose results are provably safe with respect to a semantics, and does not cover semantics-directed analysis, whose structure merely mirrors a semantics.",
+   "projections": {
+    "cs_theory": "Correctness is a theorem relating analysis and semantics, not a structural resemblance.",
+    "swe_architecture": "Keep a reference semantics alongside an analysis so soundness can be stated and tested.",
+    "practical_debugging": "An analysis 'derived from' an interpreter is not thereby proven safe.",
+    "cyber": "Security claims need a stated semantics against which the analysis is proven safe."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.ai.collecting-semantics",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.intro.safe-approximation",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/ambient-context/ppa-foundations.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ]
+  },
+  {
+   "id": "ppa.intro.four-approaches",
+   "title": "Four approaches to program analysis",
+   "altitude": "L0",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.1",
+     "book_page": 1,
+     "pdf_page": 21,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "The book presents Data Flow Analysis, Constraint Based (Control Flow) Analysis, Abstract Interpretation and Type and Effect Systems, illustrated in Chapter 1 on common examples; they share a backbone of least solutions to equations or constraints.",
+   "projections": {
+    "cs_theory": "Different formalisms for the same goal: safe approximation via least fixed points.",
+    "swe_architecture": "Pick the formalism that matches the program representation available (flow graph, terms, semantics, types).",
+    "practical_debugging": "When two approaches disagree on a result, compare their least solutions, not arbitrary solutions.",
+    "cyber": "Security tooling mixes the approaches (data flow for taint, CFA for call targets, types for capabilities) [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.ai.adjunction-induced-analysis",
+     "relation": "has_part"
+    },
+    {
+     "target_id": "ppa.cfa.intro-control-flow-analysis",
+     "relation": "has_part"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "has_part"
+    },
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "has_part"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/SKILL.md",
+    "knowledge/ambient-context/ppa-foundations.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ]
+  },
+  {
+   "id": "ppa.intro.while-language",
+   "title": "WHILE language, labels and elementary blocks",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.2",
+     "book_page": 3,
+     "pdf_page": 23,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.2",
+     "book_page": 4,
+     "pdf_page": 24,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Programs are WHILE statements whose elementary blocks (assignments, skip, tests) carry labels; distinct blocks are assumed to carry distinct labels; abstract syntax is used, concrete syntax is out of scope.",
+   "projections": {
+    "cs_theory": "Labels are the program points to which analysis information is attached.",
+    "swe_architecture": "An IR for analysis needs stable, unique block identifiers.",
+    "practical_debugging": "Duplicate labels silently merge facts of different blocks and make analyses less accurate.",
+    "cyber": "Code locations in findings must map back to unique labels."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.dfa.reaching-definitions",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-028"
+   ]
+  },
+  {
+   "id": "ppa.dfa.reaching-definitions",
+   "title": "Reaching Definitions",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.2",
+     "book_page": 4,
+     "pdf_page": 24,
+     "table_or_fig": "Table 1.1"
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.2",
+     "book_page": 5,
+     "pdf_page": 25,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "An assignment [x := a]^ℓ may reach a program point if there is an execution where x was last assigned at ℓ when that point is reached; uninitialised variables carry the special label ?; adding pairs keeps an analysis safe, removing a needed pair makes it unsafe (Table 1.1).",
+   "projections": {
+    "cs_theory": "A may-analysis: larger sets are safe.",
+    "swe_architecture": "The canonical example for def-use infrastructure and slicing.",
+    "practical_debugging": "A definition missing from the result is a soundness bug; an extra one is imprecision.",
+    "cyber": "Reaching uninitialised (?) facts flag possible uses of uninitialised data [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.while-language",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.dfa.rd-constraint-formulation",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.transform.constant-folding",
+     "relation": "prerequisite_of"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-028",
+    "BKL-030",
+    "BKL-032",
+    "BKL-035"
+   ]
+  },
+  {
+   "id": "ppa.dfa.rd-equational",
+   "title": "Equational formulation of Reaching Definitions",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 5,
+     "pdf_page": 25,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 6,
+     "pdf_page": 26,
+     "table_or_fig": "Figure 1.2"
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 7,
+     "pdf_page": 27,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 8,
+     "pdf_page": 28,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Entry and exit equations RD_entry(ℓ), RD_exit(ℓ) over the flow graph (Figure 1.2) define a monotone F on (𝒫(Var⋆ × Lab⋆))²ᵇ — 12 components for the 6-block Example 1.1 factorial program; since this lattice is finite, Fⁿ(∅⃗) stabilises and is the least solution of RD⃗ = F(RD⃗). Kill sets range over all labels including ?.",
+   "projections": {
+    "cs_theory": "Least fixed point of a monotone function on a finite lattice, reached from ⊥.",
+    "swe_architecture": "Per-block transfer functions plus merge equations: the classic data-flow framework shape.",
+    "practical_debugging": "Starting from a non-bottom value or omitting ? from kill sets changes the result.",
+    "cyber": "Taint propagation equations follow the same entry/exit pattern [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.dfa.reaching-definitions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.fixpoint.tarski",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.order.powerset-lattice",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.solvers.chaotic-iteration",
+     "relation": "implemented_by"
+    },
+    {
+     "target_id": "ppa.intro.four-approaches",
+     "relation": "part_of"
+    },
+    {
+     "target_id": "ppa.ai.adjunction-induced-analysis",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.dfa.rd-constraint-formulation",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U1",
+      "citations": [
+       {
+        "chapter_or_app": "1",
+        "section": "1.3",
+        "book_page": 10,
+        "pdf_page": 30,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Same monotone transfer operator F collected per left-hand side over finite complete lattice (𝒫(Var⋆ × Lab⋆))²ᵇ"
+      ],
+      "differs": [
+       "Inclusions RD⃗ ⊒ F(RD⃗) admit larger reductive non-fixed-point solutions outside Fix(F), whereas every equation solution solves the inclusions and both share the same least solution"
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-025",
+    "BKL-029",
+    "BKL-034"
+   ]
+  },
+  {
+   "id": "ppa.dfa.rd-constraint-formulation",
+   "title": "Constraint-based formulation of Reaching Definitions",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 8,
+     "pdf_page": 28,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 9,
+     "pdf_page": 29,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.3",
+     "book_page": 10,
+     "pdf_page": 30,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Replacing equations by inclusions RD⃗ ⊒ F(RD⃗) yields a constraint system where every equation solution solves the constraints (Fix(F) ⊆ Red(F)), larger non-fixed-point solutions may exist, and both systems share the same least solution. The printed control-flow constraint list on p. 9 omits RD_entry(4) ⊇ RD_exit(3), which the general rule and Figure 1.2 require (see BKL-025).",
+   "projections": {
+    "cs_theory": "Every fixed point of F solves both RD⃗ = F(RD⃗) and RD⃗ ⊒ F(RD⃗) (Fix(F) ⊆ Red(F)); inclusions admit extra reductive solutions, while both systems share the same least solution.",
+    "swe_architecture": "Constraint generation decouples program traversal from solving.",
+    "practical_debugging": "Never compare non-least solutions across the two formulations; derive constraints from the rule, not the printed list.",
+    "cyber": "Rule-based analysers (Datalog-style [external]) compute least models of inclusion constraints."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.dfa.reaching-definitions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.cfa.intro-control-flow-analysis",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "corresponds_to",
+     "basis": {
+      "unification_id": "U1",
+      "citations": [
+       {
+        "chapter_or_app": "1",
+        "section": "1.3",
+        "book_page": 10,
+        "pdf_page": 30,
+        "table_or_fig": null
+       }
+      ],
+      "conditions": [
+       "Same monotone transfer operator F collected per left-hand side over finite complete lattice (𝒫(Var⋆ × Lab⋆))²ᵇ"
+      ],
+      "differs": [
+       "Inclusions RD⃗ ⊒ F(RD⃗) admit larger reductive non-fixed-point solutions outside Fix(F), whereas every equation solution solves the inclusions and both share the same least solution"
+      ]
+     }
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-025"
+   ]
+  },
+  {
+   "id": "ppa.cfa.intro-control-flow-analysis",
+   "title": "Control Flow Analysis by constraints (Chapter 1 preview)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.4",
+     "book_page": 10,
+     "pdf_page": 30,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.4",
+     "book_page": 11,
+     "pdf_page": 31,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.4",
+     "book_page": 12,
+     "pdf_page": 32,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.4",
+     "book_page": 13,
+     "pdf_page": 33,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "For a simple functional language, an abstract cache Ĉ(ℓ) and environment ρ̂(x) record the abstractions that subexpressions and variables may evaluate to; abstractions, variables and conditional application constraints (e.g. {fn x => [x]^1} ⊆ Ĉ(2) ⇒ Ĉ(4) ⊆ ρ̂(x)) are generated from the syntax and their least solution is sought. Facts are attached to labels only because the language has no side effects.",
+   "projections": {
+    "cs_theory": "Same pattern as data flow constraints: syntax yields constraints, least solution desired.",
+    "swe_architecture": "Call-target resolution precedes data flow analysis in higher-order programs.",
+    "practical_debugging": "A function shown as never applied (empty ρ̂) may indicate dead code or a missing constraint.",
+    "cyber": "Resolving indirect calls bounds where attacker-controlled data can flow [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.four-approaches",
+     "relation": "part_of"
+    },
+    {
+     "target_id": "ppa.dfa.rd-constraint-formulation",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.call-tracking-effects",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ]
+  },
+  {
+   "id": "ppa.ai.collecting-semantics",
+   "title": "Collecting semantics over traces",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.5",
+     "book_page": 13,
+     "pdf_page": 33,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.5",
+     "book_page": 14,
+     "pdf_page": 34,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Traces record assignments as (variable, label) pairs; SRD(tr) gives semantically reaching definitions; collecting-semantics equations CS_entry/CS_exit over 𝒫(Trace) have a least solution, which is not computable by finite iteration and ignores test outcomes (a superset of real traces).",
+   "projections": {
+    "cs_theory": "A concrete reference semantics against which analyses are proven correct.",
+    "swe_architecture": "Design analyses top-down from a semantics, then abstract.",
+    "practical_debugging": "The collecting semantics over-approximates real traces; correctness, not exactness, is inherited.",
+    "cyber": "Trace-based semantics underpin path-sensitive security reasoning [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.ai.adjunction-induced-analysis",
+     "relation": "approximated_by"
+    },
+    {
+     "target_id": "ppa.ai.adjunction-induced-analysis",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.intro.semantics-based",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-029"
+   ]
+  },
+  {
+   "id": "ppa.ai.adjunction-induced-analysis",
+   "title": "Abstraction and concretisation (adjunction) and the induced analysis",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.5",
+     "book_page": 15,
+     "pdf_page": 35,
+     "table_or_fig": "Figure 1.3"
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.5",
+     "book_page": 16,
+     "pdf_page": 36,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.5",
+     "book_page": 17,
+     "pdf_page": 37,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "α(X) = {(x, SRD(tr)(x)) | x ∈ DOM(tr) ∧ tr ∈ X} and γ(Y) = {tr | ∀x ∈ DOM(tr) : (x, SRD(tr)(x)) ∈ Y} satisfy α(X) ⊆ Y ⇔ X ⊆ γ(Y) (an adjunction, Figure 1.3); the induced analysis α⃗ ∘ G ∘ γ⃗ satisfies α⃗ ∘ G ∘ γ⃗ ⊑ F, so α⃗(lfp(G)) ⊑ lfp(α⃗ ∘ G ∘ γ⃗) ⊑ lfp(F); optimality is a separate question (Exercise 1.4).",
+   "projections": {
+    "cs_theory": "Calculating an analysis from a semantics guarantees correctness by construction.",
+    "swe_architecture": "Define abstraction and concretisation explicitly; derive transfer functions from them.",
+    "practical_debugging": "If α ∘ G ∘ γ is not below the hand-written F, the hand-written analysis is not justified by this route.",
+    "cyber": "γ(∅) still contains the empty trace, so induced transfer functions are not strict (see BKL-033)."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.ai.collecting-semantics",
+     "relation": "approximates"
+    },
+    {
+     "target_id": "ppa.ai.collecting-semantics",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.intro.four-approaches",
+     "relation": "part_of"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-029",
+    "BKL-033"
+   ]
+  },
+  {
+   "id": "ppa.tes.annotated-base-types",
+   "title": "Annotated base types for Reaching Definitions (Table 1.2)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 18,
+     "pdf_page": 38,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 19,
+     "pdf_page": 39,
+     "table_or_fig": "Table 1.2"
+    }
+   ],
+   "formal_summary": "Judgements S : RD₁ → RD₂ annotate the state type; the first reading as equalities fails on conditionals, the working reading uses inclusions and a subsumption rule [sub], which brings the system close to the constraint-based formulation.",
+   "projections": {
+    "cs_theory": "Type systems can express data flow facts; subsumption plays the role of inclusion.",
+    "swe_architecture": "Rule-based checkers need a subsumption rule to merge branches.",
+    "practical_debugging": "A type system without subsumption rejects valid programs at conditionals.",
+    "cyber": "Annotated types can carry security labels with subsumption as label weakening [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.four-approaches",
+     "relation": "part_of"
+    },
+    {
+     "target_id": "ppa.tes.annotated-type-constructors",
+     "relation": "refined_by"
+    },
+    {
+     "target_id": "ppa.dfa.rd-constraint-formulation",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ]
+  },
+  {
+   "id": "ppa.tes.annotated-type-constructors",
+   "title": "Annotated type constructors (Table 1.3)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 20,
+     "pdf_page": 40,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 21,
+     "pdf_page": 41,
+     "table_or_fig": "Table 1.3"
+    }
+   ],
+   "formal_summary": "Judgements S : Σ --X/RD--> Σ record the variables X definitely assigned and the reaching definitions RD produced by S; [if] intersects X sets but unions RD sets, [wh] uses ∅ for X because the body may not run; results describe what a statement produces, not entry facts.",
+   "projections": {
+    "cs_theory": "May and must information flow differently through the same rule system.",
+    "swe_architecture": "Compositional summaries describe the effect of a statement independent of its context.",
+    "practical_debugging": "Do not compare Table 1.3 results with entry facts of Table 1.1; they answer different questions.",
+    "cyber": "Must-assigned sets support definite-initialisation checks [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.intro.mini-project-rd-correctness",
+     "relation": "prerequisite_of"
+    },
+    {
+     "target_id": "ppa.tes.annotated-base-types",
+     "relation": "refines"
+    },
+    {
+     "target_id": "ppa.tes.call-tracking-effects",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-030"
+   ]
+  },
+  {
+   "id": "ppa.tes.call-tracking-effects",
+   "title": "Call-tracking effect system (Table 1.4)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 22,
+     "pdf_page": 42,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 23,
+     "pdf_page": 43,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.6",
+     "book_page": 24,
+     "pdf_page": 44,
+     "table_or_fig": "Table 1.4"
+    }
+   ],
+   "formal_summary": "Judgements Γ ⊢ e : τ & φ annotate function types τ₁ --φ--> τ₂ with the latent effect φ (functions that may be called); [var] and [fn] have empty effects under call-by-value; [app] combines the operator, operand and latent effects.",
+   "projections": {
+    "cs_theory": "Effects record computational behaviour alongside types.",
+    "swe_architecture": "Effect annotations give modular summaries of which functions a call may invoke.",
+    "practical_debugging": "The empty effects of [var] and [fn] depend on call-by-value; other strategies change the rules.",
+    "cyber": "Latent effects can bound which capabilities a callee may exercise [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.cfa.intro-control-flow-analysis",
+     "relation": "related_to"
+    },
+    {
+     "target_id": "ppa.tes.annotated-type-constructors",
+     "relation": "related_to"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-026",
+    "BKL-031"
+   ]
+  },
+  {
+   "id": "ppa.solvers.chaotic-iteration",
+   "title": "Chaotic iteration (Table 1.5)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.7",
+     "book_page": 25,
+     "pdf_page": 45,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.7",
+     "book_page": 26,
+     "pdf_page": 46,
+     "table_or_fig": "Table 1.5"
+    }
+   ],
+   "formal_summary": "Initialise all RD components to ∅ and, while some RD_j ≠ F_j(RD⃗), update RD_j := F_j(RD⃗); the invariant RD⃗ ⊑ F(RD⃗) (guaranteed by starting at ∅⃗) yields the least solution; it is the principle behind the algorithms of Chapters 2 and 6.",
+   "projections": {
+    "cs_theory": "Because Table 1.5 updates only components with RD_j ≠ F_j(RD⃗) starting from ∅⃗, every step strictly enlarges RD⃗ and any valid update choice reaches the least fixed point on a finite lattice (fairness is needed only in unguarded chaotic-iteration schedules that permit no-op updates [external]).",
+    "swe_architecture": "Worklist solvers are chaotic iteration with a scheduling policy.",
+    "practical_debugging": "Results that depend on update order indicate a non-monotone transfer function or a non-bottom start.",
+    "cyber": "Solver order affects cost, not results, so adversarial inputs target cost [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.fixpoint.iteration",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.dfa.rd-equational",
+     "relation": "implements"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ]
+  },
+  {
+   "id": "ppa.transform.constant-folding",
+   "title": "Constant Folding transformation (Table 1.6)",
+   "altitude": "L1",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "1.8",
+     "book_page": 27,
+     "pdf_page": 47,
+     "table_or_fig": "Table 1.6"
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.8",
+     "book_page": 28,
+     "pdf_page": 48,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "1.8",
+     "book_page": 29,
+     "pdf_page": 49,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "RD ⊢ S ▷ S′ rewrites assignments using Reaching Definitions ([ass₁] substitutes a constant when all reaching definitions of y assign the same numeral and (y, ?) does not reach; [ass₂] evaluates closed expressions); ▷ is one step, neither reflexive nor transitive, with no fixed order; re-using RD after folding is valid because folding changes nothing RD observes.",
+   "projections": {
+    "cs_theory": "Analysis results justify transformations; validity after rewriting is a separate question.",
+    "swe_architecture": "Pass pipelines must state which analyses a rewrite preserves.",
+    "practical_debugging": "Re-using stale analysis results after label- or flow-changing rewrites is unsafe.",
+    "cyber": "Semantics-preserving rewrites can still remove security-relevant code (see BKL-032)."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.dfa.reaching-definitions",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md",
+    "knowledge/skills/ppa-program-analysis/references/chapter-1-five-formulations.md"
+   ],
+   "issue_refs": [
+    "BKL-032",
+    "BKL-034"
+   ]
+  },
+  {
+   "id": "ppa.intro.mini-project-rd-correctness",
+   "title": "Mini Project 1.1: correctness of Reaching Definitions via regular expressions",
+   "altitude": "L3",
+   "unit": "U1",
+   "citations": [
+    {
+     "chapter_or_app": "1",
+     "section": "Mini Projects",
+     "book_page": 30,
+     "pdf_page": 50,
+     "table_or_fig": null
+    },
+    {
+     "chapter_or_app": "1",
+     "section": "Mini Projects",
+     "book_page": 31,
+     "pdf_page": 51,
+     "table_or_fig": null
+    }
+   ],
+   "formal_summary": "Program paths are described by a regular expression 𝒮(S) over a label alphabet, and correctness conditions for the X and RD components of Table 1.3 are stated with homomorphisms h_y on the language ℒ⟦𝒮(S)⟧; proofs use the induction principles of Appendix B and the regular-expression material of Appendix C.",
+   "projections": {
+    "cs_theory": "Connects type-based summaries to path languages.",
+    "swe_architecture": "Path expressions [external] give a declarative specification of data flow facts.",
+    "practical_debugging": "The p. 30 X-condition applies h_y twice (see BKL-027); follow the p. 31 RD form.",
+    "cyber": "Regular path conditions express 'no redefinition on any path' properties [external]."
+   },
+   "related_edges": [
+    {
+     "target_id": "ppa.graphs.regex-homomorphism",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.graphs.regular-expressions",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.proof.induction-principles",
+     "relation": "depends_on"
+    },
+    {
+     "target_id": "ppa.tes.annotated-type-constructors",
+     "relation": "depends_on"
+    }
+   ],
+   "artifact_refs": [
+    "corpus/shards/RAW_SHARD_01_intro.md"
+   ],
+   "issue_refs": [
+    "BKL-027",
+    "BKL-035"
+   ]
+  }
+ ]
+}

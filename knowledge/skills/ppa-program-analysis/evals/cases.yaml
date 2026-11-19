@@ -1,0 +1,62 @@
+# Routing cases for the ppa-program-analysis router.
+# Each case: id, prompt, expect_skill; optional must_mention, must_not_mention, notes.
+cases:
+  - id: router-approach-choice
+    prompt: "I need to analyse a program statically but I am not sure whether data flow analysis, constraint based analysis, abstract interpretation or a type and effect system fits. How do they relate and how do I choose?"
+    expect_skill: ppa-program-analysis
+    must_mention: ["control flow", "approximate"]
+    notes: "Approach comparison and choice is the router's own task."
+  - id: router-safe-approximation
+    prompt: "Why may a static analysis report that a variable could hold 1, 2 or 27 when only 1 and 2 ever occur, and why is that still correct?"
+    expect_skill: ppa-program-analysis
+    must_mention: ["among", "safe"]
+    notes: "Answered from references/chapter-1-five-formulations.md without requiring the ambient channel; response must contrast safe 'among 1 and 2' phrasing against exact 'are 1 and 2' claims."
+  - id: router-equations-vs-constraints
+    prompt: "In the Chapter 1 reaching definitions example, do the equational system and the system of inclusions have the same solutions?"
+    expect_skill: ppa-program-analysis
+    must_mention: ["same least solution", "more solutions"]
+    notes: "Answered from references/chapter-1-five-formulations.md; a plain yes is wrong."
+  - id: router-chapter1-erratum
+    prompt: "The printed constraint list for the factorial program on page 9 has only five flow constraints. Is a constraint missing?"
+    expect_skill: ppa-program-analysis
+    must_mention: ["RD_entry(4)", "RD_exit(3)"]
+  - id: router-coinduction-background
+    prompt: "What is the difference between an inductive and a coinductive definition, and when does a greatest fixed point give the intended meaning?"
+    expect_skill: ppa-program-analysis
+    notes: "Appendix B reference is hosted by the router."
+  - id: router-appendix-c-rpo
+    prompt: "How are depth-first spanning forest edge classifications (advancing, retreating, back, cross) defined, and when does loop connectedness bound reverse-postorder passes?"
+    expect_skill: ppa-program-analysis
+    notes: "Appendix C reference is hosted by the router."
+  - id: sib-dataflow-live-variables
+    prompt: "Compute live variables for each block of this WHILE program and use them to remove dead assignments."
+    expect_skill: ppa-dataflow-and-slicing
+  - id: sib-dataflow-slice
+    prompt: "Starting from a wrong value printed at line 40, find every assignment it may depend on using reaching definitions."
+    expect_skill: ppa-dataflow-and-slicing
+  - id: sib-cfa-call-targets
+    prompt: "Which closures may be applied at each call site of this higher-order functional program?"
+    expect_skill: ppa-control-flow-and-constraints
+  - id: sib-ai-widening
+    prompt: "My interval analysis never terminates on a loop with an unbounded counter. Design a widening operator and argue it is sound."
+    expect_skill: ppa-abstract-interpretation
+  - id: sib-types-effects
+    prompt: "Extend a type system with an effect annotation that records which exceptions a function may raise."
+    expect_skill: ppa-types-effects-and-regions
+  - id: sib-solver-order
+    prompt: "My worklist solver for a constraint system is slow; which iteration order should I use and how many passes does round robin need?"
+    expect_skill: ppa-fixedpoint-solvers
+  - id: sib-cyber-taint
+    prompt: "Check whether user input from an HTTP request can reach a SQL query without sanitisation, and tell me whether a clean result is a guarantee."
+    expect_skill: ppa-cyber-vulnerability-analysis
+  - id: none-fuzzing
+    prompt: "Set up a coverage-guided fuzzing harness for this C library and triage the crashes."
+    expect_skill: none
+    notes: "Dynamic technique; out of scope for every PPA skill."
+  - id: none-profiling
+    prompt: "Profile the heap usage of this service at run time and find the allocation hot spots."
+    expect_skill: none
+  - id: none-parser
+    prompt: "Write a parser for the concrete syntax of the WHILE language with error recovery."
+    expect_skill: none
+    notes: "The book works on abstract syntax only."
